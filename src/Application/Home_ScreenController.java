@@ -16,6 +16,11 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _deleteButton;
     @FXML private Button _settingsButton;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
     @FXML
     public void handlePlay() {
         System.out.println("You pressed play");
@@ -31,12 +36,8 @@ public class Home_ScreenController extends Controller implements Initializable {
         System.out.println("You pressed delete");
     }
 
+    @FXML
     public void handleSettings() {
         System.out.println("You pressed settings");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
