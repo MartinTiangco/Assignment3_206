@@ -1,0 +1,34 @@
+#background{
+    -fx-background-image: url("../assets/background.jpeg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1600 800;
+    -fx-background-position: center center;
+}
+
+#_playButton{
+	-fx-background-image: url("../assets/play.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
+
+#_deleteButton{
+	-fx-background-image: url("../assets/trash.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
+
+#_addButton{
+	-fx-background-image: url("../assets/add.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
+
+#_settingsButton{
+	-fx-background-image: url("../assets/settings.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
