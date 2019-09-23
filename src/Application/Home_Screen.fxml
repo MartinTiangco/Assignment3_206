@@ -19,12 +19,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="541.0" prefWidth="600.0">
                      <children>
-                        <TableView layoutX="9.0" layoutY="3.0" prefHeight="541.0" prefWidth="574.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="541.0" prefWidth="574.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="150.0" text="Name" />
-                            <TableColumn minWidth="0.0" prefWidth="204.0" text="Term Searched" />
-                              <TableColumn minWidth="0.0" prefWidth="152.0" text="Date Modified" />
-                              <TableColumn prefWidth="85.0" text="Length" />
+                            <TableColumn fx:id="_nameColumn" prefWidth="150.0" text="Name" />
+                            <TableColumn fx:id="_termSearchedColumn" minWidth="0.0" prefWidth="204.0" text="Term Searched" />
+                              <TableColumn fx:id="_dateModifiedColumn" minWidth="0.0" prefWidth="152.0" text="Date Modified" />
+                              <TableColumn fx:id="_videoLengthColumn" prefWidth="85.0" text="Length" />
                           </columns>
                         </TableView>
                      </children>
@@ -35,10 +35,10 @@
       </TabPane>
       <VBox layoutX="603.0" layoutY="24.0" prefHeight="594.0" prefWidth="90.0" spacing="20.0">
          <children>
-            <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="P" />
-            <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="A" />
-            <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="D" />
-            <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="S">
+            <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="P" />
+            <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="A" />
+            <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="D" />
+            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" text="S">
                <VBox.margin>
                   <Insets top="295.0" />
                </VBox.margin></Button>
