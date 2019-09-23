@@ -10,7 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Welcome_Screen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Welcome_Screen.fxml"));
+        Parent root = loader.load();
+        Welcome_ScreenController Welcome_ScreenController = loader.getController();
+        Welcome_ScreenController.setCurrentController(Welcome_ScreenController);
         root.setId("background");
         primaryStage.setTitle("Welcome to VARpedia");
         Scene scene = new Scene(root, 600, 400);
