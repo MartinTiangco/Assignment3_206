@@ -8,6 +8,7 @@ public class UpdateHelper extends Thread {
 	private final String DIR = "./Creation_Directory";
 	
 	private Controller _homeScreenController;
+	private List<Creation> _creations = new ArrayList<Creation>();
 	
 	public UpdateHelper(Controller homeScreenController) {
 		_homeScreenController = homeScreenController;
@@ -16,7 +17,8 @@ public class UpdateHelper extends Thread {
 	@Override
 	public void run() {
 		List<String> listOfFilenames = extractFromDirectory();
-		List<Creation> createCreations = createCreations();
+		createCreations(listOfFilenames);
+		// we need to add to existing list of creations in Runnable runLater class.
 	}
 	
 	private List<String> extractFromDirectory() {
@@ -31,7 +33,6 @@ public class UpdateHelper extends Thread {
 	}
 	
 	private void createCreations(List<String> listOfFilenames) {
-		List<Creation> creations = new ArrayList<Creation>();
 		
 		for (String file : listOfFilenames) {
 			//gets the first occurrence of the file separator pattern
@@ -45,9 +46,9 @@ public class UpdateHelper extends Thread {
 					extractDateModified(file), 
 					extractLength(file, secondPatternIndex));
 			
-			creations.add(creation);
+			_creations.add(creation);
 		}
-		// we need to add to existing list of creations in Runnable runLater class.
+
 	}
 	
 	private String extractName(String filename, int firstPatternIndex) {
@@ -62,9 +63,9 @@ public class UpdateHelper extends Thread {
 		return new File(DIR + filename).lastModified();
 	}
 	
-	private int extractLength(String filename, int secondPatternIndex) {
+	private String extractLength(String filename, int secondPatternIndex) {
 		//gets the filename extension index i.e. ".mp4"
 		int ext = filename.indexOf(".mp4");
-		return Integer.parseInt(filename.substring(secondPatternIndex, ext));
+		return filename.substring(secondPatternIndex, ext);
 	}
 }

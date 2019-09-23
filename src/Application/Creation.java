@@ -4,11 +4,11 @@ public class Creation {
 
     private String _name = null;
     private String _termSearched = null;
-    private String _dateModified = null;
-    private long _videoLength;
+    private long _dateModified;
+    private String _videoLength;
 
 
-    public Creation(String name, String termSearched, String dateModified, long videoLength) {
+    public Creation(String name, String termSearched, long dateModified, String videoLength) {
         _name = name;
         _termSearched = termSearched;
         _dateModified = dateModified;
@@ -31,19 +31,19 @@ public class Creation {
         _termSearched = termSearched;
     }
 
-    public String getDateModified() {
+    public long getDateModified() {
         return _dateModified;
     }
 
-    public void setDateModified(String dateModified) {
+    public void setDateModified(long dateModified) {
         _dateModified = dateModified;
     }
 
-    public long getVideoLength() {
+    public String getVideoLength() {
         return _videoLength;
     }
 
-    public void setVideoLength(long videoLength) {
+    public void setVideoLength(String videoLength) {
         _videoLength = videoLength;
     }
 

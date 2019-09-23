@@ -29,7 +29,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _updateHelper = new UpdateHelper(this.getCurrentController());
-        UpdateHelper.run();
+        _updateHelper.run();
     }
 
     @FXML
