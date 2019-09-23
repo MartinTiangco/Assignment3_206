@@ -8,13 +8,6 @@ public class UpdateHelper extends Thread {
 	private final String DIR = "./Creation_Directory";
 	
 	private Controller _homeScreenController;
-	private List<Creation> _listOfCreations;
-	private Creation _creation;
-	private String _filename;
-	private String _name;
-	private String _termSearched;
-	private long _dateModified;
-	private int _length;
 	
 	public UpdateHelper(Controller homeScreenController) {
 		_homeScreenController = homeScreenController;
@@ -22,7 +15,8 @@ public class UpdateHelper extends Thread {
 	
 	@Override
 	public void run() {
-		extractDetails(extractFromDirectory());
+		List<String> listOfFilenames = extractFromDirectory();
+		List<Creation> createCreations = createCreations();
 	}
 	
 	private List<String> extractFromDirectory() {
@@ -33,37 +27,44 @@ public class UpdateHelper extends Thread {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			listOfFilenames.add(listOfFiles[i].getName());
 		}
+		return listOfFilenames;
 	}
 	
-	//NEED TO CONVERT LIST<STRING> AND INDIVIDUALLY PROCESS
-	private void extractDetails(List<String> filenames) {
-		//gets the first occurrence of the file separator pattern
-		int firstPatternIndex = _filename.indexOf("_-_");
+	private void createCreations(List<String> listOfFilenames) {
+		List<Creation> creations = new ArrayList<Creation>();
 		
-		//gets the second occurrence of the file separator pattern
-		int secondPatternIndex = _filename.indexOf("_-_", firstPatternIndex);
-	
-		_name = extractName(firstPatternIndex);
-		_termSearched = extractTerm(firstPatternIndex, secondPatternIndex);
-		_dateModified = extractDateModified();
-		_length = extractLength(secondPatternIndex);
+		for (String file : listOfFilenames) {
+			//gets the first occurrence of the file separator pattern
+			int firstPatternIndex = file.indexOf("_-_");
+			
+			//gets the second occurrence of the file separator pattern
+			int secondPatternIndex = file.indexOf("_-_", firstPatternIndex);
+			
+			Creation creation = new Creation(extractName(file, firstPatternIndex), 
+					extractTerm(file, firstPatternIndex, secondPatternIndex), 
+					extractDateModified(file), 
+					extractLength(file, secondPatternIndex));
+			
+			creations.add(creation);
+		}
+		// we need to add to existing list of creations in Runnable runLater class.
 	}
 	
-	private String extractName(int firstPatternIndex) {
-		return _filename.substring(0, firstPatternIndex);
+	private String extractName(String filename, int firstPatternIndex) {
+		return filename.substring(0, firstPatternIndex);
 	}
 	
-	private String extractTerm(int firstPatternIndex, int secondPatternIndex) {
-		return _filename.substring(firstPatternIndex, secondPatternIndex);
+	private String extractTerm(String filename, int firstPatternIndex, int secondPatternIndex) {
+		return filename.substring(firstPatternIndex, secondPatternIndex);
 	}
 	
-	private long extractDateModified() {
-		return new File(DIR + _filename).lastModified();
+	private long extractDateModified(String filename) {
+		return new File(DIR + filename).lastModified();
 	}
 	
-	private int extractLength(int secondPatternIndex) {
+	private int extractLength(String filename, int secondPatternIndex) {
 		//gets the filename extension index i.e. ".mp4"
-		int ext = _filename.indexOf(".mp4");
-		return Integer.parseInt(_filename.substring(secondPatternIndex, ext));
+		int ext = filename.indexOf(".mp4");
+		return Integer.parseInt(filename.substring(secondPatternIndex, ext));
 	}
 }
