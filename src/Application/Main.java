@@ -1,5 +1,7 @@
 package Application;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,24 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+    	
+	//make the directories
+			File creationDir = new File("Creation_Directory");
+			File audioDir = new File(".Audio_Directory");
+			File videoDir = new File(".Video_Directory");
+			
+			if (!creationDir.isDirectory()) {
+				creationDir.mkdir();
+			}
+			
+			if (!audioDir.isDirectory()) {
+				audioDir.mkdir();
+			}
+			
+			if (!videoDir.isDirectory()) {
+				videoDir.mkdir();
+			}	
+    			
         launch(args);
     }
 }

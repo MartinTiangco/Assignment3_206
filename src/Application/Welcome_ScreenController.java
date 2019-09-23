@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Welcome_ScreenController  extends Controller implements Initializable {
+public class Welcome_ScreenController extends Controller implements Initializable {
 
     @FXML
     Button _getStarted;
