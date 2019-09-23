@@ -21,7 +21,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
                   </Label>
-                  <Button layoutX="194.0" layoutY="290.0" mnemonicParsing="false" text="Get Started!">
+                  <Button fx:id="_getStarted" layoutX="194.0" layoutY="290.0" mnemonicParsing="false" onAction="#getStarted" text="Get Started!">
                      <font>
                         <Font size="28.0" />
                      </font>

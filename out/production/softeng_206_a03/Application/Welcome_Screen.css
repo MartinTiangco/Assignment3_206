@@ -1,5 +1,5 @@
 #background{
-    -fx-background-image: url("Welcome_Screen_Image.jpeg");
+    -fx-background-image: url("BackgroundImage.jpeg");
     -fx-background-repeat: stretch;
     -fx-background-size: 600 400;
     -fx-background-position: center center;
