@@ -37,11 +37,11 @@ public class Welcome_ScreenController extends Controller implements Initializabl
             Home_ScreenController.setCurrentController(Home_ScreenController);
             Home_ScreenController.setParentController(_currentController);
             //root.setId("homeScreen");
-            root.setId("background");
+            //root.setId("background");
             homeStage.setTitle("VARpedia");
             Scene scene = new Scene(root, 700, 600);
             //scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm());
-            scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
+            //scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
             homeStage.setScene(scene);
             homeStage.show();
 
