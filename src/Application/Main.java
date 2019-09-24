@@ -19,7 +19,7 @@ public class Main extends Application {
         root.setId("background");
         primaryStage.setTitle("Welcome to VARpedia");
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().addAll(this.getClass().getResource("Welcome_Screen.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
