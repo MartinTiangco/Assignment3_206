@@ -35,10 +35,10 @@
       </TabPane>
       <VBox layoutX="603.0" layoutY="24.0" prefHeight="594.0" prefWidth="90.0" spacing="20.0">
          <children>
-            <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" />
-            <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" />
-            <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" />
-            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false">
+            <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" />
+            <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" />
+            <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleDelete" />
+            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleSettings">
                <VBox.margin>
                   <Insets top="255.0" />
                </VBox.margin></Button>
