@@ -48,5 +48,8 @@ public class Welcome_ScreenController extends Controller implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Stage stage = (Stage) _getStarted.getScene().getWindow();
+        stage.close();
     }
 }

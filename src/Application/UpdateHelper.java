@@ -20,11 +20,12 @@ public class UpdateHelper extends Thread {
 	
 	@Override
 	public void run() {
-		List<String> listOfFilenames = extractFromDirectory();
-		createCreations(listOfFilenames);
+			List<String> listOfFilenames = extractFromDirectory();
+			createCreations(listOfFilenames);
 
-		Update update = new Update(_creations, _homeScreenController);
-		Platform.runLater(update);
+			Update update = new Update(_creations, _homeScreenController);
+			Platform.runLater(update);
+
 	}
 
 	class Update implements Runnable {

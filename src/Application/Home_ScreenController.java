@@ -33,8 +33,7 @@ public class Home_ScreenController extends Controller implements Initializable {
         _termSearchedColumn.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
         _dateModifiedColumn.setCellValueFactory(new PropertyValueFactory<>("dateModified"));
         _videoLengthColumn.setCellValueFactory(new PropertyValueFactory<>("videoLength"));
-        _updateHelper = new UpdateHelper(this);
-        _updateHelper.run();
+        Update();
     }
 
     @FXML
@@ -44,12 +43,15 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handleAdd() {
+
         System.out.println("You pressed add");
     }
 
     @FXML
     public void handleDelete() {
+
         System.out.println("You pressed delete");
+        Update();
     }
 
     @FXML
@@ -63,5 +65,10 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     public TableView getCreationTable(){
         return _creationTable;
+    }
+
+    public void Update() {
+        _updateHelper = new UpdateHelper(this);
+        _updateHelper.run();
     }
 }
