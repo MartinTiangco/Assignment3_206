@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper$Update.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper$Update.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/UpdateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Welcome_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Welcome_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Welcome_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,11 +114,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Application/fxml" />
+      <recent name="$PROJECT_DIR$/src/Application" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/sample" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Application" />
     </key>
   </component>
   <component name="RunDashboard">

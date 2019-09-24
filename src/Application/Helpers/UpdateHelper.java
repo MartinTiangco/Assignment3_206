@@ -1,5 +1,6 @@
-package Application;
+package Application.Helpers;
 
+import Application.Controllers.Home_ScreenController;
 import javafx.application.Platform;
 
 import java.io.File;
