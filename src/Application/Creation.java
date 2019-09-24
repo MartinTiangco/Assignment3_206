@@ -2,49 +2,49 @@ package Application;
 
 public class Creation {
 
-    private String _name = null;
-    private String _termSearched = null;
-    private long _dateModified;
-    private String _videoLength;
+    private String name = null;
+    private String termSearched = null;
+    private String dateModified;
+    private String videoLength;
 
 
-    public Creation(String name, String termSearched, long dateModified, String videoLength) {
-        _name = name;
-        _termSearched = termSearched;
-        _dateModified = dateModified;
-        _videoLength = videoLength;
+    public Creation(String name, String termSearched, String dateModified, String videoLength) {
+        this.name = name;
+        this.termSearched = termSearched;
+        this.dateModified = dateModified;
+        this.videoLength = videoLength;
     }
 
     public String getName() {
-        return _name;
+        return name;
     }
 
     public void setName(String name) {
-        _name = name;
+        name = name;
     }
 
     public String getTermSearched() {
-        return _termSearched;
+        return termSearched;
     }
 
     public void setTermSearched(String termSearched) {
-        _termSearched = termSearched;
+        termSearched = termSearched;
     }
 
-    public long getDateModified() {
-        return _dateModified;
+    public String getDateModified() {
+        return dateModified;
     }
 
-    public void setDateModified(long dateModified) {
-        _dateModified = dateModified;
+    public void setDateModified(String dateModified) {
+        dateModified = dateModified;
     }
 
     public String getVideoLength() {
-        return _videoLength;
+        return videoLength;
     }
 
     public void setVideoLength(String videoLength) {
-        _videoLength = videoLength;
+        videoLength = videoLength;
     }
 
 }

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        _nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        _termSearchedColumn.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
+        _dateModifiedColumn.setCellValueFactory(new PropertyValueFactory<>("dateModified"));
+        _videoLengthColumn.setCellValueFactory(new PropertyValueFactory<>("videoLength"));
         _updateHelper = new UpdateHelper(this);
         _updateHelper.run();
     }
