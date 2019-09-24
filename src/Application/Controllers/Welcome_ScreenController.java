@@ -27,7 +27,7 @@ public class Welcome_ScreenController extends Controller implements Initializabl
         Stage homeStage = new Stage();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Screen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Home_Screen.fxml"));
             Parent root = loader.load();
             Controller Home_ScreenController = loader.getController();
             Home_ScreenController.setCurrentController(Home_ScreenController);

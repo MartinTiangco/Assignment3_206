@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="All classes refactored into different packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Welcome_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Welcome_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Add_Audio_Screen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Creation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Home_Screen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Home_ScreenController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper$Update.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/UpdateHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Welcome_Screen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Welcome_ScreenController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -222,6 +226,14 @@
       <workItem from="1569216329257" duration="4905000" />
       <workItem from="1569294789358" duration="3813000" />
     </task>
+    <task id="LOCAL-00001" summary="All classes refactored into different packages">
+      <created>1569323469126</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1569323469126</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,5 +255,7 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="All classes refactored into different packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="All classes refactored into different packages" />
   </component>
 </project>

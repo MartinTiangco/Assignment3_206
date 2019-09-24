@@ -50,7 +50,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void handleAdd() {
     	Stage addAudioStage = new Stage();
         try {
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_Audio_Screen.fxml"));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_Audio_Screen.fxml"));
             Parent root = loader.load();
             Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
            	Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
