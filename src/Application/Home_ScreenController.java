@@ -28,7 +28,7 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        _updateHelper = new UpdateHelper(this.getCurrentController());
+        _updateHelper = new UpdateHelper(this);
         _updateHelper.run();
     }
 
@@ -54,5 +54,9 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     public ArrayList<Creation> getCreations() {
         return _creations;
+    }
+
+    public TableView getCreationTable(){
+        return _creationTable;
     }
 }

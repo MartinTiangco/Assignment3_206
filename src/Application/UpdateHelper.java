@@ -1,5 +1,7 @@
 package Application;
 
+import javafx.application.Platform;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +9,10 @@ import java.util.List;
 public class UpdateHelper extends Thread {
 	private final String DIR = "./Creation_Directory";
 	
-	private Controller _homeScreenController;
+	private Home_ScreenController _homeScreenController;
 	private List<Creation> _creations = new ArrayList<Creation>();
 	
-	public UpdateHelper(Controller homeScreenController) {
+	public UpdateHelper(Home_ScreenController homeScreenController) {
 		_homeScreenController = homeScreenController;
 	}
 	
@@ -18,9 +20,29 @@ public class UpdateHelper extends Thread {
 	public void run() {
 		List<String> listOfFilenames = extractFromDirectory();
 		createCreations(listOfFilenames);
-		// we need to add to existing list of creations in Runnable runLater class.
+
+		Update update = new Update(_creations, _homeScreenController);
+		Platform.runLater(update);
 	}
-	
+
+	class Update implements Runnable {
+
+		private Home_ScreenController _homeScreenController;
+		private List<Creation> _creations;
+
+		public Update(List<Creation> creations, Home_ScreenController homeScreenController) {
+			_homeScreenController = homeScreenController;
+			_creations = creations;
+
+		}
+
+
+		@Override
+		public void run() {
+			_homeScreenController.getCreationTable().getItems().addAll();
+		}
+	}
+
 	private List<String> extractFromDirectory() {
 		List<String> listOfFilenames = new ArrayList<>();
 		File dir = new File(DIR);
