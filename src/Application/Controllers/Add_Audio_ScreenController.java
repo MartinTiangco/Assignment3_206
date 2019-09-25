@@ -29,6 +29,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
+		_audioPlayer = new AudioPlayer(this);
 	}
 	@FXML
 	public void handleBackToMainMenu() {
@@ -40,7 +41,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		System.out.println("You pressed back to play text button.");
 		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
 		System.out.println(description.toString());
-		_audioPlayer = new AudioPlayer(description, this);
+		_audioPlayer.cancel();
+		_audioPlayer = new AudioPlayer(this);
+		_audioPlayer.setTexts(description);
 		_executor.submit(_audioPlayer);
 
 	}

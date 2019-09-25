@@ -11,6 +11,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AudioPlayer extends Task<Long> {
@@ -18,16 +23,9 @@ public class AudioPlayer extends Task<Long> {
     private Add_Audio_ScreenController _controller;
     private String _texts = "";
     private String _audioFileName = null;
+    private String _voice = "voice_kal_diphone";
 
-    public AudioPlayer(List<String> texts, Add_Audio_ScreenController controller) {
-        for (int i = 0; i < texts.size(); i++) {
-            _texts = _texts + texts.get(i);
-        }
-        _controller = controller;
-    }
-
-    public AudioPlayer(String audioFileName, Add_Audio_ScreenController controller) {
-        _audioFileName = audioFileName;
+    public AudioPlayer(Add_Audio_ScreenController controller) {
         _controller = controller;
     }
 
@@ -35,25 +33,37 @@ public class AudioPlayer extends Task<Long> {
     protected Long call() throws Exception {
         if (_audioFileName != null) {
             playAudio();
+            _audioFileName = null;
         }
         else if (_texts != "") {
             playText();
+            _texts = "";
         }
         else {
             throw new IllegalArgumentException();
         }
-
         return null;
     }
 
     public void playText() {
-        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "echo \"" + _texts + "\" | festival --tts");
+        List<String> instruction = new ArrayList<>();
+        instruction.add("(" +_voice + ")");
+        instruction.add("(SayText \"" + _texts +"\")");
+        try {
+            Path file = Paths.get(".Audio_Directory/speech.scm");
+            Files.write(file, instruction);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "festival -b .Audio_Directory/speech.scm");
         Process process;
         try {
             process = builder.start();
 
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
+            System.out.println(exitStatus);
             if (exitStatus == 0) {
             } else {
                 Alert error = new Alert(Alert.AlertType.ERROR);
@@ -83,5 +93,19 @@ public class AudioPlayer extends Task<Long> {
         player.setAutoPlay(true);
 
         _controller.getMediaView().setMediaPlayer(player);
+    }
+
+    public void setTexts(List<String> texts) {
+        for (int i = 0; i < texts.size(); i++) {
+            _texts = _texts + texts.get(i);
+        }
+    }
+
+    public void setAudioFileName(String audioFileName) {
+        _audioFileName = audioFileName;
+    }
+
+    public void setVoice(String voice) {
+        _voice = voice;
     }
 }
