@@ -1,50 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="06d9a263-371d-427d-858c-69f742b4e3b3" name="Default Changelist" comment="">
+    <list default="true" id="06d9a263-371d-427d-858c-69f742b4e3b3" name="Default Changelist" comment="Merge branch 'master' of https://github.com/MartinTiangco/Assignment3_206&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.Audio_Directory/speech.scm" beforeDir="false" afterPath="$PROJECT_DIR$/.Audio_Directory/speech.scm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Add_Audio_ScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Home_ScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Welcome_ScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/AudioPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/Creation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper$Update.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/assets/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/assets/background.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/assets/play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/assets/settings.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/assets/trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/css/Home_Screen.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/css/Welcome_Screen.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/fxml/Home_Screen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/fxml/Welcome_Screen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/META-INF/softeng_206_a03.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softeng_206_a03.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../softeng206_a02" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -115,7 +76,7 @@
       <updated>1569386880344</updated>
       <workItem from="1569386882975" duration="223000" />
       <workItem from="1569387120032" duration="25000" />
-      <workItem from="1569387156790" duration="3380000" />
+      <workItem from="1569387156790" duration="5639000" />
     </task>
     <servers />
   </component>

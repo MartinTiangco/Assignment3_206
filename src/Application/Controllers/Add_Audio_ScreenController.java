@@ -13,8 +13,12 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -49,6 +53,14 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayText() {
+
+		try {
+			Path file = Paths.get("temp.txt");
+			Files.write(file, _textDescription.getSelectionModel().getSelectedItems());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		_audioPlayer.cancel();
 		_audioPlayer = new AudioPlayer(this);
 		_audioPlayer.setVoice((String) _voiceBox.getSelectionModel().getSelectedItem());

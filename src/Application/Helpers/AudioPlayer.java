@@ -87,7 +87,7 @@ public class AudioPlayer extends Task<Long> {
 
     public void playAudio() {
 
-        File fileUrl = new File("../../../.Audio_Directory/" + _audioFileName + ".mp4");
+        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audioFileName + ".wav");
         Media video = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(video);
         player.setAutoPlay(true);
