@@ -16,7 +16,7 @@ import java.util.List;
 public class AudioPlayer extends Task<Long> {
 
     private Add_Audio_ScreenController _controller;
-    private String _texts = null;
+    private String _texts = "";
     private String _audioFileName = null;
 
     public AudioPlayer(List<String> texts, Add_Audio_ScreenController controller) {
@@ -34,10 +34,10 @@ public class AudioPlayer extends Task<Long> {
     @Override
     protected Long call() throws Exception {
         if (_audioFileName != null) {
-            playAudio(_audioFileName);
+            playAudio();
         }
-        else if (_texts != null) {
-            playText(_texts);
+        else if (_texts != "") {
+            playText();
         }
         else {
             throw new IllegalArgumentException();
@@ -46,8 +46,8 @@ public class AudioPlayer extends Task<Long> {
         return null;
     }
 
-    public void playText(List<String> texts) {
-        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "$echo " + _texts + " | festival --tts");
+    public void playText() {
+        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "echo \"" + _texts + "\" | festival --tts");
         Process process;
         try {
             process = builder.start();
@@ -75,9 +75,9 @@ public class AudioPlayer extends Task<Long> {
 
     }
 
-    public void playAudio(String audioFileName) {
+    public void playAudio() {
 
-        File fileUrl = new File("../../../.Audio_Directory/" + audioFileName + ".mp4");
+        File fileUrl = new File("../../../.Audio_Directory/" + _audioFileName + ".mp4");
         Media video = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(video);
         player.setAutoPlay(true);
