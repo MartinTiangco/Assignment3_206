@@ -41,7 +41,7 @@ public class Welcome_ScreenController extends Controller implements Initializabl
             homeStage.setScene(scene);
             homeStage.show();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

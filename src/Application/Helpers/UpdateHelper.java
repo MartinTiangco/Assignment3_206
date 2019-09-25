@@ -12,6 +12,8 @@ import java.util.List;
 
 public class UpdateHelper extends Task<Long> {
 	private final String DIR = "./Creation_Directory/";
+	//SEPARATOR_LENGTH is the sequence of characters "_-_" used to extract data from a file
+	private final int SEPARATOR_LENGTH = 3;
 
 	private Home_ScreenController _homeScreenController;
 	private List<Creation> _creations = new ArrayList<Creation>();
@@ -53,7 +55,7 @@ public class UpdateHelper extends Task<Long> {
 			int firstPatternIndex = file.indexOf("_-_");
 			
 			//gets the second occurrence of the file separator pattern
-			int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + 3);
+			int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + SEPARATOR_LENGTH);
 			
 			Creation creation = new Creation(extractName(file, firstPatternIndex), 
 					extractTerm(file, firstPatternIndex, secondPatternIndex), 
@@ -70,7 +72,7 @@ public class UpdateHelper extends Task<Long> {
 	}
 	
 	private String extractTerm(String filename, int firstPatternIndex, int secondPatternIndex) {
-		return filename.substring(firstPatternIndex + 3, secondPatternIndex);
+		return filename.substring(firstPatternIndex + SEPARATOR_LENGTH, secondPatternIndex);
 	}
 	
 	private String extractDateModified(String filename) {
@@ -78,9 +80,19 @@ public class UpdateHelper extends Task<Long> {
 
 	}
 	
+	/**
+	 * Extracts length in mm:ss format
+	 * @param filename
+	 * @param secondPatternIndex
+	 * @return
+	 */
 	private String extractLength(String filename, int secondPatternIndex) {
 		//gets the filename extension index i.e. ".mp4"
 		int ext = filename.indexOf(".mp4");
-		return filename.substring(secondPatternIndex + 3, ext);
+		int seconds = Integer.parseInt(filename.substring(secondPatternIndex + SEPARATOR_LENGTH, ext));
+		int sec = seconds % 60;
+		int min = seconds / 60;
+		return "" + min + ":" + sec;
+		
 	}
 }

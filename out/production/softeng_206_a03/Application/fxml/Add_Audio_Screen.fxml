@@ -25,11 +25,11 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="426.0">
                      <children>
                         <Button fx:id="_playTextButton" layoutX="398.0" layoutY="90.0" mnemonicParsing="false" onAction="#handlePlayText" text="P" />
-                        <TextField layoutX="16.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0" />
+                        <TextField fx:id="_searchTextField" layoutX="21.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="258.0" />
                         <Button layoutX="443.0" layoutY="90.0" mnemonicParsing="false" text="C" />
                         <ComboBox layoutX="398.0" layoutY="48.0" prefHeight="26.0" prefWidth="179.0" />
                         <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" prefHeight="282.0" prefWidth="345.0" />
-                        <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="446.0" layoutY="200.0" visible="false" />
+                        <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">
@@ -39,6 +39,7 @@
                         <Button layoutX="422.0" layoutY="61.0" mnemonicParsing="false" text="P" />
                         <Button layoutX="420.0" layoutY="94.0" mnemonicParsing="false" text="D" />
                         <Button layoutX="410.0" layoutY="130.0" mnemonicParsing="false" text="Next" />
+                        <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />
                      </children>
                   </AnchorPane>
               </items>

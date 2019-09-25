@@ -1,2 +1,2 @@
 (voice_kal_diphone)
-(SayText "apple apwelsdfsdf")
+(SayText "line 3")
