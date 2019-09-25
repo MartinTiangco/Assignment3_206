@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Home_ScreenController extends Controller implements Initializable {
 
@@ -31,6 +33,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableColumn _videoLengthColumn;
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();
+    private ExecutorService _executor = Executors.newSingleThreadExecutor();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,6 +93,6 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     public void Update() {
         _updateHelper = new UpdateHelper(this);
-        _updateHelper.run();
+        _executor.submit(_updateHelper);
     }
 }

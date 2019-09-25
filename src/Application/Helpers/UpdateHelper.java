@@ -2,6 +2,7 @@ package Application.Helpers;
 
 import Application.Controllers.Home_ScreenController;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -9,38 +10,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UpdateHelper extends Thread {
+public class UpdateHelper extends Task<Long> {
 	private final String DIR = "./Creation_Directory/";
-	
+
 	private Home_ScreenController _homeScreenController;
 	private List<Creation> _creations = new ArrayList<Creation>();
-	
+
 	public UpdateHelper(Home_ScreenController homeScreenController) {
 		_homeScreenController = homeScreenController;
 	}
-	
+
 	@Override
-	public void run() {
+	public Long call() {
 			List<String> listOfFilenames = extractFromDirectory();
 			createCreations(listOfFilenames);
-
-			Update update = new Update(_creations, _homeScreenController);
-			Platform.runLater(update);
-
+			Platform.runLater(new Update());
+		return null;
 	}
 
 	class Update implements Runnable {
-
-		private Home_ScreenController _homeScreenController;
-		private List<Creation> _creations;
-
-		public Update(List<Creation> creations, Home_ScreenController homeScreenController) {
-			_homeScreenController = homeScreenController;
-			_creations = creations;
-
-		}
-
-
 		@Override
 		public void run() {
 			_homeScreenController.getCreationTable().getItems().addAll(_creations);
