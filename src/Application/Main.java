@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Welcome_Screen.fxml"));
         Parent root = loader.load();
         Welcome_ScreenController Welcome_ScreenController = loader.getController();
@@ -31,6 +31,7 @@ public class Main extends Application {
 			File creationDir = new File("Creation_Directory");
 			File audioDir = new File(".Audio_Directory");
 			File videoDir = new File(".Video_Directory");
+			File wikitDir = new File(".Wikit_Directory");
 			
 			if (!creationDir.isDirectory()) {
 				creationDir.mkdir();
@@ -43,6 +44,10 @@ public class Main extends Application {
 			if (!videoDir.isDirectory()) {
 				videoDir.mkdir();
 			}	
+			
+			if (!wikitDir.isDirectory()) {
+				wikitDir.mkdir();
+			}
     			
         launch(args);
     }
