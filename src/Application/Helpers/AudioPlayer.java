@@ -106,6 +106,17 @@ public class AudioPlayer extends Task<Long> {
     }
 
     public void setVoice(String voice) {
-        _voice = voice;
+        if (voice == "Martin Tiangco") {
+            _voice = "voice_kal_diphone";
+        }
+        if (voice == "A") {
+            _voice = "voice_kal_diphone";
+        }
+        if (voice == "B") {
+            _voice = "voice_kal_diphone";
+        }
+        else {
+            _voice = "voice_kal_diphone";
+        }
     }
 }

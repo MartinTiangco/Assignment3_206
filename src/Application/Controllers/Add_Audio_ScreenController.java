@@ -5,12 +5,10 @@ import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
@@ -33,6 +31,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private MediaView _mediaView;
 	
 	@FXML private TextField _searchTextField;
+	@FXML private ComboBox _voiceBox;
 	
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
@@ -46,18 +45,17 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void initialize(URL location, ResourceBundle resources) {
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
+		_voiceBox.getItems().add("Martin Tiangco");
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
 		_audioPlayer = new AudioPlayer(this);
 	}
 
 	@FXML
 	public void handlePlayText() {
-		System.out.println("You pressed back to play text button.");
-		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
-		System.out.println(description.toString());
 		_audioPlayer.cancel();
 		_audioPlayer = new AudioPlayer(this);
-		_audioPlayer.setTexts(description);
+		_audioPlayer.setVoice((String) _voiceBox.getSelectionModel().getSelectedItem());
+		_audioPlayer.setTexts(_textDescription.getSelectionModel().getSelectedItems());
 		_executor.submit(_audioPlayer);
 
 	}
@@ -115,6 +113,23 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			_executor.submit(wikitWorker);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void deleteLines(KeyEvent key) {
+		if (key.getCode().equals(KeyCode.DELETE)) {
+			final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
+			if (selectedIdx != -1) {
+				final int newSelectedIdx =
+						(selectedIdx == _textDescription.getItems().size() - 1)
+								? selectedIdx - 1
+								: selectedIdx;
+				_textDescription.getItems().remove(selectedIdx);
+				_textDescription.getSelectionModel().select(newSelectedIdx);
+			}
+			if (_textDescription.getSelectionModel().getSelectedItems().size() < 5) {
+				_textDescription.getItems().add("");
+			}
 		}
 	}
 	

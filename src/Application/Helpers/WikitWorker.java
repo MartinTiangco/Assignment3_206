@@ -99,13 +99,13 @@ public class WikitWorker extends Task<Long> {
 		@Override
 		public void run() {
 			// clears ListView and appends all lines of content
-			if (!(getSepLines() == null)) {
+			if (!(sepLines == null)) {
 				//lineCount.setText(wikitWorker.getSepLines().size() + " lines found."); IF WE WANT TO SHOW ALL LINES FOUND
 				//lineCount.setVisible(true);
 				
 				//append lines onto text field
 				StringBuilder content = new StringBuilder(""); 
-				for (String line : getSepLines()) {
+				for (String line : sepLines) {
 				   content.append(line);
 				}
 				controller.getContent().getItems().addAll(sepLines);
@@ -159,13 +159,6 @@ public class WikitWorker extends Task<Long> {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Retrieves a list of string with lines separated by sentences.
-	 * @return
-	 */
-	public List<String> getSepLines() {
-		return sepLines;
-	}
+
 }
 
