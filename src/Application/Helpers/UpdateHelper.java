@@ -33,6 +33,7 @@ public class UpdateHelper extends Task<Long> {
 	class Update implements Runnable {
 		@Override
 		public void run() {
+			_homeScreenController.getCreationTable().getItems().clear();
 			_homeScreenController.getCreationTable().getItems().addAll(_creations);
 		}
 	}

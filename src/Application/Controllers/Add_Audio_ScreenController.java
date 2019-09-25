@@ -57,17 +57,21 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML
 	public void handlePlayText() {
 
-		try {
-			Path file = Paths.get("temp.txt");
-			Files.write(file, _textDescription.getSelectionModel().getSelectedItems());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		_audioPlayer.cancel();
 		_audioPlayer = new AudioPlayer(this);
 		_audioPlayer.setVoice((String) _voiceBox.getSelectionModel().getSelectedItem());
 		_audioPlayer.setTexts(_textDescription.getSelectionModel().getSelectedItems());
+		_executor.submit(_audioPlayer);
+
+	}
+
+	@FXML
+	public void handlePlayAudio() {
+
+
+		_audioPlayer.cancel();
+		_audioPlayer = new AudioPlayer(this);
+		_audioPlayer.setAudioFileName("output");
 		_executor.submit(_audioPlayer);
 
 	}

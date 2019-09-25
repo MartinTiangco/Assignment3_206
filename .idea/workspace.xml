@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06d9a263-371d-427d-858c-69f742b4e3b3" name="Default Changelist" comment="Merge branch 'master' of https://github.com/MartinTiangco/Assignment3_206&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change beforePath="$PROJECT_DIR$/.Audio_Directory/output.wav" beforeDir="false" afterPath="$PROJECT_DIR$/.Audio_Directory/output.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.Audio_Directory/speech.scm" beforeDir="false" afterPath="$PROJECT_DIR$/.Audio_Directory/speech.scm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Audio_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Audio_Directory/temp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +79,7 @@
       <updated>1569386880344</updated>
       <workItem from="1569386882975" duration="223000" />
       <workItem from="1569387120032" duration="25000" />
-      <workItem from="1569387156790" duration="5639000" />
+      <workItem from="1569387156790" duration="6507000" />
     </task>
     <servers />
   </component>
