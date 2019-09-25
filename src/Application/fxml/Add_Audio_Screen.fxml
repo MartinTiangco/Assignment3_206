@@ -26,7 +26,7 @@
                      <children>
                         <Button fx:id="_playTextButton" layoutX="398.0" layoutY="90.0" mnemonicParsing="false" onAction="#handlePlayText" text="P" />
                         <TextField fx:id="_searchTextField" layoutX="21.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="258.0" />
-                        <Button layoutX="443.0" layoutY="90.0" mnemonicParsing="false" text="C" />
+                        <Button fx:id="_createAudioButton" layoutX="443.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleCreateAudio" text="C" />
                         <ComboBox fx:id="_voiceBox" layoutX="398.0" layoutY="48.0" prefHeight="26.0" prefWidth="179.0" promptText="Voice" />
                         <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" onKeyPressed="#deleteLines" prefHeight="282.0" prefWidth="345.0" />
                         <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
@@ -34,7 +34,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">
                      <children>
-                        <ListView layoutX="14.0" layoutY="53.0" prefHeight="225.0" prefWidth="374.0" />
+                        <ListView fx:id="_savedAudio" layoutX="14.0" layoutY="53.0" prefHeight="225.0" prefWidth="374.0" />
                         <Label layoutX="14.0" layoutY="14.0" text="List of Saved Audio" />
                         <Button layoutX="422.0" layoutY="61.0" mnemonicParsing="false" text="P" />
                         <Button layoutX="420.0" layoutY="94.0" mnemonicParsing="false" text="D" />

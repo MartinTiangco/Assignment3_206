@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 
 /**
  * Worker thread calling the wikit command in the background.
  * @author Martin Tiangco
  *
  */
-public class WikitWorker extends Thread {
+public class WikitWorker extends Task<Long> {
 	
 	private String cmd;
 	private String searchTerm;
@@ -44,7 +45,7 @@ public class WikitWorker extends Thread {
 	 * Calls the wikit command, writes into a txt file and separates into sentences.
 	 */ 
 	@Override
-	public void run() {
+	public Long call() {
 		//invalid wikit search string
 		String invalidWikit = searchTerm + " not found :^(";
 		
@@ -83,7 +84,8 @@ public class WikitWorker extends Thread {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+		return null;	
 	}
 	
 	class Append implements Runnable {

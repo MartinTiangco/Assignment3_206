@@ -1,5 +1,6 @@
 package Application.Controllers;
 
+import Application.Helpers.AudioCreator;
 import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
 import javafx.fxml.FXML;
@@ -28,7 +29,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private Button _mainMenuButton;
 	@FXML private Button _playTextButton;
 	@FXML private Button _searchButton;
+	@FXML private Button _createAudioButton;
 	@FXML private ListView _textDescription;
+	@FXML private ListView _savedAudio;
 	@FXML private MediaView _mediaView;
 	
 	@FXML private TextField _searchTextField;
@@ -68,15 +71,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_executor.submit(_audioPlayer);
 
 	}
-
-	public MediaView getMediaView() {
-		return _mediaView;
-	}
-	
-	public void handleBackToMainMenu() {
-		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
-        stage.close();
-	}
 	
 	public void handleSearch() {
 		System.out.println("Searching");
@@ -99,6 +93,26 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		
 	}
 	
+	public void handleCreateAudio() {
+		System.out.println("Now creating audio");
+		// Creates the selected lines of content and generates an audio file. It will then show on the ListView on the
+		// bottom of the screen
+		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
+		System.out.println(description.toString());
+		AudioCreator audioCreator = new AudioCreator(description, this);
+		_executor.submit(audioCreator);
+		
+	}
+
+	public MediaView getMediaView() {
+		return _mediaView;
+	}
+	
+	public void handleBackToMainMenu() {
+		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
+        stage.close();
+	}
+	
 	private void wikitSearch(String searchInput) {
 		try {
 			//create raw.txt for raw wikit content (has not been separated)
@@ -108,7 +122,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
-			wikitWorker.run();
+			_executor.submit(wikitWorker);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -141,5 +155,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public ListView getContent() {
 		return _textDescription;
+	}
+	
+	public ListView getAudioList() {
+		return _savedAudio;
 	}
 }
