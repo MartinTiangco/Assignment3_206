@@ -8,12 +8,13 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 
-<SplitPane dividerPositions="0.2932242990654206" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Add_Audio_ScreenController">
+<SplitPane dividerPositions="0.2932242990654206" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
   <items>
       <AnchorPane prefHeight="507.0" prefWidth="206.0">
          <children>
-            <TextArea editable="false" layoutX="7.0" layoutY="8.0" prefHeight="621.0" prefWidth="232.0" text="Instructions:&#10;&#10;1) Search for a term in Wikipedia&#10;and press the Search button.&#10;&#10;2) The content from Wikipedia&#10;will be displayed in the box." />
+            <TextArea editable="false" layoutX="7.0" layoutY="8.0" prefHeight="621.0" prefWidth="227.0" text="Instructions:&#10;&#10;Search a term on wikipedia.&#10;&#10;rqrwqer&#10;&#10;weetwer" />
             <Button fx:id="_mainMenuButton" layoutX="49.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" text="Back to Home Menu" />
          </children>
       </AnchorPane>
@@ -23,12 +24,12 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="426.0">
                      <children>
-                        <TextArea fx:id="_contentTextArea" layoutX="14.0" layoutY="64.0" prefHeight="235.0" prefWidth="374.0" />
-                        <Button layoutX="398.0" layoutY="90.0" mnemonicParsing="false" text="P" />
-                        <TextField fx:id="_searchTextField" layoutX="16.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="210.0" promptText="Enter search term here." />
+                        <Button fx:id="_playTextButton" layoutX="398.0" layoutY="90.0" mnemonicParsing="false" onAction="#handlePlayText" text="P" />
+                        <TextField layoutX="16.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0" />
                         <Button layoutX="443.0" layoutY="90.0" mnemonicParsing="false" text="C" />
                         <ComboBox layoutX="398.0" layoutY="48.0" prefHeight="26.0" prefWidth="179.0" />
-                        <Button fx:id="_searchButton" layoutX="235.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
+                        <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" prefHeight="282.0" prefWidth="345.0" />
+                        <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="446.0" layoutY="200.0" visible="false" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">

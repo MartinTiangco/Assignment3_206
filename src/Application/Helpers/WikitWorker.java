@@ -1,5 +1,6 @@
-package Application;
+package Application.Helpers;
 
+import Application.Controllers.Add_Audio_ScreenController;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Platform;
-import javafx.scene.control.TextArea;
 
 /**
  * Worker thread calling the wikit command in the background.
@@ -106,7 +106,7 @@ public class WikitWorker extends Thread {
 				for (String line : getSepLines()) {
 				   content.append(line);
 				}
-				controller.getContentTextArea().setText(content.toString());
+				controller.getContent().getItems().addAll(sepLines);
 			}		
 		}		
 	}

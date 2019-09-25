@@ -1,4 +1,4 @@
-package Application;
+package Application.Controllers;
 
 public class Controller {
 
