@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="merged add_audio_screen controller">
-      <change afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Audio_Directory/speech.scm" beforeDir="false" afterPath="$PROJECT_DIR$/.Audio_Directory/speech.scm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Add_Audio_ScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Add_Audio_ScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Welcome_ScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Controllers/Welcome_ScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper$Update.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper$Update.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Helpers/UpdateHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/softeng_206_a03/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="merged add_audio_screen controller" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +210,7 @@
       <workItem from="1569294789358" duration="3813000" />
       <workItem from="1569372564392" duration="2622000" />
       <workItem from="1569375673019" duration="4920000" />
-      <workItem from="1569380665391" duration="4960000" />
+      <workItem from="1569380665391" duration="5396000" />
     </task>
     <task id="LOCAL-00001" summary="All classes refactored into different packages">
       <created>1569323469126</created>
