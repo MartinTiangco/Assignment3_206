@@ -33,7 +33,7 @@ public class AudioCreator extends Task<Long> {
 			e.printStackTrace();
 		}
 				
-		String cmd = "text2wave -o " + DIR + "output.wav " + DIR + "temp.txt" + " -eval .Audio_Directory/speech.scm"; 
+		String cmd = "text2wave -o" + DIR + "output.wav " + DIR + "temp.txt" + " .Audio_Directory/speech.scm"; 
 		System.out.println(cmd);
 		
 		// ProcessBuilder to generate audio 
