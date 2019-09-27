@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -68,8 +69,13 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
 		_voiceBox.getItems().add("Default");
 		_voiceBox.getItems().add("Dumb Voice");
+        _voiceBox.getItems().add("English-USA-male");
+        _voiceBox.getItems().add("English-USA-female");
+        _voiceBox.getItems().add("English-UK-male");
+        _voiceBox.getItems().add("English-UK-female");
 		_voiceBox.getSelectionModel().select(0);
-		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
+		_textDescription.getItems().add("No content found.");
+		_textDescription.setDisable(true);
 	}
 
 	@FXML
@@ -77,8 +83,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		Audio audio = new Audio();
 		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
 		audio.setVoice((String)(_voiceBox.getSelectionModel().getSelectedItem()));
-		audio.setSpeed(String.valueOf((int)(_speedSlider.getValue())));
-		audio.setPitch(String.valueOf((int)(_pitchSlider.getValue())));
+		audio.setSpeed(_speedSlider.getValue());
+		audio.setPitch((int)(_pitchSlider.getValue()));
 		_audioPlayer = new AudioPlayer(audio,this);
 		_executor.submit(_audioPlayer);
 
@@ -109,7 +115,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		_textDescription.getSelectionModel().select(0);
+        _textDescription.setDisable(false);
 	}
 	
 	public void handleCreateAudio() {
@@ -133,6 +140,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 		allAudio.removeAll(selectedAudio);
+
 	}
 	
 	public void handleNext() {
@@ -165,18 +173,38 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public void deleteLines(KeyEvent key) {
 		if (key.getCode().equals(KeyCode.DELETE)) {
-			final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
-			if (selectedIdx != -1) {
-				final int newSelectedIdx =
-						(selectedIdx == _textDescription.getItems().size() - 1)
-								? selectedIdx - 1
-								: selectedIdx;
-				_textDescription.getItems().remove(selectedIdx);
-				_textDescription.getSelectionModel().select(newSelectedIdx);
-			}
+
+            final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
+            if (selectedIdx != -1) {
+
+                final int newSelectedIdx =
+                        (selectedIdx == _textDescription.getItems().size() - 1)
+                                ? selectedIdx - 1
+                                : selectedIdx;
+
+                _textDescription.getItems().remove(selectedIdx);
+                _textDescription.getSelectionModel().select(newSelectedIdx);
+            }
+
+		    //TODO
+            /*
+			ObservableList<Integer> selectedIdx = _textDescription.getSelectionModel().getSelectedIndices();
+			List<String> temp = _textDescription.getItems();
+			System.out.println(selectedIdx.toString());
+			if (!selectedIdx.contains(-1)) {
+			    for (int i = selectedIdx.size()-1; i >= 0; i--) {
+			        System.out.println("deleting" + i);
+                    temp.remove(selectedIdx.get(i));
+                }
+                //_textDescription.getItems().clear();
+			    _textDescription.getItems().addAll(temp);
+                _textDescription.getSelectionModel().select(selectedIdx.get(0));
+            }
 			if (_textDescription.getSelectionModel().getSelectedItems().size() < 5) {
 				_textDescription.getItems().add("");
 			}
+
+            */
 		}
 	}
 	

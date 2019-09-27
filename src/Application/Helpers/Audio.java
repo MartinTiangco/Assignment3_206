@@ -9,8 +9,8 @@ public class Audio {
     private List<String> content = null;
     private String numberOfLines = null;
     private String audioLength = null;
-    private String pitch = "120";
-    private String speed = "1";
+    private int pitch = 120;
+    private double speed = 1.0;
     private String voice = "kal_diphone";
 
 
@@ -54,19 +54,19 @@ public class Audio {
         this.audioLength = audioLength;
     }
 
-    public String getPitch() {
+    public int getPitch() {
         return pitch;
     }
 
-    public void setPitch(String pitch) {
+    public void setPitch(int pitch) {
         this.pitch = pitch;
     }
 
-    public String getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(String speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
@@ -77,6 +77,18 @@ public class Audio {
     public void setVoice(String voice) {
         if (voice == "Dumb Voice") {
             this.voice = "akl_nz_jdt_diphone";
+        }
+        else if (voice == "English-USA-male") {
+            this.voice = "-ven-us+m5";
+        }
+        else if (voice == "English-USA-female") {
+            this.voice = "-ven-us+f2";
+        }
+        else if (voice == "English-UK-male") {
+            this.voice = "-ven-gb+m5";
+        }
+        else if (voice == "English-UK-female") {
+            this.voice = "-ven-gb+f2";
         }
         else {
             this.voice = "kal_diphone";
