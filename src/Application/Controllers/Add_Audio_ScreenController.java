@@ -44,6 +44,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private TextField _searchTextField;
 	@FXML private ProgressBar _wikitProgress;
 	@FXML private ComboBox _voiceBox;
+	@FXML private Slider _speedSlider;
+	@FXML private Slider _pitchSlider;
 	
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
@@ -64,29 +66,29 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
-		
-		
-		_voiceBox.getItems().add("Martin Tiangco");
+		_voiceBox.getItems().add("Default");
+		_voiceBox.getItems().add("Dumb Voice");
+		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
-		_audioPlayer = new AudioPlayer(this);
 	}
 
 	@FXML
 	public void handlePlayText() {
-
-		_audioPlayer.cancel();
-		_audioPlayer = new AudioPlayer(this);
-		_audioPlayer.setVoice((String) _voiceBox.getSelectionModel().getSelectedItem());
-		_audioPlayer.setTexts(_textDescription.getSelectionModel().getSelectedItems());
+		Audio audio = new Audio();
+		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
+		audio.setVoice((String)(_voiceBox.getSelectionModel().getSelectedItem()));
+		audio.setSpeed(String.valueOf((int)(_speedSlider.getValue())));
+		audio.setPitch(String.valueOf((int)(_pitchSlider.getValue())));
+		_audioPlayer = new AudioPlayer(audio,this);
 		_executor.submit(_audioPlayer);
 
 	}
 
 	@FXML
 	public void handlePlayAudio() {
-		_audioPlayer.cancel();
-		//get the selected audio
-		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
+
+		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItems(),this);
+		_executor.submit(_audioPlayer);
 	}
 	
 	public void handleSearch() {
@@ -117,10 +119,11 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_numberOfAudiosCreated++;
 		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
 		//System.out.println(description.toString());
-		Audio audio = new Audio(_searchInput, description, String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
-		System.out.println("audio object created");
+		Audio audio = new Audio();
+		audio.setTermSearched(_searchInput);
+		audio.setContent(description);
+		audio.setNumberOfLines(String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
 		AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
-		System.out.println("task submited");
 		_executor.submit(audioCreator);
 		
 	}

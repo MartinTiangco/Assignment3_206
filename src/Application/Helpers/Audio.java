@@ -9,13 +9,10 @@ public class Audio {
     private List<String> content = null;
     private String numberOfLines = null;
     private String audioLength = null;
+    private String pitch = "120";
+    private String speed = "1";
+    private String voice = "kal_diphone";
 
-
-    public Audio(String termSearched, List<String> content, String numberOfLines) {
-        this.termSearched = termSearched;
-        this.content = content;
-        this.numberOfLines = numberOfLines;
-    }
 
     public String getFilename() {
         return filename;
@@ -57,4 +54,32 @@ public class Audio {
         this.audioLength = audioLength;
     }
 
+    public String getPitch() {
+        return pitch;
+    }
+
+    public void setPitch(String pitch) {
+        this.pitch = pitch;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String getVoice() {
+        return voice;
+    }
+
+    public void setVoice(String voice) {
+        if (voice == "Dumb Voice") {
+            this.voice = "akl_nz_jdt_diphone";
+        }
+        else {
+            this.voice = "kal_diphone";
+        }
+    }
 }
