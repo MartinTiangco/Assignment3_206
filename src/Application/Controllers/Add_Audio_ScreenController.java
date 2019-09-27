@@ -32,8 +32,12 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
 	@FXML private ListView _textDescription;
-	@FXML private ListView _savedAudio;
 	@FXML private MediaView _mediaView;
+	
+	@FXML private TableView _savedAudio;
+	@FXML private TableColumn _searchedTerm;
+	@FXML private TableColumn _lines;
+	@FXML private TableColumn _length;
 	
 	@FXML private TextField _searchTextField;
 	@FXML private ComboBox _voiceBox;
@@ -70,8 +74,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayAudio() {
-
-
 		_audioPlayer.cancel();
 		_audioPlayer = new AudioPlayer(this);
 		_audioPlayer.setAudioFileName("output");
@@ -102,7 +104,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	
 	public void handleCreateAudio() {
 		System.out.println("Now creating audio");
-		// Creates the selected lines of content and generates an audio file. It will then show on the ListView on the
+		// Creates the selected lines of content and generates an audio file. It will then show on the TableView on the
 		// bottom of the screen
 		_numberOfAudiosCreated++;
 		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
@@ -111,6 +113,18 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
 		_executor.submit(audioCreator);
 		
+	}
+	
+	public void handleDeleteAudio() {
+		System.out.println("You deleted the audio");
+		//get the item selected and remove from list
+		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
+		
+		
+	}
+	
+	public void handleNext() {
+		System.out.println("You went to next");
 	}
 
 	public MediaView getMediaView() {
@@ -166,7 +180,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		return _textDescription;
 	}
 	
-	public ListView getAudioList() {
+	public TableView getAudioList() {
 		return _savedAudio;
 	}
 }
