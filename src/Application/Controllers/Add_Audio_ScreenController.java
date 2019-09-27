@@ -60,6 +60,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		disable();
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
@@ -120,6 +121,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 	
 	public void handleCreateAudio() {
+		_searchTextField.setDisable(true);
 		System.out.println("Now creating audio");
 		// Creates the selected lines of content and generates an audio file. It will then show on the TableView on the
 		// bottom of the screen
@@ -141,6 +143,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 		allAudio.removeAll(selectedAudio);
 
+		
+		if (_savedAudio.getItems().isEmpty()) {
+			_searchTextField.setDisable(false);
+		}
 	}
 	
 	public void handleNext() {
@@ -166,6 +172,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
 			_executor.submit(wikitWorker);
+			enable();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -214,6 +221,22 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			return false;
 		}
 		return true;
+	}
+	
+	public void disable() {
+		_voiceBox.setDisable(true);
+		_speedSlider.setDisable(true);
+		_pitchSlider.setDisable(true);
+		_createAudioButton.setDisable(true);
+		_playTextButton.setDisable(true);
+	}
+	
+	public void enable() {
+		_voiceBox.setDisable(false);
+		_speedSlider.setDisable(false);
+		_pitchSlider.setDisable(false);
+		_createAudioButton.setDisable(false);
+		_playTextButton.setDisable(false);
 	}
 
 	public ListView getContent() {
