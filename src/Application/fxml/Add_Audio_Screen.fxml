@@ -58,9 +58,9 @@
                         <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />
                         <TableView fx:id="_savedAudio" layoutX="14.0" layoutY="43.0" prefHeight="273.0" prefWidth="388.0">
                           <columns>
-                            <TableColumn fx:id="_searchedTerm" prefWidth="186.0" text="Searched Term" />
-                            <TableColumn fx:id="_lines" minWidth="0.0" prefWidth="121.0" text="Lines" />
-                              <TableColumn fx:id="_length" minWidth="0.0" text="Length" />
+                            <TableColumn fx:id="_termSearched" prefWidth="186.0" text="Searched Term" />
+                            <TableColumn fx:id="_numberOfLines" minWidth="0.0" prefWidth="121.0" text="Lines" />
+                              <TableColumn fx:id="_audioLength" minWidth="0.0" text="Length" />
                           </columns>
                         </TableView>
                      </children>

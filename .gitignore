@@ -162,4 +162,5 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/eclipse,intellij
-.Audio_Directory/speech.scm
+.Audio_Directory/
+.idea/workspace.xml

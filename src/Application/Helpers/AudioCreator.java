@@ -21,6 +21,7 @@ public class AudioCreator extends Task<Long> {
 	
 	public AudioCreator(int audioIndex, Audio audio, Add_Audio_ScreenController controller) {
 		audio.setFilename("temp" + String.valueOf(audioIndex) + ".wav");
+		_audio = audio;
 		_content = audio.getContent();
 		_controller = controller;
 	}
@@ -30,16 +31,14 @@ public class AudioCreator extends Task<Long> {
 
 		try {
 			Path file = Paths.get(DIR + "temp.txt");
-			System.out.println(_content);
 			Files.write(file, _content);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-				
-		String cmd = "text2wave -o " + DIR + _audio.getFilename() + DIR + "temp.txt" + " -eval .Audio_Directory/speech.scm";
 
+		String cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt" + " -eval .Audio_Directory/speech.scm";
 		System.out.println(cmd);
-		
 		// ProcessBuilder to generate audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 		try {
@@ -59,7 +58,7 @@ public class AudioCreator extends Task<Long> {
 			@Override
 			public void run() {
 				//Append onto ListView
-				_controller.getAudioList().getItems().add("untitled");
+				_controller.getAudioList().getItems().add(_audio);
 			}
 		});
 		

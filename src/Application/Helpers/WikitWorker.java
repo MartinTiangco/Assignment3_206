@@ -129,7 +129,7 @@ public class WikitWorker extends Task<Long> {
 	 */
 	private void sepIntoSentences(List<String> sepLines) {
 		try {
-			String sepCmd = "cat " + wikitRaw + " | sed 's/\\([.!?]\\) \\([[:upper:]]\\)/\\1\\n\\2/g' | sed \"s/^[  ]*/ /\" | grep -n '^'";
+			String sepCmd = "cat " + wikitRaw + " | sed 's/\\([.!?]\\) \\([[:upper:]]\\)/\\1\\n\\2/g' | sed \"s/^[  ]*/ /\"";
 			
 			ProcessBuilder sepBuilder = new ProcessBuilder("/bin/bash", "-c", sepCmd);
 			Process sepProcess = sepBuilder.start();

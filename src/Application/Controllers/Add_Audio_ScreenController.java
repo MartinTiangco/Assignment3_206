@@ -7,6 +7,7 @@ import Application.Helpers.WikitWorker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -35,9 +36,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private MediaView _mediaView;
 	
 	@FXML private TableView _savedAudio;
-	@FXML private TableColumn _searchedTerm;
-	@FXML private TableColumn _lines;
-	@FXML private TableColumn _length;
+	@FXML private TableColumn _termSearched;
+	@FXML private TableColumn _numberOfLines;
+	@FXML private TableColumn _audioLength;
 	
 	@FXML private TextField _searchTextField;
 	@FXML private ComboBox _voiceBox;
@@ -56,6 +57,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void initialize(URL location, ResourceBundle resources) {
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
+		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
+		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
+		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
 		_voiceBox.getItems().add("Martin Tiangco");
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
 		_audioPlayer = new AudioPlayer(this);
@@ -108,9 +112,11 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		// bottom of the screen
 		_numberOfAudiosCreated++;
 		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
-		System.out.println(description.toString());
+		//System.out.println(description.toString());
 		Audio audio = new Audio(_searchInput, description, String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
+		System.out.println("audio object created");
 		AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
+		System.out.println("task submited");
 		_executor.submit(audioCreator);
 		
 	}
