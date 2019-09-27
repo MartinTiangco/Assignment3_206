@@ -75,6 +75,11 @@ public class Audio {
     }
 
     public void setVoice(String voice) {
-        this.voice = voice;
+        if (voice == "Dumb Voice") {
+            this.voice = "akl_nz_jdt_diphone";
+        }
+        else {
+            this.voice = "kal_diphone";
+        }
     }
 }

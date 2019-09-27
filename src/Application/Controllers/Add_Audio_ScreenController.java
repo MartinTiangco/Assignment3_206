@@ -62,8 +62,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
-		_voiceBox.getItems().add("kal_diphone");
-		_voiceBox.getItems().add("akl_nz_jdt_diphone");
+		_voiceBox.getItems().add("Default");
+		_voiceBox.getItems().add("Dumb Voice");
+		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
 	}
 
