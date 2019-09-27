@@ -72,7 +72,6 @@ public class AudioPlayer extends Task<Long> {
 
             if (exitStatus == 0) {
             } else {
-            	System.out.println("Reached");
                 AlertMessage alert = new AlertMessage("voice_cannot_speak");
                 Platform.runLater(alert);
             }
