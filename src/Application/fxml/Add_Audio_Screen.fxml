@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -43,7 +44,8 @@
                         <Button fx:id="_createAudioButton" layoutX="443.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleCreateAudio" text="C" />
                         <ComboBox fx:id="_voiceBox" layoutX="398.0" layoutY="48.0" prefHeight="26.0" prefWidth="179.0" promptText="Voice" />
                         <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" onKeyPressed="#deleteLines" prefHeight="282.0" prefWidth="345.0" />
-                        <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
+                        <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="74.0" text="Search" />
+                        <ProgressBar fx:id="_wikitProgress" layoutX="377.0" layoutY="17.0" prefWidth="200.0" progress="0.0" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">

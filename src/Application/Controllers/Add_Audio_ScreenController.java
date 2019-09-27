@@ -4,6 +4,7 @@ import Application.Helpers.Audio;
 import Application.Helpers.AudioCreator;
 import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -41,6 +42,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private TableColumn _audioLength;
 	
 	@FXML private TextField _searchTextField;
+	@FXML private ProgressBar _wikitProgress;
 	@FXML private ComboBox _voiceBox;
 	
 	//directory for wiki text files
@@ -57,9 +59,13 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void initialize(URL location, ResourceBundle resources) {
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
+		
+		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
+		
+		
 		_voiceBox.getItems().add("Martin Tiangco");
 		_textDescription.getItems().addAll("line 1", "line 2", "line 3");
 		_audioPlayer = new AudioPlayer(this);
@@ -79,10 +85,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML
 	public void handlePlayAudio() {
 		_audioPlayer.cancel();
-		_audioPlayer = new AudioPlayer(this);
-		_audioPlayer.setAudioFileName("output");
-		_executor.submit(_audioPlayer);
-
+		//get the selected audio
+		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 	}
 	
 	public void handleSearch() {
@@ -122,11 +126,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 	
 	public void handleDeleteAudio() {
-		System.out.println("You deleted the audio");
-		//get the item selected and remove from list
-		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
-		
-		
+		//get the item or items selected and remove from list
+		ObservableList<Audio> allAudio = _savedAudio.getItems();
+		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
+		allAudio.removeAll(selectedAudio);
 	}
 	
 	public void handleNext() {
