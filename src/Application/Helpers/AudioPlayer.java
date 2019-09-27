@@ -40,25 +40,7 @@ public class AudioPlayer extends Task<Long> {
     }
 
     public void playText() {
-        String texts = "";
-        for (int i = 0; i < _audio.getContent().size(); i++) {
-            texts = texts + _audio.getContent().get(i);
-        }
-        List<String> instruction = new ArrayList<>();
-        instruction.add("(voice_" +_audio.getVoice() + ")");
-        System.out.println(_audio.getVoice());
-        instruction.add("(Parameter.set 'Duration_Stretch " + _audio.getSpeed() + ")");
-        instruction.add("(set! duffint_params '((start " + _audio.getPitch() + ") (end " + _audio.getPitch() + ")))");
-        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
-        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
-        instruction.add("(SayText \"" + texts +"\")");
-        try {
-            Path file = Paths.get(".Audio_Directory/speech.scm");
-            Files.write(file, instruction);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        CreateScmFile();
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", "festival -b .Audio_Directory/speech.scm");
         Process process;
         try {
@@ -98,5 +80,26 @@ public class AudioPlayer extends Task<Long> {
         player.setAutoPlay(true);
 
         _controller.getMediaView().setMediaPlayer(player);
+    }
+
+    public void CreateScmFile(){
+        String texts = "";
+        for (int i = 0; i < _audio.getContent().size(); i++) {
+            texts = texts + _audio.getContent().get(i);
+        }
+        List<String> instruction = new ArrayList<>();
+        instruction.add("(voice_" +_audio.getVoice() + ")");
+        System.out.println(_audio.getVoice());
+        instruction.add("(Parameter.set 'Duration_Stretch " + _audio.getSpeed() + ")");
+        instruction.add("(set! duffint_params '((start " + _audio.getPitch() + ") (end " + _audio.getPitch() + ")))");
+        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
+        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
+        instruction.add("(SayText \"" + texts +"\")");
+        try {
+            Path file = Paths.get(".Audio_Directory/speech.scm");
+            Files.write(file, instruction);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

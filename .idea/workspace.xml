@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06d9a263-371d-427d-858c-69f742b4e3b3" name="Default Changelist" comment="Merge branch 'master' of https://github.com/MartinTiangco/Assignment3_206&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/softeng_206_a03.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +83,7 @@
       <workItem from="1569387156790" duration="6507000" />
       <workItem from="1569542973992" duration="287000" />
       <workItem from="1569543285180" duration="13682000" />
-      <workItem from="1569557089469" duration="1227000" />
+      <workItem from="1569557089469" duration="2045000" />
     </task>
     <servers />
   </component>
