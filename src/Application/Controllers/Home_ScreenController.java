@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -67,7 +68,6 @@ public class Home_ScreenController extends Controller implements Initializable {
         } catch (Exception e) {
         	e.printStackTrace();
         }
-        
         Update();
     }
 
