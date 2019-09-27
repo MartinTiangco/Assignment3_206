@@ -1,12 +1,16 @@
 package Application.Controllers;
 
 import Application.Helpers.Audio;
+import Application.Helpers.AudioCombiner;
 import Application.Helpers.AudioCreator;
 import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -62,18 +66,21 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void initialize(URL location, ResourceBundle resources) {
 		disable();
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
-		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
+		
 		_voiceBox.getItems().add("Default");
 		_voiceBox.getItems().add("Dumb Voice");
         _voiceBox.getItems().add("English-USA-male");
         _voiceBox.getItems().add("English-USA-female");
         _voiceBox.getItems().add("English-UK-male");
         _voiceBox.getItems().add("English-UK-female");
+     
 		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
@@ -99,7 +106,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 	
 	public void handleSearch() {
-		System.out.println("Searching");
 		_searchInput = _searchTextField.getText();
 		
 		if (!validateSearch(_searchInput)) {
@@ -150,7 +156,30 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 	
 	public void handleNext() {
-		System.out.println("You went to next");
+		//here we combine the audios
+		ObservableList<Audio> allAudio = _savedAudio.getItems();
+		AudioCombiner combiner = new AudioCombiner(allAudio);
+		_executor.submit(combiner);
+		
+		Stage imageScreen = new Stage();
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
+	        Parent root = loader.load();
+	        Controller Image_Selection_ScreenController = loader.getController();
+	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
+	        Image_Selection_ScreenController.setParentController(_currentController);
+	        imageScreen.setTitle("VARpedia - Image Selection Screen");
+	        Scene scene = new Scene(root, 700, 600);
+	        //scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
+	        imageScreen.setScene(scene);
+	        imageScreen.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//closes the audio screen
+		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
+        stage.close();
 	}
 
 	public MediaView getMediaView() {
