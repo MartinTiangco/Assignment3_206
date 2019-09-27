@@ -21,34 +21,37 @@ import java.util.List;
 public class AudioPlayer extends Task<Long> {
 
     private Add_Audio_ScreenController _controller;
-    private String _texts = "";
-    private String _audioFileName = null;
-    private String _voice = "voice_kal_diphone";
+    private Audio _audio;
 
-    public AudioPlayer(Add_Audio_ScreenController controller) {
+    public AudioPlayer(Audio audio, Add_Audio_ScreenController controller) {
+        _audio = audio;
         _controller = controller;
     }
 
     @Override
     protected Long call() throws Exception {
-        if (_audioFileName != null) {
+        if (_audio.getFilename() != null) {
             playAudio();
-            _audioFileName = null;
-        }
-        else if (_texts != "") {
-            playText();
-            _texts = "";
         }
         else {
-            throw new IllegalArgumentException();
+            playText();
         }
         return null;
     }
 
     public void playText() {
+        String texts = "";
+        for (int i = 0; i < _audio.getContent().size(); i++) {
+            texts = texts + _audio.getContent().get(i);
+        }
         List<String> instruction = new ArrayList<>();
-        instruction.add("(" +_voice + ")");
-        instruction.add("(SayText \"" + _texts +"\")");
+        instruction.add("(voice_" +_audio.getVoice() + ")");
+        System.out.println(_audio.getVoice());
+        instruction.add("(Parameter.set 'Duration_Stretch " + _audio.getSpeed() + ")");
+        instruction.add("(set! duffint_params '((start " + _audio.getPitch() + ") (end " + _audio.getPitch() + ")))");
+        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
+        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
+        instruction.add("(SayText \"" + texts +"\")");
         try {
             Path file = Paths.get(".Audio_Directory/speech.scm");
             Files.write(file, instruction);
@@ -64,13 +67,15 @@ public class AudioPlayer extends Task<Long> {
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
             System.out.println(exitStatus);
+
+
             if (exitStatus == 0) {
             } else {
                 Alert error = new Alert(Alert.AlertType.ERROR);
-                String errorline = "";
+                String errorline = "dumb voice";
                 String line;
                 while ((line = stderr.readLine()) != null) {
-                    errorline = errorline + "\n\t" + line;
+                    //errorline = errorline + "\n\t" + line;
                 }
                 error.setTitle("Error ecountered");
                 error.setContentText(errorline);
@@ -87,36 +92,11 @@ public class AudioPlayer extends Task<Long> {
 
     public void playAudio() {
 
-        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audioFileName + ".wav");
+        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audio.getFilename() + ".wav");
         Media video = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(video);
         player.setAutoPlay(true);
 
         _controller.getMediaView().setMediaPlayer(player);
-    }
-
-    public void setTexts(List<String> texts) {
-        for (int i = 0; i < texts.size(); i++) {
-            _texts = _texts + texts.get(i);
-        }
-    }
-
-    public void setAudioFileName(String audioFileName) {
-        _audioFileName = audioFileName;
-    }
-
-    public void setVoice(String voice) {
-        if (voice == "Martin Tiangco") {
-            _voice = "voice_kal_diphone";
-        }
-        if (voice == "A") {
-            _voice = "voice_kal_diphone";
-        }
-        if (voice == "B") {
-            _voice = "voice_kal_diphone";
-        }
-        else {
-            _voice = "voice_kal_diphone";
-        }
     }
 }
