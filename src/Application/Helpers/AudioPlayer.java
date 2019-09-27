@@ -1,6 +1,7 @@
 package Application.Helpers;
 
 import Application.Controllers.Add_Audio_ScreenController;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.media.Media;
@@ -71,16 +72,9 @@ public class AudioPlayer extends Task<Long> {
 
             if (exitStatus == 0) {
             } else {
-                Alert error = new Alert(Alert.AlertType.ERROR);
-                String errorline = "dumb voice";
-                String line;
-                while ((line = stderr.readLine()) != null) {
-                    //errorline = errorline + "\n\t" + line;
-                }
-                error.setTitle("Error ecountered");
-                error.setContentText(errorline);
-                error.show();
-
+            	System.out.println("Reached");
+                AlertMessage alert = new AlertMessage("voice_cannot_speak");
+                Platform.runLater(alert);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
