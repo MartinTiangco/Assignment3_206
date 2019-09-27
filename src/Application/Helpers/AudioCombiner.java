@@ -20,6 +20,7 @@ public class AudioCombiner extends Task<Long> {
 	
 	@Override
 	protected Long call() throws Exception {
+		// retrieves a list of filenames from the List of Audio objects as the input to the sox command
 		List<String> filenames = getFilenames();
 		String input = "";
 		for (String filename : filenames) {
@@ -29,6 +30,7 @@ public class AudioCombiner extends Task<Long> {
 		System.out.println(cmd);
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
+		
         try {
             process = builder.start();
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -42,6 +44,7 @@ public class AudioCombiner extends Task<Long> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
 		return null;
 	}
 	

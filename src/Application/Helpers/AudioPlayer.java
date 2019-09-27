@@ -59,12 +59,10 @@ public class AudioPlayer extends Task<Long> {
     }
 
     public void playAudio() {
-
-        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audio.getFilename() + ".wav");
-        Media video = new Media(fileUrl.toURI().toString());
-        MediaPlayer player = new MediaPlayer(video);
+        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audio.getFilename());
+        Media audio = new Media(fileUrl.toURI().toString());
+        MediaPlayer player = new MediaPlayer(audio);
         player.setAutoPlay(true);
-
         _controller.getMediaView().setMediaPlayer(player);
     }
 

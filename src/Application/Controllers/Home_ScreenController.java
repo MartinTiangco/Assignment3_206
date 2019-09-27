@@ -7,15 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,12 +36,17 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableColumn _termSearchedColumn;
     @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _videoLengthColumn;
+    @FXML private TabPane _videoTabs;
+
+
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
+    private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        _creationTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         _nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         _termSearchedColumn.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
         _dateModifiedColumn.setCellValueFactory(new PropertyValueFactory<>("dateModified"));
@@ -47,7 +56,30 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handlePlay() {
-        System.out.println("You pressed play");
+
+        List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
+        if (listOfCreations != null) {
+            for (Creation creation : listOfCreations) {
+                Tab tab = new Tab();
+                tab.setClosable(true);
+                tab.setText(creation.getName());
+                File fileUrl = new File("Creation_Directory/" + creation.getFileName());
+                Media video = new Media(fileUrl.toURI().toString());
+                MediaPlayer player = new MediaPlayer(video);
+                _listOfMediaPlayer.add(player);
+                player.setAutoPlay(true);
+
+                MediaView mediaView = new MediaView();
+                mediaView.setMediaPlayer(player);
+                mediaView.setFitHeight(350);
+                mediaView.setFitWidth(500);
+                VBox vbox = new VBox(mediaView);
+                //vbox.setPadding();
+                tab.setContent(new AnchorPane(vbox));
+                _videoTabs.getTabs().add(tab);
+                _videoTabs.getSelectionModel().select(_videoTabs.getTabs().size() - 1);
+            }
+        }
     }
 
     @FXML
@@ -74,7 +106,24 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML
     public void handleDelete() {
 
-        System.out.println("You pressed delete");
+        List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
+        if (listOfCreations != null) {
+            for (Creation creation : listOfCreations) {
+                File filePath = new File("Creation_Directory/" + creation.getFileName());
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        for (Tab tab : _videoTabs.getTabs()) {
+                            if (tab.getText().equals(creation.getName())) {
+                                _videoTabs.getTabs().remove(tab);
+                            }
+                        }
+                        filePath.delete();
+                    }
+                });
+            }
+        }
         Update();
     }
 

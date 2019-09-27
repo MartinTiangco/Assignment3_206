@@ -61,7 +61,7 @@ public class UpdateHelper extends Task<Long> {
 			Creation creation = new Creation(extractName(file, firstPatternIndex), 
 					extractTerm(file, firstPatternIndex, secondPatternIndex), 
 					extractDateModified(file),
-					extractLength(file, secondPatternIndex));
+					extractLength(file, secondPatternIndex), file);
 			
 			_creations.add(creation);
 		}

@@ -15,6 +15,7 @@ public class AlertMessage implements Runnable {
 	 */
 	private final String VOICE_CANNOT_SPEAK = "voice_cannot_speak";
 	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
+	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -31,6 +32,9 @@ public class AlertMessage implements Runnable {
 			  break;
 		  case AUDIO_COMBINING_FAILED:
 			  showAlert("We are sorry, but the audio combining has failed for some reason. Please try combining another set of words.");
+			  break;
+		  case CREATE_AUDIO_UNSUCCESSFUL:
+			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
 			  break;
 		}
 	}

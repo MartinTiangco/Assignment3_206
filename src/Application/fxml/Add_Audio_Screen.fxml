@@ -23,7 +23,7 @@
   <items>
       <AnchorPane prefHeight="507.0" prefWidth="206.0">
          <children>
-            <Button fx:id="_mainMenuButton" layoutX="49.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" text="Back to Home Menu" />
+            <Button fx:id="_mainMenuButton" focusTraversable="false" layoutX="49.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" text="Back to Home Menu" />
             <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="617.0" prefWidth="219.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions:" underline="true" wrappingWidth="227.7294921875">
@@ -31,7 +31,7 @@
                         <Font size="16.0" />
                      </font>
                   </Text>
-                  <TextArea prefHeight="522.0" prefWidth="227.0" text="&#10;Search a term on wikipedia.&#10;&#10;The content retrieved from&#10;wikipedia will display in the&#10;box. &#10;&#10;Select the lines you wish&#10;to save.&#10;TIP: Use Cltr + Left Click to&#10;select multiple lines.&#10;&#10;Use the Voice settings to&#10;customize the voice used to&#10;speak the audio.&#10;&#10;You can then 'Preview' the lines.&#10;&#10;Then, we can create the audio&#10;and add it to the 'List of Saved&#10;Audio'.&#10;&#10;We can then 'Preview' or&#10;'Delete' entries in the&#10;'List of Saved Audio'.&#10;&#10;Click on 'Next' to advance to&#10;selecting the images for the&#10;video." />
+                  <TextArea editable="false" focusTraversable="false" prefHeight="522.0" prefWidth="227.0" text="&#10;Search a term on wikipedia.&#10;&#10;The content retrieved from&#10;wikipedia will display in the&#10;box. &#10;&#10;Select the lines you wish&#10;to save.&#10;TIP: Use Cltr + Left Click to&#10;select multiple lines.&#10;&#10;Use the Voice settings to&#10;customize the voice used to&#10;speak the audio.&#10;&#10;You can then 'Preview' the lines.&#10;&#10;Then, we can create the audio&#10;and add it to the 'List of Saved&#10;Audio'.&#10;&#10;We can then 'Preview' or&#10;'Delete' entries in the&#10;'List of Saved Audio'.&#10;&#10;Click on 'Next' to advance to&#10;selecting the images for the&#10;video." />
                </children>
             </TextFlow>
          </children>
@@ -42,7 +42,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="426.0">
                      <children>
-                        <TextField fx:id="_searchTextField" layoutX="21.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="258.0" />
+                        <TextField fx:id="_searchTextField" layoutX="21.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="258.0" promptText="Enter term to be searched" />
                         <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" onKeyPressed="#deleteLines" prefHeight="282.0" prefWidth="345.0" />
                         <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
                         <VBox layoutX="377.0" layoutY="20.0" prefHeight="282.0" prefWidth="198.0" spacing="20.0">

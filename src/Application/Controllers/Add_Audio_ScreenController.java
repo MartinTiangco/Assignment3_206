@@ -40,18 +40,18 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private Button _createAudioButton;
 	@FXML private ListView _textDescription;
 	@FXML private MediaView _mediaView;
-	
+
 	@FXML private TableView _savedAudio;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
 	@FXML private TableColumn _audioLength;
-	
+
 	@FXML private TextField _searchTextField;
 	@FXML private ProgressBar _wikitProgress;
 	@FXML private ComboBox _voiceBox;
 	@FXML private Slider _speedSlider;
 	@FXML private Slider _pitchSlider;
-	
+
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
 	private File wikitRaw = new File(wikitDir + System.getProperty("file.separator") + "raw.txt"); //raw content - where content is not separated to lines
@@ -70,17 +70,20 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
+		_searchTextField.requestFocus();
+		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
 		
 		_voiceBox.getItems().add("Default");
 		_voiceBox.getItems().add("Dumb Voice");
-        _voiceBox.getItems().add("English-USA-male");
-        _voiceBox.getItems().add("English-USA-female");
-        _voiceBox.getItems().add("English-UK-male");
-        _voiceBox.getItems().add("English-UK-female");
-     
+		_voiceBox.getItems().add("English-USA-male");
+		_voiceBox.getItems().add("English-USA-female");
+		_voiceBox.getItems().add("English-UK-male");
+		_voiceBox.getItems().add("English-UK-female");
+
 		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
@@ -88,13 +91,15 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayText() {
-		Audio audio = new Audio();
-		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
-		audio.setVoice((String)(_voiceBox.getSelectionModel().getSelectedItem()));
-		audio.setSpeed(_speedSlider.getValue());
-		audio.setPitch((int)(_pitchSlider.getValue()));
-		_audioPlayer = new AudioPlayer(audio,this);
-		_executor.submit(_audioPlayer);
+		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
+			Audio audio = new Audio();
+			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
+			audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
+			audio.setSpeed(_speedSlider.getValue());
+			audio.setPitch((int) (_pitchSlider.getValue()));
+			_audioPlayer = new AudioPlayer(audio, this);
+			_executor.submit(_audioPlayer);
+		}
 
 	}
 
@@ -104,10 +109,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItems(),this);
 		_executor.submit(_audioPlayer);
 	}
-	
+
 	public void handleSearch() {
 		_searchInput = _searchTextField.getText();
-		
+
 		if (!validateSearch(_searchInput)) {
 			System.out.println("Search term is invalid");
 			return;
@@ -117,44 +122,48 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			//First clears the TextArea and hides the line count
 			//lineCount.setVisible(false);
 			_textDescription.getItems().clear();
-			
+
 			wikitSearch(_searchInput);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		_textDescription.getSelectionModel().select(0);
-        _textDescription.setDisable(false);
+		_textDescription.setDisable(false);
 	}
-	
+
 	public void handleCreateAudio() {
 		_searchTextField.setDisable(true);
-		System.out.println("Now creating audio");
-		// Creates the selected lines of content and generates an audio file. It will then show on the TableView on the
-		// bottom of the screen
-		_numberOfAudiosCreated++;
-		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
-		//System.out.println(description.toString());
-		Audio audio = new Audio();
-		audio.setTermSearched(_searchInput);
-		audio.setContent(description);
-		audio.setNumberOfLines(String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
-		AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
-		_executor.submit(audioCreator);
-		
+		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
+			_numberOfAudiosCreated++;
+			Audio audio = new Audio();
+			audio.setTermSearched(_searchInput);
+			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
+			audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
+			audio.setSpeed(_speedSlider.getValue());
+			audio.setPitch((int) (_pitchSlider.getValue()));
+			audio.setNumberOfLines(String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
+			AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
+			_executor.submit(audioCreator);
+		}
+		if (_savedAudio.getItems().isEmpty()) {
+			_searchTextField.setDisable(false);
+		}
+
+
 	}
-	
+
 	public void handleDeleteAudio() {
 		//get the item or items selected and remove from list
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 		allAudio.removeAll(selectedAudio);
 
-		
+
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 		}
 	}
-	
+
 	public void handleNext() {
 		//here we combine the audios
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
@@ -177,31 +186,36 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			e.printStackTrace();
 		}
 		
-		//closes the audio screen
+		// closes the audio screen
 		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
         stage.close();
+        
+        // removes the audio directory contents (all files are temporary)
+		File dir = new File(".Audio_Directory");
+		deleteDirContents(dir);
 	}
 
-	public MediaView getMediaView() {
-		return _mediaView;
-	}
-	
+
 	public void handleBackToMainMenu() {
+		// removes the audio directory contents (all files are temporary)
+		File dir = new File(".Audio_Directory");
+		deleteDirContents(dir);
+			
+		// closes audio screen
 		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
-        stage.close();
+		stage.close();
 	}
-	
+
 	private void wikitSearch(String searchInput) {
 		try {
 			//create raw.txt for raw wikit content (has not been separated)
 			Writer rawFileWriter = new FileWriter(wikitRaw, false);
-			
+
 			String cmd = "wikit " + searchInput;
-			
+
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
 			_executor.submit(wikitWorker);
-			enable();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -210,19 +224,25 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void deleteLines(KeyEvent key) {
 		if (key.getCode().equals(KeyCode.DELETE)) {
 
-            final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
-            if (selectedIdx != -1) {
+			final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
+			if (selectedIdx != -1) {
 
-                final int newSelectedIdx =
-                        (selectedIdx == _textDescription.getItems().size() - 1)
-                                ? selectedIdx - 1
-                                : selectedIdx;
+				final int newSelectedIdx =
+						(selectedIdx == _textDescription.getItems().size() - 1)
+								? selectedIdx - 1
+								: selectedIdx;
 
-                _textDescription.getItems().remove(selectedIdx);
-                _textDescription.getSelectionModel().select(newSelectedIdx);
-            }
+				_textDescription.getItems().remove(selectedIdx);
+				_textDescription.getSelectionModel().select(newSelectedIdx);
+			}
+			for (String line : (List<String>)_textDescription.getItems()) {
+				if (!line.equals("")) {
+					return;
+				}
+			}
+			disable();
 
-		    //TODO
+			//TODO
             /*
 			ObservableList<Integer> selectedIdx = _textDescription.getSelectionModel().getSelectedIndices();
 			List<String> temp = _textDescription.getItems();
@@ -243,7 +263,20 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
             */
 		}
 	}
-	
+
+	public static void deleteDirContents(File dir) {
+		File[] files = dir.listFiles();
+		if(files != null) {
+			for (File f: files) {
+				if (f.isDirectory()) {
+					deleteDirContents(f);
+				} else {
+					f.delete();
+				}
+			}
+		}
+	}
+
 	private boolean validateSearch(String searchInput) {
 		// checks for textfield being an empty string or only spaces
 		if (searchInput.trim().isEmpty()) {
@@ -251,28 +284,34 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		}
 		return true;
 	}
-	
+
 	public void disable() {
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
 		_createAudioButton.setDisable(true);
 		_playTextButton.setDisable(true);
+		//_searchButton.setDisable(true);
 	}
-	
+
 	public void enable() {
 		_voiceBox.setDisable(false);
 		_speedSlider.setDisable(false);
 		_pitchSlider.setDisable(false);
 		_createAudioButton.setDisable(false);
 		_playTextButton.setDisable(false);
+		//_searchButton.setDisable(false);
 	}
 
 	public ListView getContent() {
 		return _textDescription;
 	}
-	
+
 	public TableView getAudioList() {
 		return _savedAudio;
+	}
+
+	public MediaView getMediaView() {
+		return _mediaView;
 	}
 }
