@@ -4,8 +4,8 @@ public class Creation {
 
     private String name = null;
     private String termSearched = null;
-    private String dateModified;
-    private String videoLength;
+    private String dateModified = null;
+    private String videoLength = null;
 
 
     public Creation(String name, String termSearched, String dateModified, String videoLength) {
@@ -20,7 +20,7 @@ public class Creation {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     public String getTermSearched() {
@@ -28,7 +28,7 @@ public class Creation {
     }
 
     public void setTermSearched(String termSearched) {
-        termSearched = termSearched;
+        this.termSearched = termSearched;
     }
 
     public String getDateModified() {
@@ -36,7 +36,7 @@ public class Creation {
     }
 
     public void setDateModified(String dateModified) {
-        dateModified = dateModified;
+        this.dateModified = dateModified;
     }
 
     public String getVideoLength() {
@@ -44,7 +44,7 @@ public class Creation {
     }
 
     public void setVideoLength(String videoLength) {
-        videoLength = videoLength;
+        this.videoLength = videoLength;
     }
 
 }

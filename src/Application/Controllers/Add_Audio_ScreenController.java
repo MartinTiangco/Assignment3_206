@@ -1,5 +1,6 @@
 package Application.Controllers;
 
+import Application.Helpers.Audio;
 import Application.Helpers.AudioCreator;
 import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
@@ -43,6 +44,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	private File wikitTemp = new File(wikitDir + System.getProperty("file.separator") + "temp.txt"); //temp content - where content is separated
 	private AudioPlayer _audioPlayer;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
+	private int _numberOfAudiosCreated = 0;
+	private String _searchInput;
 
 
 	@Override
@@ -78,9 +81,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	
 	public void handleSearch() {
 		System.out.println("Searching");
-		String searchInput = _searchTextField.getText();
+		_searchInput = _searchTextField.getText();
 		
-		if (!validateSearch(searchInput)) {
+		if (!validateSearch(_searchInput)) {
 			System.out.println("Search term is invalid");
 			return;
 		}
@@ -90,7 +93,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			//lineCount.setVisible(false);
 			_textDescription.getItems().clear();
 			
-			wikitSearch(searchInput);
+			wikitSearch(_searchInput);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,9 +104,11 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		System.out.println("Now creating audio");
 		// Creates the selected lines of content and generates an audio file. It will then show on the ListView on the
 		// bottom of the screen
+		_numberOfAudiosCreated++;
 		List<String> description = _textDescription.getSelectionModel().getSelectedItems();
 		System.out.println(description.toString());
-		AudioCreator audioCreator = new AudioCreator(description, this);
+		Audio audio = new Audio(_searchInput, description, String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
+		AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
 		_executor.submit(audioCreator);
 		
 	}
