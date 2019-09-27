@@ -25,13 +25,13 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
     	
 	//make the directories
 			File creationDir = new File("Creation_Directory");
 			File audioDir = new File(".Audio_Directory");
 			File videoDir = new File(".Video_Directory");
+			File wikitDir = new File(".Wikit_Directory");
 			
 			if (!creationDir.isDirectory()) {
 				creationDir.mkdir();
@@ -44,6 +44,10 @@ public class Main extends Application {
 			if (!videoDir.isDirectory()) {
 				videoDir.mkdir();
 			}	
+			
+			if (!wikitDir.isDirectory()) {
+				wikitDir.mkdir();
+			}
     			
         launch(args);
     }
