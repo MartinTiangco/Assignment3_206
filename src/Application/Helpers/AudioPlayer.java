@@ -68,7 +68,7 @@ public class AudioPlayer extends Task<Long> {
         });
     }
 
-    public void setTexts () {
+    public void setTexts() {
     	_texts = "";
         for (int i = 0; i < _audio.getContent().size(); i++) {
         	System.out.println("Adding to text: " + _texts);

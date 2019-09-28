@@ -341,4 +341,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public Button getPlayAudioButton() {
 		return _playAudioButton;
 	}
+	
+	public String getSearchInput() {
+		return _searchInput;
+	}
 }
