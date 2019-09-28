@@ -70,7 +70,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void initialize(URL location, ResourceBundle resources) {
 		//disables all except the search functionality
 		disableCustomization();
-		disablePlayCreateText();
 		disableBottomHalf();
 		
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -175,28 +174,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void handleNext() {
 		//here we combine the audios
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
-		AudioCombiner combiner = new AudioCombiner(allAudio);
+		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_executor.submit(combiner);
-		
-		Stage imageScreen = new Stage();
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
-	        Parent root = loader.load();
-	        Controller Image_Selection_ScreenController = loader.getController();
-	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
-	        Image_Selection_ScreenController.setParentController(_currentController);
-	        imageScreen.setTitle("VARpedia - Image Selection Screen");
-	        Scene scene = new Scene(root, 700, 600);
-	        //scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
-	        imageScreen.setScene(scene);
-	        imageScreen.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		// closes the audio screen
-		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
-        stage.close();
         
         // removes the audio directory contents (all files are temporary)
 		File dir = new File(".Audio_Directory");
@@ -251,7 +230,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			
 			//disable top half except for search functionality when the content list is empty
 			disableCustomization();
-			disablePlayCreateText();
 
 			//TODO
             /*
