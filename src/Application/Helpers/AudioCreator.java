@@ -37,21 +37,19 @@ public class AudioCreator extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-//		String cmd = "";
-//		if (_audio.getVoice() == "kal_diphone" || _audio.getVoice() == "akl_nz_jdt_diphone" ) {
-//            cmd = "festival -b .Audio_Directory/speech.scm";
-//        } else {
-//        	cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt";
-//        }
+
 		String texts = "";
         for (int i = 0; i < _audio.getContent().size(); i++) {
             texts = texts + _audio.getContent().get(i);
         }
 		
-		String cmd = "espeak -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
-		System.out.println(cmd);
-		// ProcessBuilder to generate audio 
+		String cmd = "espeak -p " + (_audio.getPitch() - 70)
+				 		+ " -s " + (_audio.getSpeed() *175) + " "
+				 		+ _audio.getVoice() 
+				 		+ " -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
+		System.out.println("The command for creating the audio is: " + cmd);
+		
+		// ProcessBuilder to combine audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 		try {
 			Process process = builder.start();
@@ -59,7 +57,7 @@ public class AudioCreator extends Task<Long> {
 			
 			if (exitStatus == 0) {
 			} else {
-				AlertMessage alert = new AlertMessage("create_audio_failed");
+				AlertMessage alert = new AlertMessage("combine_audio_failed");
 				Platform.runLater(alert);
 				return null;
 			}
@@ -78,21 +76,4 @@ public class AudioCreator extends Task<Long> {
 		
 		return null;
 	}
-	
-//	public void CreateScmFile(){
-//        List<String> instruction = new ArrayList<>();
-//        instruction.add("(voice_" +_audio.getVoice() + ")");
-//        System.out.println(_audio.getVoice());
-//        instruction.add("(Parameter.set 'Duration_Stretch " + String.format("%1f", _audio.getSpeed()) + ")");
-//        instruction.add("(set! duffint_params '((start " + String.valueOf(_audio.getPitch()) + ") (end " + String.valueOf(_audio.getPitch()) + ")))");
-//        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
-//        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
-//        instruction.add("(utt.save.wave (SayText " + _audio.getContent().toString() + "\") " + _audio.getFilename() + " 'riff");
-//        try {
-//            Path file = Paths.get(".Audio_Directory/speech.scm");
-//            Files.write(file, instruction);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

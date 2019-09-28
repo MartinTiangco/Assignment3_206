@@ -33,9 +33,11 @@ public class AudioPlayer extends Task<Long> {
     @Override
     protected Long call() throws Exception {
         if (_audio.getFilename() != null) {
+        	_controller.getPlayTextButton().setDisable(true);
             playAudio();
         }
         else {
+        	_controller.getPlayAudioButton().setDisable(true);
             playText();
         }
         return null;
@@ -43,19 +45,15 @@ public class AudioPlayer extends Task<Long> {
 
     public void playText() {
         setTexts();
-//        if (_audio.getVoice() == "kal_diphone" || _audio.getVoice() == "akl_nz_jdt_diphone" ) {
-//            CreateScmFile();
-//        }
-//        else{
-            String cmd = "espeak -p " + String.valueOf(_audio.getPitch() - 70) +
-                    " -s " + String.valueOf((int)(_audio.getSpeed()*175.0)) + " " + _audio.getVoice() + " \"" + _texts + "\"";
-            ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-            System.out.println(cmd);
-            StartProcess(builder);
-            return;
-//        }
-//        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "festival -b .Audio_Directory/speech.scm");
-//        StartProcess(builder);
+        String cmd = "espeak -p " + String.valueOf(_audio.getPitch() - 70) +
+                		" -s " + String.valueOf((int)(_audio.getSpeed()*175.0)) + 
+                		" " + _audio.getVoice() + " \"" + _texts + "\"";
+        ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
+        System.out.println("The command for playing text is: " + cmd);
+        StartProcess(builder);
+
+        _controller.getPlayAudioButton().setDisable(false);
+        return;
     }
 
     public void playAudio() {
@@ -64,6 +62,10 @@ public class AudioPlayer extends Task<Long> {
         MediaPlayer player = new MediaPlayer(audio);
         player.setAutoPlay(true);
         _controller.getMediaView().setMediaPlayer(player);
+
+        player.setOnEndOfMedia(() -> {
+            _controller.getPlayTextButton().setDisable(false);
+        });
     }
 
     public void setTexts () {
@@ -91,23 +93,4 @@ public class AudioPlayer extends Task<Long> {
             e.printStackTrace();
         }
     }
-
-    /*
-    public void CreateScmFile(){
-        List<String> instruction = new ArrayList<>();
-        instruction.add("(voice_" +_audio.getVoice() + ")");
-        System.out.println(_audio.getVoice());
-        instruction.add("(Parameter.set 'Duration_Stretch " + String.format("%1f", 3.2 - _audio.getSpeed()) + ")");
-        instruction.add("(set! duffint_params '((start " + String.valueOf(_audio.getPitch()) + ") (end " + String.valueOf(_audio.getPitch()) + ")))");
-        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
-        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
-        instruction.add("(SayText \"" + _texts +"\")");
-        try {
-            Path file = Paths.get(".Audio_Directory/speech.scm");
-            Files.write(file, instruction);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-     */
 }
