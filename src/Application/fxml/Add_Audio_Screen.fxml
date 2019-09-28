@@ -83,7 +83,7 @@
                   </AnchorPane>
                 <AnchorPane fx:id="_bottomHalf" minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="List of Saved Audio" underline="true">
+                        <Label layoutX="14.0" layoutY="14.0" text="List of Saved Audio (Audio files to be combined)" underline="true">
                            <font>
                               <Font size="16.0" />
                            </font></Label>

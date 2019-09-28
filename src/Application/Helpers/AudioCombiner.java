@@ -1,6 +1,7 @@
 package Application.Helpers;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -49,6 +50,10 @@ public class AudioCombiner extends Task<Long> {
 
 					@Override
 					public void run() {
+						// removes the audio directory contents (all files are temporary)
+						File dir = new File(".Audio_Directory");
+						_controller.deleteDirContents(dir);
+						
 						Stage imageScreen = new Stage();
 		        		try {
 		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));

@@ -2,6 +2,7 @@ package Application.Helpers;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,8 +37,14 @@ public class AudioCreator extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		String cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt" + " -eval .Audio_Directory/speech.scm";
+		
+//		String cmd = "";
+//		if (_audio.getVoice() == "kal_diphone" || _audio.getVoice() == "akl_nz_jdt_diphone" ) {
+//            cmd = "festival -b .Audio_Directory/speech.scm";
+//        } else {
+//        	cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt";
+//        }
+		String cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt";
 		System.out.println(cmd);
 		// ProcessBuilder to generate audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
@@ -66,4 +73,21 @@ public class AudioCreator extends Task<Long> {
 		
 		return null;
 	}
+	
+//	public void CreateScmFile(){
+//        List<String> instruction = new ArrayList<>();
+//        instruction.add("(voice_" +_audio.getVoice() + ")");
+//        System.out.println(_audio.getVoice());
+//        instruction.add("(Parameter.set 'Duration_Stretch " + String.format("%1f", _audio.getSpeed()) + ")");
+//        instruction.add("(set! duffint_params '((start " + String.valueOf(_audio.getPitch()) + ") (end " + String.valueOf(_audio.getPitch()) + ")))");
+//        instruction.add("(Parameter.set 'Int_Method 'DuffInt)");
+//        instruction.add("(Parameter.set 'Int_Target_Method Int_Targets_Default)");
+//        instruction.add("(utt.save.wave (SayText " + _audio.getContent().toString() + "\") " + _audio.getFilename() + " 'riff");
+//        try {
+//            Path file = Paths.get(".Audio_Directory/speech.scm");
+//            Files.write(file, instruction);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -176,10 +176,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_executor.submit(combiner);
-        
-        // removes the audio directory contents (all files are temporary)
-		File dir = new File(".Audio_Directory");
-		deleteDirContents(dir);
 	}
 
 
