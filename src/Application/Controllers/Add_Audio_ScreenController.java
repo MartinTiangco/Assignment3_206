@@ -63,7 +63,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	private File wikitRaw = new File(wikitDir + System.getProperty("file.separator") + "raw.txt"); //raw content - where content is not separated to lines
 	private File wikitTemp = new File(wikitDir + System.getProperty("file.separator") + "temp.txt"); //temp content - where content is separated
 	private AudioPlayer _audioPlayer;
-	private ExecutorService _executor = Executors.newSingleThreadExecutor();
+	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
+	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
 	private int _numberOfAudiosCreated = 0;
 	private String _searchInput;
 
@@ -102,13 +103,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			_playAudioButton.setDisable(true);
 			Audio audio = new Audio();
-			System.out.println(_textDescription.getSelectionModel().getSelectedItems());
-			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
-			audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
-			audio.setSpeed(_speedSlider.getValue());
-			audio.setPitch((int) (_pitchSlider.getValue()));
+			setUpAudio(audio);
 			_audioPlayer = new AudioPlayer(audio, this);
-			_executor.submit(_audioPlayer);
+			_playerExecutor.submit(_audioPlayer);
 		}
 
 	}
@@ -119,7 +116,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			_playTextButton.setDisable(true);
 		}
 		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItem(),this);
-		_executor.submit(_audioPlayer);
+		_playerExecutor.submit(_audioPlayer);
 	}
 
 	public void handleSearch() {
@@ -149,13 +146,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			_numberOfAudiosCreated++;
 			Audio audio = new Audio();
 			audio.setTermSearched(_searchInput);
-			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
-			audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
-			audio.setSpeed(_speedSlider.getValue());
-			audio.setPitch((int) (_pitchSlider.getValue()));
+			setUpAudio(audio);
 			audio.setNumberOfLines(String.valueOf(_textDescription.getSelectionModel().getSelectedItems().size()));
 			AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
-			_executor.submit(audioCreator);
+			_backgroundExecutor.submit(audioCreator);
 		}
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
@@ -179,7 +173,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		//here we combine the audios
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
-		_executor.submit(combiner);
+		_backgroundExecutor.submit(combiner);
 	}
 
 
@@ -202,7 +196,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
-			_executor.submit(wikitWorker);
+			_backgroundExecutor.submit(wikitWorker);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -309,17 +303,24 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void enableBottomHalf() {
 		_bottomHalf.setDisable(false);
 	}
-	
-	public void checkIfListSelected() {
-		System.out.println("calling checkIfListSelected");
-		if (_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
-			_createAudioButton.setDisable(true);
-			_playTextButton.setDisable(true);
-		} else {
-			_createAudioButton.setDisable(false);
-			_playTextButton.setDisable(false);
-		}
+
+	public void setUpAudio(Audio audio) {
+		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
+		audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
+		audio.setSpeed((int)_speedSlider.getValue());
+		audio.setPitch((int) (_pitchSlider.getValue()));
 	}
+
+//	public void checkIfListSelected() {
+//		System.out.println("calling checkIfListSelected");
+//		if (_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
+//			_createAudioButton.setDisable(true);
+//			_playTextButton.setDisable(true);
+//		} else {
+//			_createAudioButton.setDisable(false);
+//			_playTextButton.setDisable(false);
+//		}
+//	}
 
 	public ListView getContent() {
 		return _textDescription;

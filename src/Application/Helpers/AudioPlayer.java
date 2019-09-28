@@ -45,8 +45,8 @@ public class AudioPlayer extends Task<Long> {
 
     public void playText() {
         setTexts();
-        String cmd = "espeak -p " + String.valueOf(_audio.getPitch() - 70) +
-                		" -s " + String.valueOf((int)(_audio.getSpeed()*175.0)) + 
+        String cmd = "espeak -p " + String.valueOf(_audio.getPitch()) +
+                		" -s " + String.valueOf((int)(_audio.getSpeed())) + " -a 50" +
                 		" " + _audio.getVoice() + " \"" + _texts + "\"";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
         System.out.println("The command for playing text is: " + cmd);

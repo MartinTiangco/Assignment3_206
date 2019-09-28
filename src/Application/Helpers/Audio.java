@@ -11,7 +11,7 @@ public class Audio {
     private String numberOfLines = null;
     private String audioLength = null;
     private int pitch = 50;
-    private double speed = 175;
+    private int speed = 175;
     private String voice = "-ven-gb+m5";
 
 
@@ -63,11 +63,11 @@ public class Audio {
         this.pitch = pitch;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(double speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 

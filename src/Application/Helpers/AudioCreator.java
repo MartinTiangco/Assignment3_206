@@ -43,8 +43,8 @@ public class AudioCreator extends Task<Long> {
             texts = texts + _audio.getContent().get(i);
         }
 		
-		String cmd = "espeak -p " + (_audio.getPitch() - 70)
-				 		+ " -s " + (_audio.getSpeed() *175) + " "
+		String cmd = "espeak -p " + (_audio.getPitch())
+				 		+ " -s " + (_audio.getSpeed()) + " "
 				 		+ _audio.getVoice() 
 				 		+ " -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
 		System.out.println("The command for creating the audio is: " + cmd);
