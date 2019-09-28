@@ -1,12 +1,13 @@
 package Application.Helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Audio {
 
     private String filename = null;
     private String termSearched = null;
-    private List<String> content = null;
+    private List<String> content = new ArrayList<String>();
     private String numberOfLines = null;
     private String audioLength = null;
     private int pitch = 120;

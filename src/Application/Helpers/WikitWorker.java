@@ -109,7 +109,7 @@ public class WikitWorker extends Task<Long> {
 				   content.append(line);
 				}
 				controller.getContent().getItems().addAll(sepLines);
-				controller.enable();
+				controller.enableCustomization();
 			}		
 		}		
 	}

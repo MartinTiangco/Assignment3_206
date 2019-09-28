@@ -60,6 +60,7 @@ public class AudioCreator extends Task<Long> {
 			public void run() {
 				//Append onto ListView
 				_controller.getAudioList().getItems().add(_audio);
+				_controller.enableBottomHalf();
 			}
 		});
 		

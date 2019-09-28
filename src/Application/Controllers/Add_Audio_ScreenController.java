@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
@@ -35,22 +36,25 @@ import java.util.concurrent.Executors;
 
 public class Add_Audio_ScreenController extends Controller  implements Initializable {
 	@FXML private Button _mainMenuButton;
-	@FXML private Button _playTextButton;
-	@FXML private Button _searchButton;
-	@FXML private Button _createAudioButton;
-	@FXML private ListView _textDescription;
 	@FXML private MediaView _mediaView;
 
-	@FXML private TableView _savedAudio;
-	@FXML private TableColumn _termSearched;
-	@FXML private TableColumn _numberOfLines;
-	@FXML private TableColumn _audioLength;
-
+	// elements in the top half of the screen
 	@FXML private TextField _searchTextField;
 	@FXML private ProgressBar _wikitProgress;
 	@FXML private ComboBox _voiceBox;
 	@FXML private Slider _speedSlider;
 	@FXML private Slider _pitchSlider;
+	@FXML private Button _playTextButton;
+	@FXML private Button _searchButton;
+	@FXML private Button _createAudioButton;
+	@FXML private ListView _textDescription;
+	
+	// elements in the bottom half
+	@FXML private AnchorPane _bottomHalf;
+	@FXML private TableView _savedAudio;
+	@FXML private TableColumn _termSearched;
+	@FXML private TableColumn _numberOfLines;
+	@FXML private TableColumn _audioLength;
 
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
@@ -64,7 +68,11 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		disable();
+		//disables all except the search functionality
+		disableCustomization();
+		disablePlayCreateText();
+		disableBottomHalf();
+		
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
@@ -93,6 +101,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void handlePlayText() {
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			Audio audio = new Audio();
+			System.out.println(_textDescription.getSelectionModel().getSelectedItems());
 			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
 			audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
 			audio.setSpeed(_speedSlider.getValue());
@@ -148,8 +157,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 		}
-
-
 	}
 
 	public void handleDeleteAudio() {
@@ -161,6 +168,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
+			disableBottomHalf();
 		}
 	}
 
@@ -240,7 +248,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 					return;
 				}
 			}
-			disable();
+			
+			//disable top half except for search functionality when the content list is empty
+			disableCustomization();
+			disablePlayCreateText();
 
 			//TODO
             /*
@@ -285,22 +296,51 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		return true;
 	}
 
-	public void disable() {
+	public void disableCustomization() {
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
-		_createAudioButton.setDisable(true);
-		_playTextButton.setDisable(true);
+//		_createAudioButton.setDisable(true);
+//		_playTextButton.setDisable(true);
 		//_searchButton.setDisable(true);
 	}
-
-	public void enable() {
+	
+	public void enableCustomization() {
 		_voiceBox.setDisable(false);
 		_speedSlider.setDisable(false);
 		_pitchSlider.setDisable(false);
+//		_createAudioButton.setDisable(false);
+//		_playTextButton.setDisable(false);
+		//_searchButton.setDisable(false);
+	}
+	
+	public void disablePlayCreateText() {
+		_createAudioButton.setDisable(true);
+		_playTextButton.setDisable(true);
+	}
+	
+	public void enablePlayCreateText() {
 		_createAudioButton.setDisable(false);
 		_playTextButton.setDisable(false);
-		//_searchButton.setDisable(false);
+	}
+	
+	public void disableBottomHalf() {
+		_bottomHalf.setDisable(true);
+	}
+
+	public void enableBottomHalf() {
+		_bottomHalf.setDisable(false);
+	}
+	
+	public void checkIfListSelected() {
+		System.out.println("calling checkIfListSelected");
+		if (_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
+			_createAudioButton.setDisable(true);
+			_playTextButton.setDisable(true);
+		} else {
+			_createAudioButton.setDisable(false);
+			_playTextButton.setDisable(false);
+		}
 	}
 
 	public ListView getContent() {
