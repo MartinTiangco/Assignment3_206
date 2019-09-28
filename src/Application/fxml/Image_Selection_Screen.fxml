@@ -27,10 +27,10 @@
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="5.0" prefHeight="109.0" prefWidth="577.0">
          <children>
-            <TextField fx:id="_input" layoutX="14.0" layoutY="39.0" onAction="#handleInput" prefHeight="31.0" prefWidth="161.0" promptText="Input from 0 to 10." />
+            <TextField fx:id="_input" layoutX="14.0" layoutY="39.0" onAction="#handleGenerate" prefHeight="31.0" prefWidth="161.0" promptText="Input from 0 to 10." />
             <Text layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the number of pictures you wish to include in the slideshow (10 maximum)." />
-            <Label fx:id="_invalidInput" layoutX="14.0" layoutY="79.0" text="Please enter a number between 0 and 10." textFill="RED" />
-            <Button fx:id="_generateButton" layoutX="194.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleGenerate" prefHeight="26.0" prefWidth="86.0" text="Generate" />
+            <Label fx:id="_invalidInput" layoutX="14.0" layoutY="79.0" text="Please enter a number between 0 and 10." textFill="RED" visible="false" />
+            <Button fx:id="_generateButton" layoutX="195.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleGenerate" prefHeight="26.0" prefWidth="86.0" text="Generate" />
          </children>
       </AnchorPane>
    </children>

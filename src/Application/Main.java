@@ -33,6 +33,7 @@ public class Main extends Application {
         File videoDir = new File(".Video_Directory");
         File wikitDir = new File(".Wikit_Directory");
         File imageDir = new File(".Image_Directory");
+        File outputDir = new File(".Output_Directory");
 
         if (!creationDir.isDirectory()) {
             creationDir.mkdir();
@@ -52,6 +53,10 @@ public class Main extends Application {
 
         if (!imageDir.isDirectory()) {
             imageDir.mkdir();
+        }
+        
+        if (!outputDir.isDirectory()) {
+        	outputDir.mkdir();
         }
 
         launch(args);

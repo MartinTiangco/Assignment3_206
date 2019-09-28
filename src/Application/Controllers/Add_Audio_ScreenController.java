@@ -12,11 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
@@ -62,6 +64,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	private File wikitDir = new File(".Wikit_Directory");
 	private File wikitRaw = new File(wikitDir + System.getProperty("file.separator") + "raw.txt"); //raw content - where content is not separated to lines
 	private File wikitTemp = new File(wikitDir + System.getProperty("file.separator") + "temp.txt"); //temp content - where content is separated
+	
 	private AudioPlayer _audioPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
@@ -141,6 +144,15 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleCreateAudio() {
+		if (_textDescription.getSelectionModel().getSelectedItems().size() > 20) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please select 20 lines or less.");
+			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			alert.show();
+			return;
+		}
+
 		_searchTextField.setDisable(true);
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			_numberOfAudiosCreated++;
@@ -170,7 +182,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleNext() {
-		//here we combine the audios
+		// combine the audios
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_backgroundExecutor.submit(combiner);

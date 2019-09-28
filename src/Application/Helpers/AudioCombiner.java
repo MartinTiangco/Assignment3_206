@@ -20,7 +20,9 @@ import javafx.stage.Stage;
 public class AudioCombiner extends Task<Long> {
 	private List<Audio> _audioList;
 	private Add_Audio_ScreenController _controller;
+	
 	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
+	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator"); 
 	
 	public AudioCombiner(ObservableList<Audio> audioList, Add_Audio_ScreenController controller) {
 		_audioList = audioList;
@@ -35,7 +37,7 @@ public class AudioCombiner extends Task<Long> {
 		for (String filename : filenames) {
 			input = input + " " + AUDIO_DIR + filename;
 		}
-		String cmd = "sox" + input + " " + AUDIO_DIR + "output.wav";
+		String cmd = "sox" + input + " " + OUTPUT_DIR + "output.wav";
 		System.out.println(cmd);
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
