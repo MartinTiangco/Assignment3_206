@@ -28,6 +28,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -73,19 +74,18 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		disableBottomHalf();
 		
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		//_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
 		_searchTextField.requestFocus();
-		_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
 		
-		_voiceBox.getItems().add("Default");
-		_voiceBox.getItems().add("Dumb Voice");
+//		_voiceBox.getItems().add("Default");
+//		_voiceBox.getItems().add("Dumb Voice");
 		_voiceBox.getItems().add("English-USA-male");
 		_voiceBox.getItems().add("English-USA-female");
 		_voiceBox.getItems().add("English-UK-male");
@@ -114,7 +114,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML
 	public void handlePlayAudio() {
 
-		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItems(),this);
+		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItem(),this);
 		_executor.submit(_audioPlayer);
 	}
 
