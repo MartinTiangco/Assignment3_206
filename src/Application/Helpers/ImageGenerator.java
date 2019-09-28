@@ -104,6 +104,7 @@ public class ImageGenerator extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		_controller.listImages();
 	}
 	
 	private String retrieveAudioLength() {
@@ -139,7 +140,7 @@ public class ImageGenerator extends Task<Long> {
 			}
 		}
 	}
-
+	
 	public static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
 		

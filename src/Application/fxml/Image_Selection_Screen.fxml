@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="125.0" prefHeight="417.0" prefWidth="300.0">
          <children>
-            <ListView layoutX="11.0" layoutY="8.0" prefHeight="401.0" prefWidth="279.0" />
+            <ListView fx:id="_listOfImages" layoutX="11.0" layoutY="8.0" onMouseClicked="#viewImage" prefHeight="401.0" prefWidth="279.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="309.0" layoutY="385.0" prefHeight="157.0" prefWidth="279.0">
@@ -22,7 +22,7 @@
       </AnchorPane>
       <AnchorPane layoutX="314.0" layoutY="132.0" prefHeight="242.0" prefWidth="279.0">
          <children>
-            <ImageView fitHeight="213.0" fitWidth="252.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="_imageView" fitHeight="213.0" fitWidth="252.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="5.0" prefHeight="109.0" prefWidth="577.0">
