@@ -44,7 +44,12 @@ public class AudioCreator extends Task<Long> {
 //        } else {
 //        	cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt";
 //        }
-		String cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt";
+		String texts = "";
+        for (int i = 0; i < _audio.getContent().size(); i++) {
+            texts = texts + _audio.getContent().get(i);
+        }
+		
+		String cmd = "espeak -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
 		System.out.println(cmd);
 		// ProcessBuilder to generate audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
