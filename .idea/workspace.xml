@@ -2,32 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29a07aa-a883-4858-a126-a182bbb4b06d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flickr-api-keys.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Audio_Directory/hello.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Audio_Directory/hello.wav" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/egg_-_egg_-_30.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/fail_-_fail_-_20.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_10.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/fail.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
