@@ -2,6 +2,7 @@ package Application.Helpers;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,9 +38,18 @@ public class AudioCreator extends Task<Long> {
 			e.printStackTrace();
 		}
 
-		String cmd = "text2wave -o " + DIR + _audio.getFilename() + " " + DIR + "temp.txt" + " -eval .Audio_Directory/speech.scm";
-		System.out.println(cmd);
-		// ProcessBuilder to generate audio 
+		String texts = "";
+        for (int i = 0; i < _audio.getContent().size(); i++) {
+            texts = texts + _audio.getContent().get(i);
+        }
+		
+		String cmd = "espeak -p " + (_audio.getPitch())
+				 		+ " -s " + (_audio.getSpeed()) + " "
+				 		+ _audio.getVoice() 
+				 		+ " -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
+		System.out.println("The command for creating the audio is: " + cmd);
+		
+		// ProcessBuilder to combine audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 		try {
 			Process process = builder.start();
@@ -47,7 +57,7 @@ public class AudioCreator extends Task<Long> {
 			
 			if (exitStatus == 0) {
 			} else {
-				AlertMessage alert = new AlertMessage("create_audio_failed");
+				AlertMessage alert = new AlertMessage("combine_audio_failed");
 				Platform.runLater(alert);
 				return null;
 			}
@@ -60,6 +70,7 @@ public class AudioCreator extends Task<Long> {
 			public void run() {
 				//Append onto ListView
 				_controller.getAudioList().getItems().add(_audio);
+				_controller.enableBottomHalf();
 			}
 		});
 		

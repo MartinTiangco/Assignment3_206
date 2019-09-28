@@ -14,6 +14,7 @@ public class AlertMessage implements Runnable {
 	 * there are final strings to compare the command statuses to
 	 */
 	private final String VOICE_CANNOT_SPEAK = "voice_cannot_speak";
+	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
 	
 	public AlertMessage(String status) {
@@ -26,13 +27,15 @@ public class AlertMessage implements Runnable {
 	@Override
 	public void run() {
 		switch(status) {
-			case VOICE_CANNOT_SPEAK:
-				showAlert("We are sorry, but the chosen voice can not speak the line(s). Please choose another voice.");
-				break;
-			case CREATE_AUDIO_UNSUCCESSFUL:
-				showAlert("We are sorry, but the audio cannot be created. Please try again.");
-				break;
-
+		  case VOICE_CANNOT_SPEAK:
+			  showAlert("We are sorry, but the chosen voice can not speak the line(s). Please choose another.");
+			  break;
+		  case AUDIO_COMBINING_FAILED:
+			  showAlert("We are sorry, but the audio combining has failed for some reason. Please try combining another set of words.");
+			  break;
+		  case CREATE_AUDIO_UNSUCCESSFUL:
+			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
+			  break;
 		}
 	}
 		

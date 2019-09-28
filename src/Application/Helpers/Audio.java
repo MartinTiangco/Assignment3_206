@@ -1,17 +1,18 @@
 package Application.Helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Audio {
 
     private String filename = null;
     private String termSearched = null;
-    private List<String> content = null;
+    private List<String> content = new ArrayList<String>();
     private String numberOfLines = null;
     private String audioLength = null;
-    private int pitch = 120;
-    private double speed = 1.0;
-    private String voice = "kal_diphone";
+    private int pitch = 50;
+    private int speed = 175;
+    private String voice = "-ven-gb+m5";
 
 
     public String getFilename() {
@@ -62,11 +63,11 @@ public class Audio {
         this.pitch = pitch;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(double speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
@@ -75,10 +76,7 @@ public class Audio {
     }
 
     public void setVoice(String voice) {
-        if (voice == "Dumb Voice") {
-            this.voice = "akl_nz_jdt_diphone";
-        }
-        else if (voice == "English-USA-male") {
+        if (voice == "English-USA-male") {
             this.voice = "-ven-us+m5";
         }
         else if (voice == "English-USA-female") {
@@ -91,7 +89,7 @@ public class Audio {
             this.voice = "-ven-gb+f2";
         }
         else {
-            this.voice = "kal_diphone";
+            this.voice = "-ven-gb+m5";
         }
     }
 }

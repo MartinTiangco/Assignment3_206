@@ -2,9 +2,12 @@ package Application.Controllers;
 
 import Application.Helpers.Creation;
 import Application.Helpers.UpdateHelper;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -62,43 +65,57 @@ public class Home_ScreenController extends Controller implements Initializable {
             for (Creation creation : listOfCreations) {
                 Tab tab = new Tab();
                 tab.setClosable(true);
+
                 tab.setText(creation.getName());
                 File fileUrl = new File("Creation_Directory/" + creation.getFileName());
                 Media video = new Media(fileUrl.toURI().toString());
                 MediaPlayer player = new MediaPlayer(video);
-                _listOfMediaPlayer.add(player);
                 player.setAutoPlay(true);
+                tab.setOnCloseRequest(new EventHandler<Event>()
+                {
+                    @Override
+                    public void handle(Event arg0)
+                    {
+                        player.dispose();
+                    }
+                });
 
                 MediaView mediaView = new MediaView();
                 mediaView.setMediaPlayer(player);
                 mediaView.setFitHeight(350);
                 mediaView.setFitWidth(500);
                 VBox vbox = new VBox(mediaView);
-                //vbox.setPadding();
+                vbox.setPadding(new Insets(25, 50, 25, 50));
+                vbox.setSpacing(25);
                 tab.setContent(new AnchorPane(vbox));
                 _videoTabs.getTabs().add(tab);
                 _videoTabs.getSelectionModel().select(_videoTabs.getTabs().size() - 1);
+
+                for (MediaPlayer pause : _listOfMediaPlayer) {
+                    pause.pause();
+                }
+                _listOfMediaPlayer.add(player);
             }
         }
     }
 
     @FXML
     public void handleAdd() {
-    	Stage addAudioStage = new Stage();
+        Stage addAudioStage = new Stage();
         try {
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_Audio_Screen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_Audio_Screen.fxml"));
             Parent root = loader.load();
             Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
-           	Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
+            Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
             Scene scene = new Scene(root, 858, 692);
-            
+
             //once we have the css file for Add_Audio_Screen
             //scene.getStylesheets().addAll(this.getClass().getResource("css/Add_Audio_Screen.css").toExternalForm());
-            
+            addAudioStage.setTitle("VARpedia - Add Audio");
             addAudioStage.setScene(scene);
-            addAudioStage.show();	
+            addAudioStage.show();
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         }
         Update();
     }
@@ -131,6 +148,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void handleSettings() {
         System.out.println("You pressed settings");
     }
+
 
     public ArrayList<Creation> getCreations() {
         return _creations;
