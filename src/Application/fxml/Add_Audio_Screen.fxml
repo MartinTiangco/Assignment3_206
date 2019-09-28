@@ -87,7 +87,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <Button layoutX="422.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlePlayAudio" text="P" />
+                        <Button fx:id="_playAudioButton" layoutX="422.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlePlayAudio" text="P" />
                         <Button layoutX="420.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleDeleteAudio" text="D" />
                         <Button layoutX="410.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleNext" text="Next" />
                         <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />

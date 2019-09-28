@@ -52,6 +52,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
+	@FXML private Button _playAudioButton;
 	@FXML private TableView _savedAudio;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
@@ -99,6 +100,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML
 	public void handlePlayText() {
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
+			_playAudioButton.setDisable(true);
 			Audio audio = new Audio();
 			System.out.println(_textDescription.getSelectionModel().getSelectedItems());
 			audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
@@ -113,7 +115,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayAudio() {
-
+		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
+			_playTextButton.setDisable(true);
+		}
 		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItem(),this);
 		_executor.submit(_audioPlayer);
 	}
@@ -327,5 +331,13 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public MediaView getMediaView() {
 		return _mediaView;
+	}
+	
+	public Button getPlayTextButton() {
+		return _playTextButton;
+	}
+	
+	public Button getPlayAudioButton() {
+		return _playAudioButton;
 	}
 }
