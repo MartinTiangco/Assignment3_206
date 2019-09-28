@@ -49,7 +49,7 @@ public class ImageGenerator extends Task<Long> {
 				try {
 					BufferedImage image = photos.getImage(photo, Size.LARGE);
 					String filename = query.trim().replace(' ', '-') + "-" + System.currentTimeMillis() + "-" + photo.getId() + ".jpg";
-					File outputfile = new File("Images", filename);
+					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
 					System.out.println("Downloaded " + filename);
 				} catch (FlickrException fe) {
