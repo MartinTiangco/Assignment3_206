@@ -46,9 +46,10 @@ public class AudioCreator extends Task<Long> {
 			int exitStatus = process.waitFor();
 			
 			if (exitStatus == 0) {
-				System.out.println("success");
 			} else {
-				System.out.println("fail");
+				AlertMessage alert = new AlertMessage("create_audio_failed");
+				Platform.runLater(alert);
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,6 +60,7 @@ public class AudioCreator extends Task<Long> {
 			public void run() {
 				//Append onto ListView
 				_controller.getAudioList().getItems().add(_audio);
+				_controller.enableBottomHalf();
 			}
 		});
 		

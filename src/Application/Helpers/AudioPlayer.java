@@ -59,19 +59,20 @@ public class AudioPlayer extends Task<Long> {
     }
 
     public void playAudio() {
-
-        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audio.getFilename() + ".wav");
-        Media video = new Media(fileUrl.toURI().toString());
-        MediaPlayer player = new MediaPlayer(video);
+        File fileUrl = new File(".Audio_Directory" + System.getProperty("file.separator") + _audio.getFilename());
+        Media audio = new Media(fileUrl.toURI().toString());
+        MediaPlayer player = new MediaPlayer(audio);
         player.setAutoPlay(true);
-
         _controller.getMediaView().setMediaPlayer(player);
     }
 
     public void setTexts () {
+    	_texts = "";
         for (int i = 0; i < _audio.getContent().size(); i++) {
+        	System.out.println("Adding to text: " + _texts);
             _texts = _texts + _audio.getContent().get(i);
         }
+        System.out.println(_texts);
     }
 
     public void StartProcess(ProcessBuilder builder) {
