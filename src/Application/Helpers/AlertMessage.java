@@ -9,6 +9,7 @@ public class AlertMessage implements Runnable {
 	
 	private Alert alert;
 	private String status;
+	private String term;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -16,9 +17,15 @@ public class AlertMessage implements Runnable {
 	private final String VOICE_CANNOT_SPEAK = "voice_cannot_speak";
 	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
+	private final String CREATION_SUCCESSFUL = "creation_successful";
 	
 	public AlertMessage(String status) {
 		this.status = status;
+	}
+	
+	public AlertMessage(String status, String term) {
+		this.status = status;
+		this.term = term;
 	}
 
 	/**
@@ -35,6 +42,9 @@ public class AlertMessage implements Runnable {
 			  break;
 		  case CREATE_AUDIO_UNSUCCESSFUL:
 			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
+			  break;
+		  case CREATION_SUCCESSFUL:
+			  showSuccess("Creation " + term + " was successfully generated!");
 			  break;
 		}
 	}

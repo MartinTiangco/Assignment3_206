@@ -11,19 +11,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Image_Selection_ScreenController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="125.0" prefHeight="417.0" prefWidth="300.0">
+      <AnchorPane layoutX="14.0" layoutY="80.0" prefHeight="371.0" prefWidth="298.0">
          <children>
-            <ListView fx:id="_listOfImages" layoutY="-38.0" onMouseClicked="#viewImage" prefHeight="401.0" prefWidth="279.0" />
+            <ListView fx:id="_listOfImages" layoutX="14.0" layoutY="14.0" onMouseClicked="#viewImage" prefHeight="388.0" prefWidth="262.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="309.0" layoutY="385.0" prefHeight="109.0" prefWidth="279.0">
+      <AnchorPane layoutX="303.0" layoutY="374.0" prefHeight="109.0" prefWidth="279.0">
          <children>
-            <Button fx:id="_createButton" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleCreate" text="Create" />
+            <Button fx:id="_createButton" layoutX="203.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleCreate" text="Create" />
+            <TextField fx:id="_nameInput" layoutY="82.0" onAction="#handleCreate" prefHeight="26.0" prefWidth="187.0" promptText="Enter filename" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="314.0" layoutY="132.0" prefHeight="242.0" prefWidth="279.0">
+      <AnchorPane layoutX="314.0" layoutY="92.0" prefHeight="242.0" prefWidth="279.0">
          <children>
-            <ImageView fx:id="_imageView" fitHeight="213.0" fitWidth="252.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="_imageView" fitHeight="242.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="5.0" prefHeight="109.0" prefWidth="577.0">
@@ -36,7 +37,7 @@
       </AnchorPane>
       <AnchorPane layoutX="13.0" layoutY="497.0" prefHeight="46.0" prefWidth="577.0">
          <children>
-            <ProgressBar fx:id="_pb" layoutY="13.0" prefHeight="20.0" prefWidth="577.0" progress="0.0" />
+            <ProgressBar fx:id="_pb" layoutX="16.0" layoutY="13.0" prefHeight="20.0" prefWidth="540.0" progress="0.0" />
          </children>
       </AnchorPane>
    </children>

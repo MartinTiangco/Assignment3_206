@@ -34,6 +34,7 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ProgressBar _pb;
+	@FXML private TextField _nameInput;
 	
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -165,13 +166,18 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 	
 	public void handleCreate() {
+		if (_nameInput.getText().isEmpty()) {
+			return;
+		}
+		
 		int numPics = 3;
 		
-		//_pb.setProgress(0);
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, numPics, this);
 		_executor.submit(videoGen);
-		//_pb.progressProperty().bind(videoGen.progressProperty());
+		_pb.progressProperty().bind(videoGen.progressProperty());
 	}
 
 	public boolean isValidNumber() {
@@ -179,6 +185,25 @@ public class Image_Selection_ScreenController extends Controller {
 			return true;
 		}
 		return false;
+	}
+	
+	public Button getCreateButton() {
+		return _createButton;
+	}
+	
+	private boolean handleNameInput() {
+		
+		// Disallows input of spaces or an empty string
+		if (_nameInput.getText().trim().isEmpty()) {
+			return false;
+		}
+		
+		//prevents any special characters apart from "-", "_" and (space)
+		if (_nameInput.getText().matches("[a-zA-Z0-9 ]*")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 
