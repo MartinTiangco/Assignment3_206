@@ -54,8 +54,8 @@ public class VideoGenerator extends Task<Long> {
         Platform.runLater(alert);
 		
 		// delete output.wav now that we don't need it anymore
-		//File outFile = new File(OUTPUT_DIR);
-		//deleteDirContents(outFile);
+		Cleaner cleaner = new Cleaner();
+		cleaner.cleanAll();
 
 		
 		return null;
@@ -150,19 +150,6 @@ public class VideoGenerator extends Task<Long> {
 
 	public void addImage(String image) {
 		this.IMAGES = this.IMAGES + " " + image;
-	}
-
-	public static void deleteDirContents(File dir) {
-		File[] files = dir.listFiles();
-		if(files != null) {
-			for (File f: files) {
-				if (f.isDirectory()) {
-					deleteDirContents(f);
-				} else {
-					f.delete();
-				}
-			}
-		}
 	}
 
 	public void setCreationName(String creationName) {

@@ -125,6 +125,7 @@ public class Home_ScreenController extends Controller implements Initializable {
 
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
+            List<Tab> listOfTabToBeRemoved = new ArrayList<>();
             for (Creation creation : listOfCreations) {
                 File filePath = new File("Creation_Directory/" + creation.getFileName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,14 +134,21 @@ public class Home_ScreenController extends Controller implements Initializable {
                     if (response == ButtonType.OK) {
                         for (Tab tab : _videoTabs.getTabs()) {
                             if (tab.getText().equals(creation.getName())) {
-                                _videoTabs.getTabs().remove(tab);
+                                for (MediaPlayer player : _listOfMediaPlayer) {
+                                    if (player.getMedia().getSource().equals("file:" + filePath.getAbsolutePath())) {
+                                        player.dispose();
+                                    }
+                                }
+                                listOfTabToBeRemoved.add(tab);
                             }
                         }
                         filePath.delete();
+                        _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
                     }
                 });
             }
         }
+
         Update();
     }
 

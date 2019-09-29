@@ -1,10 +1,6 @@
 package Application.Controllers;
 
-import Application.Helpers.Audio;
-import Application.Helpers.AudioCombiner;
-import Application.Helpers.AudioCreator;
-import Application.Helpers.AudioPlayer;
-import Application.Helpers.WikitWorker;
+import Application.Helpers.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -192,8 +188,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public void handleBackToMainMenu() {
 		// removes the audio directory contents (all files are temporary)
-		File dir = new File(".Audio_Directory");
-		deleteDirContents(dir);
+		Cleaner cleaner = new Cleaner();
+		cleaner.cleanAudio();
 			
 		// closes audio screen
 		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
@@ -218,58 +214,14 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	public void deleteLines(KeyEvent key) {
 		if (key.getCode().equals(KeyCode.DELETE)) {
 
-			final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
-			if (selectedIdx != -1) {
 
-				final int newSelectedIdx =
-						(selectedIdx == _textDescription.getItems().size() - 1)
-								? selectedIdx - 1
-								: selectedIdx;
+			ObservableList<Object>  linesSelected, lines;
+			lines = _textDescription.getItems();
+			linesSelected = _textDescription.getSelectionModel().getSelectedItems();
+			lines.removeAll(linesSelected);
 
-				_textDescription.getItems().remove(selectedIdx);
-				_textDescription.getSelectionModel().select(newSelectedIdx);
-			}
-			for (String line : (List<String>)_textDescription.getItems()) {
-				if (!line.equals("")) {
-					return;
-				}
-			}
-			
 			//disable top half except for search functionality when the content list is empty
 			disableCustomization();
-
-			//TODO
-            /*
-			ObservableList<Integer> selectedIdx = _textDescription.getSelectionModel().getSelectedIndices();
-			List<String> temp = _textDescription.getItems();
-			System.out.println(selectedIdx.toString());
-			if (!selectedIdx.contains(-1)) {
-			    for (int i = selectedIdx.size()-1; i >= 0; i--) {
-			        System.out.println("deleting" + i);
-                    temp.remove(selectedIdx.get(i));
-                }
-                //_textDescription.getItems().clear();
-			    _textDescription.getItems().addAll(temp);
-                _textDescription.getSelectionModel().select(selectedIdx.get(0));
-            }
-			if (_textDescription.getSelectionModel().getSelectedItems().size() < 5) {
-				_textDescription.getItems().add("");
-			}
-
-            */
-		}
-	}
-
-	public static void deleteDirContents(File dir) {
-		File[] files = dir.listFiles();
-		if(files != null) {
-			for (File f: files) {
-				if (f.isDirectory()) {
-					deleteDirContents(f);
-				} else {
-					f.delete();
-				}
-			}
 		}
 	}
 
