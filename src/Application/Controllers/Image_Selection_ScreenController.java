@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import Application.Helpers.ImageGenerator;
+import Application.Helpers.ImageViewer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -152,10 +153,17 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
+	public void selectImage() {
+		System.out.println("image selected");
+		ImageViewer imageViewer = new ImageViewer(this);
+		_executor.submit(imageViewer);
+	}
+
 	public void viewImage(){
 
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
 			String imagePath = ".Image_Directory/" + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
+			System.out.println(imagePath);
 			javafx.scene.image.Image image = new javafx.scene.image.Image(imagePath);
 			_imageView.setImage(image);
 		}

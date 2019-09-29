@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="125.0" prefHeight="417.0" prefWidth="300.0">
          <children>
-            <ListView fx:id="_listOfImages" layoutX="11.0" layoutY="8.0" onMouseClicked="#viewImage" prefHeight="401.0" prefWidth="279.0" />
+            <ListView fx:id="_listOfImages" layoutX="11.0" layoutY="8.0" onMouseClicked="#selectImage" prefHeight="401.0" prefWidth="279.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="309.0" layoutY="385.0" prefHeight="157.0" prefWidth="279.0">
