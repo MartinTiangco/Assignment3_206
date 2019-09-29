@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane dividerPositions="0.2561819980217606" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1013.0" stylesheets="@../css/Add_Audio_Screen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
+<SplitPane dividerPositions="0.2561819980217606" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1013.0" stylesheets="@/Application/css/Add_Audio_Screen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
   <items>
       <AnchorPane prefHeight="507.0" prefWidth="206.0">
          <children>

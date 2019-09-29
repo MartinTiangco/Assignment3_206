@@ -53,7 +53,7 @@ public class AudioCombiner extends Task<Long> {
 						// loads the Image Selection Screen
 						Stage imageScreen = new Stage();
 		        		try {
-		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
+		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Image_Selection_Screen.fxml"));
 		        	        Parent root = loader.load();
 		        	        Image_Selection_ScreenController Image_Selection_ScreenController = loader.getController();
 		        	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
