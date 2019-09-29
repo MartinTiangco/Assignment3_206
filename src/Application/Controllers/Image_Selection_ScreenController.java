@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 import Application.Helpers.ImageGenerator;
 import Application.Helpers.ImageViewer;
+import Application.Helpers.VideoGenerator;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -132,11 +133,10 @@ public class Image_Selection_ScreenController extends Controller {
 		System.out.println("The number is valid");
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
+		
+		// retrieves images from flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
-		
-		// retrieve the length of the audio file
-		
 	}
 
 	public void listImages() {
@@ -160,7 +160,6 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 
 	public void viewImage(){
-
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
 			String imagePath = ".Image_Directory/" + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
 			System.out.println(imagePath);
@@ -171,6 +170,11 @@ public class Image_Selection_ScreenController extends Controller {
 	
 	public void handleCreate() {
 		System.out.println("You created");
+		int numPics = 3;
+		
+		// creates the creation
+		VideoGenerator videoGen = new VideoGenerator(_term, numPics, this);
+		_executor.submit(videoGen);
 	}
 
 	public boolean isValidNumber() {
