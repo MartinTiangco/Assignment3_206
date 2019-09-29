@@ -81,14 +81,10 @@ public class Image_Selection_ScreenController extends Controller {
 				image.onProperty().addListener((obs, wasOn, isNowOn) -> {
 					if (image.getSelected()) {
 						image.setSelected(false);
-						System.out.println("deselected");
 					}
 					else{
 						image.setSelected(true);
-
-						System.out.println("selected");
 					}
-                System.out.println(image.getName() + " changed on state from "+wasOn+" to "+isNowOn);
             });
 				return image.onProperty();
             }
@@ -182,7 +178,6 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 
 	public void selectImage() {
-		System.out.println("image selected");
 		ImageViewer imageViewer = new ImageViewer(this);
 		_executor.submit(imageViewer);
 	}
@@ -190,7 +185,6 @@ public class Image_Selection_ScreenController extends Controller {
 	public void viewImage(){
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
 			String imagePath = "file:" + IMAGE_DIR + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
-			System.out.println(imagePath);
 			javafx.scene.image.Image image = new javafx.scene.image.Image(imagePath);
 			_imageView.setImage(image);
 		}
@@ -217,7 +211,6 @@ public class Image_Selection_ScreenController extends Controller {
 		for (Image image : _listOfImages.getItems()) {
 			if (image.getSelected()){
 				numPics++;
-				System.out.println(IMAGE_DIR + image.getFileName());
 				videoGen.addImage(IMAGE_DIR + image.getFileName());
 			}
 		}

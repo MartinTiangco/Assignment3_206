@@ -67,7 +67,6 @@ public class ImageGenerator extends Task<Long> {
 			params.setText(query);
 			
 			PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
-			System.out.println("Retrieving " + results.size() + " results");
 			
 			int numId = 0;
 			for (Photo photo : results) {
@@ -76,10 +75,8 @@ public class ImageGenerator extends Task<Long> {
 					String filename = query.trim().replace(' ', '-') + "-00" + numId + ".jpg";
 					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
-					System.out.println("Downloaded " + filename);
 					numId++;
 				} catch (FlickrException fe) {
-					System.out.println("Ignoring image " + photo.getId() + ": " + fe.getMessage());
 				}
 			}
 		} catch (Exception e) {
@@ -100,7 +97,6 @@ public class ImageGenerator extends Task<Long> {
 	private String retrieveAudioLength() {
 		String length = "";
 		String cmd = "soxi -D " + OUTPUT_DIR + "output.wav";
-		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
         try {
@@ -108,7 +104,6 @@ public class ImageGenerator extends Task<Long> {
             BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
-            System.out.println("Exit Status for soxi is " + exitStatus);
             if (exitStatus == 0) {
             	length = stdout.readLine();
             }

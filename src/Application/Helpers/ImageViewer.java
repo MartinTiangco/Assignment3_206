@@ -13,7 +13,6 @@ public class ImageViewer  extends Task<Long> {
     }
     @Override
     protected Long call() throws Exception {
-        System.out.println("imageViewer created");
         Runnable viewImage = new Runnable() {
             @Override
             public void run() {

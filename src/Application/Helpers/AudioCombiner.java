@@ -39,7 +39,6 @@ public class AudioCombiner extends Task<Long> {
 			input = input + " " + AUDIO_DIR + filename;
 		}
 		String cmd = "sox" + input + " " + OUTPUT_DIR + "output.wav";
-		System.out.println(cmd);
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
 		
@@ -47,7 +46,6 @@ public class AudioCombiner extends Task<Long> {
             process = builder.start();
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
-            System.out.println("Exit Status for sox is " + exitStatus);
             if (exitStatus == 0) {
             	Runnable runnable = new Runnable() {
 
@@ -93,10 +91,8 @@ public class AudioCombiner extends Task<Long> {
 	private List<String> getFilenames() {
 		List<String> filenames = new ArrayList<String>();
 		for (Audio a : _audioList) {
-			System.out.println("Adding " + a.getFilename());
 			filenames.add(a.getFilename());
-		}	
-		System.out.println(filenames);
+		}
 		return filenames;
 	}
 
