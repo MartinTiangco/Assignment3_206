@@ -27,7 +27,8 @@ public class VideoGenerator extends Task<Long> {
 	}
 
 	@Override
-	protected Long call() throws Exception {	
+	protected Long call() throws Exception {
+		
 		// retrieve the audio length
 		String length = retrieveAudioLength();
 		System.out.println(length);

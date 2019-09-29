@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
@@ -32,6 +33,7 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private Button _generateButton;
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
+	@FXML private ProgressBar _pb;
 	
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -128,7 +130,6 @@ public class Image_Selection_ScreenController extends Controller {
 		if (!isValidNumber()) {
 			return;
 		}
-		
 		System.out.println("The number is valid");
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
@@ -136,6 +137,9 @@ public class Image_Selection_ScreenController extends Controller {
 		// retrieves images from flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
+
+		///_pb.setProgress(0);
+		//_pb.progressProperty().bind(imgGen.progressProperty());
 	}
 
 	public void listImages() {
@@ -161,12 +165,13 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 	
 	public void handleCreate() {
-		System.out.println("You created");
 		int numPics = 3;
 		
+		//_pb.setProgress(0);
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, numPics, this);
 		_executor.submit(videoGen);
+		//_pb.progressProperty().bind(videoGen.progressProperty());
 	}
 
 	public boolean isValidNumber() {
