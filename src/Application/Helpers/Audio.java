@@ -13,6 +13,7 @@ public class Audio {
     private int pitch = 50;
     private int speed = 175;
     private String voice = "-ven-gb+m5";
+    private String voiceDisplay = "English-USA-male";
 
 
     public String getFilename() {
@@ -91,5 +92,14 @@ public class Audio {
         else {
             this.voice = "-ven-gb+m5";
         }
+        voiceDisplay = voice;
+    }
+    
+    public String getVoiceDisplay() {
+    	return voiceDisplay;
+    }
+    
+    public void setVoiceDisplay(String voiceDisplay) {
+    	this.voiceDisplay = voiceDisplay;
     }
 }

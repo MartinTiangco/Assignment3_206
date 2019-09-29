@@ -1,10 +1,12 @@
 package Application.Controllers;
 
+import Application.Helpers.AlertMessage;
 import Application.Helpers.Audio;
 import Application.Helpers.AudioCombiner;
 import Application.Helpers.AudioCreator;
 import Application.Helpers.AudioPlayer;
 import Application.Helpers.WikitWorker;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +53,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
 	@FXML private ListView _textDescription;
+	@FXML private ProgressBar _pb;
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
@@ -59,7 +62,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML private TableView _savedAudio;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
-	@FXML private TableColumn _audioLength;
+	@FXML private TableColumn _voice;
+	@FXML private TableColumn _speed;
+	@FXML private TableColumn _pitch;
+	
 
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
@@ -88,7 +94,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
-		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
+		_voice.setCellValueFactory(new PropertyValueFactory<>("voiceDisplay"));
+		_speed.setCellValueFactory(new PropertyValueFactory<>("speed"));
+		_pitch.setCellValueFactory(new PropertyValueFactory<>("pitch"));
 		
 //		_voiceBox.getItems().add("Default");
 //		_voiceBox.getItems().add("Dumb Voice");
@@ -124,6 +132,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleSearch() {
+		
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
+		
 		_searchInput = _searchTextField.getText();
 
 		if (!validateSearch(_searchInput)) {
@@ -146,11 +158,13 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public void handleCreateAudio() {
 		if (_textDescription.getSelectionModel().getSelectedItems().size() > 20) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setContentText("Please select 20 lines or less.");
-			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-			alert.show();
+			AlertMessage alert = new AlertMessage("Please select 20 lines or less");
+			Platform.runLater(alert);
+//			Alert alert = new Alert(AlertType.ERROR);
+//			alert.setHeaderText(null);
+//			alert.setContentText("Please select 20 lines or less.");
+//			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+//			alert.show();
 			return;
 		}
 
@@ -210,6 +224,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
 			_backgroundExecutor.submit(wikitWorker);
+			_pb.progressProperty().bind(wikitWorker.progressProperty());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
