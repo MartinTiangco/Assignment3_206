@@ -57,17 +57,13 @@ public class Image_Selection_ScreenController extends Controller {
 		        // enables or disables button if number is a valid input
 		        if (!_input.getText().isEmpty()) {
 		        	if (_input.getText().matches("\\d+")) {
-		        		if (Integer.parseInt(_input.getText()) > 10) {
-				        	_invalidInput.setVisible(true);
-				        } else {
+		        		if (isValidNumber()) {
 				        	_invalidInput.setVisible(false);
-				        }
-			        	
-				        if (isValidNumber()) {
 				        	_generateButton.setDisable(false);
 				        } else {
+				        	_invalidInput.setVisible(true);
 				        	_generateButton.setDisable(true);
-				        }	
+				        }
 		        	}
 		        } else {
 		        	// if textField is empty, disable the button.

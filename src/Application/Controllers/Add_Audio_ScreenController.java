@@ -158,13 +158,12 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public void handleCreateAudio() {
 		// when the 'Save' button is pressed
-		if (_textDescription.getSelectionModel().getSelectedItems().size() > 6) {
+		if (_textDescription.getSelectionModel().getSelectedItems().size() > 5) {
 			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
 			Platform.runLater(alert);
 			return;
 		}
 
-		_searchTextField.setDisable(true);
 		// add an Audio object to the TableView
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			_numberOfAudiosCreated++;
@@ -308,5 +307,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	public String getSearchInput() {
 		return _searchInput;
+	}
+	
+	public TextField getSearchTextField() {
+		return _searchTextField;
 	}
 }
