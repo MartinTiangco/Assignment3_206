@@ -79,12 +79,7 @@ public class Image_Selection_ScreenController extends Controller {
             @Override
             public ObservableValue<Boolean> call(Image image) {
 				image.onProperty().addListener((obs, wasOn, isNowOn) -> {
-					if (image.getSelected()) {
-						image.setSelected(false);
-					}
-					else{
-						image.setSelected(true);
-					}
+					image.setSelected(isNowOn);
             });
 				return image.onProperty();
             }
@@ -163,7 +158,7 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 
 	public void listImages() {
-		_listOfImages.getItems().clear();
+		_listOfImages.getItems().removeAll(_listOfImages.getItems());
 		List<String> listOfFilenames = new ArrayList<>();
 		File dir = new File(".Image_Directory");
 		File[] listOfFiles = dir.listFiles();

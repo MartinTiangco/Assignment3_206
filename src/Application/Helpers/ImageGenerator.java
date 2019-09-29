@@ -83,36 +83,9 @@ public class ImageGenerator extends Task<Long> {
 			e.printStackTrace();
 		}
 		
-		Runnable listImage = new Runnable() {
-
-			@Override
-			public void run() {
-				_controller.listImages();
-			}
-		};
-		Platform.runLater(listImage);
+		Platform.runLater(() -> _controller.listImages());
 		
 	}
-	
-	private String retrieveAudioLength() {
-		String length = "";
-		String cmd = "soxi -D " + OUTPUT_DIR + "output.wav";
-		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-		Process process;
-        try {
-            process = builder.start();
-            BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            int exitStatus = process.waitFor();
-            if (exitStatus == 0) {
-            	length = stdout.readLine();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return length;
-	}
-
 	
 	public static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";

@@ -72,7 +72,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                 Media video = new Media(fileUrl.toURI().toString());
                 MediaPlayer player = new MediaPlayer(video);
                 player.setAutoPlay(true);
-                tab.setOnCloseRequest(new EventHandler<Event>()
+                tab.setOnClosed(new EventHandler<Event>()
                 {
                     @Override
                     public void handle(Event arg0)
@@ -173,12 +173,10 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     public void disable() {
         if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
-            _addButton.setDisable(true);
             _deleteButton.setDisable(true);
             _playButton.setDisable(true);
         }
         else {
-            _addButton.setDisable(false);
             _deleteButton.setDisable(false);
             _playButton.setDisable(false);
         }
