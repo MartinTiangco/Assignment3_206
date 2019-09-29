@@ -15,7 +15,7 @@ public class AlertMessage implements Runnable {
 	private Alert alert;
 	private Image_Selection_ScreenController controller;
 	private String status;
-	private String term;
+	private String creationName;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -30,9 +30,9 @@ public class AlertMessage implements Runnable {
 		this.status = status;
 	}
 	
-	public AlertMessage(String status, String term, Image_Selection_ScreenController controller) {
+	public AlertMessage(String status, String creationName, Image_Selection_ScreenController controller) {
 		this.status = status;
-		this.term = term;
+		this.creationName = creationName;
 		this.controller = controller;
 	}
 
@@ -52,7 +52,7 @@ public class AlertMessage implements Runnable {
 			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
 			  break;
 		  case CREATION_SUCCESSFUL:
-			  showSuccess("Creation " + term + " was successfully generated!");
+			  showSuccess("Creation \"" + creationName + "\" was successfully generated!");
 			  break;
 		  case TOO_MANY_LINES:
 			  showAlert("Please select 5 lines or less");

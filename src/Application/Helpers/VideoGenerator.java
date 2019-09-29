@@ -47,7 +47,7 @@ public class VideoGenerator extends Task<Long> {
         // fills progress bar to show task has finished
         updateProgress(1,1);
         
-        AlertMessage alert = new AlertMessage("creation_successful", _term, _controller);
+        AlertMessage alert = new AlertMessage("creation_successful", _creationName, _controller);
         Platform.runLater(alert);
 		
 		// delete output.wav now that we don't need it anymore
