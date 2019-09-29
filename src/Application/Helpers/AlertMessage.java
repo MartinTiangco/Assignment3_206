@@ -22,7 +22,7 @@ public class AlertMessage implements Runnable {
 	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
 	private final String CREATION_SUCCESSFUL = "creation_successful";
-	private final String TOO_MANY_LINES = "Please select 20 lines or less";
+	private final String TOO_MANY_LINES = "Please select 5 lines or less";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -53,7 +53,7 @@ public class AlertMessage implements Runnable {
 			  showSuccess("Creation " + term + " was successfully generated!");
 			  break;
 		  case TOO_MANY_LINES:
-			  showAlert("Please select 20 lines or less");
+			  showAlert("Please select 5 lines or less");
 			  break;
 		}
 	}

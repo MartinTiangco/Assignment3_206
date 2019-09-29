@@ -157,8 +157,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleCreateAudio() {
-		if (_textDescription.getSelectionModel().getSelectedItems().size() > 20) {
-			AlertMessage alert = new AlertMessage("Please select 20 lines or less");
+		if (_textDescription.getSelectionModel().getSelectedItems().size() > 6) {
+			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
 			Platform.runLater(alert);
 //			Alert alert = new Alert(AlertType.ERROR);
 //			alert.setHeaderText(null);
