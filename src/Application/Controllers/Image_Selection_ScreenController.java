@@ -145,7 +145,7 @@ public class Image_Selection_ScreenController extends Controller {
 
 		if (listOfFiles != null) {
 			for (int i = 0; i < listOfFiles.length; i++) {
-				Image image = new Image( _term + " " + i, false);
+				Image image = new Image( _term + " " + (i+1), false);
 				image.setFileName(listOfFiles[i].getName());
 				_listOfImages.getItems().add(image);
 			}

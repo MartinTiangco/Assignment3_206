@@ -27,7 +27,9 @@ public class ImageGenerator extends Task<Long> {
 
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
 	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
-	
+	private final String IMAGES = IMAGE_DIR + "*.jpg";
+	private final String AUDIO = OUTPUT_DIR + "output.wav";
+;			
 	public ImageGenerator(String term, int numPics, Image_Selection_ScreenController controller) {
 		_term = term;
 		_numPics = numPics;
@@ -53,17 +55,16 @@ public class ImageGenerator extends Task<Long> {
 		double imgLength = lengthDouble/_numPics;
 		System.out.println("each image shows for " + imgLength);
 		
-		String audioFile = OUTPUT_DIR + "output.wav";
-		String images = IMAGE_DIR + "*.jpg";
 		// generate a slideshow
-		//cat .Image_Directory/*.jpg | ffmpeg -f image2pipe -framerate $framerate -i - -i output.wav -c:v libx264 -pix_fmt yuv420p -vf "scale=width:height" -r 25 -max_muxing_queue_size 1024 -y out.mp4
-		//String cmd = "ffmpeg -framerate " + imgLength + " -i apple%02d.jpg -r 25 out.mp4";
-		//System.out.println(cmd);
-		//ffmpeg -framerate imgLength -i .Image_Directory/*.jpg -r 25 out.mp4
+		generateVideo(imgLength);
+		
+		// generate subtitle
+        generateSubtitle();
+        
 		
 		// delete output.wav now that we don't need it anymore
-		//File outFile = new File(OUTPUT_DIR);
-		//deleteDirContents(outFile);
+//		File outFile = new File(OUTPUT_DIR);
+//		deleteDirContents(outFile);
 		
 		return null;
 	}
@@ -92,7 +93,7 @@ public class ImageGenerator extends Task<Long> {
 			for (Photo photo : results) {
 				try {
 					BufferedImage image = photos.getImage(photo, Size.LARGE);
-					String filename = query.trim().replace(' ', '-') + "-" + numId + ".jpg";
+					String filename = query.trim().replace(' ', '-') + "-00" + numId + ".jpg";
 					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
 					System.out.println("Downloaded " + filename);
@@ -126,6 +127,64 @@ public class ImageGenerator extends Task<Long> {
             e.printStackTrace();
         }
         return length;
+	}
+	
+	public void generateVideo(double imgLength) {
+		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
+				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
+						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "videoout.mp4";
+		
+		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
+		System.out.println("builder");
+		Process process;
+		System.out.println("process");
+        try {
+            process = builder.start();
+            System.out.println("process started");
+            BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            int exitStatus = process.waitFor();
+            String line = "";
+            while (((line = stdout.readLine()) != null)) {
+            	System.out.println(line);
+            }
+            System.out.println("Exit Status for ffmpeg is " + exitStatus);
+            if (exitStatus == 0) {
+            	System.out.println("success");
+            } else {
+            	System.out.println("fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void generateSubtitle() {
+		String cmd = "ffmpeg -i " + OUTPUT_DIR + "videoout.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy " + OUTPUT_DIR + "tempCreation.mp4";
+		System.out.println(cmd);
+		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
+		System.out.println("builder");
+		Process process;
+		System.out.println("process");
+        try {
+            process = builder.start();
+            System.out.println("process started");
+            BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            int exitStatus = process.waitFor();
+            String line = "";
+            while (((line = stdout.readLine()) != null)) {
+            	System.out.println(line);
+            }
+            System.out.println("Exit Status for ffmpeg is " + exitStatus);
+            if (exitStatus == 0) {
+            	System.out.println("success");
+            } else {
+            	System.out.println("fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public static void deleteDirContents(File dir) {
