@@ -7,15 +7,19 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 
 import Application.Controllers.Image_Selection_ScreenController;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 
 public class VideoGenerator extends Task<Long> {
 	private String _term;
+	private String _creationName;
+	private String _length;
 	private int _numPics;
 	private Image_Selection_ScreenController _controller;
 
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
+	private final String CREATION_DIR = ".Creation_Directory" + System.getProperty("file.separator");
 	private String IMAGES = "";
 	private final String AUDIO = OUTPUT_DIR + "output.wav";
 ;			
@@ -69,13 +73,14 @@ public class VideoGenerator extends Task<Long> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        _length = length;
         return length;
 	}
 	
 	public void generateVideo(double imgLength) {
 		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
 				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
-						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "videoout.mp4";
+						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "slideshow.mp4";
 		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
@@ -100,7 +105,7 @@ public class VideoGenerator extends Task<Long> {
 	}
 	
 	public void generateSubtitle() {
-		String cmd = "ffmpeg -i " + OUTPUT_DIR + "videoout.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
+		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
 		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		System.out.println("builder");
@@ -112,6 +117,17 @@ public class VideoGenerator extends Task<Long> {
             int exitStatus = process.waitFor();
             System.out.println("Exit Status for ffmpeg is " + exitStatus);
             if (exitStatus == 0) {
+				// File (or directory) with old name
+				File file = new File(OUTPUT_DIR + "tempCreation.mp4");
+				File file2 = new File(CREATION_DIR + _creationName + "_-_" + _term + "_-_" + _length);
+
+				if (file2.exists()) {
+					AlertMessage msg = new AlertMessage("creation_exist");
+					Platform.runLater(msg);
+				}
+				else {
+					file.renameTo(file2);
+				}
             	System.out.println("success");
             } else {
             	System.out.println("fail");
