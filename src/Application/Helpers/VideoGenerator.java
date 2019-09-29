@@ -6,9 +6,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 
+import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.stage.Stage;
 
 
 public class VideoGenerator extends Task<Long> {
@@ -46,11 +48,15 @@ public class VideoGenerator extends Task<Long> {
 		
 		// generate subtitle
         generateSubtitle();
+        updateProgress(1,1);
         
+        AlertMessage alert = new AlertMessage("creation_successful", _term, _controller);
+        Platform.runLater(alert);
 		
 		// delete output.wav now that we don't need it anymore
-//		File outFile = new File(OUTPUT_DIR);
-//		deleteDirContents(outFile);
+		//File outFile = new File(OUTPUT_DIR);
+		//deleteDirContents(outFile);
+
 		
 		return null;
 	}
@@ -133,6 +139,7 @@ public class VideoGenerator extends Task<Long> {
 					System.out.println("rename failed");
 				}
             	System.out.println("success");
+
             } else {
             	System.out.println("fail");
             }
@@ -158,7 +165,11 @@ public class VideoGenerator extends Task<Long> {
 		}
 	}
 
-	public void set_numPics(int _numPics) {
-		this._numPics = _numPics;
+	public void setCreationName(String creationName) {
+		this._creationName = creationName;
+	}
+
+	public void setNumPics(int numPics) {
+		this._numPics = numPics;
 	}
 }

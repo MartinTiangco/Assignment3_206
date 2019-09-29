@@ -1,14 +1,19 @@
 package Application.Helpers;
 
+import Application.Controllers.Home_ScreenController;
+import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 
 public class AlertMessage implements Runnable {
 	
 	private Alert alert;
 	private String status;
+	private String term;
+	private Image_Selection_ScreenController controller;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -16,9 +21,16 @@ public class AlertMessage implements Runnable {
 	private final String VOICE_CANNOT_SPEAK = "voice_cannot_speak";
 	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
+	private final String CREATION_SUCCESSFUL = "creation_successful";
 	
 	public AlertMessage(String status) {
 		this.status = status;
+	}
+	
+	public AlertMessage(String status, String term, Image_Selection_ScreenController controller) {
+		this.status = status;
+		this.term = term;
+		this.controller = controller;
 	}
 
 	/**
@@ -35,6 +47,9 @@ public class AlertMessage implements Runnable {
 			  break;
 		  case CREATE_AUDIO_UNSUCCESSFUL:
 			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
+			  break;
+		  case CREATION_SUCCESSFUL:
+			  showSuccess("Creation " + term + " was successfully generated!");
 			  break;
 		}
 	}
@@ -61,5 +76,8 @@ public class AlertMessage implements Runnable {
 		alert.setContentText(msg);
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
+		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+		Stage stage = (Stage)controller.getCreateButton().getScene().getWindow();
+		stage.close();
 	}
 }

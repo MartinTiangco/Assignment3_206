@@ -35,8 +35,8 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ProgressBar _pb;
-
-
+	@FXML private TextField _nameInput;
+	
 	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -196,9 +196,16 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 	
 	public void handleCreate() {
-		//_pb.setProgress(0);
+		if (!isNameValid()) {
+			return;
+		}
+		
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
+		
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
+		videoGen.setCreationName(_nameInput.getText());
 		int numPics = 0;
 		for (Image image : _listOfImages.getItems()) {
 			if (image.getSelected()){
@@ -207,9 +214,10 @@ public class Image_Selection_ScreenController extends Controller {
 				videoGen.addImage(IMAGE_DIR + image.getFileName());
 			}
 		}
-		videoGen.set_numPics(numPics);
+		videoGen.setNumPics(numPics);
 		_executor.submit(videoGen);
-		//_pb.progressProperty().bind(videoGen.progressProperty());
+		_pb.progressProperty().bind(videoGen.progressProperty());
+
 	}
 
 	public boolean isValidNumber() {
@@ -218,106 +226,24 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		return false;
 	}
+	
+	public Button getCreateButton() {
+		return _createButton;
+	}
+	
+	private boolean isNameValid() {
+		
+		// Disallows input of spaces or an empty string
+		if (_nameInput.getText().trim().isEmpty()) {
+			return false;
+		}
+		
+		//prevents any special characters apart from "-", "_" and (space)
+		if (_nameInput.getText().matches("[a-zA-Z0-9 ]*")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//package test;
-//
-//import javafx.application.Application;
-//import javafx.beans.property.BooleanProperty;
-//import javafx.beans.property.SimpleBooleanProperty;
-//import javafx.beans.property.SimpleStringProperty;
-//import javafx.beans.property.StringProperty;
-//import javafx.beans.value.ObservableValue;
-//import javafx.scene.Scene;
-//import javafx.scene.control.ListView;
-//import javafx.scene.control.cell.CheckBoxListCell;
-//import javafx.scene.layout.BorderPane;
-//import javafx.stage.Stage;
-//import javafx.util.Callback;
-//
-//public class Main extends Application {
-//
-//    @Override
-//    public void start(Stage primaryStage) {
-//        ListView<Item> listView = new ListView<>();
-//        for (int i=1; i<=20; i++) {
-//            Item item = new Item("Item "+i, false);
-//
-//            // observe item's on property and display message if it changes:
-//            item.onProperty().addListener((obs, wasOn, isNowOn) -> {
-//                System.out.println(item.getName() + " changed on state from "+wasOn+" to "+isNowOn);
-//            });
-//
-//            listView.getItems().add(item);
-//        }
-//
-//        listView.setCellFactory(CheckBoxListCell.forListView(new Callback<Item, ObservableValue<Boolean>>() {
-//            @Override
-//            public ObservableValue<Boolean> call(Item item) {
-//                return item.onProperty();
-//            }
-//        }));
-//
-//        BorderPane root = new BorderPane(listView);
-//        Scene scene = new Scene(root, 250, 400);
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-//
-//    public static class Item {
-//        private final StringProperty name = new SimpleStringProperty();
-//        private final BooleanProperty on = new SimpleBooleanProperty();
-//
-//        public Item(String name, boolean on) {
-//            setName(name);
-//            setOn(on);
-//        }
-//
-//        public final StringProperty nameProperty() {
-//            return this.name;
-//        }
-//
-//        public final String getName() {
-//            return this.nameProperty().get();
-//        }
-//
-//        public final void setName(final String name) {
-//            this.nameProperty().set(name);
-//        }
-//
-//        public final BooleanProperty onProperty() {
-//            return this.on;
-//        }
-//
-//        public final boolean isOn() {
-//            return this.onProperty().get();
-//        }
-//
-//        public final void setOn(final boolean on) {
-//            this.onProperty().set(on);
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return getName();
-//        }
-//
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//}
 

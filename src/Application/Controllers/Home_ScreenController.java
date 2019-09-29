@@ -33,7 +33,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
-    @FXML private Button _settingsButton;
     @FXML private TableView _creationTable;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
@@ -107,6 +106,7 @@ public class Home_ScreenController extends Controller implements Initializable {
             Parent root = loader.load();
             Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
             Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
+            Add_Audio_ScreenController.setParentController(this);
             Scene scene = new Scene(root, 858, 692);
 
             //once we have the css file for Add_Audio_Screen
@@ -143,12 +143,6 @@ public class Home_ScreenController extends Controller implements Initializable {
         }
         Update();
     }
-
-    @FXML
-    public void handleSettings() {
-        System.out.println("You pressed settings");
-    }
-
 
     public ArrayList<Creation> getCreations() {
         return _creations;

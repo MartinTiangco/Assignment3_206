@@ -9,6 +9,7 @@ import java.util.List;
 
 import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Controller;
+import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -60,7 +61,7 @@ public class AudioCombiner extends Task<Long> {
 		        		try {
 		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
 		        	        Parent root = loader.load();
-		        	        Controller Image_Selection_ScreenController = loader.getController();
+		        	        Image_Selection_ScreenController Image_Selection_ScreenController = loader.getController();
 		        	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
 		        	        Image_Selection_ScreenController.setParentController(_controller);
 		        	        imageScreen.setTitle("VARpedia - Image Selection Screen");
