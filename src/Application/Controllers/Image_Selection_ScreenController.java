@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import Application.Helpers.AlertMessage;
 import Application.Helpers.ImageGenerator;
 import Application.Helpers.ImageViewer;
 import Application.Helpers.VideoGenerator;
@@ -16,13 +17,7 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -172,6 +167,7 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 
 	public void listImages() {
+		_listOfImages.getItems().clear();
 		List<String> listOfFilenames = new ArrayList<>();
 		File dir = new File(".Image_Directory");
 		File[] listOfFiles = dir.listFiles();
@@ -202,7 +198,7 @@ public class Image_Selection_ScreenController extends Controller {
 	
 	public void handleCreate() {
 		if (!isNameValid()) {
-			Alert alert = new Alert(AlertType.ERROR);
+			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
 			alert.setContentText("Please enter a valid name for the creation.");
 			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
@@ -213,7 +209,7 @@ public class Image_Selection_ScreenController extends Controller {
 		
 		_pb.progressProperty().unbind();
 		_pb.setProgress(0);
-		
+
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
 		videoGen.setCreationName(_nameInput.getText());
@@ -225,8 +221,18 @@ public class Image_Selection_ScreenController extends Controller {
 				videoGen.addImage(IMAGE_DIR + image.getFileName());
 			}
 		}
+		if (numPics == 0) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please select at least one image.");
+			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			alert.show();
+			return;
+		}
 		videoGen.setNumPics(numPics);
 		_executor.submit(videoGen);
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
 		_pb.progressProperty().bind(videoGen.progressProperty());
 
 	}

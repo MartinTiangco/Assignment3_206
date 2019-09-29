@@ -77,7 +77,7 @@ public class UpdateHelper extends Task<Long> {
 	}
 	
 	private String extractDateModified(String filename) {
-		return new SimpleDateFormat("dd/MM/yyyy h:mm a").format(new Date(new File(DIR + filename).lastModified()));
+		return new SimpleDateFormat("yyyy/MM/dd h:mm a").format(new Date(new File(DIR + filename).lastModified()));
 
 	}
 	

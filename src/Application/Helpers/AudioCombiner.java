@@ -54,8 +54,9 @@ public class AudioCombiner extends Task<Long> {
 					@Override
 					public void run() {
 						// removes the audio directory contents (all files are temporary)
-						File dir = new File(".Audio_Directory");
-						_controller.deleteDirContents(dir);
+						Cleaner cleaner = new Cleaner();
+						cleaner.cleanAudio();
+						cleaner.cleanWikit();
 						
 						Stage imageScreen = new Stage();
 		        		try {

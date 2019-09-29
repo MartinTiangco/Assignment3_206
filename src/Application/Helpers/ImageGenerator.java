@@ -39,8 +39,8 @@ public class ImageGenerator extends Task<Long> {
 	@Override
 	protected Long call() throws Exception {
 		// delete all images first
-		File file = new File(IMAGE_DIR);
-		deleteDirContents(file);
+		Cleaner cleaner = new Cleaner();
+		cleaner.cleanImage();
 		
 		// retrieves from Flickr
 		retrievePhotos();	
@@ -117,19 +117,7 @@ public class ImageGenerator extends Task<Long> {
         }
         return length;
 	}
-	
-	public static void deleteDirContents(File dir) {
-		File[] files = dir.listFiles();
-		if(files != null) {
-			for (File f: files) {
-				if (f.isDirectory()) {
-					deleteDirContents(f);
-				} else {
-					f.delete();
-				}
-			}
-		}
-	}
+
 	
 	public static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
