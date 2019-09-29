@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
@@ -33,6 +34,8 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private Button _generateButton;
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
+	@FXML private ProgressBar _pb;
+
 
 	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 	private Add_Audio_ScreenController _controller;
@@ -151,7 +154,6 @@ public class Image_Selection_ScreenController extends Controller {
 		if (!isValidNumber()) {
 			return;
 		}
-		
 		System.out.println("The number is valid");
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
@@ -159,6 +161,9 @@ public class Image_Selection_ScreenController extends Controller {
 		// retrieves images from flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
+
+		///_pb.setProgress(0);
+		//_pb.progressProperty().bind(imgGen.progressProperty());
 	}
 
 	public void listImages() {
@@ -191,10 +196,10 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 	
 	public void handleCreate() {
-		System.out.println("You created");
+		//_pb.setProgress(0);
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
-		int numPics = 5;
+		int numPics = 0;
 		for (Image image : _listOfImages.getItems()) {
 			if (image.getSelected()){
 				numPics++;
@@ -204,6 +209,7 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		videoGen.set_numPics(numPics);
 		_executor.submit(videoGen);
+		//_pb.progressProperty().bind(videoGen.progressProperty());
 	}
 
 	public boolean isValidNumber() {

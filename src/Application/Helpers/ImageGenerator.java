@@ -116,58 +116,6 @@ public class ImageGenerator extends Task<Long> {
         return length;
 	}
 	
-	public void generateVideo(double imgLength) {
-		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
-				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
-						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "videoout.mp4";
-		
-		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-		System.out.println("builder");
-		Process process;
-		System.out.println("process");
-        try {
-            process = builder.start();
-            System.out.println("process started");
-            BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            int exitStatus = process.waitFor();
-            String line = "";
-            while (((line = stdout.readLine()) != null)) {
-            	System.out.println(line);
-            }
-            System.out.println("Exit Status for ffmpeg is " + exitStatus);
-            if (exitStatus == 0) {
-            	System.out.println("success");
-            } else {
-            	System.out.println("fail");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-	}
-	
-	public void generateSubtitle() {
-		String cmd = "ffmpeg -i " + OUTPUT_DIR + "videoout.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
-		System.out.println(cmd);
-		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-		System.out.println("builder");
-		Process process;
-		System.out.println("process");
-        try {
-            process = builder.start();
-            System.out.println("process started");
-            int exitStatus = process.waitFor();
-            System.out.println("Exit Status for ffmpeg is " + exitStatus);
-            if (exitStatus == 0) {
-            	System.out.println("success");
-            } else {
-            	System.out.println("fail");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-	}
-	
 	public static void deleteDirContents(File dir) {
 		File[] files = dir.listFiles();
 		if(files != null) {

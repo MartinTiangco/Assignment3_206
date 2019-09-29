@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.Output_Directory/tempCreation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Output_Directory/videoout.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Output_Directory/output.wav" beforeDir="false" afterPath="$PROJECT_DIR$/.Output_Directory/output.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Output_Directory/tempCreation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/.Output_Directory/tempCreation.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Output_Directory/videoout.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/.Output_Directory/videoout.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
