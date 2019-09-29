@@ -1,14 +1,9 @@
 package Application.Helpers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import Application.Controllers.Add_Audio_ScreenController;
-import Application.Controllers.Controller;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -19,11 +14,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AudioCombiner extends Task<Long> {
-	private List<Audio> _audioList;
-	private Add_Audio_ScreenController _controller;
-	
 	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator"); 
+	
+	private List<Audio> _audioList;
+	private Add_Audio_ScreenController _controller;
 	
 	public AudioCombiner(ObservableList<Audio> audioList, Add_Audio_ScreenController controller) {
 		_audioList = audioList;
@@ -38,17 +33,16 @@ public class AudioCombiner extends Task<Long> {
 		for (String filename : filenames) {
 			input = input + " " + AUDIO_DIR + filename;
 		}
+		// combines multiple audio files for the creation
 		String cmd = "sox" + input + " " + OUTPUT_DIR + "output.wav";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
 		
         try {
             process = builder.start();
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
             if (exitStatus == 0) {
             	Runnable runnable = new Runnable() {
-
 					@Override
 					public void run() {
 						// removes the audio directory contents (all files are temporary)
@@ -56,6 +50,7 @@ public class AudioCombiner extends Task<Long> {
 						cleaner.cleanAudio();
 						cleaner.cleanWikit();
 						
+						// loads the Image Selection Screen
 						Stage imageScreen = new Stage();
 		        		try {
 		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
@@ -71,7 +66,7 @@ public class AudioCombiner extends Task<Long> {
 		        			e.printStackTrace();
 		        		}
 		        		
-		        		// closes the audio screen
+		        		// closes the Add Audio screen
 		        		Stage stage = (Stage) _controller.getAudioList().getScene().getWindow();
 		                stage.close();
 					}          		

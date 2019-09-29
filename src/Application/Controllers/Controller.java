@@ -1,5 +1,10 @@
 package Application.Controllers;
 
+/**
+ * This class is extended by all controllers and is used to track the controllers
+ * even from another screen.
+ *
+ */
 public class Controller {
 
     protected Controller _currentController;

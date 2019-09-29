@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import Application.Helpers.AlertMessage;
 import Application.Helpers.ImageGenerator;
 import Application.Helpers.ImageViewer;
 import Application.Helpers.VideoGenerator;
@@ -19,23 +18,23 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public class Image_Selection_ScreenController extends Controller {
+	
+	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
+	
 	@FXML private Button _createButton;
-	@FXML private TextField _input;
-	@FXML private Label _invalidInput;
 	@FXML private Button _generateButton;
+	@FXML private Label _invalidInput;
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ProgressBar _pb;
 	@FXML private TextField _nameInput;
+	@FXML private TextField _input;
 	
-	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
@@ -48,7 +47,7 @@ public class Image_Selection_ScreenController extends Controller {
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
 		        String newValue) {
 		    	// only allow digits to be typed
-		        if (!newValue.matches("\\d*")) {
+		        if (!newValue.matches("\\d+")) {
 		            _input.setText(newValue.replaceAll("[^\\d]", ""));
 		        }
 		        // only allow up to 2 digits to be typed
@@ -57,17 +56,19 @@ public class Image_Selection_ScreenController extends Controller {
 		        }
 		        // enables or disables button if number is a valid input
 		        if (!_input.getText().isEmpty()) {
-		        	if (Integer.parseInt(newValue) > 10) {
-			        	_invalidInput.setVisible(true);
-			        } else {
-			        	_invalidInput.setVisible(false);
-			        }
-		        	
-			        if (isValidNumber()) {
-			        	_generateButton.setDisable(false);
-			        } else {
-			        	_generateButton.setDisable(true);
-			        }
+		        	if (_input.getText().matches("\\d+")) {
+		        		if (Integer.parseInt(_input.getText()) > 10) {
+				        	_invalidInput.setVisible(true);
+				        } else {
+				        	_invalidInput.setVisible(false);
+				        }
+			        	
+				        if (isValidNumber()) {
+				        	_generateButton.setDisable(false);
+				        } else {
+				        	_generateButton.setDisable(true);
+				        }	
+		        	}
 		        } else {
 		        	// if textField is empty, disable the button.
 		        	_generateButton.setDisable(true);
@@ -75,6 +76,7 @@ public class Image_Selection_ScreenController extends Controller {
 		    }
 		});
 
+		// handles the checkboxes next to the images
         _listOfImages.setCellFactory(CheckBoxListCell.forListView(new Callback<Image, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(Image image) {
@@ -86,6 +88,7 @@ public class Image_Selection_ScreenController extends Controller {
         }));
 	}
 
+	// this is needed for the check box functionality
 	public static class Image {
         private final StringProperty name = new SimpleStringProperty();
         private final BooleanProperty on = new SimpleBooleanProperty();
@@ -144,13 +147,15 @@ public class Image_Selection_ScreenController extends Controller {
 		if (!isValidNumber()) {
 			return;
 		}
+		
+		// progress bar
 		_pb.progressProperty().unbind();
 		_pb.setProgress(0);
 		
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
 		
-		// retrieves images from flickr
+		// retrieves images from Flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
 
@@ -159,7 +164,6 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public void listImages() {
 		_listOfImages.getItems().removeAll(_listOfImages.getItems());
-		List<String> listOfFilenames = new ArrayList<>();
 		File dir = new File(".Image_Directory");
 		File[] listOfFiles = dir.listFiles();
 
@@ -194,8 +198,10 @@ public class Image_Selection_ScreenController extends Controller {
 			alert.show();
 			return;
 		}
+		// disallows user to click Create again
 		_createButton.setDisable(false);
 		
+		// progress bar
 		_pb.progressProperty().unbind();
 		_pb.setProgress(0);
 
@@ -226,18 +232,13 @@ public class Image_Selection_ScreenController extends Controller {
 	}
 
 	public boolean isValidNumber() {
-		if (Integer.parseInt(_input.getText()) >= 0 && Integer.parseInt(_input.getText()) < 11) {
+		if (Integer.parseInt(_input.getText()) > 0 && Integer.parseInt(_input.getText()) < 11) {
 			return true;
 		}
 		return false;
 	}
 	
-	public Button getCreateButton() {
-		return _createButton;
-	}
-	
 	private boolean isNameValid() {
-		
 		// Disallows input of spaces or an empty string
 		if (_nameInput.getText().trim().isEmpty()) {
 			return false;
@@ -249,6 +250,10 @@ public class Image_Selection_ScreenController extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	public Button getCreateButton() {
+		return _createButton;
 	}
 }
 

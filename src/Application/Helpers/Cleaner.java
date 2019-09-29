@@ -2,6 +2,9 @@ package Application.Helpers;
 
 import java.io.File;
 
+/**
+ * Class to clean up and remove temp files in directories
+ */
 public class Cleaner {
 
     private final File WIKIT_DIR = new File(".Wikit_Directory" + System.getProperty("file.separator"));

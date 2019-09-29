@@ -4,62 +4,56 @@ import Application.Helpers.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Add_Audio_ScreenController extends Controller  implements Initializable {
+/**
+ * The Controller for the Add Audio Screen.
+ * 
+ *
+ */
+public class Add_Audio_ScreenController extends Controller implements Initializable {
 	@FXML private Button _mainMenuButton;
 	@FXML private MediaView _mediaView;
 
 	// elements in the top half of the screen
-	@FXML private TextField _searchTextField;
-	@FXML private ProgressBar _wikitProgress;
-	@FXML private ComboBox _voiceBox;
-	@FXML private Slider _speedSlider;
-	@FXML private Slider _pitchSlider;
 	@FXML private Button _playTextButton;
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
+	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
+	@FXML private ProgressBar _wikitProgress;
 	@FXML private ProgressBar _pb;
+	@FXML private Slider _speedSlider;
+	@FXML private Slider _pitchSlider;
+	@FXML private TextField _searchTextField;
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
 	@FXML private Button _deleteAudioButton;
-	@FXML private TableView _savedAudio;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
 	@FXML private TableColumn _voice;
 	@FXML private TableColumn _speed;
 	@FXML private TableColumn _pitch;
+	@FXML private TableView _savedAudio;
 	
 
 	//directory for wiki text files
@@ -86,12 +80,14 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		
 		_searchTextField.requestFocus();
 		
+		// prepares the TableView to be populated with Audio objects
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
 		_voice.setCellValueFactory(new PropertyValueFactory<>("voiceDisplay"));
 		_speed.setCellValueFactory(new PropertyValueFactory<>("speed"));
 		_pitch.setCellValueFactory(new PropertyValueFactory<>("pitch"));
 
+		// list of voices
 		_voiceBox.getItems().add("English-USA-male");
 		_voiceBox.getItems().add("English-USA-female");
 		_voiceBox.getItems().add("English-UK-male");
@@ -107,6 +103,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			Audio audio = new Audio();
 			setUpAudio(audio);
+			// allows you to preview text without waiting for the first one to finish
 			if (_audioPlayer != null) {
 				Process process = _audioPlayer.getProcess();
 				if (process != null){
@@ -121,6 +118,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayAudio() {
+		// allow you to play audio without waiting for the first to finish
 		if (_savedAudio.getSelectionModel().getSelectedItem() != null && _mediaView.getMediaPlayer() != null) {
 			_playTextButton.setDisable(true);
 			_mediaView.getMediaPlayer().dispose();
@@ -137,7 +135,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleSearch() {
-		
+		// progress bar for wikit
 		_pb.progressProperty().unbind();
 		_pb.setProgress(0);
 		
@@ -159,6 +157,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleCreateAudio() {
+		// when the 'Save' button is pressed
 		if (_textDescription.getSelectionModel().getSelectedItems().size() > 6) {
 			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
 			Platform.runLater(alert);
@@ -166,6 +165,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		}
 
 		_searchTextField.setDisable(true);
+		// add an Audio object to the TableView
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			_numberOfAudiosCreated++;
 			Audio audio = new Audio();
@@ -175,6 +175,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
 			_backgroundExecutor.submit(audioCreator);
 		}
+		// disallow searching for another term to avoid saving audio with different terms
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 		}
@@ -186,7 +187,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 		allAudio.removeAll(selectedAudio);
 
-
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 			disableBottomHalf();
@@ -194,7 +194,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleNext() {
-		// combine the audios
+		// combine the audios and load the Image Selection Screen
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_backgroundExecutor.submit(combiner);
@@ -228,9 +228,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void deleteLines(KeyEvent key) {
+		// allows the deletion of lines in the TextArea
 		if (key.getCode().equals(KeyCode.DELETE)) {
-
-
 			ObservableList<Object>  linesSelected, lines;
 			lines = _textDescription.getItems();
 			linesSelected = _textDescription.getSelectionModel().getSelectedItems();

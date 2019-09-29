@@ -7,13 +7,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-
+/**
+ * An Alert class for generating alerts
+ */
 public class AlertMessage implements Runnable {
 	
 	private Alert alert;
+	private Image_Selection_ScreenController controller;
 	private String status;
 	private String term;
-	private Image_Selection_ScreenController controller;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -71,7 +73,7 @@ public class AlertMessage implements Runnable {
 	}
 	
 	/**
-	 * Shared method for generating successes
+	 * Method for generating successes
 	 * @param msg
 	 */
 	private void showSuccess(String msg) {

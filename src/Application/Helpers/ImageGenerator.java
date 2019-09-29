@@ -4,32 +4,26 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
 import com.flickr4java.flickr.*;
 import com.flickr4java.flickr.photos.*;
 
-import Application.Controllers.Controller;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class ImageGenerator extends Task<Long> {
-	private String _term;
-	private int _numPics;
-	private Image_Selection_ScreenController _controller;
-
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
 	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 	private final String IMAGES = IMAGE_DIR + "*.jpg";
 	private final String AUDIO = OUTPUT_DIR + "output.wav";
-;			
+	
+	private String _term;
+	private int _numPics;
+	private Image_Selection_ScreenController _controller;
+	
 	public ImageGenerator(String term, int numPics, Image_Selection_ScreenController controller) {
 		_term = term;
 		_numPics = numPics;
@@ -45,10 +39,14 @@ public class ImageGenerator extends Task<Long> {
 		// retrieves from Flickr
 		retrievePhotos();	
 
+		// fills up progress bar
         updateProgress(1,1);
 		return null;
 	}
 	
+	/*
+	 *  Uses flickr's API to retrieve photos
+	 */
 	private void retrievePhotos() {
 		try {
 			String apiKey = getAPIKey("apiKey");
@@ -84,9 +82,11 @@ public class ImageGenerator extends Task<Long> {
 		}
 		
 		Platform.runLater(() -> _controller.listImages());
-		
 	}
 	
+	/*
+	 * Retrieves the APIKey from the file "flickr-api-keys.txt"
+	 */
 	public static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
 		

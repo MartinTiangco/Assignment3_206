@@ -10,8 +10,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Updates the Home Menu Screen
+ */
 public class UpdateHelper extends Task<Long> {
 	private final String DIR = "./Creation_Directory/";
+	
 	//SEPARATOR_LENGTH is the sequence of characters "_-_" used to extract data from a file
 	private final int SEPARATOR_LENGTH = 3;
 
@@ -49,6 +53,9 @@ public class UpdateHelper extends Task<Long> {
 		return listOfFilenames;
 	}
 	
+	/*
+	 * Extract details from the filenames of Creations and display on the TableView
+	 */
 	private void createCreations(List<String> listOfFilenames) {
 		
 		for (String file : listOfFilenames) {
@@ -83,9 +90,6 @@ public class UpdateHelper extends Task<Long> {
 	
 	/**
 	 * Extracts length in mm:ss format
-	 * @param filename
-	 * @param secondPatternIndex
-	 * @return
 	 */
 	private String extractLength(String filename, int secondPatternIndex) {
 		//gets the filename extension index i.e. ".mp4"

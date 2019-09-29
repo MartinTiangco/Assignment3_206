@@ -31,7 +31,7 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
 
         setAlignment(Pos.CENTER); // setting the HBox to center
         setPadding(new Insets(5, 10, 5, 10));
-        // Settih the preference for volume bar
+        // Setting the preference for volume bar
         vol.setPrefWidth(70);
         vol.setMinWidth(30);
         vol.setValue(100);
@@ -39,14 +39,12 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
         PlayButton.setPrefWidth(30);
 
         // Adding the components to the bottom
-
         getChildren().add(PlayButton); // Playbutton
         getChildren().add(time); // time slider
         getChildren().add(volume); // volume slider
         getChildren().add(vol);
 
-        // Adding Functionality
-        // to play the media player
+        // Adding Functionality to play the media player
         PlayButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
@@ -82,7 +80,7 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
             }
         });
 
-        // Inorder to jump to the certain part of video
+        // In order to jump to the certain part of video
         time.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov)
             {
@@ -98,14 +96,12 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
             public void invalidated(Observable ov)
             {
                 if (vol.isPressed()) {
-                    player.setVolume(vol.getValue() / 100); // It would set the volume
-                    // as specified by user by pressing
+                    player.setVolume(vol.getValue() / 100);
                 }
             }
         });
     }
 
-    // Outside the constructor
     protected void updatesValues()
     {
         Platform.runLater(new Runnable() {

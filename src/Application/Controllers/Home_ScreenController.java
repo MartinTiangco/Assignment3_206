@@ -28,20 +28,21 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Controller for the Main Menu / Home Screen
+ */
 public class Home_ScreenController extends Controller implements Initializable {
-
 
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
-    @FXML private TableView _creationTable;
+    @FXML private Tab _creationTab;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
     @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _videoLengthColumn;
+    @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
-    @FXML private Tab _creationTab;
-
 
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();
@@ -50,6 +51,7 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	// initialises the TableView
         _creationTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         _nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         _termSearchedColumn.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
@@ -60,14 +62,13 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handlePlay() {
-
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             for (Creation creation : listOfCreations) {
                 Tab tab = new Tab();
                 tab.setClosable(true);
-
                 tab.setText(creation.getName());
+                
                 File fileUrl = new File("Creation_Directory/" + creation.getFileName());
                 Media video = new Media(fileUrl.toURI().toString());
                 MediaPlayer player = new MediaPlayer(video);
@@ -107,14 +108,13 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void handleAdd() {
         Stage addAudioStage = new Stage();
         try {
+        	// loads the Add Audio Screen
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_Audio_Screen.fxml"));
             Parent root = loader.load();
             Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
             Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
             Scene scene = new Scene(root, 1013, 692);
             Add_Audio_ScreenController.setParentController(this);
-
-            //once we have the css file for Add_Audio_Screen
             scene.getStylesheets().addAll(this.getClass().getResource("../css/Add_Audio_Screen.css").toExternalForm());
             addAudioStage.setTitle("VARpedia - Add Audio");
             addAudioStage.setScene(scene);
@@ -127,7 +127,6 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handleDelete() {
-
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
@@ -139,6 +138,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                     if (response == ButtonType.OK) {
                         for (Tab tab : _videoTabs.getTabs()) {
                             if (tab.getText().equals(creation.getName())) {
+                            	// when deleting a playing video, stops it from playing and removes the tab
                                 for (MediaPlayer player : _listOfMediaPlayer) {
                                     if (player.getMedia().getSource().equals("file:" + filePath.getAbsolutePath())) {
                                         player.dispose();
@@ -153,7 +153,6 @@ public class Home_ScreenController extends Controller implements Initializable {
                 });
             }
         }
-
         Update();
     }
 
@@ -165,12 +164,14 @@ public class Home_ScreenController extends Controller implements Initializable {
         return _creationTable;
     }
 
+    // Updates the TableView Creation items
     public void Update() {
         _updateHelper = new UpdateHelper(this);
         _executor.submit(_updateHelper);
         disable();
     }
 
+    // Disables the play and delete button when the user is playing a video and is not on the Creation Tab
     public void disable() {
         if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
             _deleteButton.setDisable(true);

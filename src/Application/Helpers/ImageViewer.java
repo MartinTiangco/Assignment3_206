@@ -4,7 +4,7 @@ import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
-public class ImageViewer  extends Task<Long> {
+public class ImageViewer extends Task<Long> {
 
     private Image_Selection_ScreenController _controller;
 

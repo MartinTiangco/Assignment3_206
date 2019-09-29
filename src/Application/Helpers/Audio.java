@@ -3,18 +3,19 @@ package Application.Helpers;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A centralized class for Audio objects.
+ */
 public class Audio {
-
-    private String filename = null;
-    private String termSearched = null;
-    private List<String> content = new ArrayList<String>();
-    private String numberOfLines = null;
-    private String audioLength = null;
     private int pitch = 50;
     private int speed = 175;
+    private String audioLength = null;
+    private String filename = null;
+    private String numberOfLines = null;
+    private String termSearched = null;
     private String voice = "-ven-gb+m5";
-    private String voiceDisplay = "English-USA-male";
-
+    private String voiceDisplay = "English-USA-male"; // Voice Display is shown on the TableView under the corresponding 'Voice' column
+    private List<String> content = new ArrayList<String>();
 
     public String getFilename() {
         return filename;

@@ -1,18 +1,16 @@
 package Application.Helpers;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 
-import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.stage.Stage;
 
-
+/**
+ * Generates the video by combining the slideshow and the audio files to make a Creation.
+ */
 public class VideoGenerator extends Task<Long> {
 	private String _term;
 	private String _creationName;
@@ -24,7 +22,7 @@ public class VideoGenerator extends Task<Long> {
 	private final String CREATION_DIR = "Creation_Directory" + System.getProperty("file.separator");
 	private String IMAGES = "";
 	private final String AUDIO = OUTPUT_DIR + "output.wav";
-;			
+	
 	public VideoGenerator(String term, Image_Selection_ScreenController controller) {
 		_term = term;
 		_controller = controller;
@@ -45,6 +43,8 @@ public class VideoGenerator extends Task<Long> {
 		
 		// generate subtitle
         generateSubtitle();
+        
+        // fills progress bar to show task has finished
         updateProgress(1,1);
         
         AlertMessage alert = new AlertMessage("creation_successful", _term, _controller);
@@ -53,8 +53,6 @@ public class VideoGenerator extends Task<Long> {
 		// delete output.wav now that we don't need it anymore
 		Cleaner cleaner = new Cleaner();
 		cleaner.cleanAll();
-
-		
 		return null;
 	}
 	
@@ -66,7 +64,6 @@ public class VideoGenerator extends Task<Long> {
         try {
             process = builder.start();
             BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
             if (exitStatus == 0) {
             	length = stdout.readLine();
@@ -89,12 +86,6 @@ public class VideoGenerator extends Task<Long> {
             BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
-            String line = "";
-            while (((line = stdout.readLine()) != null)) {
-            }
-            if (exitStatus == 0) {
-            } else {
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

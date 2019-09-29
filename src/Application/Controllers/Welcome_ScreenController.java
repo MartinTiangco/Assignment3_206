@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,7 +18,6 @@ public class Welcome_ScreenController extends Controller implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     @FXML
@@ -32,7 +30,7 @@ public class Welcome_ScreenController extends Controller implements Initializabl
             Controller Home_ScreenController = loader.getController();
             Home_ScreenController.setCurrentController(Home_ScreenController);
             Home_ScreenController.setParentController(_currentController);
-            homeStage.setTitle("VARpedia");
+            homeStage.setTitle("VARpedia - Home");
             Scene scene = new Scene(root, 700, 500);
             homeStage.setScene(scene);
             homeStage.show();
