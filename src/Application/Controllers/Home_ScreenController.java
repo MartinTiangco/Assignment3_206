@@ -107,6 +107,7 @@ public class Home_ScreenController extends Controller implements Initializable {
             Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
             Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
             Scene scene = new Scene(root, 1013, 692);
+            Add_Audio_ScreenController.setParentController(this);
 
             //once we have the css file for Add_Audio_Screen
             scene.getStylesheets().addAll(this.getClass().getResource("../css/Add_Audio_Screen.css").toExternalForm());

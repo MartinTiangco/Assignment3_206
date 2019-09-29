@@ -205,6 +205,7 @@ public class Image_Selection_ScreenController extends Controller {
 		
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
+		videoGen.setCreationName(_nameInput.getText());
 		int numPics = 0;
 		for (Image image : _listOfImages.getItems()) {
 			if (image.getSelected()){
@@ -213,9 +214,10 @@ public class Image_Selection_ScreenController extends Controller {
 				videoGen.addImage(IMAGE_DIR + image.getFileName());
 			}
 		}
-		videoGen.set_numPics(numPics);
+		videoGen.setNumPics(numPics);
 		_executor.submit(videoGen);
 		_pb.progressProperty().bind(videoGen.progressProperty());
+
 	}
 
 	public boolean isValidNumber() {

@@ -1,8 +1,11 @@
 package Application.Helpers;
 
+import Application.Controllers.Home_ScreenController;
+import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 
 public class AlertMessage implements Runnable {
@@ -10,6 +13,7 @@ public class AlertMessage implements Runnable {
 	private Alert alert;
 	private String status;
 	private String term;
+	private Image_Selection_ScreenController controller;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -23,9 +27,10 @@ public class AlertMessage implements Runnable {
 		this.status = status;
 	}
 	
-	public AlertMessage(String status, String term) {
+	public AlertMessage(String status, String term, Image_Selection_ScreenController controller) {
 		this.status = status;
 		this.term = term;
+		this.controller = controller;
 	}
 
 	/**
@@ -71,5 +76,8 @@ public class AlertMessage implements Runnable {
 		alert.setContentText(msg);
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
+		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+		Stage stage = (Stage)controller.getCreateButton().getScene().getWindow();
+		stage.close();
 	}
 }
