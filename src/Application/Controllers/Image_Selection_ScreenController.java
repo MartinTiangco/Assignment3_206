@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import Application.Helpers.ImageGenerator;
+import Application.Helpers.ImageViewer;
 import Application.Helpers.VideoGenerator;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -36,6 +37,7 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ProgressBar _pb;
 	@FXML private TextField _nameInput;
 	
+	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
@@ -77,7 +79,19 @@ public class Image_Selection_ScreenController extends Controller {
         _listOfImages.setCellFactory(CheckBoxListCell.forListView(new Callback<Image, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(Image image) {
-                return image.onProperty();
+				image.onProperty().addListener((obs, wasOn, isNowOn) -> {
+					if (image.getSelected()) {
+						image.setSelected(false);
+						System.out.println("deselected");
+					}
+					else{
+						image.setSelected(true);
+
+						System.out.println("selected");
+					}
+                System.out.println(image.getName() + " changed on state from "+wasOn+" to "+isNowOn);
+            });
+				return image.onProperty();
             }
         }));
 	}
@@ -86,6 +100,7 @@ public class Image_Selection_ScreenController extends Controller {
         private final StringProperty name = new SimpleStringProperty();
         private final BooleanProperty on = new SimpleBooleanProperty();
         private String fileName = "";
+        private Boolean selected = false;
 
         public Image(String name, boolean on) {
             setName(name);
@@ -118,6 +133,14 @@ public class Image_Selection_ScreenController extends Controller {
 
 		public void setFileName(String fileName) {
 			this.fileName = fileName;
+		}
+
+		public Boolean getSelected() {
+			return selected;
+		}
+
+		public void setSelected(Boolean selected) {
+			this.selected = selected;
 		}
 
 		@Override
@@ -157,9 +180,16 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
+	public void selectImage() {
+		System.out.println("image selected");
+		ImageViewer imageViewer = new ImageViewer(this);
+		_executor.submit(imageViewer);
+	}
+
 	public void viewImage(){
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
-			String imagePath = ".Image_Directory/" + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
+			String imagePath = "file:" + IMAGE_DIR + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
+			System.out.println(imagePath);
 			javafx.scene.image.Image image = new javafx.scene.image.Image(imagePath);
 			_imageView.setImage(image);
 		}
@@ -170,12 +200,19 @@ public class Image_Selection_ScreenController extends Controller {
 			return;
 		}
 		
-		int numPics = 3;
-		
 		_pb.progressProperty().unbind();
 		_pb.setProgress(0);
 		// creates the creation
-		VideoGenerator videoGen = new VideoGenerator(_term, numPics, this);
+		VideoGenerator videoGen = new VideoGenerator(_term, this);
+		int numPics = 0;
+		for (Image image : _listOfImages.getItems()) {
+			if (image.getSelected()){
+				numPics++;
+				System.out.println(IMAGE_DIR + image.getFileName());
+				videoGen.addImage(IMAGE_DIR + image.getFileName());
+			}
+		}
+		videoGen.set_numPics(numPics);
 		_executor.submit(videoGen);
 		_pb.progressProperty().bind(videoGen.progressProperty());
 	}
