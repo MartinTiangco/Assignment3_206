@@ -168,3 +168,4 @@ fabric.properties
 Images/
 .Image_Directory/
 .Output_Directory/
+.Wikit_Directory/
