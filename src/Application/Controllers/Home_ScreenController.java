@@ -33,7 +33,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
-    @FXML private Button _settingsButton;
     @FXML private TableView _creationTable;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
@@ -143,12 +142,6 @@ public class Home_ScreenController extends Controller implements Initializable {
         }
         Update();
     }
-
-    @FXML
-    public void handleSettings() {
-        System.out.println("You pressed settings");
-    }
-
 
     public ArrayList<Creation> getCreations() {
         return _creations;

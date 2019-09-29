@@ -38,10 +38,6 @@
             <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" />
             <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" />
             <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleDelete" />
-            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleSettings">
-               <VBox.margin>
-                  <Insets top="255.0" />
-               </VBox.margin></Button>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
