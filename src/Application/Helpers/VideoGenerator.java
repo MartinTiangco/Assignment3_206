@@ -19,7 +19,7 @@ public class VideoGenerator extends Task<Long> {
 	private Image_Selection_ScreenController _controller;
 
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
-	private final String CREATION_DIR = ".Creation_Directory" + System.getProperty("file.separator");
+	private final String CREATION_DIR = "Creation_Directory" + System.getProperty("file.separator");
 	private String IMAGES = "";
 	private final String AUDIO = OUTPUT_DIR + "output.wav";
 ;			
@@ -73,7 +73,7 @@ public class VideoGenerator extends Task<Long> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        _length = length;
+        _length = length.substring(0, length.indexOf("."));
         return length;
 	}
 	
@@ -119,14 +119,18 @@ public class VideoGenerator extends Task<Long> {
             if (exitStatus == 0) {
 				// File (or directory) with old name
 				File file = new File(OUTPUT_DIR + "tempCreation.mp4");
-				File file2 = new File(CREATION_DIR + _creationName + "_-_" + _term + "_-_" + _length);
+				File file2 = new File(CREATION_DIR + _creationName + "_-_" + _term + "_-_" + _length + ".mp4");
 
+				Boolean success = false;
 				if (file2.exists()) {
 					AlertMessage msg = new AlertMessage("creation_exist");
 					Platform.runLater(msg);
 				}
 				else {
-					file.renameTo(file2);
+					success = file.renameTo(file2);
+				}
+				if (!success) {
+					System.out.println("rename failed");
 				}
             	System.out.println("success");
             } else {
