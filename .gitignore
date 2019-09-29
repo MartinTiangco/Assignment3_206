@@ -162,10 +162,10 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/eclipse,intellij
-.Audio_Directory/
 .idea/
 .idea/workspace.xml
-Images/
+
+.Audio_Directory/
 .Image_Directory/
 .Output_Directory/
 .Wikit_Directory/

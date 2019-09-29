@@ -33,7 +33,7 @@ public class Welcome_ScreenController extends Controller implements Initializabl
             Home_ScreenController.setCurrentController(Home_ScreenController);
             Home_ScreenController.setParentController(_currentController);
             homeStage.setTitle("VARpedia");
-            Scene scene = new Scene(root, 700, 600);
+            Scene scene = new Scene(root, 700, 500);
             homeStage.setScene(scene);
             homeStage.show();
 

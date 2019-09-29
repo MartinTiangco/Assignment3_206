@@ -1,6 +1,7 @@
 package Application.Controllers;
 
 import Application.Helpers.Creation;
+import Application.Helpers.MediaBar;
 import Application.Helpers.UpdateHelper;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -39,6 +40,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _videoLengthColumn;
     @FXML private TabPane _videoTabs;
+    @FXML private Tab _creationTab;
 
 
     private UpdateHelper _updateHelper;
@@ -75,15 +77,17 @@ public class Home_ScreenController extends Controller implements Initializable {
                     @Override
                     public void handle(Event arg0)
                     {
+                        Update();
                         player.dispose();
                     }
                 });
 
                 MediaView mediaView = new MediaView();
                 mediaView.setMediaPlayer(player);
-                mediaView.setFitHeight(350);
+                mediaView.setFitHeight(400);
                 mediaView.setFitWidth(500);
-                VBox vbox = new VBox(mediaView);
+                MediaBar bar = new MediaBar(player);
+                VBox vbox = new VBox(mediaView, bar);
                 vbox.setPadding(new Insets(25, 50, 25, 50));
                 vbox.setSpacing(25);
                 tab.setContent(new AnchorPane(vbox));
@@ -96,6 +100,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                 _listOfMediaPlayer.add(player);
             }
         }
+        Update();
     }
 
     @FXML
@@ -163,5 +168,19 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void Update() {
         _updateHelper = new UpdateHelper(this);
         _executor.submit(_updateHelper);
+        disable();
+    }
+
+    public void disable() {
+        if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
+            _addButton.setDisable(true);
+            _deleteButton.setDisable(true);
+            _playButton.setDisable(true);
+        }
+        else {
+            _addButton.setDisable(false);
+            _deleteButton.setDisable(false);
+            _playButton.setDisable(false);
+        }
     }
 }
