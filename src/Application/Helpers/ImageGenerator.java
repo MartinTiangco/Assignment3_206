@@ -44,6 +44,8 @@ public class ImageGenerator extends Task<Long> {
 		
 		// retrieves from Flickr
 		retrievePhotos();	
+
+        updateProgress(1,1);
 		return null;
 	}
 	

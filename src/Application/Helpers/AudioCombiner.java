@@ -66,7 +66,7 @@ public class AudioCombiner extends Task<Long> {
 		        	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
 		        	        Image_Selection_ScreenController.setParentController(_controller);
 		        	        imageScreen.setTitle("VARpedia - Image Selection Screen");
-		        	        Scene scene = new Scene(root, 700, 600);
+		        	        Scene scene = new Scene(root, 631, 554);
 		        	        //scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
 		        	        imageScreen.setScene(scene);
 		        	        imageScreen.show();

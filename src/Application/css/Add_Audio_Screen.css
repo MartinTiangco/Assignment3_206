@@ -15,13 +15,15 @@
 #_playTextButton{
 	-fx-background-image: url("../assets/play.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 12 12;
+    -fx-background-size: 20 20;
+    -fx-padding: 0 0 0 20;
     -fx-background-position: left center;
 }
 
 #_createAudioButton{
 	-fx-background-image: url("../assets/save.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 12 12;
+    -fx-background-size: 20 20;
+    -fx-padding: 0 0 0 20;
     -fx-background-position: left center;
 }

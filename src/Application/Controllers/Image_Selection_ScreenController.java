@@ -42,6 +42,7 @@ public class Image_Selection_ScreenController extends Controller {
 	
 	public void initialize() {
 		_generateButton.setDisable(true);
+		
 		_input.textProperty().addListener(new ChangeListener<String>() {
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -152,7 +153,9 @@ public class Image_Selection_ScreenController extends Controller {
 		if (!isValidNumber()) {
 			return;
 		}
-		System.out.println("The number is valid");
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
+		
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
 		
@@ -160,8 +163,7 @@ public class Image_Selection_ScreenController extends Controller {
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
 
-		///_pb.setProgress(0);
-		//_pb.progressProperty().bind(imgGen.progressProperty());
+		_pb.progressProperty().bind(imgGen.progressProperty());
 	}
 
 	public void listImages() {
@@ -196,8 +198,18 @@ public class Image_Selection_ScreenController extends Controller {
 	
 	public void handleCreate() {
 		if (!isNameValid()) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please enter a valid name for the creation.");
+			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			alert.show();
 			return;
 		}
+		_createButton.setDisable(false);
+		
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
+
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
 		videoGen.setCreationName(_nameInput.getText());

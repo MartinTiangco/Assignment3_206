@@ -85,6 +85,7 @@ public class WikitWorker extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		updateProgress(1,1);
 		return null;	
 	}
 	

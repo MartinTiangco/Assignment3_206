@@ -24,6 +24,7 @@ public class AudioPlayer extends Task<Long> {
     private Add_Audio_ScreenController _controller;
     private Audio _audio;
     private String _texts;
+    private Process _process;
 
     public AudioPlayer(Audio audio, Add_Audio_ScreenController controller) {
         _audio = audio;
@@ -37,7 +38,6 @@ public class AudioPlayer extends Task<Long> {
             playAudio();
         }
         else {
-        	_controller.getPlayAudioButton().setDisable(true);
             playText();
         }
         return null;
@@ -51,8 +51,6 @@ public class AudioPlayer extends Task<Long> {
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
         System.out.println("The command for playing text is: " + cmd);
         StartProcess(builder);
-
-        _controller.getPlayAudioButton().setDisable(false);
         return;
     }
 
@@ -78,19 +76,16 @@ public class AudioPlayer extends Task<Long> {
     }
 
     public void StartProcess(ProcessBuilder builder) {
-        Process process;
         try {
-            process = builder.start();
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            int exitStatus = process.waitFor();
-            System.out.println(exitStatus);
-            if (exitStatus == 0) {
-            } else {
-                AlertMessage alert = new AlertMessage("voice_cannot_speak");
-                Platform.runLater(alert);
-            }
+            _process = builder.start();
+            BufferedReader stderr = new BufferedReader(new InputStreamReader(_process.getErrorStream()));
+            int exitStatus = _process.waitFor();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public Process getProcess() {
+        return _process;
     }
 }
