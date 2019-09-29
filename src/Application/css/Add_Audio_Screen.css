@@ -1,0 +1,27 @@
+#_playAudioButton{
+	-fx-background-image: url("../assets/play.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
+
+#_deleteAudioButton{
+	-fx-background-image: url("../assets/trash.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
+
+#_playTextButton{
+	-fx-background-image: url("../assets/play.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 12 12;
+    -fx-background-position: left center;
+}
+
+#_createAudioButton{
+	-fx-background-image: url("../assets/save.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 12 12;
+    -fx-background-position: left center;
+}

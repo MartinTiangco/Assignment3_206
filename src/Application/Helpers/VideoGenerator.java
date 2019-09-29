@@ -112,7 +112,7 @@ public class VideoGenerator extends Task<Long> {
 	}
 	
 	public void generateSubtitle() {
-		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
+		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
 		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		System.out.println("builder");

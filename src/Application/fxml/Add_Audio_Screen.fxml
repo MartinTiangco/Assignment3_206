@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane dividerPositions="0.2561819980217606" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
+<SplitPane dividerPositions="0.2561819980217606" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1013.0" stylesheets="@../css/Add_Audio_Screen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
   <items>
       <AnchorPane prefHeight="507.0" prefWidth="206.0">
          <children>
@@ -72,7 +72,7 @@
                         <AnchorPane layoutX="497.0" layoutY="303.0" prefHeight="27.0" prefWidth="198.0">
                            <children>
                               <Button fx:id="_playTextButton" layoutX="19.0" layoutY="1.0" mnemonicParsing="false" onAction="#handlePlayText" prefHeight="26.0" prefWidth="73.0" text="Preview" />
-                              <Button fx:id="_createAudioButton" layoutX="110.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleCreateAudio" prefHeight="26.0" prefWidth="73.0" text="Create" />
+                              <Button fx:id="_createAudioButton" layoutX="110.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleCreateAudio" prefHeight="26.0" prefWidth="73.0" text="Save" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -84,7 +84,7 @@
                               <Font size="16.0" />
                            </font></Label>
                         <Button fx:id="_playAudioButton" layoutX="422.0" layoutY="81.0" mnemonicParsing="false" onAction="#handlePlayAudio" prefHeight="50.0" prefWidth="50.0" />
-                        <Button layoutX="422.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleDeleteAudio" prefHeight="50.0" prefWidth="50.0" />
+                        <Button fx:id="_deleteAudioButton" layoutX="422.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleDeleteAudio" prefHeight="50.0" prefWidth="50.0" />
                         <Button layoutX="417.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleNext" text="Select Images" />
                         <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />
                         <TableView fx:id="_savedAudio" layoutX="14.0" layoutY="43.0" prefHeight="273.0" prefWidth="388.0">

@@ -55,6 +55,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
+	@FXML private Button _deleteAudioButton;
 	@FXML private TableView _savedAudio;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
