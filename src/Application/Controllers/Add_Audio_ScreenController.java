@@ -81,7 +81,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		disableBottomHalf();
 		
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		//_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
@@ -92,9 +91,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_voice.setCellValueFactory(new PropertyValueFactory<>("voiceDisplay"));
 		_speed.setCellValueFactory(new PropertyValueFactory<>("speed"));
 		_pitch.setCellValueFactory(new PropertyValueFactory<>("pitch"));
-		
-//		_voiceBox.getItems().add("Default");
-//		_voiceBox.getItems().add("Dumb Voice");
+
 		_voiceBox.getItems().add("English-USA-male");
 		_voiceBox.getItems().add("English-USA-female");
 		_voiceBox.getItems().add("English-UK-male");
@@ -147,13 +144,10 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_searchInput = _searchTextField.getText();
 
 		if (!validateSearch(_searchInput)) {
-			System.out.println("Search term is invalid");
 			return;
 		}
 
 		try {
-			//First clears the TextArea and hides the line count
-			//lineCount.setVisible(false);
 			_textDescription.getItems().clear();
 
 			wikitSearch(_searchInput);
@@ -259,18 +253,12 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
-//		_createAudioButton.setDisable(true);
-//		_playTextButton.setDisable(true);
-		//_searchButton.setDisable(true);
 	}
 	
 	public void enableCustomization() {
 		_voiceBox.setDisable(false);
 		_speedSlider.setDisable(false);
 		_pitchSlider.setDisable(false);
-//		_createAudioButton.setDisable(false);
-//		_playTextButton.setDisable(false);
-		//_searchButton.setDisable(false);
 	}
 	
 	public void disablePlayCreateText() {
@@ -298,16 +286,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		audio.setPitch((int) (_pitchSlider.getValue()));
 	}
 
-//	public void checkIfListSelected() {
-//		System.out.println("calling checkIfListSelected");
-//		if (_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
-//			_createAudioButton.setDisable(true);
-//			_playTextButton.setDisable(true);
-//		} else {
-//			_createAudioButton.setDisable(false);
-//			_playTextButton.setDisable(false);
-//		}
-//	}
 
 	public ListView getContent() {
 		return _textDescription;

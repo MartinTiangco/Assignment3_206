@@ -47,7 +47,6 @@ public class AudioCreator extends Task<Long> {
 				 		+ " -s " + (_audio.getSpeed()) + " "
 				 		+ _audio.getVoice() 
 				 		+ " -w " + DIR + _audio.getFilename() + " \"" + texts + "\"";
-		System.out.println("The command for creating the audio is: " + cmd);
 		
 		// ProcessBuilder to combine audio 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);

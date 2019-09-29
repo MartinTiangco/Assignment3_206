@@ -49,7 +49,6 @@ public class AudioPlayer extends Task<Long> {
                 		" -s " + String.valueOf((int)(_audio.getSpeed())) + " -a 50" +
                 		" " + _audio.getVoice() + " \"" + _texts + "\"";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-        System.out.println("The command for playing text is: " + cmd);
         StartProcess(builder);
         return;
     }

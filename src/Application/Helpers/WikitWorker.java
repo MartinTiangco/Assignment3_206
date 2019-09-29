@@ -90,19 +90,11 @@ public class WikitWorker extends Task<Long> {
 	}
 	
 	class Append implements Runnable {
-		
-		//private Add_Audio_ScreenController controller;
-		
-//		public Append(Add_Audio_ScreenController controller) {
-//			this.controller = controller;
-//		}
 
 		@Override
 		public void run() {
 			// clears ListView and appends all lines of content
 			if (!(sepLines == null)) {
-				//lineCount.setText(wikitWorker.getSepLines().size() + " lines found."); IF WE WANT TO SHOW ALL LINES FOUND
-				//lineCount.setVisible(true);
 				
 				//append lines onto text field
 				StringBuilder content = new StringBuilder(""); 

@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/1_-_apple_-_9.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_apple_-_13.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Output_Directory/output.wav" beforeDir="false" afterPath="$PROJECT_DIR$/.Output_Directory/output.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569671357374</updated>
-      <workItem from="1569725092561" duration="13449000" />
+      <workItem from="1569725092561" duration="14247000" />
     </task>
     <servers />
   </component>
