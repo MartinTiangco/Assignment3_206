@@ -1,44 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.Image_Directory/apple-1569652731325-15165630350.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.Image_Directory/apple-1569652731635-21982802134.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.Image_Directory/apple-1569652731968-6042016463.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.Image_Directory/apple-1569652732274-16248524621.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.Image_Directory/apple-1569652732372-7910673688.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/egg_-_egg_-_20.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/fail_-_fail_-_30.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_10.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flickr-api-keys.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/flickr4java-3.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jackson-annotations-2.9.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jackson-core-2.9.9.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jackson-databind-2.9.9.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/scribejava-apis-6.6.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/scribejava-core-6.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/slf4j-api-1.7.25.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/slf4j-nop-1.7.26.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Audio_Directory/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Audio_Directory/hello.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
