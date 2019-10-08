@@ -81,7 +81,11 @@ public class ImageGenerator extends Task<Long> {
 			e.printStackTrace();
 		}
 		
-		Platform.runLater(() -> _controller.listImages());
+		Platform.runLater(() -> {
+			_controller.listImages();
+			_controller.getListOfImages().getSelectionModel().select(0);
+			_controller.selectImage();
+		});
 	}
 	
 	/*

@@ -251,5 +251,9 @@ public class Image_Selection_ScreenController extends Controller {
 	public Button getCreateButton() {
 		return _createButton;
 	}
+
+	public ListView<Image> getListOfImages() {
+		return _listOfImages;
+	}
 }
 
