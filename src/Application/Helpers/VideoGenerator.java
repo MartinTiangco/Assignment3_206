@@ -32,8 +32,8 @@ public class VideoGenerator extends Task<Long> {
 	protected Long call() throws Exception {
 		
 		// retrieve the audio length
-		String length = retrieveAudioLength();
-		double lengthDouble = Double.parseDouble(length.substring(0, length.indexOf(".") + 3));
+		retrieveAudioLength();
+		double lengthDouble = Double.parseDouble(_length.substring(0, _length.indexOf(".") + 3));
 		
 		// calculate the length for an image to show in the video
 		double imgLength = lengthDouble/_numPics;
@@ -44,8 +44,8 @@ public class VideoGenerator extends Task<Long> {
 		// generate subtitle
         generateSubtitle();
         
-        // fills progress bar to show task has finished
-        updateProgress(1,1);
+        ProgressRunnable progressRunnable = new ProgressRunnable(_controller);
+        Platform.runLater(progressRunnable);
         
         AlertMessage alert = new AlertMessage("creation_successful", _term, _controller);
         Platform.runLater(alert);
@@ -56,7 +56,7 @@ public class VideoGenerator extends Task<Long> {
 		return null;
 	}
 	
-	private String retrieveAudioLength() {
+	private void retrieveAudioLength() {
 		String length = "";
 		String cmd = "soxi -D " + OUTPUT_DIR + "output.wav";
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
@@ -72,7 +72,6 @@ public class VideoGenerator extends Task<Long> {
             e.printStackTrace();
         }
         _length = length.substring(0, length.indexOf("."));
-        return length;
 	}
 	
 	public void generateVideo(double imgLength) {

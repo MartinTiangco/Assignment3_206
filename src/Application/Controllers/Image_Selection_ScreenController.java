@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
@@ -31,7 +32,8 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private Label _invalidInput;
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
-	@FXML private ProgressBar _pb;
+	@FXML private AnchorPane _entireScreenPane;
+	@FXML private ProgressIndicator _progressIndicator;
 	@FXML private TextField _nameInput;
 	@FXML private TextField _input;
 	
@@ -144,9 +146,10 @@ public class Image_Selection_ScreenController extends Controller {
 			return;
 		}
 		
-		// progress bar
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
+		// progress indicator
+		_entireScreenPane.setDisable(true);
+		_progressIndicator.setProgress(-1);
+		_progressIndicator.setVisible(true);
 		
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
@@ -154,8 +157,6 @@ public class Image_Selection_ScreenController extends Controller {
 		// retrieves images from Flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
-
-		_pb.progressProperty().bind(imgGen.progressProperty());
 	}
 
 	public void listImages() {
@@ -197,10 +198,11 @@ public class Image_Selection_ScreenController extends Controller {
 		// disallows user to click Create again
 		_createButton.setDisable(false);
 		
-		// progress bar
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
-
+		// progress indicator
+		_entireScreenPane.setDisable(true);
+		_progressIndicator.setProgress(-1);
+		_progressIndicator.setVisible(true);
+		
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
 		videoGen.setCreationName(_nameInput.getText());
@@ -221,10 +223,6 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		videoGen.setNumPics(numPics);
 		_executor.submit(videoGen);
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
-		_pb.progressProperty().bind(videoGen.progressProperty());
-
 	}
 
 	public boolean isValidNumber() {
@@ -250,6 +248,14 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public Button getCreateButton() {
 		return _createButton;
+	}
+	
+	public AnchorPane getEntireScreenPane() {
+		return _entireScreenPane;
+	}
+	
+	public ProgressIndicator getProgressIndicator() {
+		return _progressIndicator;
 	}
 }
 

@@ -97,7 +97,16 @@ public class UpdateHelper extends Task<Long> {
 		int seconds = Integer.parseInt(filename.substring(secondPatternIndex + SEPARATOR_LENGTH, ext));
 		int sec = seconds % 60;
 		int min = seconds / 60;
-		return "" + min + ":" + sec;
+		String timeMin = "" + min;
+		String timeSec = "" + sec;
 		
+		// format the time
+		if (sec < 10) {
+			timeSec = "0" + sec;
+		} 
+		if (min < 10) {
+			timeMin = "0" + min;
+		}
+		return timeMin + ":" + timeSec;
 	}
 }
