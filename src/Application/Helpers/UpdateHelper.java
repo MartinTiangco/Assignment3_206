@@ -47,8 +47,8 @@ public class UpdateHelper extends Task<Long> {
 		File dir = new File(DIR);
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
 
-		for (int i = 0; i < listOfFiles.length; i++) {
-			listOfFilenames.add(listOfFiles[i].getName());
+		for (File File : listOfFiles) {
+			listOfFilenames.add(File.getName());
 		}
 		return listOfFilenames;
 	}

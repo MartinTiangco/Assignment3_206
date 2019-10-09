@@ -36,6 +36,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
+    @FXML private Button _settingsButton;
     @FXML private Tab _creationTab;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
@@ -155,6 +156,10 @@ public class Home_ScreenController extends Controller implements Initializable {
             }
         }
         Update();
+    }
+
+    public void handleSettings() {
+        loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
     }
 
     public ArrayList<Creation> getCreations() {

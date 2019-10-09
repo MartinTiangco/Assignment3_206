@@ -17,7 +17,7 @@ public class Controller {
 	private ProgressIndicator _progressIndicator;
     protected Controller _currentController;
     protected Controller _parentController;
-    protected String _style = "/Application/css/bootstrap3.css";
+    protected String _styleSheet = "/Application/css/bootstrap3.css";
 
     public void setCurrentController(Controller currentController){
         _currentController = currentController;
@@ -42,7 +42,15 @@ public class Controller {
     public ProgressIndicator getProgressIndicator() {
     	return _progressIndicator;
     }
-    
+
+    public String getStyleSheet() {
+        return _styleSheet;
+    }
+
+    public void setStyleSheet(String _styleSheet) {
+        this._styleSheet = _styleSheet;
+    }
+
     public void loadScreen(String stageName, String fxmlFile, String cssFile) {
         Stage stage = new Stage();
 
@@ -52,9 +60,10 @@ public class Controller {
             Controller controller = loader.getController();
             controller.setCurrentController(controller);
             controller.setParentController(_currentController);
+            controller.setStyleSheet(_styleSheet);
             stage.setTitle("VARpedia - " + stageName);
             Scene scene = new Scene(root);
-            scene.getStylesheets().addAll(this.getClass().getResource(cssFile).toExternalForm(), this.getClass().getResource(_style).toExternalForm());
+            scene.getStylesheets().addAll(this.getClass().getResource(cssFile).toExternalForm(), this.getClass().getResource(_styleSheet).toExternalForm());
             stage.setScene(scene);
             if (stageName.equals("Home")) {
                 stage.setOnCloseRequest(t -> {
@@ -68,4 +77,6 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+
 }
