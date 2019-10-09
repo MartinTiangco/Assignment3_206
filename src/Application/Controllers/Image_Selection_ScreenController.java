@@ -214,12 +214,7 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		// disallows user to click Create again
 		_createButton.setDisable(false);
-		
-		// progress indicator
-		_entireScreenPane.setDisable(true);
-		_progressIndicator.setProgress(-1);
-		_progressIndicator.setVisible(true);
-		
+				
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
 		videoGen.setCreationName(_nameInput.getText());

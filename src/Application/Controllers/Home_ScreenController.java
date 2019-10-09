@@ -36,6 +36,8 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
+    @FXML private Label _progressMsg;
+    @FXML private ProgressIndicator _progressIndicator;
     @FXML private Tab _creationTab;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
@@ -182,5 +184,13 @@ public class Home_ScreenController extends Controller implements Initializable {
             _deleteButton.setDisable(false);
             _playButton.setDisable(false);
         }
+    }
+    
+    public Label getProgressMsg() {
+    	return _progressMsg;
+    }
+    
+    public ProgressIndicator getProgressIndicator() {
+    	return _progressIndicator;
     }
 }
