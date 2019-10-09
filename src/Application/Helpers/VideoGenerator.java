@@ -33,10 +33,10 @@ public class VideoGenerator extends Task<Long> {
 		
 		// retrieve the audio length
 		String length = retrieveAudioLength();
-		double lengthDouble = Double.parseDouble(length.substring(0, length.indexOf(".") + 3));
+		float lengthDouble = Float.parseFloat(length.substring(0, length.indexOf(".") + 3));
 		
 		// calculate the length for an image to show in the video
-		double imgLength = lengthDouble/_numPics;
+		float imgLength = lengthDouble/_numPics;
 		
 		// generate a slideshow
 		generateVideo(imgLength);
@@ -75,9 +75,10 @@ public class VideoGenerator extends Task<Long> {
         return length;
 	}
 	
-	public void generateVideo(double imgLength) {
+	public void generateVideo(float imgLength) {
+		System.out.println(1/imgLength);
 		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
-				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
+				" -i - -i " + AUDIO + " -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
 						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "slideshow.mp4";
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
