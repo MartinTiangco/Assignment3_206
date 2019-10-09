@@ -257,5 +257,9 @@ public class Image_Selection_ScreenController extends Controller {
 	public ProgressIndicator getProgressIndicator() {
 		return _progressIndicator;
 	}
+
+	public ListView<Image> getListOfImages() {
+		return _listOfImages;
+	}
 }
 

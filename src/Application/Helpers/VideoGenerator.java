@@ -37,17 +37,17 @@ public class VideoGenerator extends Task<Long> {
 		
 		// calculate the length for an image to show in the video
 		double imgLength = lengthDouble/_numPics;
-		
 		// generate a slideshow
 		generateVideo(imgLength);
-		
+
 		// generate subtitle
         generateSubtitle();
+
         
         ProgressRunnable progressRunnable = new ProgressRunnable(_controller);
         Platform.runLater(progressRunnable);
         
-        AlertMessage alert = new AlertMessage("creation_successful", _term, _controller);
+        AlertMessage alert = new AlertMessage("creation_successful", _creationName, _controller);
         Platform.runLater(alert);
 		
 		// delete output.wav now that we don't need it anymore
@@ -66,15 +66,15 @@ public class VideoGenerator extends Task<Long> {
             BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
             int exitStatus = process.waitFor();
             if (exitStatus == 0) {
-            	length = stdout.readLine();
+            	_length = stdout.readLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        _length = length.substring(0, length.indexOf("."));
 	}
 	
 	public void generateVideo(double imgLength) {
+		System.out.println(1/imgLength);
 		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
 				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
 						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "slideshow.mp4";
@@ -91,7 +91,9 @@ public class VideoGenerator extends Task<Long> {
 	}
 	
 	public void generateSubtitle() {
-		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + _term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + OUTPUT_DIR + "tempCreation.mp4";
+		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + 
+				_term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + 
+				OUTPUT_DIR + "tempCreation.mp4";
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
         try {
@@ -100,7 +102,11 @@ public class VideoGenerator extends Task<Long> {
             if (exitStatus == 0) {
 				// File (or directory) with old name
 				File file = new File(OUTPUT_DIR + "tempCreation.mp4");
-				File file2 = new File(CREATION_DIR + _creationName + "_-_" + _term + "_-_" + _length + ".mp4");
+				String length =  _length.substring(0, _length.indexOf("."));
+				File file2 = new File(CREATION_DIR + 
+						_creationName + 
+						"_-_" + _term + 
+						"_-_" + length + ".mp4");
 
 				Boolean success = false;
 				if (file2.exists()) {
