@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
 
 /**
@@ -12,7 +13,8 @@ import javafx.stage.Stage;
  *
  */
 public class Controller {
-
+	private Parent _entireScreenPane;
+	private ProgressIndicator _progressIndicator;
     protected Controller _currentController;
     protected Controller _parentController;
     protected String _style = "/Application/css/bootstrap3.css";
@@ -32,7 +34,15 @@ public class Controller {
     public Controller getParentController(){
         return _parentController;
     }
-
+    
+    public Parent getEntireScreenPane() {
+    	return _entireScreenPane;
+    }
+    
+    public ProgressIndicator getProgressIndicator() {
+    	return _progressIndicator;
+    }
+    
     public void loadScreen(String stageName, String fxmlFile, String cssFile) {
         Stage stage = new Stage();
 

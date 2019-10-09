@@ -31,6 +31,7 @@ import java.util.concurrent.Executors;
 public class Add_Audio_ScreenController extends Controller implements Initializable {
 	@FXML private Button _mainMenuButton;
 	@FXML private MediaView _mediaView;
+	@FXML private SplitPane _entireScreenPane;
 
 	// elements in the top half of the screen
 	@FXML private Button _playTextButton;
@@ -38,12 +39,11 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
-	@FXML private ProgressBar _wikitProgress;
-	@FXML private ProgressBar _pb;
 	@FXML private Slider _speedSlider;
 	@FXML private Slider _pitchSlider;
 	@FXML private TextField _searchTextField;
-
+	@FXML private ProgressIndicator _progressIndicator;
+	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
@@ -124,10 +124,11 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	}
 
 	public void handleSearch() {
-		// progress bar for wikit
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
-
+		// progress indicator
+		_entireScreenPane.setDisable(true);
+		_progressIndicator.setProgress(-1);
+		_progressIndicator.setVisible(true);
+		
 		_searchInput = _searchTextField.getText();
 
 		if (!validateSearch(_searchInput)) {
@@ -215,7 +216,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
 			_backgroundExecutor.submit(wikitWorker);
-			_pb.progressProperty().bind(wikitWorker.progressProperty());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -320,5 +320,13 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public TextField getSearchTextField() {
 		return _searchTextField;
+	}
+	
+	public ProgressIndicator getProgressIndicator() {
+		return _progressIndicator;
+	}
+	
+	public SplitPane getEntireScreenPane() {
+		return _entireScreenPane;
 	}
 }
