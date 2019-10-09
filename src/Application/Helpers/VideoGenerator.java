@@ -20,6 +20,7 @@ public class VideoGenerator extends Task<Long> {
 
 	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
 	private final String CREATION_DIR = "Creation_Directory" + System.getProperty("file.separator");
+	private File _folder;
 	private String IMAGES = "";
 	private final String AUDIO = OUTPUT_DIR + "output.wav";
 	
@@ -33,17 +34,36 @@ public class VideoGenerator extends Task<Long> {
 		
 		// retrieve the audio length
 		retrieveAudioLength();
-		double lengthDouble = Double.parseDouble(_length.substring(0, _length.indexOf(".") + 3));
+		float lengthDouble = Float.parseFloat(_length.substring(0, _length.indexOf(".") + 3));
+		
+		// make the creation folder
+		String length =  _length.substring(0, _length.indexOf("."));
+		_folder = new File(CREATION_DIR + 
+				_creationName + 
+				"_-_" + _term + 
+				"_-_" + length + 
+				System.getProperty("file.separator"));
+		
+		Boolean success = false;
+		if (_folder.isDirectory()) {
+			AlertMessage msg = new AlertMessage("creation_exist");
+			Platform.runLater(msg);
+        }
+
+        _folder.mkdir();
 		
 		// calculate the length for an image to show in the video
-		double imgLength = lengthDouble/_numPics;
+		float imgLength = lengthDouble/_numPics;
+		
 		// generate a slideshow
+		generateSlideshow(imgLength);
+		
+		// generate video with audio
 		generateVideo(imgLength);
 
 		// generate subtitle
         generateSubtitle();
 
-        
         ProgressRunnable progressRunnable = new ProgressRunnable(_controller);
         Platform.runLater(progressRunnable);
         
@@ -51,8 +71,8 @@ public class VideoGenerator extends Task<Long> {
         Platform.runLater(alert);
 		
 		// delete output.wav now that we don't need it anymore
-		Cleaner cleaner = new Cleaner();
-		cleaner.cleanAll();
+//		Cleaner cleaner = new Cleaner();
+//		cleaner.cleanAll();
 		return null;
 	}
 	
@@ -73,50 +93,47 @@ public class VideoGenerator extends Task<Long> {
         }
 	}
 	
-	public void generateVideo(double imgLength) {
-		System.out.println(1/imgLength);
-		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) + 
-				" -i - -i " + AUDIO + " -vcodec libx264 -pix_fmt yuv420p -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
-						+ " -r 25 -max_muxing_queue_size 1024 -y " + OUTPUT_DIR + "slideshow.mp4";
+	public void generateSlideshow(float imgLength) {
+		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) 
+				+ " -i - -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
+				+ " -r 25 -max_muxing_queue_size 1024 -y " 
+				+ _folder + System.getProperty("file.separator") + "slideshow.mp4";
+		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
         try {
             process = builder.start();
-            BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            int exitStatus = process.waitFor();
+            process.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void generateVideo(float imgLength) {
+		System.out.println(1/imgLength);
+		String cmd = "ffmpeg -i " + AUDIO + 
+				" -i " + _folder + System.getProperty("file.separator") + "slideshow.mp4"
+				+ " -y " + _folder + System.getProperty("file.separator") + "video.mp4";
+		System.out.println(cmd);
+		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
+		Process process;
+        try {
+            process = builder.start();
+            process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }
 	}
 	
 	public void generateSubtitle() {
-		String cmd = "ffmpeg -i " + OUTPUT_DIR + "slideshow.mp4 -vf drawtext=\"text='" + 
-				_term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " + 
-				OUTPUT_DIR + "tempCreation.mp4";
+		String cmd = "ffmpeg -i " + _folder + System.getProperty("file.separator") + "video.mp4 -vf drawtext=\"text='" 
+					+ _term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " 
+					+ _folder + System.getProperty("file.separator") + "creation.mp4";
+		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
         try {
             process = builder.start();
-            int exitStatus = process.waitFor();
-            if (exitStatus == 0) {
-				// File (or directory) with old name
-				File file = new File(OUTPUT_DIR + "tempCreation.mp4");
-				String length =  _length.substring(0, _length.indexOf("."));
-				File file2 = new File(CREATION_DIR + 
-						_creationName + 
-						"_-_" + _term + 
-						"_-_" + length + ".mp4");
-
-				Boolean success = false;
-				if (file2.exists()) {
-					AlertMessage msg = new AlertMessage("creation_exist");
-					Platform.runLater(msg);
-				}
-				else {
-					success = file.renameTo(file2);
-				}
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
