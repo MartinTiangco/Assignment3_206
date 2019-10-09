@@ -67,6 +67,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
 	private int _numberOfAudiosCreated = 0;
 	private String _searchInput;
+	private int _audioFileId;
 
 
 	@Override
@@ -328,5 +329,13 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	public SplitPane getEntireScreenPane() {
 		return _entireScreenPane;
+	}
+	
+	public int getAudioFileId() {
+		return _audioFileId;
+	}
+	
+	public void setAudioFileId(int id) {
+		_audioFileId = id;
 	}
 }

@@ -57,22 +57,22 @@ public class UpdateHelper extends Task<Long> {
 	 * Extract details from the filenames of Creations and display on the TableView
 	 */
 	private void createCreations(List<String> listOfFilenames) {
-		
 		for (String file : listOfFilenames) {
-			//gets the first occurrence of the file separator pattern
-			int firstPatternIndex = file.indexOf("_-_");
-			
-			//gets the second occurrence of the file separator pattern
-			int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + SEPARATOR_LENGTH);
-			
-			Creation creation = new Creation(extractName(file, firstPatternIndex), 
-					extractTerm(file, firstPatternIndex, secondPatternIndex), 
-					extractDateModified(file),
-					extractLength(file, secondPatternIndex), file + System.getProperty("file.separator") + "creation.mp4");
-			
-			_creations.add(creation);
+			if (new File(DIR + file + System.getProperty("file.separator") + "creation.mp4").exists()) {
+				//gets the first occurrence of the file separator pattern
+				int firstPatternIndex = file.indexOf("_-_");
+				
+				//gets the second occurrence of the file separator pattern
+				int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + SEPARATOR_LENGTH);
+				
+				Creation creation = new Creation(extractName(file, firstPatternIndex), 
+						extractTerm(file, firstPatternIndex, secondPatternIndex), 
+						extractDateModified(file),
+						extractLength(file, secondPatternIndex), file + System.getProperty("file.separator") + "creation.mp4");
+				
+				_creations.add(creation);
+			}
 		}
-
 	}
 	
 	private String extractName(String filename, int firstPatternIndex) {
@@ -85,7 +85,6 @@ public class UpdateHelper extends Task<Long> {
 	
 	private String extractDateModified(String filename) {
 		return new SimpleDateFormat("yyyy/MM/dd h:mm a").format(new Date(new File(DIR + filename).lastModified()));
-
 	}
 	
 	/**
@@ -98,7 +97,7 @@ public class UpdateHelper extends Task<Long> {
 		String timeMin = "" + min;
 		String timeSec = "" + sec;
 		
-		// format the time
+		// format the time; add a leading 0 if sec / min is less than 0 seconds
 		if (sec < 10) {
 			timeSec = "0" + sec;
 		} 

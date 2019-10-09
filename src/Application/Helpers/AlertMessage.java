@@ -83,7 +83,5 @@ public class AlertMessage implements Runnable {
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
 		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
-		Stage stage = (Stage)controller.getCreateButton().getScene().getWindow();
-		stage.close();
 	}
 }

@@ -1,5 +1,6 @@
 package Application.Helpers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 
 public class AudioCombiner extends Task<Long> {
 	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
-	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator"); 
+	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
 	
 	private List<Audio> _audioList;
 	private Add_Audio_ScreenController _controller;
@@ -33,8 +34,12 @@ public class AudioCombiner extends Task<Long> {
 		for (String filename : filenames) {
 			input = input + " " + AUDIO_DIR + filename;
 		}
+		
+		int id = new File(OUTPUT_DIR).listFiles().length;
+		_controller.setAudioFileId(id);
+		
 		// combines multiple audio files for the creation
-		String cmd = "sox" + input + " " + OUTPUT_DIR + "output.wav";
+		String cmd = "sox" + input + " " + OUTPUT_DIR + "output" + id + ".wav";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
 		
@@ -48,7 +53,6 @@ public class AudioCombiner extends Task<Long> {
 						// removes the audio directory contents (all files are temporary)
 						Cleaner cleaner = new Cleaner();
 						cleaner.cleanAudio();
-						cleaner.cleanWikit();
 						
 						// loads the Image Selection Screen
 						_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
