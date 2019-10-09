@@ -36,6 +36,7 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ProgressIndicator _progressIndicator;
 	@FXML private TextField _nameInput;
 	@FXML private TextField _input;
+	@FXML private CheckBox _selectAll;
 	
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -178,6 +179,22 @@ public class Image_Selection_ScreenController extends Controller {
 		_executor.submit(imageViewer);
 	}
 
+	public void selectAll() {
+		if (_selectAll.isSelected()) {
+			for (Image image : _listOfImages.getItems()) {
+				image.setSelected(true);
+				image.setOn(true);
+			}
+		}
+		else {
+			for (Image image : _listOfImages.getItems()) {
+				image.setSelected(false);
+				image.setOn(false);
+			}
+		}
+
+	}
+
 	public void viewImage(){
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
 			String imagePath = "file:" + IMAGE_DIR + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
@@ -260,6 +277,10 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public ListView<Image> getListOfImages() {
 		return _listOfImages;
+	}
+
+	public CheckBox getSelectAll() {
+		return _selectAll;
 	}
 }
 

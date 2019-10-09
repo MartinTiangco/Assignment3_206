@@ -86,6 +86,7 @@ public class ImageGenerator extends Task<Long> {
 			_controller.listImages();
 			_controller.getListOfImages().getSelectionModel().select(0);
 			_controller.selectImage();
+			_controller.getSelectAll().setVisible(true);
 		});
 	}
 	

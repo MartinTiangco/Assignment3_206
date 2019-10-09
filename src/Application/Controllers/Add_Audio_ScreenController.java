@@ -172,7 +172,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public void handleDeleteAudio() {
 		//get the item or items selected and remove from list
-		if (_mediaView.getMediaPlayer().getMedia().getSource().equals("file:" + audioDir.getAbsolutePath() + System.getProperty("file.separator") + ((Audio)_savedAudio.getSelectionModel().getSelectedItem()).getFilename())) {
+		if ((_mediaView.getMediaPlayer() != null)&&(_mediaView.getMediaPlayer().getMedia().getSource().equals("file:" + audioDir.getAbsolutePath() + System.getProperty("file.separator") + ((Audio)_savedAudio.getSelectionModel().getSelectedItem()).getFilename()))) {
 			_mediaView.getMediaPlayer().dispose();
 		}
 		_savedAudio.getItems().remove(_savedAudio.getSelectionModel().getSelectedItem());

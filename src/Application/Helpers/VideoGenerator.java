@@ -92,7 +92,7 @@ public class VideoGenerator extends Task<Long> {
             e.printStackTrace();
         }
 	}
-	
+
 	public void generateSlideshow(float imgLength) {
 		String cmd = "cat " + IMAGES + " | ffmpeg -f image2pipe -framerate " + (1/imgLength) 
 				+ " -i - -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
