@@ -85,7 +85,6 @@ public class UpdateHelper extends Task<Long> {
 	
 	private String extractDateModified(String filename) {
 		return new SimpleDateFormat("yyyy/MM/dd h:mm a").format(new Date(new File(DIR + filename).lastModified()));
-
 	}
 	
 	/**
@@ -100,7 +99,7 @@ public class UpdateHelper extends Task<Long> {
 		String timeMin = "" + min;
 		String timeSec = "" + sec;
 		
-		// format the time
+		// format the time; add a leading 0 if sec / min is less than 0 seconds
 		if (sec < 10) {
 			timeSec = "0" + sec;
 		} 
