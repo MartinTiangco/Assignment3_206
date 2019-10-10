@@ -7,6 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+
 /**
  * This class is extended by all controllers and is used to track the controllers
  * even from another screen.
@@ -17,7 +22,7 @@ public class Controller {
 	private ProgressIndicator _progressIndicator;
     protected Controller _currentController;
     protected Controller _parentController;
-    protected String _styleSheet = "/Application/css/bootstrap3.css";
+    protected String _styleSheet = "";
 
     public void setCurrentController(Controller currentController){
         _currentController = currentController;
@@ -47,8 +52,37 @@ public class Controller {
         return _styleSheet;
     }
 
-    public void setStyleSheet(String _styleSheet) {
-        this._styleSheet = _styleSheet;
+    public void setStyleSheet(String styleSheet) {
+        this._styleSheet = styleSheet;
+
+        try {
+            // input the (modified) file content to the StringBuffer "input"
+            String config = System.getProperty("user.dir") + System.getProperty("file.separator") + ".config";
+
+            File c = new File(config);
+            BufferedReader file = new BufferedReader(new FileReader(c));
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                if (line.trim().startsWith("Stylesheet")) {
+                    line = "Stylesheet = " + styleSheet;
+                }
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            file.close();
+
+            // write the new string with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(".config");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+
+
     }
 
     public void loadScreen(String stageName, String fxmlFile, String cssFile) {
