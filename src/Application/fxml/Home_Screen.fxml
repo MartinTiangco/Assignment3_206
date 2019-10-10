@@ -33,14 +33,15 @@
           </Tab>
         </tabs>
       </TabPane>
-      <VBox layoutX="605.0" layoutY="25.0" prefHeight="453.0" prefWidth="95.0" spacing="20.0">
+      <VBox layoutX="605.0" layoutY="25.0" prefHeight="429.0" prefWidth="95.0" spacing="20.0">
          <children>
             <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" />
             <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" />
             <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleDelete" />
+            <Button fx:id="_quizButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleQuiz" />
             <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleSettings">
                <VBox.margin>
-                  <Insets top="150.0" />
+                  <Insets top="100.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -48,7 +49,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <ProgressIndicator fx:id="_progressIndicator" layoutX="24.0" layoutY="492.0" prefHeight="81.0" prefWidth="71.0" progress="0.0" visible="false" />
-      <Label fx:id="_progressMsg" layoutX="109.0" layoutY="517.0" text="generating creation ......" visible="false" />
+      <ProgressIndicator fx:id="_progressIndicator" layoutX="24.0" layoutY="492.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
+      <Label fx:id="_progressMsg" layoutX="94.0" layoutY="501.0" text="Generating creation ......" visible="false" />
    </children>
 </AnchorPane>

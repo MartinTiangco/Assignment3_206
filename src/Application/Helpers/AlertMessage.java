@@ -25,6 +25,7 @@ public class AlertMessage implements Runnable {
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
 	private final String CREATION_SUCCESSFUL = "creation_successful";
 	private final String TOO_MANY_LINES = "Please select 5 lines or less";
+	private final String NO_CREATIONS_FOUND = "no_creations_found";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -55,7 +56,10 @@ public class AlertMessage implements Runnable {
 			  showSuccess("Creation \"" + creationName + "\" was successfully generated!");
 			  break;
 		  case TOO_MANY_LINES:
-			  showAlert("Please select 5 lines or less");
+			  showAlert("Please select 5 lines or less.");
+			  break;
+		  case NO_CREATIONS_FOUND:
+			  showAlert("Please make a creation first!");
 			  break;
 		}
 	}
