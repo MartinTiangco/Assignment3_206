@@ -64,6 +64,7 @@ public class AudioCreator extends Task<Long> {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				_controller.getSearchTextField().setDisable(true);
 				//Append onto ListView
 				_controller.getAudioList().getItems().add(_audio);
 				_controller.enableBottomHalf();

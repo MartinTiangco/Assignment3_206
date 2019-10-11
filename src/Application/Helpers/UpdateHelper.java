@@ -44,11 +44,10 @@ public class UpdateHelper extends Task<Long> {
 
 	private List<String> extractFromDirectory() {
 		List<String> listOfFilenames = new ArrayList<>();
-		File dir = new File(DIR);
-		File[] listOfFiles = dir.listFiles();
-		
-		for (int i = 0; i < listOfFiles.length; i++) {
-			listOfFilenames.add(listOfFiles[i].getName());
+		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
+
+		for (File File : listOfFiles) {
+			listOfFilenames.add(File.getName());
 		}
 		return listOfFilenames;
 	}
@@ -57,22 +56,22 @@ public class UpdateHelper extends Task<Long> {
 	 * Extract details from the filenames of Creations and display on the TableView
 	 */
 	private void createCreations(List<String> listOfFilenames) {
-		
 		for (String file : listOfFilenames) {
-			//gets the first occurrence of the file separator pattern
-			int firstPatternIndex = file.indexOf("_-_");
-			
-			//gets the second occurrence of the file separator pattern
-			int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + SEPARATOR_LENGTH);
-			
-			Creation creation = new Creation(extractName(file, firstPatternIndex), 
-					extractTerm(file, firstPatternIndex, secondPatternIndex), 
-					extractDateModified(file),
-					extractLength(file, secondPatternIndex), file);
-			
-			_creations.add(creation);
+			if (new File(DIR + file + System.getProperty("file.separator") + "creation.mp4").exists()) {
+				//gets the first occurrence of the file separator pattern
+				int firstPatternIndex = file.indexOf("_-_");
+				
+				//gets the second occurrence of the file separator pattern
+				int secondPatternIndex = file.indexOf("_-_", firstPatternIndex + SEPARATOR_LENGTH);
+				
+				Creation creation = new Creation(extractName(file, firstPatternIndex), 
+						extractTerm(file, firstPatternIndex, secondPatternIndex), 
+						extractDateModified(file),
+						extractLength(file, secondPatternIndex), file + System.getProperty("file.separator") + "creation.mp4");
+				
+				_creations.add(creation);
+			}
 		}
-
 	}
 	
 	private String extractName(String filename, int firstPatternIndex) {
@@ -85,19 +84,25 @@ public class UpdateHelper extends Task<Long> {
 	
 	private String extractDateModified(String filename) {
 		return new SimpleDateFormat("yyyy/MM/dd h:mm a").format(new Date(new File(DIR + filename).lastModified()));
-
 	}
 	
 	/**
 	 * Extracts length in mm:ss format
 	 */
 	private String extractLength(String filename, int secondPatternIndex) {
-		//gets the filename extension index i.e. ".mp4"
-		int ext = filename.indexOf(".mp4");
-		int seconds = Integer.parseInt(filename.substring(secondPatternIndex + SEPARATOR_LENGTH, ext));
+		int seconds = Integer.parseInt(filename.substring(secondPatternIndex + SEPARATOR_LENGTH));
 		int sec = seconds % 60;
 		int min = seconds / 60;
-		return "" + min + ":" + sec;
+		String timeMin = "" + min;
+		String timeSec = "" + sec;
 		
+		// format the time; add a leading 0 if sec / min is less than 0 seconds
+		if (sec < 10) {
+			timeSec = "0" + sec;
+		} 
+		if (min < 10) {
+			timeMin = "0" + min;
+		}
+		return timeMin + ":" + timeSec;
 	}
 }

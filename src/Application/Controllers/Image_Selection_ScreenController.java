@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
@@ -31,9 +32,11 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private Label _invalidInput;
 	@FXML private ListView<Image> _listOfImages;
 	@FXML private ImageView _imageView = new ImageView();
-	@FXML private ProgressBar _pb;
+	@FXML private AnchorPane _entireScreenPane;
+	@FXML private ProgressIndicator _progressIndicator;
 	@FXML private TextField _nameInput;
 	@FXML private TextField _input;
+	@FXML private CheckBox _selectAll;
 	
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -57,17 +60,13 @@ public class Image_Selection_ScreenController extends Controller {
 		        // enables or disables button if number is a valid input
 		        if (!_input.getText().isEmpty()) {
 		        	if (_input.getText().matches("\\d+")) {
-		        		if (Integer.parseInt(_input.getText()) > 10) {
-				        	_invalidInput.setVisible(true);
-				        } else {
+		        		if (isValidNumber()) {
 				        	_invalidInput.setVisible(false);
-				        }
-			        	
-				        if (isValidNumber()) {
 				        	_generateButton.setDisable(false);
 				        } else {
+				        	_invalidInput.setVisible(true);
 				        	_generateButton.setDisable(true);
-				        }	
+				        }
 		        	}
 		        } else {
 		        	// if textField is empty, disable the button.
@@ -148,9 +147,10 @@ public class Image_Selection_ScreenController extends Controller {
 			return;
 		}
 		
-		// progress bar
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
+		// progress indicator
+		_entireScreenPane.setDisable(true);
+		_progressIndicator.setProgress(-1);
+		_progressIndicator.setVisible(true);
 		
 		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
@@ -158,8 +158,6 @@ public class Image_Selection_ScreenController extends Controller {
 		// retrieves images from Flickr
 		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
 		_executor.submit(imgGen);
-
-		_pb.progressProperty().bind(imgGen.progressProperty());
 	}
 
 	public void listImages() {
@@ -181,6 +179,22 @@ public class Image_Selection_ScreenController extends Controller {
 		_executor.submit(imageViewer);
 	}
 
+	public void selectAll() {
+		if (_selectAll.isSelected()) {
+			for (Image image : _listOfImages.getItems()) {
+				image.setSelected(true);
+				image.setOn(true);
+			}
+		}
+		else {
+			for (Image image : _listOfImages.getItems()) {
+				image.setSelected(false);
+				image.setOn(false);
+			}
+		}
+
+	}
+
 	public void viewImage(){
 		if (_listOfImages.getSelectionModel().getSelectedItem() != null) {
 			String imagePath = "file:" + IMAGE_DIR + _listOfImages.getSelectionModel().getSelectedItem().getFileName();
@@ -200,11 +214,7 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		// disallows user to click Create again
 		_createButton.setDisable(false);
-		
-		// progress bar
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
-
+				
 		// creates the creation
 		VideoGenerator videoGen = new VideoGenerator(_term, this);
 		videoGen.setCreationName(_nameInput.getText());
@@ -225,10 +235,6 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 		videoGen.setNumPics(numPics);
 		_executor.submit(videoGen);
-		_pb.progressProperty().unbind();
-		_pb.setProgress(0);
-		_pb.progressProperty().bind(videoGen.progressProperty());
-
 	}
 
 	public boolean isValidNumber() {
@@ -254,6 +260,22 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public Button getCreateButton() {
 		return _createButton;
+	}
+	
+	public AnchorPane getEntireScreenPane() {
+		return _entireScreenPane;
+	}
+	
+	public ProgressIndicator getProgressIndicator() {
+		return _progressIndicator;
+	}
+
+	public ListView<Image> getListOfImages() {
+		return _listOfImages;
+	}
+
+	public CheckBox getSelectAll() {
+		return _selectAll;
 	}
 }
 
