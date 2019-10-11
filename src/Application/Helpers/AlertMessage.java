@@ -1,14 +1,21 @@
 package Application.Helpers;
 
+import Application.Controllers.Home_ScreenController;
+import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
-
+/**
+ * An Alert class for generating alerts
+ */
 public class AlertMessage implements Runnable {
 	
 	private Alert alert;
+	private Image_Selection_ScreenController controller;
 	private String status;
+	private String creationName;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -16,9 +23,17 @@ public class AlertMessage implements Runnable {
 	private final String VOICE_CANNOT_SPEAK = "voice_cannot_speak";
 	private final String AUDIO_COMBINING_FAILED = "audio_combining_failed";
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
+	private final String CREATION_SUCCESSFUL = "creation_successful";
+	private final String TOO_MANY_LINES = "Please select 5 lines or less";
 	
 	public AlertMessage(String status) {
 		this.status = status;
+	}
+	
+	public AlertMessage(String status, String creationName, Image_Selection_ScreenController controller) {
+		this.status = status;
+		this.creationName = creationName;
+		this.controller = controller;
 	}
 
 	/**
@@ -36,6 +51,12 @@ public class AlertMessage implements Runnable {
 		  case CREATE_AUDIO_UNSUCCESSFUL:
 			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
 			  break;
+		  case CREATION_SUCCESSFUL:
+			  showSuccess("Creation \"" + creationName + "\" was successfully generated!");
+			  break;
+		  case TOO_MANY_LINES:
+			  showAlert("Please select 5 lines or less");
+			  break;
 		}
 	}
 		
@@ -52,7 +73,7 @@ public class AlertMessage implements Runnable {
 	}
 	
 	/**
-	 * Shared method for generating successes
+	 * Method for generating successes
 	 * @param msg
 	 */
 	private void showSuccess(String msg) {
@@ -61,5 +82,8 @@ public class AlertMessage implements Runnable {
 		alert.setContentText(msg);
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
+		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+		Stage stage = (Stage)controller.getCreateButton().getScene().getWindow();
+		stage.close();
 	}
 }

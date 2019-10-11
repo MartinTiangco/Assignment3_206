@@ -1,14 +1,10 @@
 package Application.Helpers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import Application.Controllers.Add_Audio_ScreenController;
-import Application.Controllers.Controller;
+import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -18,9 +14,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AudioCombiner extends Task<Long> {
+	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
+	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator"); 
+	
 	private List<Audio> _audioList;
 	private Add_Audio_ScreenController _controller;
-	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
 	
 	public AudioCombiner(ObservableList<Audio> audioList, Add_Audio_ScreenController controller) {
 		_audioList = audioList;
@@ -35,42 +33,40 @@ public class AudioCombiner extends Task<Long> {
 		for (String filename : filenames) {
 			input = input + " " + AUDIO_DIR + filename;
 		}
-		String cmd = "sox" + input + " " + AUDIO_DIR + "output.wav";
-		System.out.println(cmd);
+		// combines multiple audio files for the creation
+		String cmd = "sox" + input + " " + OUTPUT_DIR + "output.wav";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		Process process;
 		
         try {
             process = builder.start();
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             int exitStatus = process.waitFor();
-            System.out.println("Exit Status for sox is " + exitStatus);
             if (exitStatus == 0) {
             	Runnable runnable = new Runnable() {
-
 					@Override
 					public void run() {
 						// removes the audio directory contents (all files are temporary)
-						File dir = new File(".Audio_Directory");
-						_controller.deleteDirContents(dir);
+						Cleaner cleaner = new Cleaner();
+						cleaner.cleanAudio();
+						cleaner.cleanWikit();
 						
+						// loads the Image Selection Screen
 						Stage imageScreen = new Stage();
 		        		try {
-		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Image_Selection_Screen.fxml"));
+		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Image_Selection_Screen.fxml"));
 		        	        Parent root = loader.load();
-		        	        Controller Image_Selection_ScreenController = loader.getController();
+		        	        Image_Selection_ScreenController Image_Selection_ScreenController = loader.getController();
 		        	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
 		        	        Image_Selection_ScreenController.setParentController(_controller);
 		        	        imageScreen.setTitle("VARpedia - Image Selection Screen");
-		        	        Scene scene = new Scene(root, 700, 600);
-		        	        //scene.getStylesheets().addAll(this.getClass().getResource("css/Home_Screen.css").toExternalForm());
+		        	        Scene scene = new Scene(root, 631, 500);
 		        	        imageScreen.setScene(scene);
 		        	        imageScreen.show();
 		        		} catch (Exception e) {
 		        			e.printStackTrace();
 		        		}
 		        		
-		        		// closes the audio screen
+		        		// closes the Add Audio screen
 		        		Stage stage = (Stage) _controller.getAudioList().getScene().getWindow();
 		                stage.close();
 					}          		
@@ -90,10 +86,8 @@ public class AudioCombiner extends Task<Long> {
 	private List<String> getFilenames() {
 		List<String> filenames = new ArrayList<String>();
 		for (Audio a : _audioList) {
-			System.out.println("Adding " + a.getFilename());
 			filenames.add(a.getFilename());
-		}	
-		System.out.println(filenames);
+		}
 		return filenames;
 	}
 

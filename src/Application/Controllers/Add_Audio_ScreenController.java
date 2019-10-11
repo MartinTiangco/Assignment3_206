@@ -1,16 +1,11 @@
 package Application.Controllers;
 
-import Application.Helpers.Audio;
-import Application.Helpers.AudioCombiner;
-import Application.Helpers.AudioCreator;
-import Application.Helpers.AudioPlayer;
-import Application.Helpers.WikitWorker;
+import Application.Helpers.*;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -22,46 +17,50 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Add_Audio_ScreenController extends Controller  implements Initializable {
+/**
+ * The Controller for the Add Audio Screen.
+ * 
+ *
+ */
+public class Add_Audio_ScreenController extends Controller implements Initializable {
 	@FXML private Button _mainMenuButton;
 	@FXML private MediaView _mediaView;
 
 	// elements in the top half of the screen
-	@FXML private TextField _searchTextField;
-	@FXML private ProgressBar _wikitProgress;
-	@FXML private ComboBox _voiceBox;
-	@FXML private Slider _speedSlider;
-	@FXML private Slider _pitchSlider;
 	@FXML private Button _playTextButton;
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
+	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
+	@FXML private ProgressBar _wikitProgress;
+	@FXML private ProgressBar _pb;
+	@FXML private Slider _speedSlider;
+	@FXML private Slider _pitchSlider;
+	@FXML private TextField _searchTextField;
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
-	@FXML private TableView _savedAudio;
+	@FXML private Button _deleteAudioButton;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
-	@FXML private TableColumn _audioLength;
+	@FXML private TableColumn _voice;
+	@FXML private TableColumn _speed;
+	@FXML private TableColumn _pitch;
+	@FXML private TableView _savedAudio;
+	
 
 	//directory for wiki text files
 	private File wikitDir = new File(".Wikit_Directory");
 	private File wikitRaw = new File(wikitDir + System.getProperty("file.separator") + "raw.txt"); //raw content - where content is not separated to lines
 	private File wikitTemp = new File(wikitDir + System.getProperty("file.separator") + "temp.txt"); //temp content - where content is separated
+	
 	private AudioPlayer _audioPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
@@ -76,18 +75,19 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		disableBottomHalf();
 		
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		//_savedAudio.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
 		
 		_searchTextField.requestFocus();
 		
+		// prepares the TableView to be populated with Audio objects
 		_termSearched.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
 		_numberOfLines.setCellValueFactory(new PropertyValueFactory<>("numberOfLines"));
-		_audioLength.setCellValueFactory(new PropertyValueFactory<>("audioLength"));
-		
-//		_voiceBox.getItems().add("Default");
-//		_voiceBox.getItems().add("Dumb Voice");
+		_voice.setCellValueFactory(new PropertyValueFactory<>("voiceDisplay"));
+		_speed.setCellValueFactory(new PropertyValueFactory<>("speed"));
+		_pitch.setCellValueFactory(new PropertyValueFactory<>("pitch"));
+
+		// list of voices
 		_voiceBox.getItems().add("English-USA-male");
 		_voiceBox.getItems().add("English-USA-female");
 		_voiceBox.getItems().add("English-UK-male");
@@ -101,9 +101,15 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	@FXML
 	public void handlePlayText() {
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
-			_playAudioButton.setDisable(true);
 			Audio audio = new Audio();
 			setUpAudio(audio);
+			// allows you to preview text without waiting for the first one to finish
+			if (_audioPlayer != null) {
+				Process process = _audioPlayer.getProcess();
+				if (process != null){
+					process.destroy();
+				}
+			}
 			_audioPlayer = new AudioPlayer(audio, this);
 			_playerExecutor.submit(_audioPlayer);
 		}
@@ -112,24 +118,34 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	@FXML
 	public void handlePlayAudio() {
-		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
+		// allow you to play audio without waiting for the first to finish
+		if (_savedAudio.getSelectionModel().getSelectedItem() != null && _mediaView.getMediaPlayer() != null) {
 			_playTextButton.setDisable(true);
+			_mediaView.getMediaPlayer().dispose();
+		}
+		if (_savedAudio.getSelectionModel().getSelectedItem() != null && _audioPlayer != null) {
+			Process process = _audioPlayer.getProcess();
+			if (process != null){
+				process.destroy();
+			}
 		}
 		_audioPlayer = new AudioPlayer((Audio)_savedAudio.getSelectionModel().getSelectedItem(),this);
+		_playerExecutor = Executors.newSingleThreadExecutor();
 		_playerExecutor.submit(_audioPlayer);
 	}
 
 	public void handleSearch() {
+		// progress bar for wikit
+		_pb.progressProperty().unbind();
+		_pb.setProgress(0);
+		
 		_searchInput = _searchTextField.getText();
 
 		if (!validateSearch(_searchInput)) {
-			System.out.println("Search term is invalid");
 			return;
 		}
 
 		try {
-			//First clears the TextArea and hides the line count
-			//lineCount.setVisible(false);
 			_textDescription.getItems().clear();
 
 			wikitSearch(_searchInput);
@@ -141,7 +157,14 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleCreateAudio() {
-		_searchTextField.setDisable(true);
+		// when the 'Save' button is pressed
+		if (_textDescription.getSelectionModel().getSelectedItems().size() > 5) {
+			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
+			Platform.runLater(alert);
+			return;
+		}
+
+		// add an Audio object to the TableView
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			_numberOfAudiosCreated++;
 			Audio audio = new Audio();
@@ -151,6 +174,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
 			_backgroundExecutor.submit(audioCreator);
 		}
+		// disallow searching for another term to avoid saving audio with different terms
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 		}
@@ -162,7 +186,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		ObservableList<Audio> selectedAudio = _savedAudio.getSelectionModel().getSelectedItems();
 		allAudio.removeAll(selectedAudio);
 
-
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
 			disableBottomHalf();
@@ -170,7 +193,7 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	}
 
 	public void handleNext() {
-		//here we combine the audios
+		// combine the audios and load the Image Selection Screen
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_backgroundExecutor.submit(combiner);
@@ -179,8 +202,8 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 
 	public void handleBackToMainMenu() {
 		// removes the audio directory contents (all files are temporary)
-		File dir = new File(".Audio_Directory");
-		deleteDirContents(dir);
+		Cleaner cleaner = new Cleaner();
+		cleaner.cleanAudio();
 			
 		// closes audio screen
 		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
@@ -197,66 +220,22 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 			// Runs the wikit command on a worker thread
 			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
 			_backgroundExecutor.submit(wikitWorker);
+			_pb.progressProperty().bind(wikitWorker.progressProperty());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void deleteLines(KeyEvent key) {
+		// allows the deletion of lines in the TextArea
 		if (key.getCode().equals(KeyCode.DELETE)) {
+			ObservableList<Object>  linesSelected, lines;
+			lines = _textDescription.getItems();
+			linesSelected = _textDescription.getSelectionModel().getSelectedItems();
+			lines.removeAll(linesSelected);
 
-			final int selectedIdx = _textDescription.getSelectionModel().getSelectedIndex();
-			if (selectedIdx != -1) {
-
-				final int newSelectedIdx =
-						(selectedIdx == _textDescription.getItems().size() - 1)
-								? selectedIdx - 1
-								: selectedIdx;
-
-				_textDescription.getItems().remove(selectedIdx);
-				_textDescription.getSelectionModel().select(newSelectedIdx);
-			}
-			for (String line : (List<String>)_textDescription.getItems()) {
-				if (!line.equals("")) {
-					return;
-				}
-			}
-			
 			//disable top half except for search functionality when the content list is empty
 			disableCustomization();
-
-			//TODO
-            /*
-			ObservableList<Integer> selectedIdx = _textDescription.getSelectionModel().getSelectedIndices();
-			List<String> temp = _textDescription.getItems();
-			System.out.println(selectedIdx.toString());
-			if (!selectedIdx.contains(-1)) {
-			    for (int i = selectedIdx.size()-1; i >= 0; i--) {
-			        System.out.println("deleting" + i);
-                    temp.remove(selectedIdx.get(i));
-                }
-                //_textDescription.getItems().clear();
-			    _textDescription.getItems().addAll(temp);
-                _textDescription.getSelectionModel().select(selectedIdx.get(0));
-            }
-			if (_textDescription.getSelectionModel().getSelectedItems().size() < 5) {
-				_textDescription.getItems().add("");
-			}
-
-            */
-		}
-	}
-
-	public static void deleteDirContents(File dir) {
-		File[] files = dir.listFiles();
-		if(files != null) {
-			for (File f: files) {
-				if (f.isDirectory()) {
-					deleteDirContents(f);
-				} else {
-					f.delete();
-				}
-			}
 		}
 	}
 
@@ -272,18 +251,12 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
-//		_createAudioButton.setDisable(true);
-//		_playTextButton.setDisable(true);
-		//_searchButton.setDisable(true);
 	}
 	
 	public void enableCustomization() {
 		_voiceBox.setDisable(false);
 		_speedSlider.setDisable(false);
 		_pitchSlider.setDisable(false);
-//		_createAudioButton.setDisable(false);
-//		_playTextButton.setDisable(false);
-		//_searchButton.setDisable(false);
 	}
 	
 	public void disablePlayCreateText() {
@@ -311,16 +284,6 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 		audio.setPitch((int) (_pitchSlider.getValue()));
 	}
 
-//	public void checkIfListSelected() {
-//		System.out.println("calling checkIfListSelected");
-//		if (_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
-//			_createAudioButton.setDisable(true);
-//			_playTextButton.setDisable(true);
-//		} else {
-//			_createAudioButton.setDisable(false);
-//			_playTextButton.setDisable(false);
-//		}
-//	}
 
 	public ListView getContent() {
 		return _textDescription;
@@ -344,5 +307,9 @@ public class Add_Audio_ScreenController extends Controller  implements Initializ
 	
 	public String getSearchInput() {
 		return _searchInput;
+	}
+	
+	public TextField getSearchTextField() {
+		return _searchTextField;
 	}
 }

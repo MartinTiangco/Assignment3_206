@@ -11,9 +11,15 @@ import com.flickr4java.flickr.*;
 import com.flickr4java.flickr.photos.*;
 
 import Application.Controllers.Image_Selection_ScreenController;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 public class ImageGenerator extends Task<Long> {
+	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
+	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
+	private final String IMAGES = IMAGE_DIR + "*.jpg";
+	private final String AUDIO = OUTPUT_DIR + "output.wav";
+	
 	private String _term;
 	private int _numPics;
 	private Image_Selection_ScreenController _controller;
@@ -26,6 +32,22 @@ public class ImageGenerator extends Task<Long> {
 
 	@Override
 	protected Long call() throws Exception {
+		// delete all images first
+		Cleaner cleaner = new Cleaner();
+		cleaner.cleanImage();
+		
+		// retrieves from Flickr
+		retrievePhotos();	
+
+		// fills up progress bar
+        updateProgress(1,1);
+		return null;
+	}
+	
+	/*
+	 *  Uses flickr's API to retrieve photos
+	 */
+	private void retrievePhotos() {
 		try {
 			String apiKey = getAPIKey("apiKey");
 			String sharedSecret = getAPIKey("sharedSecret");
@@ -43,26 +65,28 @@ public class ImageGenerator extends Task<Long> {
 			params.setText(query);
 			
 			PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
-			System.out.println("Retrieving " + results.size() + " results");
 			
+			int numId = 0;
 			for (Photo photo : results) {
 				try {
 					BufferedImage image = photos.getImage(photo, Size.LARGE);
-					String filename = query.trim().replace(' ', '-') + "-" + System.currentTimeMillis() + "-" + photo.getId() + ".jpg";
+					String filename = query.trim().replace(' ', '-') + "-00" + numId + ".jpg";
 					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
-					System.out.println("Downloaded " + filename);
+					numId++;
 				} catch (FlickrException fe) {
-					System.out.println("Ignoring iamge " + photo.getId() + ": " + fe.getMessage());
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		_controller.listImages();
-		return null;
+		
+		Platform.runLater(() -> _controller.listImages());
 	}
-
+	
+	/*
+	 * Retrieves the APIKey from the file "flickr-api-keys.txt"
+	 */
 	public static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
 		

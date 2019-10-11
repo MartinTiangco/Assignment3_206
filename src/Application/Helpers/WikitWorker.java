@@ -15,22 +15,17 @@ import javafx.concurrent.Task;
 
 /**
  * Worker thread calling the wikit command in the background.
- * @author Martin Tiangco
- *
  */
 public class WikitWorker extends Task<Long> {
-	
-	private String cmd;
-	private String searchTerm;
-	private Writer rawFileWriter;
+
 	private File wikitRaw;
 	private File wikitTemp;
 	private List<String> sepLines;
+	private String cmd;
+	private String searchTerm;
+	private Writer rawFileWriter;
 	
 	private Add_Audio_ScreenController controller;
-	
-	// errorStatus is initialized when the wikit or the separation commands fail, or if the wikit term is not found
-	private String errorStatus;
 	
 	public WikitWorker(String cmd, String searchTerm, Writer rawFileWriter, File wikitRaw, File wikitTemp, Add_Audio_ScreenController controller) {
 		this.cmd = cmd;
@@ -46,8 +41,6 @@ public class WikitWorker extends Task<Long> {
 	 */ 
 	@Override
 	public Long call() {
-		//invalid wikit search string
-		String invalidWikit = searchTerm + " not found :^(";
 		
 		try {
 			// ProcessBuilder to execute wikit 
@@ -57,51 +50,33 @@ public class WikitWorker extends Task<Long> {
 			BufferedReader stdoutBuffered = new BufferedReader(new InputStreamReader(stdout));
 			int exitStatus = process.waitFor();
 			
-			errorStatus = "";
 			if (exitStatus == 0) {
 				String line = stdoutBuffered.readLine();
 				
-				if (line.equals(invalidWikit)) {
-					errorStatus = "invalid";
-					rawFileWriter.close();
-				} else {
-					// Writes line into raw.txt
-					writeIntoFile(line, rawFileWriter);
-					rawFileWriter.close();
-					
-					// Command to separate into sentences
-					sepLines = new ArrayList<>();
-					sepIntoSentences(sepLines);	
-				}
-			} else {
-				errorStatus = "wikitFailed";
+				// Writes line into raw.txt
+				writeIntoFile(line, rawFileWriter);
+				rawFileWriter.close();
+				
+				// Command to separate into sentences
+				sepLines = new ArrayList<>();
+				sepIntoSentences(sepLines);	
 			}
 			
 			Append append = new Append();
-			Platform.runLater(append);
-			
-			// NOW WE HAVE VARYING ERROR STATUS - WE CAN USE THESE TO DETERMINE THE ALERTS WE SHOW TO THE USER
-			
+			Platform.runLater(append);		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// fills up the progress bar to show task has completed
+		updateProgress(1,1);
 		return null;	
 	}
 	
 	class Append implements Runnable {
-		
-		//private Add_Audio_ScreenController controller;
-		
-//		public Append(Add_Audio_ScreenController controller) {
-//			this.controller = controller;
-//		}
-
 		@Override
 		public void run() {
 			// clears ListView and appends all lines of content
 			if (!(sepLines == null)) {
-				//lineCount.setText(wikitWorker.getSepLines().size() + " lines found."); IF WE WANT TO SHOW ALL LINES FOUND
-				//lineCount.setVisible(true);
 				
 				//append lines onto text field
 				StringBuilder content = new StringBuilder(""); 
@@ -153,8 +128,6 @@ public class WikitWorker extends Task<Long> {
 					sepLine = sepStdoutBuffered.readLine();
 				}
 				tempFileWriter.close();
-			} else {
-				errorStatus = "separationFailed";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
