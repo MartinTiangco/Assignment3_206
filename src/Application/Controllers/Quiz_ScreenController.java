@@ -26,7 +26,7 @@ public class Quiz_ScreenController extends Controller {
 	@FXML private String[] _difficultyLevels = {"Easy", "Medium", "Hard"};
 	
 	private Quiz _quiz;
-	private int _currentQuizNumber;
+	private int _currentQuestionNumber;
 	private int _numOfCreations;
 	
 	public void initialize() {
@@ -39,10 +39,6 @@ public class Quiz_ScreenController extends Controller {
 		if (_pane.getChildren().contains(_nextButton)) {
 			// extract the current quiz
 			extractQuizContent();
-			
-			
-			//System.out.println(this.getParentController() == null);
-			//_quiz = ((Quiz_ScreenController) this.getParentController()).getQuiz();
 		}
 	}
 	
@@ -76,7 +72,7 @@ public class Quiz_ScreenController extends Controller {
 		Stage stage = (Stage) _nextButton.getScene().getWindow();
         stage.close();
         
-	if (_currentQuizNumber > _numOfCreations) {
+	if (_currentQuestionNumber > _numOfCreations) {
 			// changes button text to Finish! when all creations have played
 			// at the moment we are just going to the score screen
 			loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml","");
@@ -117,8 +113,8 @@ public class Quiz_ScreenController extends Controller {
 	                    System.out.println(_numOfCreations);
 	                }
 	                if (line.trim().startsWith("Current quiz number")) {
-	                	_currentQuizNumber = Integer.parseInt(line.substring(line.indexOf("=") + 1));
-	                	System.out.println(_currentQuizNumber);
+	                	_currentQuestionNumber = Integer.parseInt(line.substring(line.indexOf("=") + 1));
+	                	System.out.println(_currentQuestionNumber);
 	                }
 	            }
 	            file.close();
@@ -168,8 +164,8 @@ public class Quiz_ScreenController extends Controller {
             String line;
             while ((line = file.readLine()) != null) {
                 if (line.trim().startsWith("Current quiz number")) {
-                	_currentQuizNumber++;
-                	line = "Current quiz number=" + (_currentQuizNumber);
+                	_currentQuestionNumber++;
+                	line = "Current quiz number=" + (_currentQuestionNumber);
                 }
                 inputBuffer.append(line);
                 inputBuffer.append('\n');
