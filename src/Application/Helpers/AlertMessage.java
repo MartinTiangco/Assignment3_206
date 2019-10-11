@@ -4,8 +4,11 @@ import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 /**
  * An Alert class for generating alerts
@@ -25,6 +28,7 @@ public class AlertMessage implements Runnable {
 	private final String CREATE_AUDIO_UNSUCCESSFUL = "create_audio_failed";
 	private final String CREATION_SUCCESSFUL = "creation_successful";
 	private final String TOO_MANY_LINES = "Please select 5 lines or less";
+	private final String NO_CREATIONS_FOUND = "no_creations_found";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -55,7 +59,10 @@ public class AlertMessage implements Runnable {
 			  showSuccess("Creation \"" + creationName + "\" was successfully generated!");
 			  break;
 		  case TOO_MANY_LINES:
-			  showAlert("Please select 5 lines or less");
+			  showAlert("Please select 5 lines or less.");
+			  break;
+		  case NO_CREATIONS_FOUND:
+			  showAlert("Please make a creation first!");
 			  break;
 		}
 	}
@@ -83,7 +90,18 @@ public class AlertMessage implements Runnable {
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
 		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
-		Stage stage = (Stage)controller.getCreateButton().getScene().getWindow();
-		stage.close();
+	}
+
+	private void waitForConfirmation(String msg){
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText(null);
+		alert.setContentText(msg);
+		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (!result.isPresent()){
+		}
+		else if (result.get() == ButtonType.OK){
+			((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+		}
 	}
 }

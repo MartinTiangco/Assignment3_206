@@ -67,10 +67,21 @@ public class WikitWorker extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// fills up the progress bar to show task has completed
-		updateProgress(1,1);
+		
+		// Sets the progress indicator to be invisible
+		ProgressRunnable progress = new ProgressRunnable(controller);
+		Platform.runLater(progress);
 		return null;	
 	}
+	
+//	class ProgressRunnable implements Runnable {
+//		@Override
+//		public void run() {
+//			controller.getEntireScreenPane().setDisable(false);
+//			controller.getProgressIndicator().setVisible(false);
+//		}
+//		
+//	}
 	
 	class Append implements Runnable {
 		@Override

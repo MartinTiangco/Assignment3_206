@@ -26,7 +26,6 @@ public class AudioPlayer extends Task<Long> {
     protected Long call() throws Exception {
     	// previews either the content text from Wikipedia or the saved audio
         if (_audio.getFilename() != null) {
-        	_controller.getPlayTextButton().setDisable(true);
             playAudio();
         }
         else {
@@ -57,10 +56,6 @@ public class AudioPlayer extends Task<Long> {
         MediaPlayer player = new MediaPlayer(audio);
         player.setAutoPlay(true);
         _controller.getMediaView().setMediaPlayer(player);
-
-        player.setOnEndOfMedia(() -> {
-            _controller.getPlayTextButton().setDisable(false);
-        });
     }
 
     public void setTexts() {

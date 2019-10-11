@@ -39,8 +39,9 @@ public class ImageGenerator extends Task<Long> {
 		// retrieves from Flickr
 		retrievePhotos();	
 
-		// fills up progress bar
-        updateProgress(1,1);
+		// enables screen and sets progress indicator to invisible
+		ProgressRunnable progressRunnable = new ProgressRunnable(_controller);
+        Platform.runLater(progressRunnable);
 		return null;
 	}
 	
@@ -81,7 +82,12 @@ public class ImageGenerator extends Task<Long> {
 			e.printStackTrace();
 		}
 		
-		Platform.runLater(() -> _controller.listImages());
+		Platform.runLater(() -> {
+			_controller.listImages();
+			_controller.getListOfImages().getSelectionModel().select(0);
+			_controller.selectImage();
+			_controller.getSelectAll().setVisible(true);
+		});
 	}
 	
 	/*

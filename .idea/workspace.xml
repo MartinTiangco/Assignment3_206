@@ -1,40 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f69a5d13-fb97-4406-a04d-bb91909fef0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/MediaBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/create.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/save.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Image_Directory/apple-1569652731325-15165630350.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Image_Directory/apple-1569652731635-21982802134.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Image_Directory/apple-1569652731968-6042016463.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Image_Directory/apple-1569652732274-16248524621.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Image_Directory/apple-1569652732372-7910673688.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/raw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.Wikit_Directory/temp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="97d11e4d-52eb-4f13-beaa-80e54aaf9d80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid6214.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid6496.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/AeroFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroButtonSkin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroCheckBoxSkin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroGroupBoxSkin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroRadioButtonSkin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroSkin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/util/BindableTransition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/resources/org/aerofx/win7.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Start_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/quiz.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/bootstrap3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/Roboto-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/Roboto-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/controlStyle1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/controlStyle2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/flatred.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/lnf_demo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/sky.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Settings_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/egg_-_egg_-_20.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/fail_-_fail_-_30.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_10.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
@@ -45,12 +85,17 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectId" id="1RXGLUI2SNPIq34jFwIe0wUbt1n" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -66,35 +111,24 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="VARpedia" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Application.Main" />
       <module name="softeng_206_a03" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f69a5d13-fb97-4406-a04d-bb91909fef0c" name="Default Changelist" comment="" />
-      <created>1569805970723</created>
+      <changelist id="97d11e4d-52eb-4f13-beaa-80e54aaf9d80" name="Default Changelist" comment="" />
+      <created>1570785142718</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1569805970723</updated>
+      <updated>1570785142718</updated>
     </task>
     <servers />
   </component>
@@ -103,9 +137,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

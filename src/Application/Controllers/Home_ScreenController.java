@@ -1,8 +1,12 @@
 package Application.Controllers;
 
+import Application.Helpers.AlertMessage;
+import Application.Helpers.Cleaner;
 import Application.Helpers.Creation;
 import Application.Helpers.MediaBar;
+import Application.Helpers.Quiz;
 import Application.Helpers.UpdateHelper;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,6 +40,10 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
+    @FXML private Button _quizButton;
+    @FXML private Button _settingsButton;
+    @FXML private Label _progressMsg;
+    @FXML private ProgressIndicator _progressIndicator;
     @FXML private Tab _creationTab;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
@@ -45,9 +53,11 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TabPane _videoTabs;
 
     private UpdateHelper _updateHelper;
-    private ArrayList<Creation> _creations = new ArrayList<Creation>();
+    private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
     private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
+    
+    private Quiz quiz;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -106,32 +116,19 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handleAdd() {
-        Stage addAudioStage = new Stage();
-        try {
-        	// loads the Add Audio Screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Add_Audio_Screen.fxml"));
-            Parent root = loader.load();
-            Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
-            Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
-            Scene scene = new Scene(root, 1013, 692);
-            Add_Audio_ScreenController.setParentController(this);
-            scene.getStylesheets().addAll(this.getClass().getResource("/Application/css/Add_Audio_Screen.css").toExternalForm());
-            addAudioStage.setTitle("VARpedia - Add Audio");
-            addAudioStage.setScene(scene);
-            addAudioStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        loadScreen("Add Audio", "/Application/fxml/Add_Audio_Screen.fxml", "/Application/css/Add_Audio_Screen.css");
         Update();
     }
 
     @FXML
     public void handleDelete() {
+    	Cleaner cleaner = new Cleaner();
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
             for (Creation creation : listOfCreations) {
-                File filePath = new File("Creation_Directory/" + creation.getFileName());
+            	System.out.println("Creation_Directory/" + creation.getFolderName());
+                File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");
                 alert.showAndWait().ifPresent(response -> {
@@ -147,6 +144,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                                 listOfTabToBeRemoved.add(tab);
                             }
                         }
+                        cleaner.cleanCreation(creation.getFolderName());
                         filePath.delete();
                         _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
                     }
@@ -155,12 +153,26 @@ public class Home_ScreenController extends Controller implements Initializable {
         }
         Update();
     }
+    
+    public void handleQuiz() {
+    	if (_creationTable.getItems().size() == 0) {
+    		AlertMessage alert = new AlertMessage("no_creations_found");
+    		Platform.runLater(alert);
+    	} else {
+        	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "");
+    	}
+    }
+
+    public void handleSettings() {
+        Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
+        ((Settings_ScreenController)controller).selectDefault();
+    }
 
     public ArrayList<Creation> getCreations() {
         return _creations;
     }
 
-    public TableView getCreationTable(){
+    public TableView getCreationTable() {
         return _creationTable;
     }
 
@@ -181,5 +193,13 @@ public class Home_ScreenController extends Controller implements Initializable {
             _deleteButton.setDisable(false);
             _playButton.setDisable(false);
         }
+    }
+    
+    public Label getProgressMsg() {
+    	return _progressMsg;
+    }
+    
+    public ProgressIndicator getProgressIndicator() {
+    	return _progressIndicator;
     }
 }

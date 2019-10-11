@@ -32,3 +32,10 @@
     -fx-background-size: 24 24;
     -fx-background-position: center center;
 }
+
+#_quizButton{
+	-fx-background-image: url("../assets/quiz.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 24 24;
+    -fx-background-position: center center;
+}
