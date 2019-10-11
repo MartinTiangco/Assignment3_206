@@ -1,12 +1,15 @@
 package Application.Controllers;
 
 import Application.Helpers.Quiz;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +19,7 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
 
     @FXML private Label _percentageScore;
     @FXML private Label _rawScore;
+    @FXML private Pane _graphicScore;
     @FXML private AnchorPane _pane;
     @FXML private Button _mainMenuButton;
     @FXML private Button _nextButton;
@@ -33,10 +37,20 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         int score = quiz.getScore();
         int total = quiz.getTotal();
         int percentage = (int)(((score + 0.0)/(total + 0.0)*100));
+        
+        PieChart.Data correct = new PieChart.Data("Correct", score);
+        PieChart.Data incorrect = new PieChart.Data("Incorrect", total - score);
 
         _rawScore.setText(score + " out of " + total + " creations");
         _percentageScore.setText(percentage + " %");
-
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(correct, incorrect);
+        _graphicScore.getChildren().clear();
+        PieChart piechart = new PieChart(data);
+        _graphicScore.getChildren().add(piechart);
+        piechart.setLegendVisible(false);
+        
+        correct.getNode().setStyle("-fx-pie-color: #008000;");
+        incorrect.getNode().setStyle("-fx-pie-color: #FF0000;");
     }
 	
 	public void handleBack() {
