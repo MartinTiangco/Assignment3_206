@@ -2,6 +2,7 @@ package Application.Controllers;
 
 import Application.Helpers.Quiz;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -12,6 +13,7 @@ public class Quiz_Score_ScreenController extends Controller {
 	@FXML private Button _nextButton;
 	@FXML private Button _startButton;
 	@FXML private Button _tryAgainButton;
+	@FXML private PieChart _graphicScore;
 	
 	private Quiz _quiz;
 	
