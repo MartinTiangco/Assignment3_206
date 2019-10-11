@@ -25,6 +25,7 @@ public class Quiz {
 	private int _total;
 	private int _currentQuestionNumber = 0;
 	private String _difficulty;
+	private String _correctAnswer;
 
 	public Quiz() {
 		_total = new File(DIR).listFiles(File::isDirectory).length;
@@ -50,16 +51,12 @@ public class Quiz {
 		return _currentQuestionNumber;
 	}
 
-	public void setCurrentQuestionNumber(int currentQuestionNumber) {
-		this._currentQuestionNumber = currentQuestionNumber;
-	}
-
 	public void incrementCurrentQuestionNumber(){
 		_currentQuestionNumber++;
 	}
 
-	public String getDifficulty() {
-		return _difficulty;
+	public void incrementScore(){
+		_score++;
 	}
 
 	public void setDifficulty(String difficulty) {
@@ -68,15 +65,19 @@ public class Quiz {
 
 	public MediaView createQuizScreen(){
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
+		File currentCreation = listOfFiles[_currentQuestionNumber];
+		int firstPatternIndex = currentCreation.getName().indexOf("_-_");
+		int secondPatternIndex = currentCreation.getName().indexOf("_-_", firstPatternIndex + 3);
+		_correctAnswer = currentCreation.getName().substring(firstPatternIndex + 3, secondPatternIndex);
 		Media video;
 		if (_difficulty.equals("Easy")) {
-			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "video.mp4");
+			video = new Media(currentCreation.toURI().toString() + System.getProperty("file.separator") + "video.mp4");
 		}
 		else if (_difficulty.equals("Medium")){
-			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
+			video = new Media(currentCreation.toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
 		}
 		else{
-			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
+			video = new Media(currentCreation.toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
 		}
 		MediaPlayer player = new MediaPlayer(video);
 		player.setAutoPlay(true);
@@ -85,5 +86,9 @@ public class Quiz {
 		mediaView.setFitHeight(400);
 		mediaView.setFitWidth(500);
 		return mediaView;
+	}
+
+	public String getCorrectAnswer() {
+		return _correctAnswer;
 	}
 }

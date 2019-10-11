@@ -56,6 +56,11 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 			loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml","");
 		} else {
 			// load the same screen but with a different video
+        System.out.println(_guess.getText());
+        System.out.println(_quiz.getCorrectAnswer());
+        if (_guess.getText().matches("(?i)" + _quiz.getCorrectAnswer())){
+
+        }
 		_quizScreen.getChildren().clear();
 		_guess.clear();
         _mediaView = _quiz.createQuizScreen();
@@ -81,7 +86,11 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 	    _quizScreen.getChildren().add(_mediaView);
     }
 
-//	public void extractQuizContent() {
+    public Quiz getQuiz() {
+        return _quiz;
+    }
+
+    //	public void extractQuizContent() {
 //			try {
 //				String quiz = System.getProperty("user.dir") + System.getProperty("file.separator") + "quiz.txt";
 //				File q = new File(quiz);
