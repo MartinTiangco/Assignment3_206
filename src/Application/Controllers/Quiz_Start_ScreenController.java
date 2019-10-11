@@ -28,7 +28,7 @@ public class Quiz_Start_ScreenController extends Controller {
 	}
 	
 	public void handleStart() {
-		loadScreen("home", "/Application/fxml/Quiz_Easy.fxml","");
+		loadScreen("Quiz", "/Application/fxml/Quiz_Easy.fxml","");
 	}
 	
 	public void handleBack() {

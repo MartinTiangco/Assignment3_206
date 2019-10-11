@@ -1,2 +1,0 @@
-Number of creations=4
-Current quiz number=1
