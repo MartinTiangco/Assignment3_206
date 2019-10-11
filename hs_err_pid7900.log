@@ -1,0 +1,380 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 98566144 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2805), pid=7900, tid=7906
+#
+# JRE version:  (13.0+33) (build )
+# Java VM: OpenJDK 64-Bit Server VM (13+33, mixed mode, aot, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P" (or dumping to /home/student/eclipse-workspace/Assignment3_206/core.7900)
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --module-path=/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib --add-modules=javafx.base,javafx.controls,javafx.media,javafx.graphics,javafx.fxml -Dfile.encoding=UTF-8 Application.Main
+
+Host: Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz, 3 cores, 5G, Ubuntu 19.04
+Time: Fri Oct 11 23:32:59 2019 NZDT elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fa9a0019000):  JavaThread "Unknown thread" [_thread_in_vm, id=7906, stack(0x00007fa9a630b000,0x00007fa9a640c000)]
+
+Stack: [0x00007fa9a630b000,0x00007fa9a640c000],  sp=0x00007fa9a640a340,  free space=1020k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xdd5837]  VMError::report_and_die(int, char const*, char const*, __va_list_tag*, Thread*, unsigned char*, void*, void*, char const*, int, unsigned long)+0x377
+V  [libjvm.so+0xdd63eb]  VMError::report_and_die(Thread*, char const*, int, unsigned long, VMErrorType, char const*, __va_list_tag*)+0x2b
+V  [libjvm.so+0x63b965]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*, ...)+0xc5
+V  [libjvm.so+0xbbaae8]  os::pd_commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0xd8
+V  [libjvm.so+0xbb184d]  os::commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0x1d
+V  [libjvm.so+0x76729c]  G1PageBasedVirtualSpace::commit_preferred_pages(unsigned long, unsigned long)+0x6c
+V  [libjvm.so+0x7676a4]  G1PageBasedVirtualSpace::commit(unsigned long, unsigned long)+0x174
+V  [libjvm.so+0x772e16]  G1RegionsLargerThanCommitSizeMapper::commit_regions(unsigned int, unsigned long, WorkGang*)+0x46
+V  [libjvm.so+0x7e7fbe]  HeapRegionManager::commit_regions(unsigned int, unsigned long, WorkGang*)+0x4e
+V  [libjvm.so+0x7e8cc0]  HeapRegionManager::make_regions_available(unsigned int, unsigned int, WorkGang*)+0x30
+V  [libjvm.so+0x7e91e7]  HeapRegionManager::expand_at(unsigned int, unsigned int, WorkGang*)+0xf7
+V  [libjvm.so+0x71f070]  G1CollectedHeap::expand(unsigned long, WorkGang*, double*)+0xe0
+V  [libjvm.so+0x71f83b]  G1CollectedHeap::initialize()+0x74b
+V  [libjvm.so+0xd959b7]  Universe::initialize_heap()+0x27
+V  [libjvm.so+0xd95a6b]  universe_init()+0x7b
+V  [libjvm.so+0x80b5f7]  init_globals()+0x57
+V  [libjvm.so+0xd6f8c3]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x373
+V  [libjvm.so+0x8b48f2]  JNI_CreateJavaVM+0x52
+C  [libjli.so+0x399f]  JavaMain+0x7f
+C  [libjli.so+0x8669]  ThreadJavaMain+0x9
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fa9a77b1a80, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00007fa9a0062800 GCTaskThread "GC Thread#0" [stack: 0x00007fa9a53bc000,0x00007fa9a54bc000] [id=7907]
+  0x00007fa9a0070000 ConcurrentGCThread "G1 Main Marker" [stack: 0x00007fa9a52ba000,0x00007fa9a53ba000] [id=7908]
+  0x00007fa9a0072000 ConcurrentGCThread "G1 Conc#0" [stack: 0x00007fa9a51b8000,0x00007fa9a52b8000] [id=7909]
+
+[error occurred during error reporting (printing all threads), id 0xb, SIGSEGV (0xb) at pc=0x00007fa9a6c94c40]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fa9a00159a0] Heap_lock - owner thread: 0x00007fa9a0019000
+
+Heap address: 0x00000000a2e00000, size: 1490 MB, Compressed Oops mode: Non-zero based: 0x00000000a2e00000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (9 events):
+Event: 0.127 Protecting memory [0x00007fa9a630b000,0x00007fa9a630f000] with protection modes 0
+Event: 0.148 Loaded shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libzip.so
+Event: 0.151 Loaded shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjimage.so
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.base-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.base-coop.so: cannot open shared object file: No such file or directory
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.logging-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.logging-coop.so: cannot open shared object file: No such file or directo
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.compiler-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.compiler-coop.so: cannot open shared object file: No such file or directo
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.scripting.nashorn-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.scripting.nashorn-coop.so: cannot open shared object file: No su
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.internal.vm.ci-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.internal.vm.ci-coop.so: cannot open shared object file: No such fil
+Event: 0.174 Loading shared library /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.internal.vm.compiler-coop.so failed, /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjdk.internal.vm.compiler-coop.so: cannot open shared object file:
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 314400                             /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/bin/java
+00401000-00402000 r--p 00000000 08:01 314400                             /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/bin/java
+00402000-00403000 rw-p 00001000 08:01 314400                             /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/bin/java
+00b7d000-00b9e000 rw-p 00000000 00:00 0                                  [heap]
+a8c00000-100000000 ---p 00000000 00:00 0 
+7fa976000000-7fa978000000 rw-p 00000000 00:00 0 
+7fa978000000-7fa978021000 rw-p 00000000 00:00 0 
+7fa978021000-7fa97c000000 ---p 00000000 00:00 0 
+7fa97c000000-7fa97c021000 rw-p 00000000 00:00 0 
+7fa97c021000-7fa980000000 ---p 00000000 00:00 0 
+7fa980000000-7fa980021000 rw-p 00000000 00:00 0 
+7fa980021000-7fa984000000 ---p 00000000 00:00 0 
+7fa985be8000-7fa988a78000 ---p 00000000 00:00 0 
+7fa988a78000-7fa988ce8000 rwxp 00000000 00:00 0 
+7fa988ce8000-7fa989007000 ---p 00000000 00:00 0 
+7fa989007000-7fa989277000 rwxp 00000000 00:00 0 
+7fa989277000-7fa99053f000 ---p 00000000 00:00 0 
+7fa99053f000-7fa9907af000 rwxp 00000000 00:00 0 
+7fa9907af000-7fa997a78000 ---p 00000000 00:00 0 
+7fa997a78000-7fa9a0000000 r--s 00000000 08:01 314813                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/modules
+7fa9a0000000-7fa9a008b000 rw-p 00000000 00:00 0 
+7fa9a008b000-7fa9a4000000 ---p 00000000 00:00 0 
+7fa9a4ae9000-7fa9a51b6000 rw-p 00000000 00:00 0 
+7fa9a51b6000-7fa9a51b7000 ---p 00000000 00:00 0 
+7fa9a51b7000-7fa9a52b8000 rw-p 00000000 00:00 0 
+7fa9a52b8000-7fa9a52b9000 ---p 00000000 00:00 0 
+7fa9a52b9000-7fa9a53ba000 rw-p 00000000 00:00 0 
+7fa9a53ba000-7fa9a53bb000 ---p 00000000 00:00 0 
+7fa9a53bb000-7fa9a54ee000 rw-p 00000000 00:00 0 
+7fa9a54ee000-7fa9a5da9000 ---p 00000000 00:00 0 
+7fa9a5da9000-7fa9a60b1000 rw-p 00000000 00:00 0 
+7fa9a60b1000-7fa9a6197000 ---p 00000000 00:00 0 
+7fa9a6197000-7fa9a619c000 rw-p 00000000 00:00 0 
+7fa9a619c000-7fa9a6282000 ---p 00000000 00:00 0 
+7fa9a6282000-7fa9a6287000 rw-p 00000000 00:00 0 
+7fa9a6287000-7fa9a628e000 ---p 00000000 00:00 0 
+7fa9a628e000-7fa9a62a9000 r-xp 00000000 08:01 314793                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjimage.so
+7fa9a62a9000-7fa9a62aa000 ---p 0001b000 08:01 314793                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjimage.so
+7fa9a62aa000-7fa9a62ac000 r--p 0001b000 08:01 314793                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjimage.so
+7fa9a62ac000-7fa9a62ad000 rw-p 0001d000 08:01 314793                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjimage.so
+7fa9a62ad000-7fa9a62b0000 r--p 00000000 08:01 6762                       /usr/lib/x86_64-linux-gnu/libnss_files-2.29.so
+7fa9a62b0000-7fa9a62b7000 r-xp 00003000 08:01 6762                       /usr/lib/x86_64-linux-gnu/libnss_files-2.29.so
+7fa9a62b7000-7fa9a62b9000 r--p 0000a000 08:01 6762                       /usr/lib/x86_64-linux-gnu/libnss_files-2.29.so
+7fa9a62b9000-7fa9a62ba000 r--p 0000b000 08:01 6762                       /usr/lib/x86_64-linux-gnu/libnss_files-2.29.so
+7fa9a62ba000-7fa9a62bb000 rw-p 0000c000 08:01 6762                       /usr/lib/x86_64-linux-gnu/libnss_files-2.29.so
+7fa9a62bb000-7fa9a62c1000 rw-p 00000000 00:00 0 
+7fa9a62c5000-7fa9a62cc000 r-xp 00000000 08:01 314812                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libzip.so
+7fa9a62cc000-7fa9a62cd000 r--p 00006000 08:01 314812                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libzip.so
+7fa9a62cd000-7fa9a62ce000 rw-p 00007000 08:01 314812                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libzip.so
+7fa9a62ce000-7fa9a62d6000 rw-s 00000000 08:01 311169                     /tmp/hsperfdata_student/7900
+7fa9a62d6000-7fa9a62fd000 r-xp 00000000 08:01 314789                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.so
+7fa9a62fd000-7fa9a62fe000 r--p 00026000 08:01 314789                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.so
+7fa9a62fe000-7fa9a6300000 rw-p 00027000 08:01 314789                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjava.so
+7fa9a6300000-7fa9a6303000 r--p 00000000 08:01 6972                       /usr/lib/x86_64-linux-gnu/librt-2.29.so
+7fa9a6303000-7fa9a6307000 r-xp 00003000 08:01 6972                       /usr/lib/x86_64-linux-gnu/librt-2.29.so
+7fa9a6307000-7fa9a6309000 r--p 00007000 08:01 6972                       /usr/lib/x86_64-linux-gnu/librt-2.29.so
+7fa9a6309000-7fa9a630a000 r--p 00008000 08:01 6972                       /usr/lib/x86_64-linux-gnu/librt-2.29.so
+7fa9a630a000-7fa9a630b000 rw-p 00009000 08:01 6972                       /usr/lib/x86_64-linux-gnu/librt-2.29.so
+7fa9a630b000-7fa9a630f000 ---p 00000000 00:00 0 
+7fa9a630f000-7fa9a640c000 rw-p 00000000 00:00 0 
+7fa9a640c000-7fa9a641b000 r--p 00000000 08:01 6634                       /usr/lib/x86_64-linux-gnu/libm-2.29.so
+7fa9a641b000-7fa9a64c1000 r-xp 0000f000 08:01 6634                       /usr/lib/x86_64-linux-gnu/libm-2.29.so
+7fa9a64c1000-7fa9a6558000 r--p 000b5000 08:01 6634                       /usr/lib/x86_64-linux-gnu/libm-2.29.so
+7fa9a6558000-7fa9a6559000 r--p 0014b000 08:01 6634                       /usr/lib/x86_64-linux-gnu/libm-2.29.so
+7fa9a6559000-7fa9a655a000 rw-p 0014c000 08:01 6634                       /usr/lib/x86_64-linux-gnu/libm-2.29.so
+7fa9a655a000-7fa9a763b000 r-xp 00000000 08:01 314822                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/server/libjvm.so
+7fa9a763b000-7fa9a76ff000 r--p 010e0000 08:01 314822                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/server/libjvm.so
+7fa9a76ff000-7fa9a7739000 rw-p 011a4000 08:01 314822                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/server/libjvm.so
+7fa9a7739000-7fa9a77c0000 rw-p 00000000 00:00 0 
+7fa9a77c0000-7fa9a77e5000 r--p 00000000 08:01 6007                       /usr/lib/x86_64-linux-gnu/libc-2.29.so
+7fa9a77e5000-7fa9a7958000 r-xp 00025000 08:01 6007                       /usr/lib/x86_64-linux-gnu/libc-2.29.so
+7fa9a7958000-7fa9a79a1000 r--p 00198000 08:01 6007                       /usr/lib/x86_64-linux-gnu/libc-2.29.so
+7fa9a79a1000-7fa9a79a4000 r--p 001e0000 08:01 6007                       /usr/lib/x86_64-linux-gnu/libc-2.29.so
+7fa9a79a4000-7fa9a79a7000 rw-p 001e3000 08:01 6007                       /usr/lib/x86_64-linux-gnu/libc-2.29.so
+7fa9a79a7000-7fa9a79ab000 rw-p 00000000 00:00 0 
+7fa9a79ab000-7fa9a79ac000 r--p 00000000 08:01 6146                       /usr/lib/x86_64-linux-gnu/libdl-2.29.so
+7fa9a79ac000-7fa9a79ae000 r-xp 00001000 08:01 6146                       /usr/lib/x86_64-linux-gnu/libdl-2.29.so
+7fa9a79ae000-7fa9a79af000 r--p 00003000 08:01 6146                       /usr/lib/x86_64-linux-gnu/libdl-2.29.so
+7fa9a79af000-7fa9a79b0000 r--p 00003000 08:01 6146                       /usr/lib/x86_64-linux-gnu/libdl-2.29.so
+7fa9a79b0000-7fa9a79b1000 rw-p 00004000 08:01 6146                       /usr/lib/x86_64-linux-gnu/libdl-2.29.so
+7fa9a79b1000-7fa9a79b8000 r--p 00000000 08:01 6906                       /usr/lib/x86_64-linux-gnu/libpthread-2.29.so
+7fa9a79b8000-7fa9a79c7000 r-xp 00007000 08:01 6906                       /usr/lib/x86_64-linux-gnu/libpthread-2.29.so
+7fa9a79c7000-7fa9a79cc000 r--p 00016000 08:01 6906                       /usr/lib/x86_64-linux-gnu/libpthread-2.29.so
+7fa9a79cc000-7fa9a79cd000 r--p 0001a000 08:01 6906                       /usr/lib/x86_64-linux-gnu/libpthread-2.29.so
+7fa9a79cd000-7fa9a79ce000 rw-p 0001b000 08:01 6906                       /usr/lib/x86_64-linux-gnu/libpthread-2.29.so
+7fa9a79ce000-7fa9a79d2000 rw-p 00000000 00:00 0 
+7fa9a79d2000-7fa9a79e1000 r-xp 00000000 08:01 314794                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjli.so
+7fa9a79e1000-7fa9a79e2000 r--p 0000e000 08:01 314794                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjli.so
+7fa9a79e2000-7fa9a79e3000 rw-p 0000f000 08:01 314794                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libjli.so
+7fa9a79e3000-7fa9a79e5000 r--p 00000000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a79e5000-7fa9a79f6000 r-xp 00002000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a79f6000-7fa9a79fc000 r--p 00013000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a79fc000-7fa9a79fd000 ---p 00019000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a79fd000-7fa9a79fe000 r--p 00019000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a79fe000-7fa9a79ff000 rw-p 0001a000 08:01 7324                       /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa9a7a01000-7fa9a7a02000 ---p 00000000 00:00 0 
+7fa9a7a02000-7fa9a7a03000 r--p 00000000 00:00 0 
+7fa9a7a03000-7fa9a7a04000 ---p 00000000 00:00 0 
+7fa9a7a04000-7fa9a7a11000 r-xp 00000000 08:01 314811                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libverify.so
+7fa9a7a11000-7fa9a7a13000 r--p 0000c000 08:01 314811                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libverify.so
+7fa9a7a13000-7fa9a7a14000 rw-p 0000e000 08:01 314811                     /home/student/Downloads/openjdk-13_linux-x64_bin/jdk-13/lib/libverify.so
+7fa9a7a14000-7fa9a7a16000 rw-p 00000000 00:00 0 
+7fa9a7a16000-7fa9a7a17000 r--p 00000000 08:01 5785                       /usr/lib/x86_64-linux-gnu/ld-2.29.so
+7fa9a7a17000-7fa9a7a38000 r-xp 00001000 08:01 5785                       /usr/lib/x86_64-linux-gnu/ld-2.29.so
+7fa9a7a38000-7fa9a7a40000 r--p 00022000 08:01 5785                       /usr/lib/x86_64-linux-gnu/ld-2.29.so
+7fa9a7a40000-7fa9a7a41000 r--p 00029000 08:01 5785                       /usr/lib/x86_64-linux-gnu/ld-2.29.so
+7fa9a7a41000-7fa9a7a42000 rw-p 0002a000 08:01 5785                       /usr/lib/x86_64-linux-gnu/ld-2.29.so
+7fa9a7a42000-7fa9a7a43000 rw-p 00000000 00:00 0 
+7ffd58230000-7ffd58251000 rw-p 00000000 00:00 0                          [stack]
+7ffd582d0000-7ffd582d3000 r--p 00000000 00:00 0                          [vvar]
+7ffd582d3000-7ffd582d4000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+jvm_args: --module-path=/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib --add-modules=javafx.base,javafx.controls,javafx.media,javafx.graphics,javafx.fxml -Dfile.encoding=UTF-8 
+java_command: Application.Main
+java_class_path (initial): /home/student/eclipse-workspace/Assignment3_206/bin:/home/student/eclipse-workspace/Assignment3_206/libs/flickr4java-3.0.1.jar:/home/student/eclipse-workspace/Assignment3_206/libs/jackson-annotations-2.9.0.jar:/home/student/eclipse-workspace/Assignment3_206/libs/jackson-core-2.9.9.jar:/home/student/eclipse-workspace/Assignment3_206/libs/jackson-databind-2.9.9.jar:/home/student/eclipse-workspace/Assignment3_206/libs/scribejava-apis-6.6.3.jar:/home/student/eclipse-workspace/Assignment3_206/libs/scribejava-core-6.2.0.jar:/home/student/eclipse-workspace/Assignment3_206/libs/slf4j-api-1.7.25.jar:/home/student/eclipse-workspace/Assignment3_206/libs/slf4j-nop-1.7.26.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.base.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.controls.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.fxml.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.graphics.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.media.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.swing.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx.web.jar:/home/student/Downloads/openjfx-13-rc+2_linux-x64_bin-sdk/javafx-sdk-13/lib/javafx-swt.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 2                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 3                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 98566144                                  {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1562378240                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5825164                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122916538                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122916538                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1562378240                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+USERNAME=student
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xdd70e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xdd70e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0xdd70e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0xbb6030], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0xbb6030], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0xdd70e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR2: [libjvm.so+0xbb5ec0], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGINT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGQUIT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=19.04
+DISTRIB_CODENAME=disco
+DISTRIB_DESCRIPTION="Ubuntu 19.04"
+uname:Linux 5.0.0-13-generic #14-Ubuntu SMP Mon Apr 15 14:59:14 UTC 2019 x86_64
+libc:glibc 2.29 NPTL 2.29 
+rlimit: STACK 8192k, CORE 0k, NPROC 23644, NOFILE 1048576, AS infinity, DATA infinity, FSIZE infinity
+load average:1.08 0.83 0.67
+
+/proc/meminfo:
+MemTotal:        6101400 kB
+MemFree:          110284 kB
+MemAvailable:      13320 kB
+Buffers:             932 kB
+Cached:           120084 kB
+SwapCached:        10188 kB
+Active:          4964108 kB
+Inactive:         772228 kB
+Active(anon):    4956420 kB
+Inactive(anon):   756060 kB
+Active(file):       7688 kB
+Inactive(file):    16168 kB
+Unevictable:         288 kB
+Mlocked:             288 kB
+SwapTotal:        483800 kB
+SwapFree:              0 kB
+Dirty:               112 kB
+Writeback:             0 kB
+AnonPages:       5605680 kB
+Mapped:           115964 kB
+Shmem:             97080 kB
+KReclaimable:      35644 kB
+Slab:             128112 kB
+SReclaimable:      35644 kB
+SUnreclaim:        92468 kB
+KernelStack:       17728 kB
+PageTables:        40520 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     3534500 kB
+Committed_AS:   10953688 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+Percpu:             2528 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      204736 kB
+DirectMap2M:     6086656 kB
+
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads):
+47288
+
+
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have):
+65530
+
+
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers):
+32768
+
+
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-2
+cpu_memory_nodes: 0
+active_processor_count: 3
+cpu_quota: no quota
+cpu_period: 100000
+cpu_shares: no shares
+memory_limit_in_bytes: unlimited
+memory_and_swap_limit_in_bytes: not supported
+memory_soft_limit_in_bytes: unlimited
+memory_usage_in_bytes: 5837246464
+memory_max_usage_in_bytes: 5899096064
+
+KVM virtualization detected
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU:total 3 (initial active 3) (3 cores per cpu, 1 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, 3dnowpref, lzcnt, tsc, tscinvbit
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+
+Memory: 4k page, physical 6101400k(110032k free), swap 483800k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (13+33) for linux-amd64 JRE (13+33), built on Aug  9 2019 10:12:33 by "mach5one" with gcc 8.2.0
+
+END.

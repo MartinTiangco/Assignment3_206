@@ -18,8 +18,8 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <Button fx:id="_tryAgainButton" layoutX="107.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleTryAgain" prefHeight="31.0" prefWidth="200.0" text="Try Again" />
-      <Button fx:id="_mainMenuButton" layoutX="400.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleBack" text="Back to Home Menu" />
+      <Button fx:id="_tryAgainButton" layoutX="106.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleTryAgain" prefHeight="40.0" prefWidth="200.0" text="Try Again" />
+      <Button fx:id="_mainMenuButton" layoutX="411.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="200.0" text="Back to Home Menu" />
       <Pane fx:id="_graphicScore" layoutX="336.0" layoutY="14.0" prefHeight="350.0" prefWidth="350.0" />
       <StackPane layoutX="14.0" layoutY="11.0" prefHeight="417.0" prefWidth="315.0">
          <children>
@@ -31,7 +31,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="_percentageScore" layoutX="158.0" layoutY="75.0" prefHeight="73.0" prefWidth="118.0" text="{xx%}">
+                  <Label fx:id="_percentageScore" layoutX="132.0" layoutY="75.0" prefHeight="73.0" prefWidth="178.0" text="{xx%}">
                      <font>
                         <Font size="50.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutY="242.0" prefHeight="167.0" prefWidth="320.0">
+                  <AnchorPane layoutX="8.0" layoutY="242.0" prefHeight="167.0" prefWidth="303.0">
                      <children>
                         <Label fx:id="_message" layoutX="14.0" layoutY="14.0" text="Message">
                            <font>
