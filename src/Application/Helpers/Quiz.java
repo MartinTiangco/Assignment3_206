@@ -14,11 +14,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 /**
- * Abstract class of the Quiz functionality. To be extended by the
+ * Class of the Quiz functionality. To be extended by the
  * varying levels of the quiz.
  *
  */
-public abstract class Quiz {
+public class Quiz {
 	protected int _score = 0;
 	protected int _total;
 	protected List<Creation> _listOfCreations;

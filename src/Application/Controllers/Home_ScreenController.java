@@ -3,6 +3,7 @@ package Application.Controllers;
 import Application.Helpers.AlertMessage;
 import Application.Helpers.Creation;
 import Application.Helpers.MediaBar;
+import Application.Helpers.Quiz;
 import Application.Helpers.UpdateHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -54,6 +55,8 @@ public class Home_ScreenController extends Controller implements Initializable {
     private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
     private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
+    
+    private Quiz quiz;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
