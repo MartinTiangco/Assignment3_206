@@ -4,19 +4,23 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import Application.Helpers.Creation;
 import Application.Helpers.Quiz;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
-public class Quiz_ScreenController extends Controller {
+public class Quiz_ScreenController extends Controller implements Initializable {
 	@FXML private AnchorPane _pane;
 	@FXML private Button _mainMenuButton;
 	@FXML private Button _nextButton;
@@ -28,50 +32,23 @@ public class Quiz_ScreenController extends Controller {
 	@FXML private String[] _difficultyLevels = {"Easy", "Medium", "Hard"};
 	
 	private Quiz _quiz;
-	private int _currentQuizNumber;
-	private int _numOfCreations;
-	
-	public void initialize() {
-		if (_pane.getChildren().contains(_startButton)) {
-			_difficulty.getItems().removeAll(_difficulty.getItems());
-			_difficulty.getItems().addAll(_difficultyLevels);
-			_difficulty.getSelectionModel().select(_difficultyLevels[0]);
-		}
-		
-		if (_pane.getChildren().contains(_nextButton)) {
-			// extract the current quiz
-			System.out.println(getParentController().toString());
-			_quiz = ((Quiz_ScreenController)(getParentController())).getQuiz();
-			_quizScreen.getChildren().add(_quiz.createQuizScreen());
-			
-			
-			//System.out.println(this.getParentController() == null);
-			//_quiz = ((Quiz_ScreenController) this.getParentController()).getQuiz();
-		}
+	private MediaView _mediaView;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+
 	}
-	
-	public void handleStart() {
-		String difficulty = _difficulty.getValue().toString();
 
-		// get the total number of creations
-		
-		_quiz = new Quiz();
-		_quiz.setDifficulty(difficulty);
-
-
-		loadScreen("Quiz", "/Application/fxml/Quiz_Easy.fxml","");
-
-
-		
-		// closes
-		Stage stage = (Stage) _startButton.getScene().getWindow();
-        stage.close();
-	}
 	
 	public void handleNextCreation() {
 		_quiz.incrementCurrentQuestionNumber();
-        
-	if (_currentQuizNumber > _numOfCreations) {
+		if (_mediaView != null) {
+            _mediaView.getMediaPlayer().dispose();
+        }
+		System.out.println("Question" + _quiz.getCurrentQuestionNumber());
+		System.out.println("Total" + _quiz.getTotal());
+	if (_quiz.getCurrentQuestionNumber() > _quiz.getTotal()) {
 			// changes button text to Finish! when all creations have played
 			// at the moment we are just going to the score screen
 		Stage stage = (Stage) _nextButton.getScene().getWindow();
@@ -81,7 +58,8 @@ public class Quiz_ScreenController extends Controller {
 			// load the same screen but with a different video
 		_quizScreen.getChildren().clear();
 		_guess.clear();
-		_quizScreen.getChildren().add(_quiz.createQuizScreen());
+        _mediaView = _quiz.createQuizScreen();
+		_quizScreen.getChildren().add(_mediaView);
 		}
 	}
 	
@@ -96,11 +74,13 @@ public class Quiz_ScreenController extends Controller {
 		Stage stage = (Stage) _tryAgainButton.getScene().getWindow();
         stage.close();
 	}
-	
-	public Quiz getQuiz() {
-		return _quiz;
-	}
-	
+
+	public void Start(){
+	    _quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
+	    _mediaView = _quiz.createQuizScreen();
+	    _quizScreen.getChildren().add(_mediaView);
+    }
+
 //	public void extractQuizContent() {
 //			try {
 //				String quiz = System.getProperty("user.dir") + System.getProperty("file.separator") + "quiz.txt";
@@ -154,7 +134,7 @@ public class Quiz_ScreenController extends Controller {
 //            System.out.println("Problem reading file.");
 //        }
 //	}
-	
+
 //	public void writeIntoNextCreation() {
 //		try {
 //            String quiz = System.getProperty("user.dir") + System.getProperty("file.separator") + "quiz.txt";

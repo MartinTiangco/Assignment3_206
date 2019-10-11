@@ -85,14 +85,15 @@ public class Controller {
 
     }
 
-    public void loadScreen(String stageName, String fxmlFile, String cssFile) {
+    public Controller loadScreen(String stageName, String fxmlFile, String cssFile) {
         Stage stage = new Stage();
-
+        Controller controller = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
-            Controller controller = loader.getController();
+            controller = loader.getController();
             controller.setCurrentController(controller);
+            System.out.println(_currentController);
             controller.setParentController(_currentController);
             controller.setStyleSheet(_styleSheet);
             stage.setTitle("VARpedia - " + stageName);
@@ -110,5 +111,6 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return controller;
     }
 }
