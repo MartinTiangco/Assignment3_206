@@ -1,0 +1,7 @@
+#_mainMenuButton{
+ -fx-graphic: url('../assets/quit.png');
+}
+
+#_startButton{
+ -fx-graphic: url('../assets/play.png');
+}

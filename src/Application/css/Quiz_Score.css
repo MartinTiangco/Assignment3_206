@@ -1,0 +1,7 @@
+#_mainMenuButton{
+ -fx-graphic: url('../assets/quit.png');
+}
+
+#_tryAgainButton{
+ -fx-graphic: url('../assets/restart.png');
+}

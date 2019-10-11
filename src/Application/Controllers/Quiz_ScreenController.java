@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import Application.Helpers.AlertMessage;
 import Application.Helpers.Quiz;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -31,8 +33,6 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
-
-
 	public void handleNextCreation() {
 		_quiz.addUserAnswer(_guess.getText());
 		_quiz.incrementCurrentQuestionNumber();
@@ -45,7 +45,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		System.out.println("Question" + _quiz.getCurrentQuestionNumber());
 		System.out.println("Total" + _quiz.getTotal());
 		if (_quiz.getCurrentQuestionNumber() >= _quiz.getTotal()) {
-			Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml","");
+			Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml", "/Application/css/Quiz_Score.css");
 			System.out.println("reached");
 			((Quiz_Score_ScreenController)controller).evaluate();
 			Stage stage = (Stage) _nextButton.getScene().getWindow();
@@ -58,18 +58,26 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 			_quizScreen.getChildren().clear();
 			_guess.clear();
 			_mediaView = _quiz.createQuizScreen();
+			fitToParent();
 			_quizScreen.getChildren().add(_mediaView);
 		}
 	}
 
 
 	public void Start(){
-		_quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
-		_mediaView = _quiz.createQuizScreen();
-		_quizScreen.getChildren().add(_mediaView);
-	}
+	    _quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
+	    _mediaView = _quiz.createQuizScreen();
+	    fitToParent();
+	    _quizScreen.getChildren().add(_mediaView);
+    }
 
-	public Quiz getQuiz() {
-		return _quiz;
-	}
+    public Quiz getQuiz() {
+        return _quiz;
+    }
+    
+    public void fitToParent() {
+    	// set the mediaview to fit the pane parent
+    	_mediaView.fitWidthProperty().bind(_quizScreen.widthProperty()); 
+    	_mediaView.fitHeightProperty().bind(_quizScreen.heightProperty());
+    }
 }

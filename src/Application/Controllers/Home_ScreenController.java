@@ -159,7 +159,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     		AlertMessage alert = new AlertMessage("no_creations_found");
     		Platform.runLater(alert);
     	} else {
-        	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "");
+        	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "/Application/css/Quiz_Start.css");
     	}
     }
 

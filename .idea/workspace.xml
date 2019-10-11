@@ -2,82 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d11e4d-52eb-4f13-beaa-80e54aaf9d80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid6214.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid6496.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/AeroFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroButtonSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroCheckBoxSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroGroupBoxSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroRadioButtonSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/util/BindableTransition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/aerofx/src/main/resources/org/aerofx/win7.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Start_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/quiz.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/bootstrap3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/Roboto-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/Roboto-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/controlStyle1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/controlStyle2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/flatred.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/lnf_demo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/sky.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Settings_Screen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ap_-_apple_-_8.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid7900.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/bronze_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/quit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/restart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/trophy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Score.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Start.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid6214.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid6496.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
