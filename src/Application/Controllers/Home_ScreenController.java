@@ -1,6 +1,7 @@
 package Application.Controllers;
 
 import Application.Helpers.AlertMessage;
+import Application.Helpers.Cleaner;
 import Application.Helpers.Creation;
 import Application.Helpers.MediaBar;
 import Application.Helpers.Quiz;
@@ -116,32 +117,18 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML
     public void handleAdd() {
         loadScreen("Add Audio", "/Application/fxml/Add_Audio_Screen.fxml", "/Application/css/Add_Audio_Screen.css");
-//        Stage addAudioStage = new Stage();
-//        try {
-//        	// loads the Add Audio Screen
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Add_Audio_Screen.fxml"));
-//            Parent root = loader.load();
-//            Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
-//            Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
-//            Scene scene = new Scene(root, 1013, 692);
-//            Add_Audio_ScreenController.setParentController(this);
-//            scene.getStylesheets().addAll(this.getClass().getResource("").toExternalForm());
-//            addAudioStage.setTitle("VARpedia - Add Audio");
-//            addAudioStage.setScene(scene);
-//            addAudioStage.show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         Update();
     }
 
     @FXML
     public void handleDelete() {
+    	Cleaner cleaner = new Cleaner();
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
             for (Creation creation : listOfCreations) {
-                File filePath = new File("Creation_Directory/" + creation.getFileName());
+            	System.out.println("Creation_Directory/" + creation.getFolderName());
+                File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");
                 alert.showAndWait().ifPresent(response -> {
@@ -157,6 +144,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                                 listOfTabToBeRemoved.add(tab);
                             }
                         }
+                        cleaner.cleanCreation(creation.getFolderName());
                         filePath.delete();
                         _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
                     }

@@ -44,7 +44,6 @@ public class UpdateHelper extends Task<Long> {
 
 	private List<String> extractFromDirectory() {
 		List<String> listOfFilenames = new ArrayList<>();
-		File dir = new File(DIR);
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
 
 		for (File File : listOfFiles) {

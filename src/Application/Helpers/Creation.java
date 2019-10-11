@@ -7,6 +7,7 @@ public class Creation {
     private String dateModified = null;
     private String videoLength = null;
     private String fileName = null;
+    private String folderName = null;
 
 
     public Creation(String name, String termSearched, String dateModified, String videoLength, String fileName) {
@@ -15,6 +16,8 @@ public class Creation {
         this.dateModified = dateModified;
         this.videoLength = videoLength;
         this.fileName = fileName;
+        folderName = fileName.substring(0, fileName.indexOf(System.getProperty("file.separator")));
+        
     }
 
     public String getName() {
@@ -55,5 +58,9 @@ public class Creation {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+    
+    public String getFolderName() {
+    	return folderName;
     }
 }
