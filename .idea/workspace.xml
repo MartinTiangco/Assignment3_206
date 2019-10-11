@@ -8,8 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz.txt" beforeDir="false" afterPath="$PROJECT_DIR$/quiz.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/EasyQuiz.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Easy.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Easy.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +108,8 @@
       <workItem from="1570574459632" duration="1425000" />
       <workItem from="1570577375494" duration="12617000" />
       <workItem from="1570679908661" duration="511000" />
-      <workItem from="1570680443210" duration="2151000" />
+      <workItem from="1570680443210" duration="2317000" />
+      <workItem from="1570755986129" duration="5330000" />
     </task>
     <servers />
   </component>

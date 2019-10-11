@@ -1,6 +1,7 @@
 package Application.Helpers;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.Event;
@@ -19,13 +20,14 @@ import javafx.scene.media.MediaView;
  *
  */
 public class Quiz {
-	protected int _score = 0;
-	protected int _total;
-	protected List<Creation> _listOfCreations;
-	
-	public Quiz(int total, List<Creation> listOfCreations) {
-		_total = total;
-		_listOfCreations = listOfCreations;
+	private final String DIR = "./Creation_Directory/";
+	private int _score = 0;
+	private int _total;
+	private int _currentQuestionNumber = 0;
+	private String _difficulty;
+
+	public Quiz() {
+		_total = new File(DIR).listFiles(File::isDirectory).length;
 	}
 	
 	public int getScore() {
@@ -35,12 +37,53 @@ public class Quiz {
 	public int getTotal() {
 		return _total;
 	}
-	
-	public List<Creation> getListOfCreations() {
-		return _listOfCreations;
+
+	public void setScore(int score) {
+		this._score = score;
 	}
 
-	public void play(int i) {
+	public void setTotal(int total) {
+		this._total = total;
 	}
-	
+
+	public int getCurrentQuestionNumber() {
+		return _currentQuestionNumber;
+	}
+
+	public void setCurrentQuestionNumber(int currentQuestionNumber) {
+		this._currentQuestionNumber = currentQuestionNumber;
+	}
+
+	public void incrementCurrentQuestionNumber(){
+		_currentQuestionNumber++;
+	}
+
+	public String getDifficulty() {
+		return _difficulty;
+	}
+
+	public void setDifficulty(String difficulty) {
+		this._difficulty = difficulty;
+	}
+
+	public MediaView createQuizScreen(){
+		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
+		Media video;
+		if (_difficulty.equals("Easy")) {
+			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "video.mp4");
+		}
+		else if (_difficulty.equals("Medium")){
+			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
+		}
+		else{
+			video = new Media(listOfFiles[_currentQuestionNumber].toURI().toString() + System.getProperty("file.separator") + "slideshow.mp4");
+		}
+		MediaPlayer player = new MediaPlayer(video);
+		player.setAutoPlay(true);
+		MediaView mediaView = new MediaView();
+		mediaView.setMediaPlayer(player);
+		mediaView.setFitHeight(400);
+		mediaView.setFitWidth(500);
+		return mediaView;
+	}
 }

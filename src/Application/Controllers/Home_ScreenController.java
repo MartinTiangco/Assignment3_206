@@ -116,22 +116,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML
     public void handleAdd() {
         loadScreen("Add Audio", "/Application/fxml/Add_Audio_Screen.fxml", "/Application/css/Add_Audio_Screen.css");
-//        Stage addAudioStage = new Stage();
-//        try {
-//        	// loads the Add Audio Screen
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Add_Audio_Screen.fxml"));
-//            Parent root = loader.load();
-//            Add_Audio_ScreenController Add_Audio_ScreenController = loader.getController();
-//            Add_Audio_ScreenController.setCurrentController(Add_Audio_ScreenController);
-//            Scene scene = new Scene(root, 1013, 692);
-//            Add_Audio_ScreenController.setParentController(this);
-//            scene.getStylesheets().addAll(this.getClass().getResource("").toExternalForm());
-//            addAudioStage.setTitle("VARpedia - Add Audio");
-//            addAudioStage.setScene(scene);
-//            addAudioStage.show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         Update();
     }
 
