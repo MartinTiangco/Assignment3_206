@@ -1,6 +1,7 @@
 package Application.Controllers;
 
 import Application.Helpers.AlertMessage;
+import Application.Helpers.Cleaner;
 import Application.Helpers.Creation;
 import Application.Helpers.MediaBar;
 import Application.Helpers.Quiz;
@@ -121,11 +122,13 @@ public class Home_ScreenController extends Controller implements Initializable {
 
     @FXML
     public void handleDelete() {
+    	Cleaner cleaner = new Cleaner();
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
             for (Creation creation : listOfCreations) {
-                File filePath = new File("Creation_Directory/" + creation.getFileName());
+            	System.out.println("Creation_Directory/" + creation.getFolderName());
+                File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");
                 alert.showAndWait().ifPresent(response -> {
@@ -141,6 +144,7 @@ public class Home_ScreenController extends Controller implements Initializable {
                                 listOfTabToBeRemoved.add(tab);
                             }
                         }
+                        cleaner.cleanCreation(creation.getFolderName());
                         filePath.delete();
                         _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
                     }
@@ -155,7 +159,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     		AlertMessage alert = new AlertMessage("no_creations_found");
     		Platform.runLater(alert);
     	} else {
-            System.out.println(getClass().getResource("/Application/fxml/Quiz_Start.fxml"));
         	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "");
     	}
     }

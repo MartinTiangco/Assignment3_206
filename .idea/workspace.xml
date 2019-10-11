@@ -7,10 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple200_-_apple_-_21/slideshow.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple200_-_apple_-_21/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple200_-_apple_-_21/wikit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleapple_-_apple_-_29/creation.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleapple_-_apple_-_29/slideshow.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleapple_-_apple_-_29/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleapple_-_apple_-_29/wikit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleappleapple_-_apple_-_29/creation.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleappleapple_-_apple_-_29/slideshow.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleappleapple_-_apple_-_29/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/appleappleapple_-_apple_-_29/wikit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +121,7 @@
       <workItem from="1570679908661" duration="511000" />
       <workItem from="1570680443210" duration="2317000" />
       <workItem from="1570755986129" duration="7615000" />
-      <workItem from="1570764596888" duration="5069000" />
+      <workItem from="1570764596888" duration="9150000" />
     </task>
     <servers />
   </component>
