@@ -1,11 +1,14 @@
 package Application.Helpers;
 
+import java.io.File;
+
 public class Question {
 
     private String questionNumber;
     private String correctAnswer;
     private String userAnswer;
     private Boolean correctness = false;
+    private File creationTested;
 
     public String getQuestionNumber() {
         return questionNumber;
@@ -37,5 +40,13 @@ public class Question {
 
     public void setCorrectness(Boolean correctness) {
         this.correctness = correctness;
+    }
+
+    public File getCreationTested() {
+        return creationTested;
+    }
+
+    public void setCreationTested(File creationTested) {
+        this.creationTested = creationTested;
     }
 }

@@ -36,8 +36,6 @@ public class Main extends Application {
             }
         }
         br.close();
-
-        System.out.println(stylesheet);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Welcome_Screen.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();

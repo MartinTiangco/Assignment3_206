@@ -42,34 +42,46 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		if (_mediaView != null) {
 			_mediaView.getMediaPlayer().dispose();
 		}
-		System.out.println("Question" + _quiz.getCurrentQuestionNumber());
-		System.out.println("Total" + _quiz.getTotal());
 		if (_quiz.getCurrentQuestionNumber() >= _quiz.getTotal()) {
 			Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml", "/Application/css/Quiz_Score.css");
-			System.out.println("reached");
 			((Quiz_Score_ScreenController)controller).evaluate();
 			Stage stage = (Stage) _nextButton.getScene().getWindow();
 			stage.close();
 
 		} else {
 			// load the same screen but with a different video
-			System.out.println(_guess.getText());
-			System.out.println(_quiz.getCorrectAnswer());
 			_quizScreen.getChildren().clear();
 			_guess.clear();
-			_mediaView = _quiz.createQuizScreen();
-			fitToParent();
-			_quizScreen.getChildren().add(_mediaView);
+			if (_quiz.getDifficulty().equals("Hard")){
+				hardQuiz();
+			}
+			else {
+				_mediaView = (MediaView) _quiz.createQuizScreen().getChildren().get(0);
+				fitToParent();
+				_quizScreen.getChildren().add(_mediaView);
+			}
 		}
 	}
 
 
 	public void Start(){
 	    _quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
-	    _mediaView = _quiz.createQuizScreen();
-	    fitToParent();
-	    _quizScreen.getChildren().add(_mediaView);
+		if (_quiz.getDifficulty().equals("Hard")){
+			hardQuiz();
+		}
+		else {
+			_mediaView = (MediaView) _quiz.createQuizScreen().getChildren().get(0);
+			fitToParent();
+			_quizScreen.getChildren().add(_mediaView);
+		}
     }
+
+    public void hardQuiz() {
+		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
+		_quizScreen.getChildren().add(textArea);
+		textArea.prefWidthProperty().bind(_quizScreen.widthProperty());
+		textArea.prefHeightProperty().bind(_quizScreen.heightProperty());
+	}
 
     public Quiz getQuiz() {
         return _quiz;

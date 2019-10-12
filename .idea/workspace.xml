@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d11e4d-52eb-4f13-beaa-80e54aaf9d80" name="Default Changelist" comment="">
+    <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/Creation_Directory/ap_-_apple_-_8.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/wikit.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hs_err_pid7900.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Application/assets/bronze_medal.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Application/assets/gold_medal.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Application/assets/quit.png" afterDir="false" />
@@ -13,11 +18,13 @@
       <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Score.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Start.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid6214.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid6496.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
@@ -30,17 +37,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -69,13 +74,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="97d11e4d-52eb-4f13-beaa-80e54aaf9d80" name="Default Changelist" comment="" />
-      <created>1570785142718</created>
+      <changelist id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="" />
+      <created>1570850387028</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570785142718</updated>
+      <updated>1570850387028</updated>
+      <workItem from="1570850390199" duration="8008000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
