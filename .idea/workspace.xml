@@ -2,40 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/ap_-_apple_-_8.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/creation.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/slideshow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/wikit.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid7900.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/bronze_medal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/gold_medal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/quit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/restart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/silver_medal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/assets/trophy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Score.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Start.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -79,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570850387028</updated>
-      <workItem from="1570850390199" duration="8008000" />
+      <workItem from="1570850390199" duration="19094000" />
     </task>
     <servers />
   </component>

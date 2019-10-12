@@ -46,9 +46,9 @@
                         <TextField fx:id="_nameInput" layoutX="20.0" layoutY="14.0" onAction="#handleCreate" prefHeight="31.0" prefWidth="274.0" promptText="Enter filename" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="303.0" layoutY="121.0" prefHeight="451.0" prefWidth="437.0">
+                  <AnchorPane layoutX="303.0" layoutY="121.0" prefHeight="262.0" prefWidth="395.0">
                      <children>
-                        <ImageView fx:id="_imageView" fitHeight="432.0" fitWidth="424.0" layoutX="7.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="_imageView" fitHeight="313.0" fitWidth="418.0" layoutX="2.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="14.0" layoutY="7.0" prefHeight="107.0" prefWidth="584.0">
@@ -60,6 +60,12 @@
                         <CheckBox fx:id="_selectAll" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" visible="false" />
                      </children>
                   </AnchorPane>
+                  <ListView fx:id="_selectedImages" layoutX="14.0" layoutY="460.0" orientation="HORIZONTAL" prefHeight="159.0" prefWidth="707.0" />
+                  <Label layoutX="39.0" layoutY="423.0" text="Selecteed Images: ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </items>
