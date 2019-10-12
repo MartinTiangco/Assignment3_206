@@ -8,36 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid13230.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid14199.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid16233.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid16623.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid17003.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid17262.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid18104.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid18422.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid1869.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid18697.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid20767.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid21438.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid23808.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid28285.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid3034.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid32122.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid3295.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid3591.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid4977.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid6222.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid6527.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid6917.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid7216.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid7479.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid7802.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid8403.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid9887.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +104,7 @@
       <workItem from="1570679908661" duration="511000" />
       <workItem from="1570680443210" duration="2317000" />
       <workItem from="1570755986129" duration="7615000" />
-      <workItem from="1570764596888" duration="10590000" />
+      <workItem from="1570764596888" duration="11609000" />
     </task>
     <servers />
   </component>

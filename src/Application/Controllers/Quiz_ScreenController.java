@@ -44,8 +44,8 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		System.out.println("Question" + _quiz.getCurrentQuestionNumber());
 		System.out.println("Total" + _quiz.getTotal());
 	if (_quiz.getCurrentQuestionNumber() >= _quiz.getTotal()) {
+
 		Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml","");
-		System.out.println("reached");
 		((Quiz_Score_ScreenController)controller).evaluate();
 		Stage stage = (Stage) _nextButton.getScene().getWindow();
 		stage.close();
