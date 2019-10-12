@@ -37,8 +37,8 @@ public class VideoGenerator extends Task<Long> {
 	public VideoGenerator(String term, Image_Selection_ScreenController controller) {
 		_term = term;
 		_controller = controller;
-		_audioFile = OUTPUT_DIR + "output" 
-				+ ((Add_Audio_ScreenController)_controller.getParentController()).getAudioFileId() 
+		_audioFile = OUTPUT_DIR + "music_output" 
+				+ ((Add_Audio_ScreenController)_controller.getParentController().getParentController()).getAudioFileId() 
 				+ ".wav";
 	}
 
@@ -53,7 +53,7 @@ public class VideoGenerator extends Task<Long> {
 		        stage.close();
 		        
 		        // get the home screen controller and set the progress indicator and progress label visible
-		        Home_ScreenController homeController = (Home_ScreenController) _controller.getParentController().getParentController();
+		        Home_ScreenController homeController = (Home_ScreenController) _controller.getParentController().getParentController().getParentController();
 		        ProgressIndicator progress = homeController.getProgressIndicator();
 		        progress.setProgress(-1);
 		        progress.setVisible(true);
@@ -112,17 +112,14 @@ public class VideoGenerator extends Task<Long> {
 			@Override
 			public void run() {
 		        // get the home screen controller and set the progress indicator and progress label invisible
-		        Home_ScreenController homeController = (Home_ScreenController) _controller.getParentController().getParentController();
+		        Home_ScreenController homeController = (Home_ScreenController) _controller.getParentController().getParentController().getParentController();
 		        homeController.getProgressIndicator().setVisible(false);
 		        homeController.getProgressMsg().setVisible(false);
 			}	
         };
         Platform.runLater(finished);
-		
-		// delete output.wav now that we don't need it anymore
-//		Cleaner cleaner = new Cleaner();
-//		cleaner.cleanAll();
-		return null;
+        
+        return null;
 	}
 	
 	private void retrieveAudioLength() {
@@ -187,6 +184,11 @@ public class VideoGenerator extends Task<Long> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        // removes the audio and output directory contents (all files are temporary)
+        Cleaner cleaner = new Cleaner();
+        cleaner.cleanAudio();
+        cleaner.cleanOutput();
 	}
 
 	public void addImage(String image) {
