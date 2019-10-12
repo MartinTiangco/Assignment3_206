@@ -50,26 +50,8 @@ public class AudioCombiner extends Task<Long> {
             	Runnable runnable = new Runnable() {
 					@Override
 					public void run() {
-						// removes the audio directory contents (all files are temporary)
-						Cleaner cleaner = new Cleaner();
-						cleaner.cleanAudio();
-						
 						// loads the Image Selection Screen
-						_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
-//						Stage imageScreen = new Stage();
-//		        		try {
-//		        			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Application/fxml/Image_Selection_Screen.fxml"));
-//		        	        Parent root = loader.load();
-//		        	        Image_Selection_ScreenController Image_Selection_ScreenController = loader.getController();
-//		        	        Image_Selection_ScreenController.setCurrentController(Image_Selection_ScreenController);
-//		        	        Image_Selection_ScreenController.setParentController(_controller);
-//		        	        imageScreen.setTitle("VARpedia - Image Selection Screen");
-//		        	        Scene scene = new Scene(root, 631, 500);
-//		        	        imageScreen.setScene(scene);
-//		        	        imageScreen.show();
-//		        		} catch (Exception e) {
-//		        			e.printStackTrace();
-//		        		}
+						_controller.loadScreen("Background Music Selection", "/Application/fxml/Background_Music_Screen.fxml", "");
 		        		
 		        		// closes the Add Audio screen
 		        		Stage stage = (Stage) _controller.getAudioList().getScene().getWindow();

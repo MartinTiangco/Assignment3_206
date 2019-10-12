@@ -29,6 +29,7 @@ public class AlertMessage implements Runnable {
 	private final String CREATION_SUCCESSFUL = "creation_successful";
 	private final String TOO_MANY_LINES = "Please select 5 lines or less";
 	private final String NO_CREATIONS_FOUND = "no_creations_found";
+	private final String BGM_FAILED = "bgm_failed";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -64,6 +65,9 @@ public class AlertMessage implements Runnable {
 		  case NO_CREATIONS_FOUND:
 			  showAlert("Please make a creation first!");
 			  break;
+		  case BGM_FAILED:
+			  showAlert("We are sorry, but the background music can not be added.");
+			  break;
 		}
 	}
 		
@@ -89,7 +93,7 @@ public class AlertMessage implements Runnable {
 		alert.setContentText(msg);
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
-		((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+		((Home_ScreenController)(controller.getParentController().getParentController()).getParentController()).Update();
 	}
 
 	private void waitForConfirmation(String msg){

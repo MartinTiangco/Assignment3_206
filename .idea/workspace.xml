@@ -2,10 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.Music_Directory/JeffSpeed68_-_Little_reindeer.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.Music_Directory/airtone_-_commonGround.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.Music_Directory/cyba_-_yellow.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.Music_Directory/septahelix_-_Triptych_of_Snippets.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/a_-_apple_-_4/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/a_-_apple_-_4/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/a_-_apple_-_4/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/a_-_apple_-_4/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_6/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_6/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_6/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_6/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_9/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_9/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_9/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_9/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewihtmusic_-_apple_-_17/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewihtmusic_-_apple_-_17/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewihtmusic_-_apple_-_17/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewihtmusic_-_apple_-_17/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic2_-_apple_-_9/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic2_-_apple_-_9/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic2_-_apple_-_9/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic2_-_apple_-_9/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic_-_apple_-_25/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic_-_apple_-_25/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic_-_apple_-_25/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/applewithmusic_-_apple_-_25/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/bk_-_book_-_15/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/bk_-_book_-_15/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/bk_-_book_-_15/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/bk_-_book_-_15/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/nomusicapple_-_apple_-_15/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/nomusicapple_-_apple_-_15/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/nomusicapple_-_apple_-_15/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/nomusicapple_-_apple_-_15/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/Background_Music_ScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Controllers/MusicAdder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Track.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/TrackPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Music_Selection_Screen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/fxml/Background_Music_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.config" beforeDir="false" afterPath="$PROJECT_DIR$/.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570850387028</updated>
-      <workItem from="1570850390199" duration="19094000" />
+      <workItem from="1570850390199" duration="19577000" />
     </task>
     <servers />
   </component>

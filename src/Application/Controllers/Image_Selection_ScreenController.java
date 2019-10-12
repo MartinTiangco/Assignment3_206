@@ -113,8 +113,8 @@ public class Image_Selection_ScreenController extends Controller {
 		_entireScreenPane.setDisable(true);
 		_progressIndicator.setProgress(-1);
 		_progressIndicator.setVisible(true);
-
-		_term = ((Add_Audio_ScreenController)(this.getParentController())).getSearchInput();
+		
+		_term = ((Add_Audio_ScreenController)(this.getParentController().getParentController())).getSearchInput();
 		int numPics = Integer.parseInt(_input.getText());
 
 		// retrieves images from Flickr
