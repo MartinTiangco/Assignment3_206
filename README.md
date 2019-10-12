@@ -4,6 +4,7 @@
 # Members: Yuansheng Zhang - 688965143 - yzhb120
 #          Martin Tiangco - 105025927 - mtia116
 
+Our target audience is ESOL Students.
 
 # IMPORTANT: 
 To run this application, you need to be on the Beta Teaching Linux on ECSE Lab Computers.
