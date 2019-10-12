@@ -23,7 +23,7 @@
             </Label>
          </children>
       </TextFlow>
-      <Button fx:id="_startButton" layoutX="134.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="31.0" prefWidth="121.0" text="Start!" />
-      <Button fx:id="_mainMenuButton" layoutX="267.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleBack" text="Back to Home Menu" />
+      <Button fx:id="_startButton" layoutX="97.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="40.0" prefWidth="135.0" text="Start!" />
+      <Button fx:id="_mainMenuButton" layoutX="250.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="200.0" text="Back to Home Menu" />
    </children>
 </AnchorPane>

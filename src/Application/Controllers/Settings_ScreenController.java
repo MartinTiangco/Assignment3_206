@@ -15,25 +15,27 @@ public class Settings_ScreenController extends Controller implements Initializab
     @FXML private ComboBox<String> listOfStyles;
     @FXML private Button save;
 
+    private final static String BOOTSTRAP3 = "/Application/css/bootstrap3.css";
+    private final static String SKY = "/Application/css/jfx9be/sky.css";
+    private final static String RED = "/Application/css/jfx9be/flatred.css";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listOfStyles.getItems().addAll("BootStrap3", "Sky", "Red Devil");
-
-        listOfStyles.getSelectionModel().select(0);
     }
 
     public void handleSave(){
         String style = listOfStyles.getSelectionModel().getSelectedItem();
         switch(style) {
             case "BootStrap3":
-                setStyleSheet("/Application/css/bootstrap3.css");
+                setStyleSheet(BOOTSTRAP3);
                 break;
             case "Sky":
-                setStyleSheet("/Application/css/jfx9be/sky.css");
+                setStyleSheet(SKY);
                 break;
             case "Red Devil":
-                setStyleSheet("/Application/css/jfx9be/flatred.css");
+                setStyleSheet(RED);
                 break;
         }
 
@@ -44,6 +46,20 @@ public class Settings_ScreenController extends Controller implements Initializab
         stage = (Stage) save.getScene().getWindow();
         stage.close();
 
+    }
+
+    public void selectDefault() {
+        switch (this.getStyleSheet()) {
+            case BOOTSTRAP3:
+                listOfStyles.getSelectionModel().select(0);
+                break;
+            case SKY:
+                listOfStyles.getSelectionModel().select(1);
+                break;
+            case RED:
+                listOfStyles.getSelectionModel().select(2);
+                break;
+        }
     }
 
 }

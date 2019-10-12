@@ -159,12 +159,13 @@ public class Home_ScreenController extends Controller implements Initializable {
     		AlertMessage alert = new AlertMessage("no_creations_found");
     		Platform.runLater(alert);
     	} else {
-        	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "");
+        	loadScreen("Quiz", "/Application/fxml/Quiz_Start.fxml", "/Application/css/Quiz_Start.css");
     	}
     }
 
     public void handleSettings() {
-        loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
+        Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
+        ((Settings_ScreenController)controller).selectDefault();
     }
 
     public ArrayList<Creation> getCreations() {

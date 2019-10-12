@@ -93,7 +93,6 @@ public class Controller {
             Parent root = loader.load();
             controller = loader.getController();
             controller.setCurrentController(controller);
-            System.out.println(_currentController);
             controller.setParentController(_currentController);
             controller.setStyleSheet(_styleSheet);
             stage.setTitle("VARpedia - " + stageName);

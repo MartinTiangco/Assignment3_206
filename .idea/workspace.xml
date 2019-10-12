@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="softeng_206_a03:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="">
+    <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ap_-_apple_-_8.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/creation.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/slideshow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/video.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/wikit.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid7900.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/bronze_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/quit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/restart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/assets/trophy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Score.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Quiz_Start.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Start.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,35 +37,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1RUcOkwbruPqDJNOf7xb1D6Txma" />
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flickr-api-keys.txt" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -60,51 +61,25 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="VARpedia" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Application.Main" />
       <module name="softeng_206_a03" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8495b102-64cc-47b5-9981-838cd8f70772" name="Default Changelist" comment="" />
-      <created>1569671357374</created>
+      <changelist id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="" />
+      <created>1570850387028</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1569671357374</updated>
-      <workItem from="1569725092561" duration="20954000" />
-      <workItem from="1569791098904" duration="357000" />
-      <workItem from="1569791480578" duration="2062000" />
-      <workItem from="1569793575512" duration="2781000" />
-      <workItem from="1569816835152" duration="4935000" />
-      <workItem from="1569903023993" duration="54000" />
-      <workItem from="1569903106245" duration="176000" />
-      <workItem from="1570320039487" duration="616000" />
-      <workItem from="1570320763574" duration="3307000" />
-      <workItem from="1570504391385" duration="4769000" />
-      <workItem from="1570574459632" duration="1425000" />
-      <workItem from="1570577375494" duration="12617000" />
-      <workItem from="1570679908661" duration="511000" />
-      <workItem from="1570680443210" duration="2317000" />
-      <workItem from="1570755986129" duration="7615000" />
-      <workItem from="1570764596888" duration="11609000" />
+      <updated>1570850387028</updated>
+      <workItem from="1570850390199" duration="8008000" />
     </task>
     <servers />
   </component>
@@ -116,9 +91,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
