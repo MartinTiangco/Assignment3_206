@@ -22,12 +22,15 @@ public class Settings_ScreenController extends Controller implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listOfStyles.getItems().addAll("BootStrap3", "Sky", "Red Devil");
+        listOfStyles.getItems().addAll("Default", "BootStrap3", "Sky", "Red Devil");
     }
 
     public void handleSave(){
         String style = listOfStyles.getSelectionModel().getSelectedItem();
         switch(style) {
+            case "Default":
+                setStyleSheet("");
+                break;
             case "BootStrap3":
                 setStyleSheet(BOOTSTRAP3);
                 break;
@@ -50,14 +53,17 @@ public class Settings_ScreenController extends Controller implements Initializab
 
     public void selectDefault() {
         switch (this.getStyleSheet()) {
-            case BOOTSTRAP3:
+            case "":
                 listOfStyles.getSelectionModel().select(0);
                 break;
-            case SKY:
+            case BOOTSTRAP3:
                 listOfStyles.getSelectionModel().select(1);
                 break;
-            case RED:
+            case SKY:
                 listOfStyles.getSelectionModel().select(2);
+                break;
+            case RED:
+                listOfStyles.getSelectionModel().select(3);
                 break;
         }
     }

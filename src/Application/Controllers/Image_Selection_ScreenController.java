@@ -54,6 +54,7 @@ public class Image_Selection_ScreenController extends Controller {
 	public void initialize() {
 		_generateButton.setDisable(true);
 
+		_input.requestFocus();
 
 		_input.textProperty().addListener(new ChangeListener<String>() {
 			@Override

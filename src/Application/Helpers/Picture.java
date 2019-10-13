@@ -4,9 +4,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Picture extends javafx.scene.image.Image {
+public class Picture extends Image {
 
 
     private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
@@ -30,10 +31,6 @@ public class Picture extends javafx.scene.image.Image {
         imageView.setFitHeight(150);
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
-    }
-
-    public String getUrl() {
-        return url;
     }
 
     public final StringProperty nameProperty() {

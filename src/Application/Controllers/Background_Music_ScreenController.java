@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import Application.Helpers.AudioPlayer;
+import Application.Helpers.MusicAdder;
 import Application.Helpers.Track;
 import Application.Helpers.TrackPlayer;
 import javafx.fxml.FXML;
@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
 
 public class Background_Music_ScreenController extends Controller {
 	@FXML private Button _playButton;
