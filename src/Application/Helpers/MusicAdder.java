@@ -1,5 +1,6 @@
-package Application.Controllers;
+package Application.Helpers;
 
+import Application.Controllers.Background_Music_ScreenController;
 import Application.Helpers.AlertMessage;
 import Application.Helpers.Track;
 import javafx.application.Platform;
@@ -29,7 +30,7 @@ public class MusicAdder extends Task<Long> {
 		String output = OUTPUT_DIR + "music_" + _spokenFile;
 		
 		String cmd = "";	
-		if (_chosenTrack.getTrackName().equals("Default")) {
+		if (_chosenTrack.getTrackName().equals(_chosenTrack.getNoMusicString())) {
 			cmd = "ffmpeg -i " + spokenAudio + " " + output;
 		} else {
 			String bgMusic = MUSIC_DIR + _chosenTrack.getTrackName();

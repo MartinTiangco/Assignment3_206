@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import Application.Helpers.AudioPlayer;
+import Application.Helpers.MusicAdder;
 import Application.Helpers.Track;
 import Application.Helpers.TrackPlayer;
 import javafx.fxml.FXML;
@@ -14,8 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
 
 public class Background_Music_ScreenController extends Controller {
 	@FXML private Button _playButton;
@@ -27,6 +27,7 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private Label __trackLink;
 	@FXML private Label _author;
 	@FXML private MediaView _mediaView;
+	@FXML private StackPane _creditsPane;
 	
 	private TrackPlayer _trackPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
@@ -35,10 +36,11 @@ public class Background_Music_ScreenController extends Controller {
 	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
 	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
 	private final List<Track> TRACK = new ArrayList<Track>();
+	private final String NO_MUSIC = "No music";
 	
 	public void initialize() {
 		// populate the combo box
-		TRACK.add(new Track("Default"));
+		TRACK.add(new Track(NO_MUSIC));
 		
 		// extract all the tracks in the music directory
 		List<String> trackFiles = extractFromDirectory();
@@ -49,7 +51,35 @@ public class Background_Music_ScreenController extends Controller {
 		
 		_musicComboBox.getItems().removeAll(TRACK);
 		_musicComboBox.getItems().addAll(TRACK);
+		
+		// selects the default (No music)
 		_musicComboBox.getSelectionModel().select(TRACK.get(0));
+		_playButton.setDisable(true);
+	}
+	
+	public void handleSelect() {
+		// get the selected item
+		Track track = (Track)_musicComboBox.getValue();
+		
+		if (track.getTrackName() != NO_MUSIC) {
+			_playButton.setDisable(false);
+			_creditsPane.setVisible(true);
+			
+			// display the author and trackName
+			String trackFullName = track.getTrackName();
+
+			//gets the occurrence of the file separator pattern
+			int patternIndex = trackFullName.indexOf("_-_");
+			int lengthPattern = 3;
+			// get the occurrence of the extension .mp3
+			int extPatternIndex = trackFullName.indexOf(".mp3");
+			
+			_nameOfTrack.setText(trackFullName.substring(patternIndex + lengthPattern, extPatternIndex));
+			_author.setText(track.getAuthor());
+		} else {
+			_playButton.setDisable(true);
+			_creditsPane.setVisible(false);
+		}
 	}
 	
 	public void handleNext() {
@@ -68,9 +98,8 @@ public class Background_Music_ScreenController extends Controller {
 	}
 	
 	public void handlePlay() {
-		System.out.println("Reached");
 		// allow you to play audio without waiting for the first to finish
-		if (_musicComboBox.getValue().toString() != "Default") {
+		if (_musicComboBox.getValue().toString() != NO_MUSIC) {
 			terminatePlayers();
 			_trackPlayer = new TrackPlayer((Track)_musicComboBox.getValue(), this);
 			_playerExecutor = Executors.newSingleThreadExecutor();

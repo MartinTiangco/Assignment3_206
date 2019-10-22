@@ -45,7 +45,7 @@
                               <Insets bottom="10.0" />
                            </padding>
                         </Label>
-                        <TextArea editable="false" prefHeight="163.0" prefWidth="244.0" text="We can then 'Preview' or&#10;'Delete' the audio in the&#10;'List of Saved Audio'.&#10;&#10;Once you're happy, click on&#10;&quot;Next&quot;.">
+                        <TextArea editable="false" focusTraversable="false" prefHeight="163.0" prefWidth="244.0" text="We can then 'Preview' or&#10;'Delete' the audio in the&#10;'List of Saved Audio'.&#10;&#10;Once you're happy, click on&#10;&quot;Next&quot;.">
                            <font>
                               <Font size="15.0" />
                            </font>

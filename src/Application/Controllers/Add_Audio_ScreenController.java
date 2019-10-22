@@ -9,8 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
@@ -30,6 +29,7 @@ import java.util.regex.Pattern;
  *
  */
 public class Add_Audio_ScreenController extends Controller implements Initializable {
+	private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("datatype");
 	@FXML private Button _mainMenuButton;
 	@FXML private MediaView _mediaView;
 	@FXML private SplitPane _entireScreenPane;
@@ -99,6 +99,58 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
+
+
+		_savedAudio.setRowFactory(tv -> {
+			TableRow<Audio> row = new TableRow<>();
+
+			row.setOnDragDetected(event -> {
+				if (! row.isEmpty()) {
+					Integer index = row.getIndex();
+					Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+					db.setDragView(row.snapshot(null, null));
+					ClipboardContent cc = new ClipboardContent();
+					cc.put(SERIALIZED_MIME_TYPE, index);
+					db.setContent(cc);
+					event.consume();
+				}
+			});
+
+			row.setOnDragOver(event -> {
+				Dragboard db = event.getDragboard();
+				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+					if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+						event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+						event.consume();
+					}
+				}
+			});
+
+			row.setOnDragDropped(event -> {
+				Dragboard db = event.getDragboard();
+				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+					int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+					Audio draggedPerson = (Audio) _savedAudio.getItems().remove(draggedIndex);
+
+					int dropIndex ;
+
+					if (row.isEmpty()) {
+						dropIndex = _savedAudio.getItems().size() ;
+					} else {
+						dropIndex = row.getIndex();
+					}
+
+					_savedAudio.getItems().add(dropIndex, draggedPerson);
+
+					event.setDropCompleted(true);
+					_savedAudio.getSelectionModel().select(dropIndex);
+					event.consume();
+				}
+			});
+
+			return row ;
+		});
+
 	}
 
 	public void handlePlayText() {
