@@ -30,6 +30,7 @@ public class AlertMessage implements Runnable {
 	private final String TOO_MANY_LINES = "Please select 5 lines or less";
 	private final String NO_CREATIONS_FOUND = "no_creations_found";
 	private final String BGM_FAILED = "bgm_failed";
+	private final String NOT_FOUND = "not_found";
 	
 	public AlertMessage(String status) {
 		this.status = status;
@@ -67,6 +68,9 @@ public class AlertMessage implements Runnable {
 			  break;
 		  case BGM_FAILED:
 			  showAlert("We are sorry, but the background music can not be added.");
+			  break;
+		  case NOT_FOUND:
+			  showAlert("We are sorry, but the search term can not be found. Please try again.");
 			  break;
 		}
 	}
