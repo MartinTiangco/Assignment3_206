@@ -53,13 +53,19 @@ public class WikitWorker extends Task<Long> {
 			if (exitStatus == 0) {
 				String line = stdoutBuffered.readLine();
 				
-				// Writes line into raw.txt
-				writeIntoFile(line, rawFileWriter);
-				rawFileWriter.close();
-				
-				// Command to separate into sentences
-				sepLines = new ArrayList<>();
-				sepIntoSentences(sepLines);	
+				if (line.contains("not found :^(")) {
+					// term is not found
+					AlertMessage alert = new AlertMessage("not_found");
+					Platform.runLater(alert);
+				} else {
+					// Writes line into raw.txt
+					writeIntoFile(line, rawFileWriter);
+					rawFileWriter.close();
+					
+					// Command to separate into sentences
+					sepLines = new ArrayList<>();
+					sepIntoSentences(sepLines);		
+				}
 			}
 			
 			Append append = new Append();

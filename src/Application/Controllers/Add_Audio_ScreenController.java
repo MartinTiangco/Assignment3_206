@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Pattern;
 
 /**
  * The Controller for the Add Audio Screen.
@@ -100,7 +101,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_textDescription.setDisable(true);
 	}
 
-	@FXML
 	public void handlePlayText() {
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			// allows you to preview text without waiting for the first one to finish
@@ -113,7 +113,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	}
 
-	@FXML
 	public void handlePlayAudio() {
 		// allow you to play audio without waiting for the first to finish
 		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
@@ -132,11 +131,17 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		
 		_searchInput = _searchTextField.getText();
 
+		// if the search is empty then we reset the progress bar
 		if (!validateSearch(_searchInput)) {
+			// disable the progress indicator
+			_entireScreenPane.setDisable(false);
+			_progressIndicator.setProgress(1);
+			_progressIndicator.setVisible(false);
 			return;
 		}
 
 		try {
+			// clear the ListView
 			_textDescription.getItems().clear();
 
 			wikitSearch(_searchInput);
@@ -151,6 +156,12 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		// when the 'Save' button is pressed
 		if (_textDescription.getSelectionModel().getSelectedItems().size() > 5) {
 			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
+			Platform.runLater(alert);
+			return;
+		}
+		
+		if (!validateText()) {
+			AlertMessage alert = new AlertMessage("audio_combining_failed");
 			Platform.runLater(alert);
 			return;
 		}
@@ -242,6 +253,23 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		if (searchInput.trim().isEmpty()) {
 			return false;
 		}
+		return true;
+	}
+	
+	private boolean validateText() {
+		// checks if the selected item is just a punctuation mark and disallows it
+		String listString = (String.join("", _textDescription.getSelectionModel().getSelectedItems())).trim();
+		System.out.println(listString);
+		if (Pattern.matches("\\p{Punct}+", listString)) {
+		    return false;
+		}
+		
+		// this fixes a bug where punctuation marks are being selected
+		if (Pattern.matches("null", listString)) {
+			return false;
+		}
+		
+		// https://stackoverflow.com/questions/13925454/check-if-string-is-a-punctuation-character
 		return true;
 	}
 
