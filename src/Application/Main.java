@@ -6,6 +6,7 @@ import java.io.FileReader;
 
 import Application.Controllers.Controller;
 import Application.Controllers.Welcome_ScreenController;
+import com.aquafx_project.AquaFx;
 import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -45,6 +46,7 @@ public class Main extends Application {
         primaryStage.setTitle("Welcome to VARpedia");
         Scene scene = new Scene(root, 600, 400);
         scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm(), this.getClass().getResource(stylesheet).toExternalForm());
+//        AquaFx.style();
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(t -> {
             Platform.exit();

@@ -12,119 +12,112 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
    <children>
-      <SplitPane fx:id="_entireScreenPane" dividerPositions="0.2561819980217606" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1013.0" stylesheets="@/Application/css/Add_Audio_Screen.css">
+      <SplitPane fx:id="_entireScreenPane" dividerPositions="0.603448275862069" orientation="VERTICAL" prefHeight="698.0" prefWidth="887.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-            <AnchorPane prefHeight="507.0" prefWidth="206.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="754.0">
                <children>
-                  <Button fx:id="_mainMenuButton" focusTraversable="false" layoutX="23.0" layoutY="645.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" prefHeight="31.0" prefWidth="210.0" text="Back to Home Menu" />
-                  <TextFlow layoutX="6.0" layoutY="12.0" prefHeight="609.0" prefWidth="244.0">
+                  <TextField fx:id="_searchTextField" layoutX="146.0" layoutY="14.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="350.0" promptText="Enter term to be searched">
+                     <tooltip>
+                        <Tooltip text="TODO" />
+                     </tooltip>
+                  </TextField>
+                  <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="73.0" onKeyPressed="#deleteLines" prefHeight="312.0" prefWidth="631.0" />
+                  <Button fx:id="_searchButton" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="100.0" text="Search" />
+                  <VBox layoutX="661.0" layoutY="23.0" prefHeight="357.0" prefWidth="210.0" spacing="20.0">
                      <children>
-                        <Label text="Instructions:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        <Label text="Voice:">
                            <padding>
-                              <Insets bottom="5.0" />
+                              <Insets left="10.0" right="10.0" />
                            </padding>
                         </Label>
-                        <TextArea editable="false" focusTraversable="false" prefHeight="391.0" prefWidth="245.0" text="Want to learn &#10;about a term?&#10;&#10;Search it in the box &#10;and the information &#10;will be shown.&#10;&#10;Select the lines you wish&#10;to save.&#10;TIP: Use 'Shift' key to&#10;select multiple lines.&#10;&#10;Use the voice settings to&#10;customize the voice.&#10;&#10;You can then 'Preview' and &#10;'Save' it to the &#10;'List of Saved Audio'.&#10;&#10;">
-                           <font>
-                              <Font size="15.0" />
-                           </font></TextArea>
-                        <Label text="Label" visible="false">
+                        <ComboBox fx:id="_voiceBox" prefHeight="26.0" prefWidth="179.0" promptText="Voice" />
+                        <Label text="Speed:">
                            <padding>
-                              <Insets bottom="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </padding>
                         </Label>
-                        <TextArea editable="false" focusTraversable="false" prefHeight="163.0" prefWidth="244.0" text="We can then 'Preview' or&#10;'Delete' the audio in the&#10;'List of Saved Audio'.&#10;&#10;Once you're happy, click on&#10;&quot;Next&quot;.">
+                        <Slider fx:id="_speedSlider" blockIncrement="320.0" max="400.0" min="80.0" value="175.0" />
+                        <Label text="Pitch:">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                        <Slider fx:id="_pitchSlider" blockIncrement="100.0" max="99.0" value="50.0" />
+                        <Button fx:id="_playTextButton" mnemonicParsing="false" onAction="#handlePlayText" prefHeight="40.0" prefWidth="200.0" text="Preview" />
+                        <Button fx:id="_createAudioButton" mnemonicParsing="false" onAction="#handleCreateAudio" prefHeight="40.0" prefWidth="200.0" text="Save" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="_helpButton" layoutX="820.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#showHelpTopHalf" onMouseExited="#hideHelpTopHalf" prefHeight="40.0" prefWidth="40.0" />
+                  <Button fx:id="_mainMenuButton" focusTraversable="false" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" prefHeight="40.0" prefWidth="100.0" text="Back" />
+                  <StackPane fx:id="_helpBottomHalf" layoutX="21.0" layoutY="73.0" prefHeight="313.0" prefWidth="631.0" visible="false" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="73.0">
+                     <children>
+                        <TextArea editable="false" focusTraversable="false" prefHeight="163.0" prefWidth="244.0" promptText="_helpBottomHalf" text="We can then 'Preview' or 'Delete' the audio in the 'List of Saved Audio'.&#10;&#10;Once you're happy, click on &quot;Next&quot;." wrapText="true">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="23.0" />
                            </font>
                         </TextArea>
                      </children>
-                  </TextFlow>
+                  </StackPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="_bottomHalf" minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">
                <children>
-                  <SplitPane dividerPositions="0.5148514851485149" orientation="VERTICAL" prefHeight="507.0" prefWidth="333.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="722.0">
-                           <children>
-                              <TextField fx:id="_searchTextField" layoutX="21.0" layoutY="14.0" onAction="#handleSearch" prefHeight="26.0" prefWidth="258.0" promptText="Enter term to be searched" />
-                              <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="48.0" onKeyPressed="#deleteLines" prefHeight="282.0" prefWidth="478.0" />
-                              <Button fx:id="_searchButton" layoutX="292.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="73.0" text="Search" />
-                              <VBox layoutX="497.0" layoutY="27.0" prefHeight="231.0" prefWidth="198.0" spacing="20.0">
-                                 <children>
-                                    <Label text="Voice:">
-                                       <padding>
-                                          <Insets left="10.0" right="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <ComboBox fx:id="_voiceBox" prefHeight="26.0" prefWidth="179.0" promptText="Voice" />
-                                    <Label text="Speed:">
-                                       <padding>
-                                          <Insets left="10.0" right="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <Slider fx:id="_speedSlider" blockIncrement="320.0" max="400.0" min="80.0" value="175.0" />
-                                    <Label text="Pitch:">
-                                       <padding>
-                                          <Insets left="10.0" right="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <Slider fx:id="_pitchSlider" blockIncrement="100.0" max="99.0" value="50.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </VBox>
-                              <AnchorPane layoutX="497.0" layoutY="303.0" prefHeight="27.0" prefWidth="236.0">
-                                 <children>
-                                    <Button fx:id="_playTextButton" layoutX="19.0" layoutY="1.0" mnemonicParsing="false" onAction="#handlePlayText" prefHeight="26.0" prefWidth="99.0" text="Preview" />
-                                    <Button fx:id="_createAudioButton" layoutX="130.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleCreateAudio" prefHeight="26.0" prefWidth="99.0" text="Save" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane fx:id="_bottomHalf" minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="776.0">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" text="List of Saved Audio (Audio files to be combined)" underline="true">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="_playAudioButton" layoutX="621.0" layoutY="140.0" mnemonicParsing="false" onAction="#handlePlayAudio" prefHeight="50.0" prefWidth="50.0" />
-                              <Button fx:id="_deleteAudioButton" layoutX="682.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleDeleteAudio" prefHeight="50.0" prefWidth="50.0" />
-                              <Button layoutX="622.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="60.0" prefWidth="109.0" text="Next" textAlignment="CENTER" wrapText="true" />
-                              <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />
-                              <TableView fx:id="_savedAudio" layoutX="14.0" layoutY="43.0" prefHeight="273.0" prefWidth="592.0">
-                                <columns>
-                                  <TableColumn fx:id="_termSearched" prefWidth="186.0" text="Searched Term" />
-                                  <TableColumn fx:id="_numberOfLines" minWidth="0.0" prefWidth="56.0" text="Lines" />
-                                    <TableColumn fx:id="_voice" minWidth="0.0" prefWidth="192.0" text="Voice" />
-                                    <TableColumn fx:id="_speed" minWidth="0.0" prefWidth="77.0" text="Speed" />
-                                    <TableColumn fx:id="_pitch" minWidth="0.0" text="Pitch" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
+                  <Label layoutX="23.0" layoutY="12.0" text="List of Saved Audio (Audio files to be combined)" underline="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <MediaView fx:id="_mediaView" fitHeight="50.0" fitWidth="50.0" layoutX="459.0" layoutY="198.0" visible="false" />
+                  <TableView fx:id="_savedAudio" layoutX="20.0" layoutY="32.0" prefHeight="223.0" prefWidth="631.0">
+                    <columns>
+                      <TableColumn fx:id="_termSearched" prefWidth="186.0" text="Searched Term" />
+                      <TableColumn fx:id="_numberOfLines" minWidth="0.0" prefWidth="56.0" text="Lines" />
+                        <TableColumn fx:id="_voice" minWidth="0.0" prefWidth="192.0" text="Voice" />
+                        <TableColumn fx:id="_speed" minWidth="0.0" prefWidth="98.0" text="Speed" />
+                        <TableColumn fx:id="_pitch" minWidth="0.0" prefWidth="98.0" text="Pitch" />
+                    </columns>
+                  </TableView>
+                  <VBox layoutX="665.0" layoutY="48.0" prefHeight="201.0" prefWidth="190.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="_playAudioButton" mnemonicParsing="false" onAction="#handlePlayAudio" prefHeight="40.0" prefWidth="200.0" text="Play" />
+                        <Button fx:id="_deleteAudioButton" mnemonicParsing="false" onAction="#handleDeleteAudio" prefHeight="40.0" prefWidth="200.0" text="Delete" />
+                        <Button fx:id="_nextButton" mnemonicParsing="false" onAction="#handleNext" prefHeight="40.0" prefWidth="200.0" text="Next" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="_helpButton" layoutX="817.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#showHelpBottomHalf" onMouseExited="#hideHelpBottomHalf" prefHeight="40.0" prefWidth="40.0">
+                     <tooltip>
+                        <Tooltip text="We can then 'Preview' or 'Delete' the audio in the 'List of Saved Audio'. Once you're happy, click on&quot;Next&quot;." />
+                     </tooltip>
+                  </Button>
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <StackPane layoutX="466.0" layoutY="306.0" prefHeight="80.0" prefWidth="80.0">
+      <StackPane fx:id="_helpTopHalf" layoutY="427.0" prefHeight="273.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="427.0">
+         <children>
+            <TextArea editable="false" focusTraversable="false" prefHeight="391.0" prefWidth="245.0" text="Want to learn about a term?&#10;Search it in the box and the information will be shown.&#10;&#10;Select the lines you wish to save.&#10;TIP: Use 'Shift' key to select multiple lines.&#10;&#10;Use the voice settings to customize the voice.&#10;&#10;You can then 'Preview' and 'Save' it to the 'List of Saved Audio'." wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextArea>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="80.0" prefWidth="80.0">
          <children>
             <ProgressIndicator fx:id="_progressIndicator" progress="0.0" visible="false">
                <StackPane.margin>

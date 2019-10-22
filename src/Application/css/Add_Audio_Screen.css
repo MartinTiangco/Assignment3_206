@@ -1,33 +1,27 @@
+#_helpButton{
+    -fx-graphic: url('../assets/help.png');
+}
+
 #_playAudioButton{
-	-fx-background-image: url("../assets/play.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+    -fx-graphic: url('../assets/play.png');
 }
 
 #_deleteAudioButton{
-	-fx-background-image: url("../assets/trash.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+    -fx-graphic: url('../assets/trash.png');
+}
+
+#_nextButton{
+    -fx-graphic: url('../assets/next.png');
 }
 
 #_playTextButton{
-	-fx-background-image: url("../assets/play.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 20 20;
-    -fx-padding: 0 0 0 20;
-    -fx-background-position: left center;
+    -fx-graphic: url('../assets/play.png');
 }
 
 #_createAudioButton{
-	-fx-background-image: url("../assets/save.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 20 20;
-    -fx-padding: 0 0 0 20;
-    -fx-background-position: left center;
+    -fx-graphic: url('../assets/save.png');
 }
 
 #_mainMenuButton{
- -fx-graphic: url('../assets/quit.png');
+    -fx-graphic: url('../assets/quit.png');
 }

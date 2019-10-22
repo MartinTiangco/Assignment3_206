@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
@@ -34,6 +35,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private SplitPane _entireScreenPane;
 
 	// elements in the top half of the screen
+	@FXML private Button _helpButton;
 	@FXML private Button _playTextButton;
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
@@ -43,17 +45,20 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Slider _pitchSlider;
 	@FXML private TextField _searchTextField;
 	@FXML private ProgressIndicator _progressIndicator;
+	@FXML private StackPane _helpBottomHalf;
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
 	@FXML private Button _deleteAudioButton;
+	@FXML private Button _nextButton;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
 	@FXML private TableColumn _voice;
 	@FXML private TableColumn _speed;
 	@FXML private TableColumn _pitch;
 	@FXML private TableView _savedAudio;
+	@FXML private StackPane _helpTopHalf;
 
 
 	//directory for wiki text files
@@ -346,6 +351,22 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		audio.setPitch((int) (_pitchSlider.getValue()));
 	}
 
+	public void showHelpTopHalf(){
+		_helpTopHalf.setVisible(true);
+	}
+
+	public void hideHelpTopHalf(){
+		_helpTopHalf.setVisible(false);
+	}
+
+	public void showHelpBottomHalf(){
+		_helpBottomHalf.setVisible(true);
+	}
+
+	public void hideHelpBottomHalf(){
+		_helpBottomHalf.setVisible(false);
+	}
+
 
 	public ListView getContent() {
 		return _textDescription;
@@ -378,7 +399,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	public ProgressIndicator getProgressIndicator() {
 		return _progressIndicator;
 	}
-	
+
 	public SplitPane getEntireScreenPane() {
 		return _entireScreenPane;
 	}

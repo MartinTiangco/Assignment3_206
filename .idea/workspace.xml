@@ -9,56 +9,10 @@
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.config" beforeDir="false" afterPath="$PROJECT_DIR$/.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/123_-_sun_-_15/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/ap_-_apple_-_8.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple100_-_apple_-_175/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/creation.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/creation.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/slideshow.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/slideshow.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/video.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Creation_Directory/banana_-_banana_-_29/video.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/hello_-_hello_-_4/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/java_-_java_-_2/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/java_-_java_-_4/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/java_-_java_-_4/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/java_-_java_-_4/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/java_-_java_-_4/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/ok_-_ok_-_18/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/qwad_-_water_-_36/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/creation.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/slideshow.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Creation_Directory/saefdg_-_moon_-_5/wikit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/AeroFX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroButtonSkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroCheckBoxSkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroGroupBoxSkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroRadioButtonSkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/controls/skin/AeroSkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/java/org/aerofx/util/BindableTransition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/aerofx/src/main/resources/org/aerofx/win7.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Background_Music_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Background_Music_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/MusicAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Add_Audio_Screen.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,13 +34,14 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/206 Peer Review" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -124,6 +79,10 @@
       <updated>1570850387028</updated>
       <workItem from="1570850390199" duration="19577000" />
       <workItem from="1570942049445" duration="4326000" />
+      <workItem from="1570953275504" duration="1984000" />
+      <workItem from="1571188777566" duration="733000" />
+      <workItem from="1571363957851" duration="599000" />
+      <workItem from="1571707974696" duration="7292000" />
     </task>
     <servers />
   </component>
