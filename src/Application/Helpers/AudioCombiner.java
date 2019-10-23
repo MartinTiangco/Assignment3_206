@@ -55,7 +55,8 @@ public class AudioCombiner extends Task<Long> {
 		        		
 		        		// closes the Add Audio screen
 		        		Stage stage = (Stage) _controller.getAudioList().getScene().getWindow();
-		                stage.close();
+		                //stage.close();
+		        		stage.hide();
 					}          		
             	};
             	Platform.runLater(runnable);

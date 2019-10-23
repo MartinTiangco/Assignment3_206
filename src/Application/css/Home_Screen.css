@@ -1,41 +1,23 @@
-#background{
-    -fx-background-image: url("../assets/background.jpeg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 1600 800;
-    -fx-background-position: center center;
+#_helpButton{
+    -fx-graphic: url('../assets/help.png');
 }
 
 #_playButton{
-	-fx-background-image: url("../assets/play.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+    -fx-graphic: url('../assets/play.png');
 }
 
 #_deleteButton{
-	-fx-background-image: url("../assets/trash.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+    -fx-graphic: url('../assets/trash.png');
 }
 
 #_addButton{
-	-fx-background-image: url("../assets/add.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+	-fx-graphic: url("../assets/add.png");
 }
 
 #_settingsButton{
-	-fx-background-image: url("../assets/settings.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+	-fx-graphic: url("../assets/settings.png");
 }
 
 #_quizButton{
-	-fx-background-image: url("../assets/quiz.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 24 24;
-    -fx-background-position: center center;
+	-fx-graphic: url("../assets/quiz.png");
 }

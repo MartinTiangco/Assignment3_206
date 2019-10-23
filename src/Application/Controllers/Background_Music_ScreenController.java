@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 public class Background_Music_ScreenController extends Controller {
 	@FXML private Button _playButton;
@@ -98,6 +99,8 @@ public class Background_Music_ScreenController extends Controller {
 	}
 	
 	public void handlePlay() {
+		Stage stage = (Stage)((Add_Audio_ScreenController)this.getParentController()).getAudioList().getScene().getWindow();
+		stage.show();
 		// allow you to play audio without waiting for the first to finish
 		if (_musicComboBox.getValue().toString() != NO_MUSIC) {
 			terminatePlayers();
