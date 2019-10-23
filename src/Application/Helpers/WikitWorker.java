@@ -4,6 +4,7 @@ import Application.Controllers.Add_Audio_ScreenController;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Writer;
@@ -15,25 +16,35 @@ import javafx.concurrent.Task;
 
 /**
  * Worker thread calling the wikit command in the background.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class WikitWorker extends Task<Long> {
 
-	private File wikitRaw;
-	private File wikitTemp;
-	private List<String> sepLines;
-	private String cmd;
-	private String searchTerm;
-	private Writer rawFileWriter;
+	// wikit directory and the wikit txt files
+	private File _wikitDir = new File(".Wikit_Directory");
+	//raw content - where content is not separated to lines
+	private File _wikitRaw = new File(_wikitDir + System.getProperty("file.separator") + "raw.txt");
+	 //temp content - where content is separated
+	private File _wikitTemp = new File(_wikitDir + System.getProperty("file.separator") + "temp.txt");
+
+	private Add_Audio_ScreenController _controller;
+	private List<String> _sepLines; // each entry in the List is a sentence
+	private String _cmd;
+	private Writer _rawFileWriter;
 	
-	private Add_Audio_ScreenController controller;
 	
-	public WikitWorker(String cmd, String searchTerm, Writer rawFileWriter, File wikitRaw, File wikitTemp, Add_Audio_ScreenController controller) {
-		this.cmd = cmd;
-		this.searchTerm = searchTerm;
-		this.rawFileWriter = rawFileWriter;
-		this.wikitRaw = wikitRaw;
-		this.wikitTemp = wikitTemp;
-		this.controller = controller;
+	public WikitWorker(String cmd, Add_Audio_ScreenController controller) {
+		_cmd = cmd;
+		_controller = controller;
+		
+		//create raw.txt for raw wikit content (content has not been separated)
+		try {
+			_rawFileWriter = new FileWriter(_wikitRaw, false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -44,7 +55,7 @@ public class WikitWorker extends Task<Long> {
 		
 		try {
 			// ProcessBuilder to execute wikit 
-			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", _cmd);
 			Process process = builder.start();
 			InputStream stdout = process.getInputStream();
 			BufferedReader stdoutBuffered = new BufferedReader(new InputStreamReader(stdout));
@@ -54,17 +65,17 @@ public class WikitWorker extends Task<Long> {
 				String line = stdoutBuffered.readLine();
 				
 				if (line.contains("not found :^(")) {
-					// term is not found
+					// term is not found on wikit search
 					AlertMessage alert = new AlertMessage("not_found");
 					Platform.runLater(alert);
 				} else {
 					// Writes line into raw.txt
-					writeIntoFile(line, rawFileWriter);
-					rawFileWriter.close();
+					writeIntoFile(line, _rawFileWriter);
+					_rawFileWriter.close();
 					
 					// Command to separate into sentences
-					sepLines = new ArrayList<>();
-					sepIntoSentences(sepLines);		
+					_sepLines = new ArrayList<>();
+					sepIntoSentences(_sepLines);		
 				}
 			}
 			
@@ -75,33 +86,29 @@ public class WikitWorker extends Task<Long> {
 		}
 		
 		// Sets the progress indicator to be invisible
-		ProgressRunnable progress = new ProgressRunnable(controller);
+		ProgressRunnable progress = new ProgressRunnable(_controller);
 		Platform.runLater(progress);
 		return null;	
 	}
-	
-//	class ProgressRunnable implements Runnable {
-//		@Override
-//		public void run() {
-//			controller.getEntireScreenPane().setDisable(false);
-//			controller.getProgressIndicator().setVisible(false);
-//		}
-//		
-//	}
-	
+
+	/**
+	 * Inner class that appends the ListView of the content from using wikit
+	 */
 	class Append implements Runnable {
 		@Override
 		public void run() {
 			// clears ListView and appends all lines of content
-			if (!(sepLines == null)) {
+			if (!(_sepLines == null)) {
 				
 				//append lines onto text field
 				StringBuilder content = new StringBuilder(""); 
-				for (String line : sepLines) {
+				for (String line : _sepLines) {
 				   content.append(line);
 				}
-				controller.getContent().getItems().addAll(sepLines);
-				controller.enableCustomization();
+				_controller.getContent().getItems().addAll(_sepLines);
+				
+				// enables the customization panel (i.e. the voice settings)
+				_controller.enableCustomization();
 			}		
 		}		
 	}
@@ -122,8 +129,10 @@ public class WikitWorker extends Task<Long> {
 	 */
 	private void sepIntoSentences(List<String> sepLines) {
 		try {
-			String sepCmd = "cat " + wikitRaw + " | sed 's/\\([.!?]\\) \\([[:upper:]]\\)/\\1\\\n\\2/g' | sed \"s/^[  ]*/ /\"";
+			// command for separating into sentences
+			String sepCmd = "cat " + _wikitRaw + " | sed 's/\\([.!?]\\) \\([[:upper:]]\\)/\\1\\\n\\2/g' | sed \"s/^[  ]*/ /\"";
 			
+			// start the process
 			ProcessBuilder sepBuilder = new ProcessBuilder("/bin/bash", "-c", sepCmd);
 			Process sepProcess = sepBuilder.start();
 			InputStream sepStdout = sepProcess.getInputStream();
@@ -134,7 +143,7 @@ public class WikitWorker extends Task<Long> {
 				String sepLine = sepStdoutBuffered.readLine();
 				
 				//create new temp.txt
-				Writer tempFileWriter = new FileWriter(wikitTemp, false);
+				Writer tempFileWriter = new FileWriter(_wikitTemp, false);
 				
 				// Appends text onto temp.txt
 				while (sepLine != null) {

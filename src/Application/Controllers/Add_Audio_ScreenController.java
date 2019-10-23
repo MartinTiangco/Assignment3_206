@@ -61,12 +61,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private TableView _savedAudio;
 	@FXML private StackPane _helpTopHalf;
 
-
-	//directory for wiki text files
 	private File audioDir = new File(".Audio_Directory");
-	private File wikitDir = new File(".Wikit_Directory");
-	private File wikitRaw = new File(wikitDir + System.getProperty("file.separator") + "raw.txt"); //raw content - where content is not separated to lines
-	private File wikitTemp = new File(wikitDir + System.getProperty("file.separator") + "temp.txt"); //temp content - where content is separated
 
 	private AudioPlayer _audioPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
@@ -279,18 +274,11 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	}
 
 	private void wikitSearch(String searchInput) {
-		try {
-			//create raw.txt for raw wikit content (has not been separated)
-			Writer rawFileWriter = new FileWriter(wikitRaw, false);
+		String cmd = "wikit " + searchInput;
 
-			String cmd = "wikit " + searchInput;
-
-			// Runs the wikit command on a worker thread
-			WikitWorker wikitWorker = new WikitWorker(cmd, searchInput, rawFileWriter, wikitRaw, wikitTemp, this);
-			_backgroundExecutor.submit(wikitWorker);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// Runs the wikit command on a worker thread
+		WikitWorker wikitWorker = new WikitWorker(cmd, this);
+		_backgroundExecutor.submit(wikitWorker);
 	}
 
 	public void deleteLines(KeyEvent key) {
