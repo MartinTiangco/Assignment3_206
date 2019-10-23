@@ -181,16 +181,15 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	}
 
 	public void handleSearch() {
-		// progress indicator
+		// progress indicator enables
 		_entireScreenPane.setDisable(true);
 		_progressIndicator.setProgress(-1);
 		_progressIndicator.setVisible(true);
 		
 		_searchInput = _searchTextField.getText();
 
-		// if the search is empty then we reset the progress bar
+		// if the search is empty then we reset the progress indicator and returns
 		if (!validateSearch(_searchInput)) {
-			// disable the progress indicator
 			_entireScreenPane.setDisable(false);
 			_progressIndicator.setProgress(1);
 			_progressIndicator.setVisible(false);
@@ -201,6 +200,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			// clear the ListView
 			_textDescription.getItems().clear();
 
+			// use wikit to search the term
 			wikitSearch(_searchInput);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -211,12 +211,14 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public void handleCreateAudio() {
 		// when the 'Save' button is pressed
+		// disallow the user selecting more than 5 lines
 		if (_textDescription.getSelectionModel().getSelectedItems().size() > 5) {
 			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
 			Platform.runLater(alert);
 			return;
 		}
 		
+		// if the text is a single or multiple punctuation marks ONLY, then we display an error
 		if (!validateText()) {
 			AlertMessage alert = new AlertMessage("audio_combining_failed");
 			Platform.runLater(alert);
@@ -233,6 +235,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			AudioCreator audioCreator = new AudioCreator(_numberOfAudiosCreated, audio, this);
 			_backgroundExecutor.submit(audioCreator);
 		}
+		
 		// disallow searching for another term to avoid saving audio with different terms
 		if (_savedAudio.getItems().isEmpty()) {
 			_searchTextField.setDisable(false);
