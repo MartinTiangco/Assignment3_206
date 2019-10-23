@@ -26,7 +26,7 @@ public class WikitWorker extends Task<Long> {
 	private File _wikitDir = new File(".Wikit_Directory");
 	//raw content - where content is not separated to lines
 	private File _wikitRaw = new File(_wikitDir + System.getProperty("file.separator") + "raw.txt");
-	 //temp content - where content is separated
+	//temp content - where content is separated
 	private File _wikitTemp = new File(_wikitDir + System.getProperty("file.separator") + "temp.txt");
 
 	private Add_Audio_ScreenController _controller;
