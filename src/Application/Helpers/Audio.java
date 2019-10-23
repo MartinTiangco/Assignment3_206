@@ -4,103 +4,110 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A centralized class for Audio objects.
+ * A centralized class for Audio objects with the appropriate properties.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class Audio {
-    private int pitch = 50;
-    private int speed = 175;
-    private String audioLength = null;
-    private String filename = null;
-    private String numberOfLines = null;
-    private String termSearched = null;
-    private String voice = "-ven-gb+m5";
-    private String voiceDisplay = "English-USA-male"; // Voice Display is shown on the TableView under the corresponding 'Voice' column
-    private List<String> content = new ArrayList<String>();
+    private int _pitch = 50;
+    private int _speed = 175;
+    private String _audioLength = null;
+    private String _filename = null;
+    private String _numberOfLines = null;
+    private String _termSearched = null;
+    private String _voice = "-ven-gb+m5"; // this value is the espeak voice value
+    private String _voiceDisplay = "English-USA-male"; // Voice Display is shown on the TableView under the corresponding 'Voice' column
+    private List<String> _content = new ArrayList<String>();
 
     public String getFilename() {
-        return filename;
+        return _filename;
     }
 
     public void setFilename(String filename) {
-        this.filename = filename;
+        _filename = filename;
     }
 
     public String getTermSearched() {
-        return termSearched;
+        return _termSearched;
     }
 
     public void setTermSearched(String termSearched) {
-        this.termSearched = termSearched;
+        _termSearched = termSearched;
     }
 
     public List<String> getContent() {
-        return content;
+        return _content;
     }
 
     public void setContent(List<String> content) {
-        this.content = content;
+        _content = content;
     }
 
     public String getNumberOfLines() {
-        return numberOfLines;
+        return _numberOfLines;
     }
 
     public void setNumberOfLines(String numberOfLines) {
-        this.numberOfLines = numberOfLines;
+        _numberOfLines = numberOfLines;
     }
 
     public String getAudioLength() {
-        return audioLength;
+        return _audioLength;
     }
 
     public void setAudioLength(String audioLength) {
-        this.audioLength = audioLength;
+        _audioLength = audioLength;
     }
 
     public int getPitch() {
-        return pitch;
+        return _pitch;
     }
 
     public void setPitch(int pitch) {
-        this.pitch = pitch;
+        _pitch = pitch;
     }
 
     public int getSpeed() {
-        return speed;
+        return _speed;
     }
 
     public void setSpeed(int speed) {
-        this.speed = speed;
+        _speed = speed;
     }
 
     public String getVoice() {
-        return voice;
+        return _voice;
     }
 
+    /**
+     * Sets the corresponding espeak voice (the variable _voice) according to the ComboBox voice options (the variable voice)
+     * @param voice - this voice is the description on the ComboBox
+     */
     public void setVoice(String voice) {
         if (voice == "English-USA-male") {
-            this.voice = "-ven-us+m5";
+            _voice = "-ven-us+m5";
         }
         else if (voice == "English-USA-female") {
-            this.voice = "-ven-us+f2";
+            _voice = "-ven-us+f2";
         }
         else if (voice == "English-UK-male") {
-            this.voice = "-ven-gb+m5";
+            _voice = "-ven-gb+m5";
         }
         else if (voice == "English-UK-female") {
-            this.voice = "-ven-gb+f2";
+            _voice = "-ven-gb+f2";
         }
         else {
-            this.voice = "-ven-gb+m5";
+            _voice = "-ven-gb+m5";
         }
-        voiceDisplay = voice;
+        _voiceDisplay = voice;
     }
     
     public String getVoiceDisplay() {
-    	return voiceDisplay;
+    	return _voiceDisplay;
     }
     
     public void setVoiceDisplay(String voiceDisplay) {
-    	this.voiceDisplay = voiceDisplay;
+    	_voiceDisplay = voiceDisplay;
     }
 }
