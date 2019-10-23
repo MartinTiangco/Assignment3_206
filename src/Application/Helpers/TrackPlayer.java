@@ -7,12 +7,18 @@ import javafx.concurrent.Task;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * The class for playing a background music track in the 'Background Music Screen'
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class TrackPlayer extends Task<Long> {
-
 	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
+	
     private Background_Music_ScreenController _controller;
-    private Track _track;
     private Process _process;
+    private Track _track;
 
     public TrackPlayer(Track track, Background_Music_ScreenController controller) {
         _track = track;
@@ -21,14 +27,16 @@ public class TrackPlayer extends Task<Long> {
 
     @Override
     protected Long call() throws Exception {
-    	// previews either the content text from Wikipedia or the saved audio
         if (_track.getTrackName() != null) {
-            playAudio();
+            playTrack();
         }
         return null;
     }
 
-    public void playAudio() {
+    /**
+     * Plays the background music
+     */
+    public void playTrack() {
         File fileUrl = new File(MUSIC_DIR + _track.getTrackName());
         Media audio = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(audio);
@@ -36,10 +44,10 @@ public class TrackPlayer extends Task<Long> {
         _controller.getMediaView().setMediaPlayer(player);
     }
 
-    public void StartProcess(ProcessBuilder builder) {
+    public void startProcess(ProcessBuilder builder) {
         try {
             _process = builder.start();
-            int exitStatus = _process.waitFor();
+            _process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }
