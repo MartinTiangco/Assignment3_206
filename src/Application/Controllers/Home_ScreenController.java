@@ -37,6 +37,7 @@ import java.util.concurrent.Executors;
  */
 public class Home_ScreenController extends Controller implements Initializable {
 
+	// The elements of the application
     @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
@@ -56,13 +57,15 @@ public class Home_ScreenController extends Controller implements Initializable {
     private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
     private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
-    
-    private Quiz quiz;
 
+    /**
+     * Initializes the TableView and updates the table to have any existing creations
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	// initialises the TableView
+    	// allows for multiple selection
         _creationTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
         _nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         _termSearchedColumn.setCellValueFactory(new PropertyValueFactory<>("termSearched"));
         _dateModifiedColumn.setCellValueFactory(new PropertyValueFactory<>("dateModified"));
@@ -70,7 +73,9 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
 
-    @FXML
+    /**
+     * Plays a selected creation
+     */
     public void handlePlay() {
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
@@ -114,13 +119,17 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
 
-    @FXML
+    /**
+     * Opens the 'Add Audio Screen' when the Add button is clicked
+     */
     public void handleAdd() {
         loadScreen("Add Audio", "/Application/fxml/Add_Audio_Screen.fxml", "/Application/css/Add_Audio_Screen.css");
         Update();
     }
 
-    @FXML
+    /**
+     * Deletes the selected creation from the TableView
+     */
     public void handleDelete() {
     	Cleaner cleaner = new Cleaner();
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
@@ -154,6 +163,9 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
     
+    /**
+     * Opens the quiz page when the quiz button is clicked
+     */
     public void handleQuiz() {
     	if (_creationTable.getItems().size() == 0) {
     		AlertMessage alert = new AlertMessage("no_creations_found");
@@ -163,6 +175,9 @@ public class Home_ScreenController extends Controller implements Initializable {
     	}
     }
 
+    /**
+     * Opens the settings page when the settings button is clicked
+     */
     public void handleSettings() {
         Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
         ((Settings_ScreenController)controller).selectDefault();
@@ -176,14 +191,18 @@ public class Home_ScreenController extends Controller implements Initializable {
         return _creationTable;
     }
 
-    // Updates the TableView Creation items
+    /**
+     * Updates the TableView Creation items
+     */
     public void Update() {
         _updateHelper = new UpdateHelper(this);
         _executor.submit(_updateHelper);
         disable();
     }
 
-    // Disables the play and delete button when the user is playing a video and is not on the Creation Tab
+    /**
+     * Disables the play and delete button when the user is playing a video and is not on the Creation Tab
+     */
     public void disable() {
         if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
             _deleteButton.setDisable(true);
