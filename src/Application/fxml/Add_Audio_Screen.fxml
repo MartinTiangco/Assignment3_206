@@ -117,7 +117,7 @@
             </TextArea>
          </children>
       </StackPane>
-      <StackPane prefHeight="80.0" prefWidth="80.0">
+      <StackPane layoutX="410.0" layoutY="310.0" prefHeight="80.0" prefWidth="80.0">
          <children>
             <ProgressIndicator fx:id="_progressIndicator" progress="0.0" visible="false">
                <StackPane.margin>
