@@ -15,102 +15,98 @@ import javafx.scene.layout.Priority;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 
-public class MediaBar extends HBox { // MediaBar extends Horizontal Box
+/**
+ * This class enables the user to set the volume or use the slider to play the creation at any point
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
+public class MediaBar extends HBox {
 
-    // introducing Sliders
-    Slider time = new Slider(); // Slider for time
-    Slider vol = new Slider(); // Slider for volume
-    Button PlayButton = new Button("||"); // For pausing the player
-    Label volume = new Label("Volume: ");
-    MediaPlayer player;
+    private Slider _time = new Slider(); // Slider for time
+    private Slider _vol = new Slider(); // Slider for volume
+    private Button _playButton = new Button("||"); // For pausing the player
+    private Label _volume = new Label("Volume: ");
+    private MediaPlayer _player;
 
-    public MediaBar(MediaPlayer play)
-    { // Default constructor taking
-        // the MediaPlayer object
-        player = play;
+    public MediaBar(MediaPlayer play) {
+        _player = play;
 
         setAlignment(Pos.CENTER); // setting the HBox to center
         setPadding(new Insets(5, 10, 5, 10));
         // Setting the preference for volume bar
-        vol.setPrefWidth(70);
-        vol.setMinWidth(30);
-        vol.setValue(100);
-        HBox.setHgrow(time, Priority.ALWAYS);
-        PlayButton.setPrefWidth(30);
+        _vol.setPrefWidth(70);
+        _vol.setMinWidth(30);
+        _vol.setValue(100);
+        HBox.setHgrow(_time, Priority.ALWAYS);
+        _playButton.setPrefWidth(30);
 
         // Adding the components to the bottom
-        getChildren().add(PlayButton); // Playbutton
-        getChildren().add(time); // time slider
-        getChildren().add(volume); // volume slider
-        getChildren().add(vol);
+        getChildren().add(_playButton); // Playbutton
+        getChildren().add(_time); // time slider
+        getChildren().add(_volume); // volume slider
+        getChildren().add(_vol);
 
         // Adding Functionality to play the media player
-        PlayButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
-                Status status = player.getStatus(); // To get the status of Player
+        _playButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                Status status = _player.getStatus();
+                
                 if (status == status.PLAYING) {
-
                     // If the status is Video playing
-                    if (player.getCurrentTime().greaterThanOrEqualTo(player.getTotalDuration())) {
+                    if (_player.getCurrentTime().greaterThanOrEqualTo(_player.getTotalDuration())) {
 
                         // If the player is at the end of video
-                        player.seek(player.getStartTime()); // Restart the video
-                        player.play();
-                    }
-                    else {
+                        _player.seek(_player.getStartTime()); // Restart the video
+                        _player.play();
+                    } else {
                         // Pausing the player
-                        player.pause();
+                        _player.pause();
 
-                        PlayButton.setText(">");
+                        _playButton.setText(">");
                     }
-                } // If the video is stopped, halted or paused
-                if (status == Status.HALTED || status == Status.STOPPED || status == Status.PAUSED) {
-                    player.play(); // Start the video
-                    PlayButton.setText("||");
+                } if (status == Status.HALTED || status == Status.STOPPED || status == Status.PAUSED) {
+                	// If the video is stopped, halted or paused 
+                    _player.play(); // Start the video
+                    _playButton.setText("||");
                 }
             }
         });
 
         // Providing functionality to time slider
-        player.currentTimeProperty().addListener(new InvalidationListener() {
-            public void invalidated(Observable ov)
-            {
+        _player.currentTimeProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
                 updatesValues();
             }
         });
 
         // In order to jump to the certain part of video
-        time.valueProperty().addListener(new InvalidationListener() {
-            public void invalidated(Observable ov)
-            {
-                if (time.isPressed()) { // It would set the time
-                    // as specified by user by pressing
-                    player.seek(player.getMedia().getDuration().multiply(time.getValue() / 100));
+        _time.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
+                if (_time.isPressed()) { 
+                	// It would set the time as specified by user by pressing
+                    _player.seek(_player.getMedia().getDuration().multiply(_time.getValue() / 100));
                 }
             }
         });
 
         // providing functionality to volume slider
-        vol.valueProperty().addListener(new InvalidationListener() {
-            public void invalidated(Observable ov)
-            {
-                if (vol.isPressed()) {
-                    player.setVolume(vol.getValue() / 100);
+        _vol.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
+                if (_vol.isPressed()) {
+                    _player.setVolume(_vol.getValue() / 100);
                 }
             }
         });
     }
 
-    protected void updatesValues()
-    {
+    protected void updatesValues() {
         Platform.runLater(new Runnable() {
-            public void run()
-            {
+            public void run() {
                 // Updating to the new time value
                 // This will move the slider while running your video
-                time.setValue(player.getCurrentTime().toMillis()/
-                        player.getTotalDuration()
+                _time.setValue(_player.getCurrentTime().toMillis()/
+                        _player.getTotalDuration()
                                 .toMillis()
                                 * 100);
             }
