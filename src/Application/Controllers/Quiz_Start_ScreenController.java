@@ -17,6 +17,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * The controller for the 'Quiz Start Screen', where the user selects the difficulty of the quiz.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Quiz_Start_ScreenController extends Controller implements Initializable {
 	@FXML private AnchorPane _pane;
 	@FXML private Button _mainMenuButton;
@@ -47,7 +53,7 @@ public class Quiz_Start_ScreenController extends Controller implements Initializ
         stage.close();
 	}
 
-	public Quiz getQuiz(){
+	public Quiz getQuiz() {
 		return _quiz;
 	}
 }

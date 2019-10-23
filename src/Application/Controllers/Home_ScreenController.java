@@ -33,22 +33,26 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Controller for the Main Menu / Home Screen
+ * Controller for the 'Home Screen', where the user selects which creation to play or delete, or
+ * if they wish to take a quiz, or to change the theme in 'Settings' or to add another creation.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class Home_ScreenController extends Controller implements Initializable {
 
 	// The elements of the application
-    @FXML private Button _playButton;
     @FXML private Button _addButton;
     @FXML private Button _deleteButton;
+    @FXML private Button _playButton;
     @FXML private Button _quizButton;
     @FXML private Button _settingsButton;
     @FXML private Label _progressMsg;
     @FXML private ProgressIndicator _progressIndicator;
     @FXML private Tab _creationTab;
+    @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _nameColumn;
     @FXML private TableColumn _termSearchedColumn;
-    @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _videoLengthColumn;
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;

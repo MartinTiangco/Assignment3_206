@@ -25,12 +25,15 @@ import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 /**
- * The Controller for the Add Audio Screen.
- *
- *
+ * The Controller for the 'Add Audio Screen' where the user selects which text will be spoken
+ * by text-to-speech.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class Add_Audio_ScreenController extends Controller implements Initializable {
 	private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("datatype");
+	
 	@FXML private Button _mainMenuButton;
 	@FXML private MediaView _mediaView;
 	@FXML private SplitPane _entireScreenPane;
@@ -66,9 +69,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	private AudioPlayer _audioPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
+	private int _audioFileId;
 	private int _numberOfAudiosCreated = 0;
 	private String _searchInput;
-	private int _audioFileId;
 
 
 	@Override
@@ -153,10 +156,14 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	}
 
+	/**
+	 * Previews the text using the current voice settings
+	 */
 	public void handlePlayText() {
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			// allows you to preview text without waiting for the first one to finish
 			terminatePlayers();
+			
 			Audio audio = new Audio();
 			setUpAudio(audio);
 			_audioPlayer = new AudioPlayer(audio, this);
@@ -165,6 +172,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	}
 
+	/**
+	 * Previews an audio file that is saved onto the 'List of Saved Audio'
+	 */
 	public void handlePlayAudio() {
 		// allow you to play audio without waiting for the first to finish
 		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
@@ -175,6 +185,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 	}
 
+	/**
+	 * Enables searching Wikipedia using wikit
+	 */
 	public void handleSearch() {
 		// progress indicator enables
 		_entireScreenPane.setDisable(true);
@@ -204,8 +217,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_textDescription.setDisable(false);
 	}
 
+	/**
+	 * Handles functionality of creating an audio file when wikit content is selected and the 'Save' button is clicked
+	 */
 	public void handleCreateAudio() {
-		// when the 'Save' button is pressed
 		// disallow the user selecting more than 5 lines
 		if (_textDescription.getSelectionModel().getSelectedItems().size() > 5) {
 			AlertMessage alert = new AlertMessage("Please select 5 lines or less");
@@ -237,6 +252,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 	}
 
+	/**
+	 * Handles deleting of the selected audio item when the 'Delete' button is clicked
+	 */
 	public void handleDeleteAudio() {
 		//get the item or items selected and remove from list
 		if ((_mediaView.getMediaPlayer() != null)&&(_mediaView.getMediaPlayer().getMedia().getSource().equals("file:" + audioDir.getAbsolutePath() + System.getProperty("file.separator") + ((Audio)_savedAudio.getSelectionModel().getSelectedItem()).getFilename()))) {
@@ -249,6 +267,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 	}
 
+	/**
+	 * Combines all audio in the 'List of Saved Audio' and then goes into the 'Background Music Screen'
+	 */
 	public void handleNext() {
 		// stop all preview/audio player
 		terminatePlayers();
@@ -259,7 +280,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	}
 
-
+	/**
+	 * Handles functionality to go back to main menu
+	 */
 	public void handleBackToMainMenu() {
 		// stop all preview/audio player
 		terminatePlayers();
@@ -273,6 +296,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		stage.close();
 	}
 
+	/**
+	 * Creates a wikit thread that searches Wikipedia in the background
+	 * @param searchInput
+	 */
 	private void wikitSearch(String searchInput) {
 		String cmd = "wikit " + searchInput;
 
@@ -281,6 +308,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_backgroundExecutor.submit(wikitWorker);
 	}
 
+	/**
+	 * Allows the user to delete lines in the wikit content ListView
+	 * @param key
+	 */
 	public void deleteLines(KeyEvent key) {
 		// allows the deletion of lines in the TextArea
 		if (key.getCode().equals(KeyCode.DELETE)) {
@@ -296,6 +327,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 	}
 
+	/**
+	 * Checks if the user has input an empty string. Return false if so, as it is not valid.
+	 * @param searchInput
+	 */
 	private boolean validateSearch(String searchInput) {
 		// checks for textfield being an empty string or only spaces
 		if (searchInput.trim().isEmpty()) {
@@ -304,6 +339,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		return true;
 	}
 	
+	/**
+	 * Validates the wikit content. Disallow the user to create audio consisting of only punctuation marks
+	 * as that will create problems with the audio.
+	 */
 	private boolean validateText() {
 		// checks if the selected item is just a punctuation mark and disallows it
 		String listString = (String.join("", _textDescription.getSelectionModel().getSelectedItems())).trim();
@@ -312,15 +351,17 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		    return false;
 		}
 		
-		// this fixes a bug where punctuation marks are being selected
+		// this fixes a bug where multiple punctuation marks are selected, then attempt to save, then select one line to edit,
+		// then save again
 		if (Pattern.matches("null", listString)) {
 			return false;
 		}
-		
-		// https://stackoverflow.com/questions/13925454/check-if-string-is-a-punctuation-character
 		return true;
 	}
 
+	/**
+	 * Stops all media players from playing to prevent them from overlapping
+	 */
 	private void terminatePlayers() {
 		if (_mediaView.getMediaPlayer() != null) {
 			_mediaView.getMediaPlayer().dispose();
@@ -333,23 +374,35 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 	}
 
+	/**
+	 * disables the voice customization
+	 */
 	public void disableCustomization() {
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
 	}
 
+	/**
+	 * enables the voice customization
+	 */
 	public void enableCustomization() {
 		_voiceBox.setDisable(false);
 		_speedSlider.setDisable(false);
 		_pitchSlider.setDisable(false);
 	}
 
+	/**
+	 * disables the preview / create buttons in the top-half
+	 */
 	public void disablePlayCreateText() {
 		_createAudioButton.setDisable(true);
 		_playTextButton.setDisable(true);
 	}
 
+	/**
+	 * enables the preview / create buttons in the top-half
+	 */
 	public void enablePlayCreateText() {
 		_createAudioButton.setDisable(false);
 		_playTextButton.setDisable(false);

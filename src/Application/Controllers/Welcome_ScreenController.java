@@ -14,17 +14,17 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Welcome_ScreenController extends Controller implements Initializable {
+/**
+ * The opening screen to the application, or the 'Welcome Screen'
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
+public class Welcome_ScreenController extends Controller {
 
-    @FXML
-    Button _getStarted;
+    @FXML private Button _getStarted;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    @FXML
-    public void getStarted(){
+    public void getStarted() {
         loadScreen("Home", "/Application/fxml/Home_Screen.fxml","/Application/css/Home_Screen.css");
 
         Stage stage = (Stage) _getStarted.getScene().getWindow();

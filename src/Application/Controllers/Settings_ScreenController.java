@@ -10,23 +10,31 @@ import java.lang.invoke.SwitchPoint;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The controller for the 'Settings screen' accessible in the Home Menu.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Settings_ScreenController extends Controller implements Initializable {
-
-    @FXML private ComboBox<String> listOfStyles;
-    @FXML private Button save;
 
     private final static String BOOTSTRAP3 = "/Application/css/bootstrap3.css";
     private final static String SKY = "/Application/css/jfx9be/sky.css";
     private final static String RED = "/Application/css/jfx9be/flatred.css";
 
+    @FXML private Button _save;
+    @FXML private ComboBox<String> _listOfStyles;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listOfStyles.getItems().addAll("Default", "BootStrap3", "Sky", "Red Devil");
+        _listOfStyles.getItems().addAll("Default", "BootStrap3", "Sky", "Red Devil");
     }
 
+    /**
+     * Submits the stylesheet to use.
+     */
     public void handleSave(){
-        String style = listOfStyles.getSelectionModel().getSelectedItem();
+        String style = _listOfStyles.getSelectionModel().getSelectedItem();
         switch(style) {
             case "Default":
                 setStyleSheet("");
@@ -46,7 +54,7 @@ public class Settings_ScreenController extends Controller implements Initializab
 
         Stage stage = (Stage) ((Home_ScreenController)(getParentController())).getCreationTable().getScene().getWindow();
         stage.close();
-        stage = (Stage) save.getScene().getWindow();
+        stage = (Stage) _save.getScene().getWindow();
         stage.close();
 
     }
@@ -54,16 +62,16 @@ public class Settings_ScreenController extends Controller implements Initializab
     public void selectDefault() {
         switch (this.getStyleSheet()) {
             case "":
-                listOfStyles.getSelectionModel().select(0);
+                _listOfStyles.getSelectionModel().select(0);
                 break;
             case BOOTSTRAP3:
-                listOfStyles.getSelectionModel().select(1);
+                _listOfStyles.getSelectionModel().select(1);
                 break;
             case SKY:
-                listOfStyles.getSelectionModel().select(2);
+                _listOfStyles.getSelectionModel().select(2);
                 break;
             case RED:
-                listOfStyles.getSelectionModel().select(3);
+                _listOfStyles.getSelectionModel().select(3);
                 break;
         }
     }

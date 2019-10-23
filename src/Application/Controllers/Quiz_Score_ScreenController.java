@@ -20,19 +20,25 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The controller for the 'Quiz Score Screen'
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Quiz_Score_ScreenController extends Controller implements Initializable {
 
+    @FXML private Button _mainMenuButton;
+    @FXML private Button _tryAgainButton;
+    @FXML private ImageView _medal;
 	@FXML private Label _message;
     @FXML private Label _percentageScore;
     @FXML private Label _rawScore;
     @FXML private Pane _graphicScore;
-    @FXML private Button _mainMenuButton;
-    @FXML private Button _tryAgainButton;
     @FXML private TableColumn<Question, String> _questionNumber;
     @FXML private TableColumn<Question, String> _userAnswer;
     @FXML private TableColumn<Question, String> _correctAnswer;
     @FXML private TableView _analysisTable;
-    @FXML private ImageView _medal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

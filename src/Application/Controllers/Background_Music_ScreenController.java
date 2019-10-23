@@ -18,26 +18,33 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the 'Background Music Screen'.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Background_Music_ScreenController extends Controller {
+
+	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
+	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
+	private final String NO_MUSIC = "No music";
+	private final List<Track> TRACK = new ArrayList<Track>();
+	
 	@FXML private Button _playButton;
 	@FXML private Button _nextButton;
 	@FXML private ComboBox _musicComboBox;
-	@FXML private TextField _nameInput;
 	@FXML private Label _nameOfTrack;
 	@FXML private Label _license;
 	@FXML private Label __trackLink;
 	@FXML private Label _author;
 	@FXML private MediaView _mediaView;
 	@FXML private StackPane _creditsPane;
+	@FXML private TextField _nameInput;
 	
 	private TrackPlayer _trackPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
-	
-	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
-	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
-	private final List<Track> TRACK = new ArrayList<Track>();
-	private final String NO_MUSIC = "No music";
 	
 	public void initialize() {
 		// populate the combo box
@@ -58,6 +65,10 @@ public class Background_Music_ScreenController extends Controller {
 		_playButton.setDisable(true);
 	}
 	
+	/**
+	 * Display the attribution for the author when you select their background music
+	 * track and sets the properties in the Track object.
+	 */
 	public void handleSelect() {
 		// get the selected item
 		Track track = (Track)_musicComboBox.getValue();
@@ -72,6 +83,7 @@ public class Background_Music_ScreenController extends Controller {
 			//gets the occurrence of the file separator pattern
 			int patternIndex = trackFullName.indexOf("_-_");
 			int lengthPattern = 3;
+			
 			// get the occurrence of the extension .mp3
 			int extPatternIndex = trackFullName.indexOf(".mp3");
 			
@@ -83,6 +95,10 @@ public class Background_Music_ScreenController extends Controller {
 		}
 	}
 	
+	/**
+	 * Combines the text-to-speech of the wikit content with the backgorund music tracks and loads the
+	 * 'Image Selection Screen'.
+	 */
 	public void handleNext() {
 		// stop all preview/audio player
 		terminatePlayers();
@@ -98,9 +114,13 @@ public class Background_Music_ScreenController extends Controller {
 		_backgroundExecutor.submit(bgmAdder);
 	}
 	
+	/**
+	 * Handles the preview functionality for the background music track.
+	 */
 	public void handlePlay() {
 		Stage stage = (Stage)((Add_Audio_ScreenController)this.getParentController()).getAudioList().getScene().getWindow();
 		stage.show();
+		
 		// allow you to play audio without waiting for the first to finish
 		if (_musicComboBox.getValue().toString() != NO_MUSIC) {
 			terminatePlayers();
@@ -110,6 +130,9 @@ public class Background_Music_ScreenController extends Controller {
 		}
 	}
 	
+	/**
+	 * Terminates the media players so they do not overlap
+	 */
 	private void terminatePlayers() {
 		if (_mediaView.getMediaPlayer() != null) {
 			_mediaView.getMediaPlayer().dispose();
@@ -122,6 +145,9 @@ public class Background_Music_ScreenController extends Controller {
 		}
 	}
 	
+	/**
+	 * extracts the background music tracks from the background music directory
+	 */
 	private List<String> extractFromDirectory() {
 		List<String> listOfFilenames = new ArrayList<>();
 		File[] listOfFiles = new File(MUSIC_DIR).listFiles();
