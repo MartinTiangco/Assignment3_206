@@ -17,7 +17,6 @@ public class TrackPlayer extends Task<Long> {
 	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
 	
     private Background_Music_ScreenController _controller;
-    private Process _process;
     private Track _track;
 
     public TrackPlayer(Track track, Background_Music_ScreenController controller) {
@@ -27,8 +26,8 @@ public class TrackPlayer extends Task<Long> {
 
     @Override
     protected Long call() throws Exception {
-        if (_track.getTrackName() != null) {
-            playTrack();
+        if (_track.getTrackFile() != null) {
+            playTrack(_track.getTrackFile());
         }
         return null;
     }
@@ -36,24 +35,11 @@ public class TrackPlayer extends Task<Long> {
     /**
      * Plays the background music
      */
-    public void playTrack() {
-        File fileUrl = new File(MUSIC_DIR + _track.getTrackName());
+    public void playTrack(String trackFile) {
+        File fileUrl = new File(MUSIC_DIR + trackFile);
         Media audio = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(audio);
         player.setAutoPlay(true);
         _controller.getMediaView().setMediaPlayer(player);
-    }
-
-    public void startProcess(ProcessBuilder builder) {
-        try {
-            _process = builder.start();
-            _process.waitFor();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Process getProcess() {
-        return _process;
     }
 }
