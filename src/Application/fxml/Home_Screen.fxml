@@ -8,7 +8,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Update" prefHeight="617.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Home_ScreenController">
@@ -19,12 +21,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="447.0" prefWidth="618.0">
                      <children>
-                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="461.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="455.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="_nameColumn" prefWidth="150.0" text="Name" />
                             <TableColumn fx:id="_termSearchedColumn" minWidth="0.0" prefWidth="225.0" text="Term Searched" />
                               <TableColumn fx:id="_dateModifiedColumn" minWidth="0.0" prefWidth="161.0" text="Date Modified" />
-                              <TableColumn fx:id="_videoLengthColumn" prefWidth="87.0" text="Length" />
+                              <TableColumn fx:id="_videoLengthColumn" prefWidth="81.0" text="Length" />
                           </columns>
                         </TableView>
                      </children>
@@ -52,5 +54,14 @@
       <ProgressIndicator fx:id="_progressIndicator" layoutX="14.0" layoutY="543.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
       <Label fx:id="_progressMsg" layoutX="93.0" layoutY="565.0" text="Generating creation ......" visible="false" />
       <Button fx:id="_helpButton" layoutX="729.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
+      <StackPane fx:id="_helpImagePane" layoutX="51.0" layoutY="49.0" prefHeight="617.0" prefWidth="795.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <ImageView fx:id="_helpImage" fitHeight="617.0" fitWidth="795.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

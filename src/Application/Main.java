@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -52,8 +53,9 @@ public class Main extends Application {
         controller.setStyleSheet(stylesheet);
         root.setId("background");
         primaryStage.setTitle("Welcome to VARpedia");
+//        Font.loadFont(getClass().getResource("/Application/css/Roboto-Medium.ttf").toExternalForm(), 48);
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm(), this.getClass().getResource(stylesheet).toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm(), this.getClass().getResource("css/Global.css").toExternalForm(), this.getClass().getResource(stylesheet).toExternalForm());
         primaryStage.setScene(scene);
         
         // exits the program when the window is closed
