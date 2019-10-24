@@ -17,11 +17,17 @@ import javafx.scene.media.MediaPlayer.Status;
 
 public class MediaBar extends HBox { // MediaBar extends Horizontal Box
 
+    private final static String PLAY_SYMBOL = "▶";
+    private final static String PAUSE_SYMBOL = "||";
+    private final static String MUTE_SYMBOL = "\uD83D\uDD07";
+    private final static String LOW_VOLUME_SYMBOL = "\uD83D\uDD08";
+    private final static String MEDIUM_VOLUME_SYMBOL = "\uD83D\uDD09";
+    private final static String HIGH_VOLUME_SYMBOL = "\uD83D\uDD0A";
     // introducing Sliders
     Slider time = new Slider(); // Slider for time
     Slider vol = new Slider(); // Slider for volume
     Button PlayButton = new Button("||"); // For pausing the player
-    Label volume = new Label("Volume: ");
+    Label volume = new Label(HIGH_VOLUME_SYMBOL);
     MediaPlayer player;
 
     public MediaBar(MediaPlayer play)
@@ -62,12 +68,12 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
                         // Pausing the player
                         player.pause();
 
-                        PlayButton.setText(">");
+                        PlayButton.setText(PLAY_SYMBOL);
                     }
                 } // If the video is stopped, halted or paused
                 if (status == Status.HALTED || status == Status.STOPPED || status == Status.PAUSED) {
                     player.play(); // Start the video
-                    PlayButton.setText("||");
+                    PlayButton.setText(PAUSE_SYMBOL);
                 }
             }
         });
@@ -97,6 +103,18 @@ public class MediaBar extends HBox { // MediaBar extends Horizontal Box
             {
                 if (vol.isPressed()) {
                     player.setVolume(vol.getValue() / 100);
+                    if (vol.getValue() == 0){
+                        volume.setText(MUTE_SYMBOL);
+                    }
+                    else if (vol.getValue() < 33) {
+                        volume.setText(LOW_VOLUME_SYMBOL);
+                    }
+                    else if (vol.getValue() < 66) {
+                        volume.setText(MEDIUM_VOLUME_SYMBOL);
+                    }
+                    else {
+                        volume.setText(HIGH_VOLUME_SYMBOL);
+                    }
                 }
             }
         });

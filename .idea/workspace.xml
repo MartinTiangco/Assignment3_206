@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/MediaBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MediaBar.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +79,8 @@
       <workItem from="1571188777566" duration="733000" />
       <workItem from="1571363957851" duration="599000" />
       <workItem from="1571707974696" duration="8054000" />
+      <workItem from="1571800656026" duration="1794000" />
+      <workItem from="1571886939791" duration="555000" />
     </task>
     <servers />
   </component>
