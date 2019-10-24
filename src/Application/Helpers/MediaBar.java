@@ -23,10 +23,18 @@ import javafx.scene.media.MediaPlayer.Status;
  */
 public class MediaBar extends HBox {
 
+    private final static String PLAY_SYMBOL = "▶";
+    private final static String PAUSE_SYMBOL = "||";
+    private final static String MUTE_SYMBOL = "\uD83D\uDD07";
+    private final static String LOW_VOLUME_SYMBOL = "\uD83D\uDD08";
+    private final static String MEDIUM_VOLUME_SYMBOL = "\uD83D\uDD09";
+    private final static String HIGH_VOLUME_SYMBOL = "\uD83D\uDD0A";
+
+    // introducing Sliders
     private Slider _time = new Slider(); // Slider for time
     private Slider _vol = new Slider(); // Slider for volume
     private Button _playButton = new Button("||"); // For pausing the player
-    private Label _volume = new Label("Volume: ");
+    private Label _volume = new Label(HIGH_VOLUME_SYMBOL);
     private MediaPlayer _player;
 
     /**
@@ -46,10 +54,10 @@ public class MediaBar extends HBox {
         _playButton.setPrefWidth(30);
 
         // Adding the components to the bottom
-        getChildren().add(_playButton); // Play button
-        getChildren().add(_time); // time slider
-        getChildren().add(_volume); // volume slider
-        getChildren().add(_vol);
+        HBox hBox = new HBox(_playButton, _time);
+        hBox.setPrefSize(hBox.getWidth(), hBox.getHeight());
+        getChildren().add(hBox); // Play button, time slider
+        getChildren().add(new HBox(_volume, _vol)); // volume slider
 
         // Adding Functionality to play the media player
         _playButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -67,7 +75,7 @@ public class MediaBar extends HBox {
                         // Pausing the player
                         _player.pause();
 
-                        _playButton.setText(">");
+                        _playButton.setText(PLAY_SYMBOL);
                     }
                 } if (status == Status.HALTED || status == Status.STOPPED || status == Status.PAUSED) {
                 	// If the video is stopped, halted or paused 
@@ -95,10 +103,20 @@ public class MediaBar extends HBox {
         });
 
         // providing functionality to volume slider
-        _vol.valueProperty().addListener(new InvalidationListener() {
-            public void invalidated(Observable ov) {
-                if (_vol.isPressed()) {
-                    _player.setVolume(_vol.getValue() / 100);
+        _vol.valueProperty().addListener(ov -> {
+            if (_vol.isPressed()) {
+                _player.setVolume(_vol.getValue() / 100);
+                if (_vol.getValue() == 0){
+                    _volume.setText(MUTE_SYMBOL);
+                }
+                else if (_vol.getValue() < 33) {
+                    _volume.setText(LOW_VOLUME_SYMBOL);
+                }
+                else if (_vol.getValue() < 66) {
+                    _volume.setText(MEDIUM_VOLUME_SYMBOL);
+                }
+                else {
+                    _volume.setText(HIGH_VOLUME_SYMBOL);
                 }
             }
         });
@@ -108,13 +126,10 @@ public class MediaBar extends HBox {
      * Move the slider while playing the video
      */
     private void updatesValues() {
-        Platform.runLater(new Runnable() {
-            public void run() {
-                _time.setValue(_player.getCurrentTime().toMillis()/
-                        _player.getTotalDuration()
-                                .toMillis()
-                                * 100);
-            }
+        Platform.runLater(() -> {
+            // Updating to the new time value
+            // This will move the slider while running your video
+            _time.setValue(_player.getCurrentTime().toMillis()/_player.getTotalDuration().toMillis() * 100);
         });
     }
 }
