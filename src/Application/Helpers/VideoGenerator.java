@@ -180,6 +180,9 @@ public class VideoGenerator extends Task<Long> {
 		}
 	}
 
+	/**
+	 * Generates a subtitle of the search term in the middle of the screen
+	 */
 	public void generateSubtitle() {
 		String cmd = "ffmpeg -i " + _folder + System.getProperty("file.separator") + "video.mp4 -vf drawtext=\"text='" 
 				+ _term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * 
+ * Plays the 'Saved Audio' and previews the selected text
  * @author Group 25:
  * 			- Martin Tiangco, mtia116
  * 			- Yuansheng Zhang, yzhb120
@@ -49,7 +49,7 @@ public class AudioPlayer extends Task<Long> {
                 		" -s " + String.valueOf((int)(_audio.getSpeed())) + " -a 50" +
                 		" " + _audio.getVoice() + " \"" + _texts + "\"";
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
-        StartProcess(builder);
+        startProcess(builder);
         return;
     }
 
@@ -71,11 +71,14 @@ public class AudioPlayer extends Task<Long> {
         }
     }
 
-    public void StartProcess(ProcessBuilder builder) {
+    /**
+     * Starts the preview text process so we could keep track of it
+     */
+    public void startProcess(ProcessBuilder builder) {
         try {
             _process = builder.start();
-            int exitStatus = _process.waitFor();
-        } catch (IOException | InterruptedException e) {
+            _process.waitFor();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

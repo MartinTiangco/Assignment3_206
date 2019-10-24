@@ -29,6 +29,10 @@ public class MediaBar extends HBox {
     private Label _volume = new Label("Volume: ");
     private MediaPlayer _player;
 
+    /**
+     * Constructor for MediaBar. Adds all the elements and functionality needed.
+     * @param play
+     */
     public MediaBar(MediaPlayer play) {
         _player = play;
 
@@ -42,7 +46,7 @@ public class MediaBar extends HBox {
         _playButton.setPrefWidth(30);
 
         // Adding the components to the bottom
-        getChildren().add(_playButton); // Playbutton
+        getChildren().add(_playButton); // Play button
         getChildren().add(_time); // time slider
         getChildren().add(_volume); // volume slider
         getChildren().add(_vol);
@@ -100,11 +104,12 @@ public class MediaBar extends HBox {
         });
     }
 
-    protected void updatesValues() {
+    /**
+     * Move the slider while playing the video
+     */
+    private void updatesValues() {
         Platform.runLater(new Runnable() {
             public void run() {
-                // Updating to the new time value
-                // This will move the slider while running your video
                 _time.setValue(_player.getCurrentTime().toMillis()/
                         _player.getTotalDuration()
                                 .toMillis()
