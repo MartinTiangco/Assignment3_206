@@ -1,9 +1,17 @@
 package Application.Helpers;
 
+/**
+ * Class containing the properties of the Background Music Tracks
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Track {
+	// If no music track is selected in the ComboBox in the 'Background Music Screen'
+	private final String NO_MUSIC = "No music";
+	
 	private String _author;
 	private String _trackName;
-	private final String NO_MUSIC = "No music";
 	
 	public Track(String trackName) {
 		_trackName = trackName;

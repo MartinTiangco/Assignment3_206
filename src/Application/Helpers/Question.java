@@ -2,51 +2,56 @@ package Application.Helpers;
 
 import java.io.File;
 
+/**
+ * Question class and its properties for the Active Learning Component (or Quiz)
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Question {
-
-    private String questionNumber;
-    private String correctAnswer;
-    private String userAnswer;
-    private Boolean correctness = false;
-    private File creationTested;
+    private Boolean _correctness = false;
+    private File _creationTested;
+    private String _correctAnswer;
+    private String _questionNumber;
+    private String _userAnswer;
 
     public String getQuestionNumber() {
-        return questionNumber;
+        return _questionNumber;
     }
 
     public void setQuestionNumber(String questionNumber) {
-        this.questionNumber = questionNumber;
+        _questionNumber = questionNumber;
     }
 
     public String getCorrectAnswer() {
-        return correctAnswer;
+        return _correctAnswer;
     }
 
     public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+        _correctAnswer = correctAnswer;
     }
 
     public String getUserAnswer() {
-        return userAnswer;
+        return _userAnswer;
     }
 
     public void setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer;
+        _userAnswer = userAnswer;
     }
 
     public Boolean getCorrectness() {
-        return correctness;
+        return _correctness;
     }
 
     public void setCorrectness(Boolean correctness) {
-        this.correctness = correctness;
+        _correctness = correctness;
     }
 
     public File getCreationTested() {
-        return creationTested;
+        return _creationTested;
     }
 
     public void setCreationTested(File creationTested) {
-        this.creationTested = creationTested;
+        _creationTested = creationTested;
     }
 }

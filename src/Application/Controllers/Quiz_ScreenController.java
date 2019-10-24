@@ -20,6 +20,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+/**
+ * The controller for the 'Quiz Screen', where the user answers the quiz
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Quiz_ScreenController extends Controller implements Initializable {
 
 	@FXML private Button _nextButton;
@@ -64,7 +70,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 	}
 
 
-	public void Start(){
+	public void Start() {
 	    _quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
 		if (_quiz.getDifficulty().equals("Hard")){
 			hardQuiz();

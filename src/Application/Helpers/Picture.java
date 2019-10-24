@@ -7,12 +7,17 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Picture extends Image {
-
-
     private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
+    
     private final StringProperty name = new SimpleStringProperty();
     private final BooleanProperty on = new SimpleBooleanProperty();
+    
     private String fileName = "";
     private Boolean selected = false;
     private ImageView imageView;

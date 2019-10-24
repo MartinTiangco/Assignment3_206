@@ -11,14 +11,17 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 /**
- * An Alert class for generating alerts
+ * An Alert class for generating alerts.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class AlertMessage implements Runnable {
 	
-	private Alert alert;
-	private Image_Selection_ScreenController controller;
-	private String status;
-	private String creationName;
+	private Alert _alert;
+	private Image_Selection_ScreenController _controller;
+	private String _status;
+	private String _creationName;
 	
 	/**
 	 * there are final strings to compare the command statuses to
@@ -32,14 +35,25 @@ public class AlertMessage implements Runnable {
 	private final String BGM_FAILED = "bgm_failed";
 	private final String NOT_FOUND = "not_found";
 	
+	/**
+	 * The standard alert constructor.
+	 * @param status - status of the error that will appear
+	 */
 	public AlertMessage(String status) {
-		this.status = status;
+		_status = status;
 	}
 	
+	/**
+	 * The alert message constructor showing when a creation generation is successful in the
+	 * 'Image Selection Screen'. 
+	 * @param status
+	 * @param creationName
+	 * @param controller
+	 */
 	public AlertMessage(String status, String creationName, Image_Selection_ScreenController controller) {
-		this.status = status;
-		this.creationName = creationName;
-		this.controller = controller;
+		_status = status;
+		_creationName = creationName;
+		_controller = controller;
 	}
 
 	/**
@@ -47,7 +61,7 @@ public class AlertMessage implements Runnable {
 	 */
 	@Override
 	public void run() {
-		switch(status) {
+		switch(_status) {
 		  case VOICE_CANNOT_SPEAK:
 			  showAlert("We are sorry, but the chosen voice can not speak the line(s). Please choose another.");
 			  break;
@@ -58,7 +72,7 @@ public class AlertMessage implements Runnable {
 			  showAlert("We are sorry, but the audio cannot be created. Please try again.");
 			  break;
 		  case CREATION_SUCCESSFUL:
-			  showSuccess("Creation \"" + creationName + "\" was successfully generated!");
+			  showSuccess("Creation \"" + _creationName + "\" was successfully generated!");
 			  break;
 		  case TOO_MANY_LINES:
 			  showAlert("Please select 5 lines or less.");
@@ -80,36 +94,36 @@ public class AlertMessage implements Runnable {
 	 * @param msg
 	 */
 	public void showAlert(String msg) {
-		alert = new Alert(AlertType.ERROR);
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-		alert.show();
+		_alert = new Alert(AlertType.ERROR);
+		_alert.setHeaderText(null);
+		_alert.setContentText(msg);
+		_alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		_alert.show();
 	}
 	
 	/**
-	 * Method for generating successes
+	 * Method for generating a successful creation on the 'Image Selection Screen'
 	 * @param msg
 	 */
 	private void showSuccess(String msg) {
-		alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-		alert.show();
-		((Home_ScreenController)(controller.getParentController().getParentController()).getParentController()).Update();
+		_alert = new Alert(AlertType.INFORMATION);
+		_alert.setHeaderText(null);
+		_alert.setContentText(msg);
+		_alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		_alert.show();
+		((Home_ScreenController)(_controller.getParentController().getParentController()).getParentController()).Update();
 	}
 
 	private void waitForConfirmation(String msg){
-		alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-		Optional<ButtonType> result = alert.showAndWait();
+		_alert = new Alert(AlertType.INFORMATION);
+		_alert.setHeaderText(null);
+		_alert.setContentText(msg);
+		_alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		Optional<ButtonType> result = _alert.showAndWait();
 		if (!result.isPresent()){
 		}
 		else if (result.get() == ButtonType.OK){
-			((Home_ScreenController)(controller.getParentController().getParentController())).Update();
+			((Home_ScreenController)(_controller.getParentController().getParentController())).Update();
 		}
 	}
 }

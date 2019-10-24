@@ -10,6 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * 
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class AudioPlayer extends Task<Long> {
 
     private Add_Audio_ScreenController _controller;

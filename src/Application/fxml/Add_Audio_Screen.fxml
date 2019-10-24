@@ -59,7 +59,7 @@
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <Button fx:id="_helpButton" layoutX="820.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#showHelpTopHalf" onMouseExited="#hideHelpTopHalf" prefHeight="40.0" prefWidth="40.0" />
+                  <Button fx:id="_helpButton" layoutX="844.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#showHelpTopHalf" onMouseExited="#hideHelpTopHalf" prefHeight="40.0" prefWidth="40.0" />
                   <Button fx:id="_mainMenuButton" focusTraversable="false" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" prefHeight="40.0" prefWidth="100.0" text="Back" />
                   <StackPane fx:id="_helpBottomHalf" layoutX="21.0" layoutY="73.0" prefHeight="313.0" prefWidth="631.0" visible="false" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="73.0">
                      <children>
@@ -89,9 +89,9 @@
                         <TableColumn fx:id="_pitch" minWidth="0.0" prefWidth="98.0" text="Pitch" />
                     </columns>
                   </TableView>
-                  <VBox layoutX="665.0" layoutY="48.0" prefHeight="201.0" prefWidth="190.0" spacing="20.0">
+                  <VBox layoutX="665.0" layoutY="48.0" prefHeight="201.0" prefWidth="210.0" spacing="20.0">
                      <children>
-                        <Button fx:id="_playAudioButton" mnemonicParsing="false" onAction="#handlePlayAudio" prefHeight="40.0" prefWidth="200.0" text="Play" />
+                        <Button fx:id="_playAudioButton" mnemonicParsing="false" onAction="#handlePlayAudio" prefHeight="40.0" prefWidth="172.0" text="Play" />
                         <Button fx:id="_deleteAudioButton" mnemonicParsing="false" onAction="#handleDeleteAudio" prefHeight="40.0" prefWidth="200.0" text="Delete" />
                         <Button fx:id="_nextButton" mnemonicParsing="false" onAction="#handleNext" prefHeight="40.0" prefWidth="200.0" text="Next" textAlignment="CENTER" wrapText="true" />
                      </children>
@@ -99,7 +99,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <Button fx:id="_helpButton" layoutX="817.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#showHelpBottomHalf" onMouseExited="#hideHelpBottomHalf" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="_helpButton" layoutX="844.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#showHelpBottomHalf" onMouseExited="#hideHelpBottomHalf" prefHeight="40.0" prefWidth="40.0">
                      <tooltip>
                         <Tooltip text="We can then 'Preview' or 'Delete' the audio in the 'List of Saved Audio'. Once you're happy, click on&quot;Next&quot;." />
                      </tooltip>
@@ -117,7 +117,7 @@
             </TextArea>
          </children>
       </StackPane>
-      <StackPane prefHeight="80.0" prefWidth="80.0">
+      <StackPane layoutX="410.0" layoutY="310.0" prefHeight="80.0" prefWidth="80.0">
          <children>
             <ProgressIndicator fx:id="_progressIndicator" progress="0.0" visible="false">
                <StackPane.margin>

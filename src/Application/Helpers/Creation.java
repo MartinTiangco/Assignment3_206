@@ -1,66 +1,79 @@
 package Application.Helpers;
 
+/**
+ * The Creation class containing the properties needed to populate the TableView in the 'Home Screen'.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Creation {
 
-    private String name = null;
-    private String termSearched = null;
-    private String dateModified = null;
-    private String videoLength = null;
-    private String fileName = null;
-    private String folderName = null;
+    private String _name = null;
+    private String _termSearched = null;
+    private String _dateModified = null;
+    private String _videoLength = null;
+    private String _fileName = null;
+    private String _folderName = null;
 
-
+    /**
+     * The constructor for the Creation class
+     * @param name - the given name of the creation
+     * @param termSearched - the term used to search wikit
+     * @param dateModified
+     * @param videoLength
+     * @param fileName
+     */
     public Creation(String name, String termSearched, String dateModified, String videoLength, String fileName) {
-        this.name = name;
-        this.termSearched = termSearched;
-        this.dateModified = dateModified;
-        this.videoLength = videoLength;
-        this.fileName = fileName;
-        folderName = fileName.substring(0, fileName.indexOf(System.getProperty("file.separator")));
+        _name = name;
+        _termSearched = termSearched;
+        _dateModified = dateModified;
+        _videoLength = videoLength;
+        _fileName = fileName;
+        _folderName = fileName.substring(0, fileName.indexOf(System.getProperty("file.separator")));
         
     }
 
     public String getName() {
-        return name;
+        return _name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        _name = name;
     }
 
     public String getTermSearched() {
-        return termSearched;
+        return _termSearched;
     }
 
     public void setTermSearched(String termSearched) {
-        this.termSearched = termSearched;
+        _termSearched = termSearched;
     }
 
     public String getDateModified() {
-        return dateModified;
+        return _dateModified;
     }
 
     public void setDateModified(String dateModified) {
-        this.dateModified = dateModified;
+        _dateModified = dateModified;
     }
 
     public String getVideoLength() {
-        return videoLength;
+        return _videoLength;
     }
 
     public void setVideoLength(String videoLength) {
-        this.videoLength = videoLength;
+        _videoLength = videoLength;
     }
 
     public String getFileName() {
-        return fileName;
+        return _fileName;
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
+        _fileName = fileName;
     }
     
     public String getFolderName() {
-    	return folderName;
+    	return _folderName;
     }
 }

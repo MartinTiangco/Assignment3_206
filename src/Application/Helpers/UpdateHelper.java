@@ -11,7 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Updates the Home Menu Screen
+ * Updates the 'Home Screen'
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
  */
 public class UpdateHelper extends Task<Long> {
 	private final String DIR = "./Creation_Directory/";
@@ -28,12 +31,15 @@ public class UpdateHelper extends Task<Long> {
 
 	@Override
 	public Long call() {
-			List<String> listOfFilenames = extractFromDirectory();
-			createCreations(listOfFilenames);
-			Platform.runLater(new Update());
+		List<String> listOfFilenames = extractFromDirectory();
+		createCreations(listOfFilenames);
+		Platform.runLater(new Update());
 		return null;
 	}
 
+	/**
+	 * Updates the Creation table in the Home Screen
+	 */
 	class Update implements Runnable {
 		@Override
 		public void run() {
@@ -42,6 +48,9 @@ public class UpdateHelper extends Task<Long> {
 		}
 	}
 
+	/**
+	 * Extract a list of filenames of the creations from the Creation directory
+	 */
 	private List<String> extractFromDirectory() {
 		List<String> listOfFilenames = new ArrayList<>();
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
@@ -52,13 +61,13 @@ public class UpdateHelper extends Task<Long> {
 		return listOfFilenames;
 	}
 	
-	/*
-	 * Extract details from the filenames of Creations and display on the TableView
+	/**
+	 * Extract details from the filenames of 'Creation' objects and display on the TableView
 	 */
 	private void createCreations(List<String> listOfFilenames) {
 		for (String file : listOfFilenames) {
 			if (new File(DIR + file + System.getProperty("file.separator") + "creation.mp4").exists()) {
-				//gets the first occurrence of the file separator pattern
+				//gets the first occurrence of the separator pattern "_-_"
 				int firstPatternIndex = file.indexOf("_-_");
 				
 				//gets the second occurrence of the file separator pattern

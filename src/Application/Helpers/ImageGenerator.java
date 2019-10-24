@@ -14,25 +14,26 @@ import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
+/**
+ * Class that retrieves the images from Flickr using an adapted version of Nasser's example.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class ImageGenerator extends Task<Long> {
-	private final String OUTPUT_DIR = ".Output_Directory" + System.getProperty("file.separator");
-	private final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
-	private final String IMAGES = IMAGE_DIR + "*.jpg";
-	private final String AUDIO = OUTPUT_DIR + "output.wav";
-	
-	private String _term;
-	private int _numPics;
 	private Image_Selection_ScreenController _controller;
+	private int _numPics;
+	private String _term;
 	
 	public ImageGenerator(String term, int numPics, Image_Selection_ScreenController controller) {
-		_term = term;
-		_numPics = numPics;
 		_controller = controller;
+		_numPics = numPics;
+		_term = term;
 	}
 
 	@Override
 	protected Long call() throws Exception {
-		// delete all images first
+		// delete all images first from the images directory
 		Cleaner cleaner = new Cleaner();
 		cleaner.cleanImage();
 		
@@ -82,6 +83,9 @@ public class ImageGenerator extends Task<Long> {
 			e.printStackTrace();
 		}
 		
+		/**
+		 * displays the images onto the 'Image Selection Screen'.
+		 */
 		Platform.runLater(() -> {
 			_controller.listImages();
 			_controller.getListOfImages().getSelectionModel().select(0);

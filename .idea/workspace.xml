@@ -8,7 +8,45 @@
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_21/creation.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_21/slideshow.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_21/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation_Directory/apple_-_apple_-_21/wikit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Background_Music_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Background_Music_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Score_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Start_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_Start_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Settings_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Welcome_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AlertMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCombiner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/AudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Cleaner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Creation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageViewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/MediaBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MediaBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Picture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/TrackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/TrackPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/UpdateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/VideoGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +77,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -57,7 +95,7 @@
   <component name="RunManager">
     <configuration name="VARpedia" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Application.Main" />
-      <module name="softeng_206_a03" />
+      <module name="softeng_206_Project" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -80,7 +118,7 @@
       <workItem from="1571363957851" duration="599000" />
       <workItem from="1571707974696" duration="8054000" />
       <workItem from="1571800656026" duration="1794000" />
-      <workItem from="1571886939791" duration="555000" />
+      <workItem from="1571886939791" duration="1733000" />
     </task>
     <servers />
   </component>

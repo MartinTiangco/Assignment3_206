@@ -6,7 +6,6 @@ import java.io.FileReader;
 
 import Application.Controllers.Controller;
 import Application.Controllers.Welcome_ScreenController;
-import com.aquafx_project.AquaFx;
 import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,18 +16,25 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * The main class of the application
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+    	// loads the stylesheet that was last used in the config files
         String config = System.getProperty("user.dir") + System.getProperty("file.separator") + ".config";
         String stylesheet = "";
 
         File file = new File(config);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-
         String line;
+        // extracts the stylesheet saved onto the config text file
         while ((line = br.readLine()) != null) {
             if ((line.trim().startsWith("Stylesheet"))) {
                 br.close();
@@ -37,6 +43,8 @@ public class Main extends Application {
             }
         }
         br.close();
+        
+        // loads the welcome screen page
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Welcome_Screen.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
@@ -46,8 +54,9 @@ public class Main extends Application {
         primaryStage.setTitle("Welcome to VARpedia");
         Scene scene = new Scene(root, 600, 400);
         scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm(), this.getClass().getResource(stylesheet).toExternalForm());
-//        AquaFx.style();
         primaryStage.setScene(scene);
+        
+        // exits the program when the window is closed
         primaryStage.setOnCloseRequest(t -> {
             Platform.exit();
             System.exit(0);
@@ -55,9 +64,12 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Starts the program by creating the directories then launching.
+     */
     public static void main(String[] args) {
 
-        //make the directories
+        //make the directories if they are not present already
         File creationDir = new File("Creation_Directory");
         File audioDir = new File(".Audio_Directory");
         File videoDir = new File(".Video_Directory");

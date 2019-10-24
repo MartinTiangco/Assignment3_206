@@ -31,21 +31,28 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
+/**
+ * The controller for the 'Image Selection Screen', where the user selects what images to include
+ * in the slideshow for the creation.
+ * @author Group 25:
+ * 			- Martin Tiangco, mtia116
+ * 			- Yuansheng Zhang, yzhb120
+ */
 public class Image_Selection_ScreenController extends Controller {
 
 	private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 
+	@FXML private AnchorPane _entireScreenPane;
 	@FXML private Button _createButton;
 	@FXML private Button _generateButton;
-	@FXML private Label _invalidInput;
-	@FXML private ListView<Picture> _listOfImages;
+	@FXML private CheckBox _selectAll;
 	@FXML private ImageView _imageView = new ImageView();
-	@FXML private AnchorPane _entireScreenPane;
+	@FXML private Label _invalidInput;
+	@FXML private ListView<ImageView> _selectedImages;
+	@FXML private ListView<Picture> _listOfImages;
 	@FXML private ProgressIndicator _progressIndicator;
 	@FXML private TextField _nameInput;
 	@FXML private TextField _input;
-	@FXML private CheckBox _selectAll;
-	@FXML private ListView<ImageView> _selectedImages;
 
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();

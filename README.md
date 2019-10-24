@@ -24,10 +24,15 @@ Open a bash terminal in the same directory as the script file named "VARpedia.sh
 # -> ./VARpedia.sh
 #=======================================
 
-Note: This application does not support for ambiguous results, please be specific when searching.
+# Limitations
+- This application does not support for ambiguous results, please be specific when searching.
 
-# Git 
-https://github.com/MartinTiangco/Assignment3_206
+# Git
+	Authors: 
+		- MartinTiangco
+		- Will-ZYS
+	Repository:
+		https://github.com/MartinTiangco/Assignment3_206
 
 # Music Track Acknowledgement
 The following tracks have been used in this application. They have been edited such that they are background music to Text-to-speech voices. 
@@ -52,3 +57,16 @@ Little reindeer by Stefan Kartenberg (c) copyright 2018
 Licensed under a Creative Commons Attribution Noncommercial (3.0) license. 
 http://dig.ccmixter.org/files/JeffSpeed68/58885 Ft: Martin Cee (softmartin)
 http://ccmixter.org/content/JeffSpeed68/JeffSpeed68_-_Little_reindeer.mp3
+
+# Source Code Acknowledgement
+Our project uses adaptations from users' code. We thank their authors for their work.
+
+Flickr API retrieval:
+- Nasser Giacaman
+
+Flickr API library:
+- SmugMug, Inc.
+
+CSS Themes:
+- carldea - https://github.com/carldea/jfx9be/tree/master/chap15/LookNFeelChooser/src/jfx9be
+- dicolar - https://github.com/dicolar/jbootx
