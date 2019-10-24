@@ -62,15 +62,14 @@ public class Controller {
         _styleSheet = styleSheet;
 
         try {
-            // input the (modified) file content to the StringBuffer "input"
+        	// set the stylesheet from the config file
             String config = System.getProperty("user.dir") + System.getProperty("file.separator") + ".config";
 
             File c = new File(config);
             BufferedReader file = new BufferedReader(new FileReader(c));
             StringBuilder inputBuffer = new StringBuilder();
+            
             String line;
-
-            // extract the stylesheet from the config file
             while ((line = file.readLine()) != null) {
                 if (line.trim().startsWith("Stylesheet")) {
                     line = "Stylesheet = " + styleSheet;

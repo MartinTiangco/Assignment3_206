@@ -132,7 +132,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     }
 
     /**
-     * Deletes the selected creation from the TableView
+     * Deletes the selected creation from the TableView and deletes the creation's folder
      */
     public void handleDelete() {
     	Cleaner cleaner = new Cleaner();
@@ -167,6 +167,10 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
     
+    public void handleHelp() {
+    	
+    }
+    
     /**
      * Opens the quiz page when the quiz button is clicked
      */
@@ -185,14 +189,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void handleSettings() {
         Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
         ((Settings_ScreenController)controller).selectDefault();
-    }
-
-    public ArrayList<Creation> getCreations() {
-        return _creations;
-    }
-
-    public TableView getCreationTable() {
-        return _creationTable;
     }
 
     /**
@@ -218,6 +214,10 @@ public class Home_ScreenController extends Controller implements Initializable {
         }
     }
     
+    public ArrayList<Creation> getCreations() {
+        return _creations;
+    }
+    
     public Label getProgressMsg() {
     	return _progressMsg;
     }
@@ -225,4 +225,9 @@ public class Home_ScreenController extends Controller implements Initializable {
     public ProgressIndicator getProgressIndicator() {
     	return _progressIndicator;
     }
+
+    public TableView getCreationTable() {
+        return _creationTable;
+    }
+
 }

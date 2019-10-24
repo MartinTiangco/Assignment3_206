@@ -13,13 +13,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Update" prefHeight="617.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Home_ScreenController">
    <children>
-      <TabPane fx:id="_videoTabs" layoutX="13.0" layoutY="25.0" onMouseClicked="#Update" prefHeight="570.0" prefWidth="618.0" tabClosingPolicy="ALL_TABS">
+      <TabPane fx:id="_videoTabs" layoutX="13.0" layoutY="25.0" onMouseClicked="#Update" prefHeight="494.0" prefWidth="618.0" tabClosingPolicy="ALL_TABS">
         <tabs>
           <Tab fx:id="_creationTab" closable="false" text="List of Creations">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="604.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="447.0" prefWidth="618.0">
                      <children>
-                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="537.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="461.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="_nameColumn" prefWidth="150.0" text="Name" />
                             <TableColumn fx:id="_termSearchedColumn" minWidth="0.0" prefWidth="225.0" text="Term Searched" />
@@ -49,8 +49,8 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <ProgressIndicator fx:id="_progressIndicator" layoutX="24.0" layoutY="492.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
-      <Label fx:id="_progressMsg" layoutX="94.0" layoutY="501.0" text="Generating creation ......" visible="false" />
-      <Button fx:id="_helpButton" layoutX="729.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
+      <ProgressIndicator fx:id="_progressIndicator" layoutX="14.0" layoutY="543.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
+      <Label fx:id="_progressMsg" layoutX="93.0" layoutY="565.0" text="Generating creation ......" visible="false" />
+      <Button fx:id="_helpButton" layoutX="729.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
    </children>
 </AnchorPane>

@@ -150,12 +150,15 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 					event.consume();
 				}
 			});
-
 			return row ;
 		});
 
 	}
 
+	public void handleHelp() {
+
+	}
+	
 	/**
 	 * Previews the text using the current voice settings
 	 */
