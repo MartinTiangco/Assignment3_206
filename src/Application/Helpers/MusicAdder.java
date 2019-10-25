@@ -1,6 +1,7 @@
 package Application.Helpers;
 
 import Application.Controllers.Background_Music_ScreenController;
+import Application.Controllers.Image_Selection_ScreenController;
 import Application.Helpers.AlertMessage;
 import Application.Helpers.Track;
 import javafx.application.Platform;
@@ -51,8 +52,8 @@ public class MusicAdder extends Task<Long> {
 					@Override
 					public void run() {
 						// loads the Image Selection Screen
-						_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
-
+						Image_Selection_ScreenController controller = (Image_Selection_ScreenController)_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
+						controller.generateImages();
 						// closes the 'Background Music Screen'
 						Stage stage = (Stage) _controller.getNextButton().getScene().getWindow();
 						stage.hide();

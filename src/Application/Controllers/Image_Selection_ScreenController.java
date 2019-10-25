@@ -43,58 +43,20 @@ public class Image_Selection_ScreenController extends Controller {
 
 	private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 
-	@FXML private AnchorPane _entireScreenPane;
 	@FXML private Button _backButton;
 	@FXML private Button _createButton;
 	@FXML private Button _helpButton;
-	@FXML private Button _generateButton;
 	@FXML private CheckBox _selectAll;
 	@FXML private ImageView _imageView = new ImageView();
-	@FXML private Label _invalidInput;
 	@FXML private ListView<ImageView> _selectedImages;
 	@FXML private ListView<Picture> _listOfImages;
-	@FXML private ProgressIndicator _progressIndicator;
 	@FXML private TextField _nameInput;
-	@FXML private TextField _input;
 
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
 
 	public void initialize() {
-		_generateButton.setDisable(true);
-
-		_input.requestFocus();
-
-		_input.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue,
-								String newValue) {
-				// only allow digits to be typed
-				if (!newValue.matches("\\d+")) {
-					_input.setText(newValue.replaceAll("[^\\d]", ""));
-				}
-				// only allow up to 2 digits to be typed
-				if (newValue.length() > 2) {
-					_input.setText(newValue.substring(0,2));
-				}
-				// enables or disables button if number is a valid input
-				if (!_input.getText().isEmpty()) {
-					if (_input.getText().matches("\\d+")) {
-						if (isValidNumber()) {
-							_invalidInput.setVisible(false);
-							_generateButton.setDisable(false);
-						} else {
-							_invalidInput.setVisible(true);
-							_generateButton.setDisable(true);
-						}
-					}
-				} else {
-					// if textField is empty, disable the button.
-					_generateButton.setDisable(true);
-				}
-			}
-		});
 
 		// handles the checkboxes next to the images
 		_listOfImages.setCellFactory(CheckBoxListCell.forListView(image -> {
@@ -153,21 +115,12 @@ public class Image_Selection_ScreenController extends Controller {
 
 	// this is needed for the check box functionality
 
-	public void handleGenerate() {
-		if (!isValidNumber()) {
-			return;
-		}
-
-		// progress indicator
-		_entireScreenPane.setDisable(true);
-		_progressIndicator.setProgress(-1);
-		_progressIndicator.setVisible(true);
+	public void generateImages() {
 		
 		_term = ((Add_Audio_ScreenController)(this.getParentController().getParentController())).getSearchInput();
-		int numPics = Integer.parseInt(_input.getText());
 
 		// retrieves images from Flickr
-		ImageGenerator imgGen = new ImageGenerator(_term, numPics, this);
+		ImageGenerator imgGen = new ImageGenerator(_term, 10, this);
 		_executor.submit(imgGen);
 	}
 
@@ -223,12 +176,6 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
-	public boolean isValidNumber() {
-		if (Integer.parseInt(_input.getText()) > 0 && Integer.parseInt(_input.getText()) < 11) {
-			return true;
-		}
-		return false;
-	}
 
 	private boolean isNameValid() {
 		// Disallows input of spaces or an empty string
@@ -246,14 +193,6 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public Button getCreateButton() {
 		return _createButton;
-	}
-
-	public AnchorPane getEntireScreenPane() {
-		return _entireScreenPane;
-	}
-
-	public ProgressIndicator getProgressIndicator() {
-		return _progressIndicator;
 	}
 
 	public ListView<Picture> getListOfImages() {

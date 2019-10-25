@@ -4,57 +4,42 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="694.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Image_Selection_ScreenController">
    <children>
-      <AnchorPane fx:id="_entireScreenPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="740.0">
+      <AnchorPane layoutX="14.0" layoutY="91.0" prefHeight="322.0" prefWidth="285.0">
          <children>
-            <AnchorPane layoutX="14.0" layoutY="7.0" prefHeight="107.0" prefWidth="584.0">
-               <children>
-                  <TextField fx:id="_input" layoutY="34.0" onAction="#handleGenerate" prefHeight="40.0" prefWidth="199.0" promptText="Input from 1 to 10." />
-                  <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the number of pictures you wish to include in the slideshow (10 maximum)." />
-                  <Label fx:id="_invalidInput" layoutX="14.0" layoutY="79.0" text="Please enter a number between 1 and 10." textFill="RED" visible="false" />
-                  <Button fx:id="_generateButton" layoutX="222.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleGenerate" prefHeight="40.0" prefWidth="104.0" text="Search" />
-                  <CheckBox fx:id="_selectAll" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" visible="false" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="114.0" prefHeight="299.0" prefWidth="285.0">
-               <children>
-                  <ListView fx:id="_listOfImages" focusTraversable="false" onMouseClicked="#viewImage" prefHeight="311.0" prefWidth="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="13.0" layoutY="625.0" prefHeight="53.0" prefWidth="720.0">
-               <children>
-                  <Button fx:id="_createButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="40.0" prefWidth="217.0" text="Create" />
-                  <TextField fx:id="_nameInput" layoutX="109.0" layoutY="10.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="368.0" promptText="Enter filename" />
-                  <Button fx:id="_backButton" focusTraversable="false" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="100.0" text="Back" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="303.0" layoutY="121.0" prefHeight="262.0" prefWidth="395.0">
-               <children>
-                  <ImageView fx:id="_imageView" fitHeight="313.0" fitWidth="418.0" layoutX="2.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </AnchorPane>
-            <ListView fx:id="_selectedImages" focusTraversable="false" layoutX="14.0" layoutY="460.0" orientation="HORIZONTAL" prefHeight="159.0" prefWidth="707.0" />
-            <Label layoutX="14.0" layoutY="427.0" text="Selected Images: ">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="_helpButton" layoutX="693.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
+            <ListView fx:id="_listOfImages" focusTraversable="false" layoutY="-29.0" onMouseClicked="#viewImage" prefHeight="323.0" prefWidth="285.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
-      <StackPane layoutX="466.0" layoutY="307.0" prefHeight="80.0" prefWidth="80.0">
+      <AnchorPane layoutX="13.0" layoutY="625.0" prefHeight="53.0" prefWidth="720.0">
          <children>
-            <ProgressIndicator fx:id="_progressIndicator" progress="0.0" visible="false" />
+            <Button fx:id="_createButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="40.0" prefWidth="217.0" text="Create" />
+            <TextField fx:id="_nameInput" layoutX="109.0" layoutY="10.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="368.0" promptText="Enter filename" />
+            <Button fx:id="_backButton" focusTraversable="false" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="100.0" text="Back" />
          </children>
-      </StackPane>
+      </AnchorPane>
+      <AnchorPane layoutX="303.0" layoutY="82.0" prefHeight="345.0" prefWidth="420.0">
+         <children>
+            <ImageView fx:id="_imageView" fitHeight="331.0" fitWidth="418.0" layoutX="2.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <ListView fx:id="_selectedImages" focusTraversable="false" layoutX="14.0" layoutY="460.0" orientation="HORIZONTAL" prefHeight="159.0" prefWidth="707.0" />
+      <Label layoutX="21.0" layoutY="425.0" text="Selected Images: ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="_helpButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
+      <Label layoutX="71.0" layoutY="24.0" text="Images of ...">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="_selectAll" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" text="Select All" visible="false" />
    </children>
 </AnchorPane>

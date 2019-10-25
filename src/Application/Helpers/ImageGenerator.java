@@ -38,11 +38,7 @@ public class ImageGenerator extends Task<Long> {
 		cleaner.cleanImage();
 		
 		// retrieves from Flickr
-		retrievePhotos();	
-
-		// enables screen and sets progress indicator to invisible
-		ProgressRunnable progressRunnable = new ProgressRunnable(_controller);
-        Platform.runLater(progressRunnable);
+		retrievePhotos();
 		return null;
 	}
 	
