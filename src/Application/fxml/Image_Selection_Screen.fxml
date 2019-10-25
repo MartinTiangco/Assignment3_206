@@ -5,8 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="694.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Image_Selection_ScreenController">
@@ -16,6 +18,21 @@
             <ListView fx:id="_listOfImages" focusTraversable="false" layoutY="-29.0" onMouseClicked="#viewImage" prefHeight="323.0" prefWidth="285.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="303.0" layoutY="82.0" prefHeight="345.0" prefWidth="420.0">
+         <children>
+            <ImageView fx:id="_imageView" fitHeight="331.0" fitWidth="418.0" layoutX="2.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <ListView fx:id="_selectedImages" focusTraversable="false" layoutX="14.0" layoutY="460.0" orientation="HORIZONTAL" prefHeight="159.0" prefWidth="707.0" />
+      <StackPane fx:id="_helpImagePane" onMouseClicked="#hideHelp" prefHeight="694.0" prefWidth="744.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="_helpImage" fitHeight="708.0" fitWidth="746.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/helpImageSelectionScreen.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
       <AnchorPane layoutX="13.0" layoutY="625.0" prefHeight="53.0" prefWidth="720.0">
          <children>
             <Button fx:id="_createButton" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="40.0" prefWidth="217.0" text="Create" />
@@ -23,18 +40,12 @@
             <Button fx:id="_backButton" focusTraversable="false" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="100.0" text="Back" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="303.0" layoutY="82.0" prefHeight="345.0" prefWidth="420.0">
-         <children>
-            <ImageView fx:id="_imageView" fitHeight="331.0" fitWidth="418.0" layoutX="2.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
-      <ListView fx:id="_selectedImages" focusTraversable="false" layoutX="14.0" layoutY="460.0" orientation="HORIZONTAL" prefHeight="159.0" prefWidth="707.0" />
       <Label layoutX="21.0" layoutY="425.0" text="Selected Images: ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="_helpButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="_helpButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="40.0" prefWidth="40.0" />
       <Label layoutX="71.0" layoutY="24.0" text="Images of ...">
          <font>
             <Font size="30.0" />

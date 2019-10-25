@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -50,14 +51,17 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ListView<ImageView> _selectedImages;
 	@FXML private ListView<Picture> _listOfImages;
+	@FXML private StackPane _helpImagePane;
 	@FXML private TextField _nameInput;
-
+    
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
 
 	public void initialize() {
-
+		// initializes the help image to be invisible
+        _helpImagePane.setVisible(false);
+        
 		// handles the checkboxes next to the images
 		_listOfImages.setCellFactory(CheckBoxListCell.forListView(image -> {
 			image.onProperty().addListener((obs, wasOn, isNowOn) -> {
@@ -77,8 +81,12 @@ public class Image_Selection_ScreenController extends Controller {
 		((Stage)(_backButton.getScene().getWindow())).close();
 	}
 	
-	public void handleHelp() {
-		
+	public void showHelp() {
+        _helpImagePane.setVisible(true);
+	}
+	
+	public void hideHelp() {
+        _helpImagePane.setVisible(false);
 	}
 
 	public void handleCreate() {
