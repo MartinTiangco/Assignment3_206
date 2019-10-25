@@ -180,11 +180,11 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
     
-    public void handleHelp() {
+    public void showHelp() {
     	_helpImagePane.setVisible(true);
     }
     
-    public void disableHelp() {
+    public void hideHelp() {
     	_helpImagePane.setVisible(false);
     }
     
