@@ -35,7 +35,18 @@
           </Tab>
         </tabs>
       </TabPane>
-      <VBox layoutX="631.0" layoutY="69.0" prefHeight="482.0" prefWidth="160.0" spacing="20.0">
+      <ProgressIndicator fx:id="_progressIndicator" layoutX="14.0" layoutY="543.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
+      <Label fx:id="_progressMsg" layoutX="93.0" layoutY="565.0" text="Generating creation ......" visible="false" />
+      <StackPane fx:id="_helpImagePane" layoutX="51.0" layoutY="49.0" prefHeight="617.0" prefWidth="795.0" style="-fx-background-color: rgba(0,0,0,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <ImageView fx:id="_helpImage" fitHeight="617.0" fitWidth="795.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+      <VBox layoutX="631.0" layoutY="68.0" prefHeight="482.0" prefWidth="160.0" spacing="20.0" style="-fx-background-color: rgba(255,255,255,0);">
          <children>
             <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="130.0" text="PLAY" />
             <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" prefWidth="120.0" text="ADD" />
@@ -51,17 +62,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <ProgressIndicator fx:id="_progressIndicator" layoutX="14.0" layoutY="543.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
-      <Label fx:id="_progressMsg" layoutX="93.0" layoutY="565.0" text="Generating creation ......" visible="false" />
       <Button fx:id="_helpButton" layoutX="729.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
-      <StackPane fx:id="_helpImagePane" layoutX="51.0" layoutY="49.0" prefHeight="617.0" prefWidth="795.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane>
-               <children>
-                  <ImageView fx:id="_helpImage" fitHeight="617.0" fitWidth="795.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </AnchorPane>
-         </children>
-      </StackPane>
    </children>
 </AnchorPane>
