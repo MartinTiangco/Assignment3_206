@@ -38,7 +38,7 @@ public class MusicAdder extends Task<Long> {
 			// no background music is chosen
 			cmd = "ffmpeg -i " + spokenAudio + " " + output;
 		} else {
-			String bgMusic = MUSIC_DIR + _chosenTrack.getTrackName();
+			String bgMusic = MUSIC_DIR + _chosenTrack.getTrackFile();
 			cmd = "ffmpeg -i " + spokenAudio + " -i " + bgMusic + " -filter_complex amerge=inputs=2 -ac 2 " + output;
 		}
 		

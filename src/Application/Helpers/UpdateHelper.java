@@ -55,8 +55,8 @@ public class UpdateHelper extends Task<Long> {
 		List<String> listOfFilenames = new ArrayList<>();
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
 
-		for (File File : listOfFiles) {
-			listOfFilenames.add(File.getName());
+		for (File file : listOfFiles) {
+			listOfFilenames.add(file.getName());
 		}
 		return listOfFilenames;
 	}
@@ -83,14 +83,23 @@ public class UpdateHelper extends Task<Long> {
 		}
 	}
 	
+	/**
+	 * Extracts the name of the creation supplied by the user
+	 */
 	private String extractName(String filename, int firstPatternIndex) {
 		return filename.substring(0, firstPatternIndex);
 	}
 	
+	/**
+	 * Extracts the search term of the creation
+	 */
 	private String extractTerm(String filename, int firstPatternIndex, int secondPatternIndex) {
 		return filename.substring(firstPatternIndex + SEPARATOR_LENGTH, secondPatternIndex);
 	}
 	
+	/**
+	 * Extracts the last modified date of the creation file
+	 */
 	private String extractDateModified(String filename) {
 		return new SimpleDateFormat("yyyy/MM/dd h:mm a").format(new Date(new File(DIR + filename).lastModified()));
 	}

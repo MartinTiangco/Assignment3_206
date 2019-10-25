@@ -11,15 +11,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Update" prefHeight="617.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Home_ScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Update" prefHeight="620.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Home_ScreenController">
    <children>
-      <TabPane fx:id="_videoTabs" layoutX="13.0" layoutY="25.0" onMouseClicked="#Update" prefHeight="570.0" prefWidth="618.0" tabClosingPolicy="ALL_TABS">
+      <TabPane fx:id="_videoTabs" layoutX="13.0" layoutY="25.0" onMouseClicked="#Update" prefHeight="499.0" prefWidth="618.0" tabClosingPolicy="ALL_TABS">
         <tabs>
           <Tab fx:id="_creationTab" closable="false" text="List of Creations">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="604.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="497.0" prefWidth="618.0">
                      <children>
-                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="537.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="_creationTable" layoutX="9.0" layoutY="3.0" prefHeight="465.0" prefWidth="618.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="_nameColumn" prefWidth="150.0" text="Name" />
                             <TableColumn fx:id="_termSearchedColumn" minWidth="0.0" prefWidth="225.0" text="Term Searched" />
@@ -33,13 +33,13 @@
           </Tab>
         </tabs>
       </TabPane>
-      <VBox layoutX="631.0" layoutY="69.0" prefHeight="482.0" prefWidth="160.0" spacing="20.0">
+      <VBox layoutX="645.0" layoutY="69.0" prefHeight="482.0" prefWidth="191.0" spacing="20.0">
          <children>
-            <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="130.0" text="PLAY" />
-            <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" prefWidth="120.0" text="ADD" />
-            <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="50.0" prefWidth="120.0" text="DELETE" />
-            <Button fx:id="_quizButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleQuiz" prefHeight="50.0" prefWidth="120.0" text="QUIZ" />
-            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="50.0" prefWidth="120.0" text="SETTINGS">
+            <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="PLAY" />
+            <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" prefWidth="150.0" text="ADD" />
+            <Button fx:id="_deleteButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="50.0" prefWidth="150.0" text="DELETE" />
+            <Button fx:id="_quizButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleQuiz" prefHeight="50.0" prefWidth="150.0" text="QUIZ" />
+            <Button fx:id="_settingsButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="50.0" prefWidth="150.0" text="SETTINGS">
                <VBox.margin>
                   <Insets top="100.0" />
                </VBox.margin>
@@ -51,6 +51,6 @@
       </VBox>
       <ProgressIndicator fx:id="_progressIndicator" layoutX="24.0" layoutY="492.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
       <Label fx:id="_progressMsg" layoutX="94.0" layoutY="501.0" text="Generating creation ......" visible="false" />
-      <Button fx:id="_helpButton" layoutX="729.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="_helpButton" layoutX="774.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
    </children>
 </AnchorPane>

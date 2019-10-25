@@ -72,7 +72,6 @@ public class Main extends Application {
         //make the directories if they are not present already
         File creationDir = new File("Creation_Directory");
         File audioDir = new File(".Audio_Directory");
-        File videoDir = new File(".Video_Directory");
         File wikitDir = new File(".Wikit_Directory");
         File imageDir = new File(".Image_Directory");
         File outputDir = new File(".Output_Directory");
@@ -83,10 +82,6 @@ public class Main extends Application {
 
         if (!audioDir.isDirectory()) {
             audioDir.mkdir();
-        }
-
-        if (!videoDir.isDirectory()) {
-            videoDir.mkdir();
         }
 
         if (!wikitDir.isDirectory()) {

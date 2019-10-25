@@ -113,17 +113,4 @@ public class AlertMessage implements Runnable {
 		_alert.show();
 		((Home_ScreenController)(_controller.getParentController().getParentController()).getParentController()).Update();
 	}
-
-	private void waitForConfirmation(String msg){
-		_alert = new Alert(AlertType.INFORMATION);
-		_alert.setHeaderText(null);
-		_alert.setContentText(msg);
-		_alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-		Optional<ButtonType> result = _alert.showAndWait();
-		if (!result.isPresent()){
-		}
-		else if (result.get() == ButtonType.OK){
-			((Home_ScreenController)(_controller.getParentController().getParentController())).Update();
-		}
-	}
 }
