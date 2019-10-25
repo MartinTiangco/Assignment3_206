@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -44,6 +46,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
+	@FXML private ImageView _helpImageTopHalf;
 	@FXML private ListView _textDescription;
 	@FXML private Slider _speedSlider;
 	@FXML private Slider _pitchSlider;
@@ -56,6 +59,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Button _playAudioButton;
 	@FXML private Button _deleteAudioButton;
 	@FXML private Button _nextButton;
+	@FXML private ImageView _helpImageBottomHalf;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
 	@FXML private TableColumn _voice;
@@ -76,6 +80,14 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// initializes the help image
+		Image helpBottom = new Image("/Application/assets/helpAddAudioScreenBottom.png");
+		Image helpTop = new Image("/Application/assets/helpAddAudioScreenTop.png");
+        _helpImageBottomHalf.setImage(helpBottom);
+        _helpImageTopHalf.setImage(helpTop);
+        _helpTopHalf.setVisible(false);
+        _helpBottomHalf.setVisible(false);
+        
 		//disables all except the search functionality
 		disableCustomization();
 		disableBottomHalf();
@@ -152,10 +164,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			});
 			return row ;
 		});
-
-	}
-
-	public void handleHelp() {
 
 	}
 	
@@ -430,18 +438,14 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_helpTopHalf.setVisible(true);
 	}
 
-	public void hideHelpTopHalf(){
-		_helpTopHalf.setVisible(false);
-	}
-
 	public void showHelpBottomHalf(){
 		_helpBottomHalf.setVisible(true);
 	}
-
-	public void hideHelpBottomHalf(){
+	
+	public void hideHelp(){
+		_helpTopHalf.setVisible(false);
 		_helpBottomHalf.setVisible(false);
 	}
-
 
 	public ListView getContent() {
 		return _textDescription;
