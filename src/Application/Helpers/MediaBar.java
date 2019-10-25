@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * This class enables the user to set the volume or use the slider to play the creation at any point
@@ -52,18 +54,18 @@ public class MediaBar extends HBox {
         _vol.setValue(100);
         HBox.setHgrow(_time, Priority.ALWAYS);
         _playButton.setPrefWidth(30);
-
         // Adding the components to the bottom
-        HBox hBox = new HBox(_playButton, _time);
-        hBox.setPrefSize(hBox.getWidth(), hBox.getHeight());
-        getChildren().add(hBox); // Play button, time slider
-        getChildren().add(new HBox(_volume, _vol)); // volume slider
+        getChildren().add(_playButton); // Play button
+        getChildren().add(_time); // time slider
+        getChildren().add(_volume);
+        _volume.setMinWidth(22);
+        getChildren().add(_vol); // volume slider
 
         // Adding Functionality to play the media player
         _playButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 Status status = _player.getStatus();
-                
+
                 if (status == status.PLAYING) {
                     // If the status is Video playing
                     if (_player.getCurrentTime().greaterThanOrEqualTo(_player.getTotalDuration())) {

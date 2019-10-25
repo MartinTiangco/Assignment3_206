@@ -59,6 +59,9 @@ public class Settings_ScreenController extends Controller implements Initializab
 
     }
 
+    /**
+     * Sets the currently selected option (default setting) on the ComboBox when you open the 'Settings Screen'.
+     */
     public void selectDefault() {
         switch (this.getStyleSheet()) {
             case "":

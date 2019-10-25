@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -62,15 +63,14 @@ public class Controller {
         _styleSheet = styleSheet;
 
         try {
-            // input the (modified) file content to the StringBuffer "input"
+        	// set the stylesheet from the config file
             String config = System.getProperty("user.dir") + System.getProperty("file.separator") + ".config";
 
             File c = new File(config);
             BufferedReader file = new BufferedReader(new FileReader(c));
             StringBuilder inputBuffer = new StringBuilder();
+            
             String line;
-
-            // extract the stylesheet from the config file
             while ((line = file.readLine()) != null) {
                 if (line.trim().startsWith("Stylesheet")) {
                     line = "Stylesheet = " + styleSheet;
@@ -107,7 +107,8 @@ public class Controller {
             controller.setStyleSheet(_styleSheet);
             stage.setTitle("VARpedia - " + stageName);
             Scene scene = new Scene(root);
-            scene.getStylesheets().addAll(this.getClass().getResource(cssFile).toExternalForm(), this.getClass().getResource(_styleSheet).toExternalForm());
+            Font.loadFont(getClass().getResource("/Application/css/Roboto-Medium.ttf").toExternalForm(), 24);
+            scene.getStylesheets().addAll(this.getClass().getResource(cssFile).toExternalForm(), this.getClass().getResource("/Application/css/Global.css").toExternalForm(), this.getClass().getResource(_styleSheet).toExternalForm());
             stage.setScene(scene);
             
             // Closes the program if the Home Screen is closed (by pressing the top right 'X')

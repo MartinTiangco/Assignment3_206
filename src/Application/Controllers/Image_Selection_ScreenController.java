@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -43,7 +44,9 @@ public class Image_Selection_ScreenController extends Controller {
 	private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
 
 	@FXML private AnchorPane _entireScreenPane;
+	@FXML private Button _backButton;
 	@FXML private Button _createButton;
+	@FXML private Button _helpButton;
 	@FXML private Button _generateButton;
 	@FXML private CheckBox _selectAll;
 	@FXML private ImageView _imageView = new ImageView();
@@ -106,9 +109,47 @@ public class Image_Selection_ScreenController extends Controller {
 		}));
 	}
 
+	public void handleBack() {
+		((Stage)(((Background_Music_ScreenController)this.getParentController()).getNextButton().getScene().getWindow())).show();
+		((Background_Music_ScreenController)this.getParentController()).getNextButton().setDisable(false);
+		((Stage)(_backButton.getScene().getWindow())).close();
+	}
+	
+	public void handleHelp() {
+		
+	}
 
+	public void handleCreate() {
+		if (!isNameValid()) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please enter a valid name for the creation.");
+			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			alert.show();
+			return;
+		}
+		// disallows user to click Create again
+		_createButton.setDisable(false);
 
-
+		// creates the creation
+		VideoGenerator videoGen = new VideoGenerator(_term, this);
+		videoGen.setCreationName(_nameInput.getText());
+		int numPics = 0;
+		for (ImageView imageView : _selectedImages.getItems()) {
+			videoGen.addImage(IMAGE_DIR + ((Picture)imageView.getImage()).getFileName());
+			numPics++;
+		}
+		if (numPics == 0) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Please select at least one image.");
+			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+			alert.show();
+			return;
+		}
+		videoGen.setNumPics(numPics);
+		_executor.submit(videoGen);
+	}
 
 	// this is needed for the check box functionality
 
@@ -181,40 +222,6 @@ public class Image_Selection_ScreenController extends Controller {
 
 		}
 	}
-
-
-	public void handleCreate() {
-		if (!isNameValid()) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setContentText("Please enter a valid name for the creation.");
-			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-			alert.show();
-			return;
-		}
-		// disallows user to click Create again
-		_createButton.setDisable(false);
-
-		// creates the creation
-		VideoGenerator videoGen = new VideoGenerator(_term, this);
-		videoGen.setCreationName(_nameInput.getText());
-		int numPics = 0;
-		for (ImageView imageView : _selectedImages.getItems()) {
-			videoGen.addImage(IMAGE_DIR + ((Picture)imageView.getImage()).getFileName());
-			numPics++;
-		}
-		if (numPics == 0) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setContentText("Please select at least one image.");
-			alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-			alert.show();
-			return;
-		}
-		videoGen.setNumPics(numPics);
-		_executor.submit(videoGen);
-	}
-
 
 	public boolean isValidNumber() {
 		if (Integer.parseInt(_input.getText()) > 0 && Integer.parseInt(_input.getText()) < 11) {

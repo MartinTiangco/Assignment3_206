@@ -36,10 +36,10 @@ public class MusicAdder extends Task<Long> {
 		String cmd = "";	
 		if (_chosenTrack.getTrackName().equals(_chosenTrack.getNoMusicString())) {
 			// no background music is chosen
-			cmd = "ffmpeg -i " + spokenAudio + " " + output;
+			cmd = "ffmpeg -y -i " + spokenAudio + " " + output;
 		} else {
 			String bgMusic = MUSIC_DIR + _chosenTrack.getTrackFile();
-			cmd = "ffmpeg -i " + spokenAudio + " -i " + bgMusic + " -filter_complex amerge=inputs=2 -ac 2 " + output;
+			cmd = "ffmpeg -i " + spokenAudio + " -i " + bgMusic + " -filter_complex amerge=inputs=2 -ac 2 -y " + output;
 		}
 		
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);

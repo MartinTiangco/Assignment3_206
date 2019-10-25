@@ -6,6 +6,10 @@ import Application.Helpers.Creation;
 import Application.Helpers.MediaBar;
 import Application.Helpers.Quiz;
 import Application.Helpers.UpdateHelper;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,14 +21,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +67,9 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableColumn _videoLengthColumn;
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
+    
+    @FXML private StackPane _helpImagePane;
+    @FXML private ImageView _helpImage;
 
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
@@ -67,6 +81,10 @@ public class Home_ScreenController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+		Image image = new Image("/Application/assets/helpHomeScreen.png");
+        _helpImage.setImage(image);
+        _helpImagePane.setVisible(false);
+        
     	// allows for multiple selection
         _creationTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
@@ -75,6 +93,37 @@ public class Home_ScreenController extends Controller implements Initializable {
         _dateModifiedColumn.setCellValueFactory(new PropertyValueFactory<>("dateModified"));
         _videoLengthColumn.setCellValueFactory(new PropertyValueFactory<>("videoLength"));
         Update();
+        
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(0.0);
+
+        _playButton.setEffect(colorAdjust);
+
+        _playButton.setOnMouseEntered(e -> {
+
+        	Timeline fadeInTimeline = new Timeline(
+                    new KeyFrame(Duration.seconds(0), 
+                            new KeyValue(colorAdjust.brightnessProperty(), colorAdjust.brightnessProperty().getValue(), Interpolator.LINEAR)), 
+                            new KeyFrame(Duration.seconds(1), new KeyValue(colorAdjust.brightnessProperty(), -1, Interpolator.LINEAR)
+                            ));
+            fadeInTimeline.setCycleCount(1);
+            fadeInTimeline.setAutoReverse(false);
+            fadeInTimeline.play();
+
+        });
+
+        _playButton.setOnMouseExited(e -> {
+
+        	Timeline fadeOutTimeline = new Timeline(
+                    new KeyFrame(Duration.seconds(0), 
+                            new KeyValue(colorAdjust.brightnessProperty(), colorAdjust.brightnessProperty().getValue(), Interpolator.LINEAR)), 
+                            new KeyFrame(Duration.seconds(1), new KeyValue(colorAdjust.brightnessProperty(), 0, Interpolator.LINEAR)
+                            ));
+            fadeOutTimeline.setCycleCount(1);
+            fadeOutTimeline.setAutoReverse(false);
+            fadeOutTimeline.play();
+
+        });
     }
 
     /**
@@ -104,11 +153,11 @@ public class Home_ScreenController extends Controller implements Initializable {
 
                 MediaView mediaView = new MediaView();
                 mediaView.setMediaPlayer(player);
-                mediaView.setFitHeight(400);
-                mediaView.setFitWidth(500);
+                mediaView.setFitHeight(500);
+                mediaView.setFitWidth(600);
                 MediaBar bar = new MediaBar(player);
                 VBox vbox = new VBox(mediaView, bar);
-                vbox.setPadding(new Insets(25, 50, 25, 50));
+                vbox.setPadding(new Insets(25, 5, 25, 5));
                 vbox.setSpacing(25);
                 tab.setContent(new AnchorPane(vbox));
                 _videoTabs.getTabs().add(tab);
@@ -132,7 +181,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     }
 
     /**
-     * Deletes the selected creation from the TableView
+     * Deletes the selected creation from the TableView and deletes the creation's folder
      */
     public void handleDelete() {
     	Cleaner cleaner = new Cleaner();
@@ -167,6 +216,10 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
     
+    public void handleHelp() {
+    	_helpImagePane.setVisible(true);
+    }
+    
     /**
      * Opens the quiz page when the quiz button is clicked
      */
@@ -185,14 +238,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     public void handleSettings() {
         Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
         ((Settings_ScreenController)controller).selectDefault();
-    }
-
-    public ArrayList<Creation> getCreations() {
-        return _creations;
-    }
-
-    public TableView getCreationTable() {
-        return _creationTable;
     }
 
     /**
@@ -218,6 +263,10 @@ public class Home_ScreenController extends Controller implements Initializable {
         }
     }
     
+    public ArrayList<Creation> getCreations() {
+        return _creations;
+    }
+    
     public Label getProgressMsg() {
     	return _progressMsg;
     }
@@ -225,4 +274,9 @@ public class Home_ScreenController extends Controller implements Initializable {
     public ProgressIndicator getProgressIndicator() {
     	return _progressIndicator;
     }
+
+    public TableView getCreationTable() {
+        return _creationTable;
+    }
+
 }

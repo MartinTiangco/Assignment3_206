@@ -150,12 +150,15 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 					event.consume();
 				}
 			});
-
 			return row ;
 		});
 
 	}
 
+	public void handleHelp() {
+
+	}
+	
 	/**
 	 * Previews the text using the current voice settings
 	 */
@@ -277,6 +280,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		ObservableList<Audio> allAudio = _savedAudio.getItems();
 		AudioCombiner combiner = new AudioCombiner(allAudio, this);
 		_backgroundExecutor.submit(combiner);
+		_nextButton.setDisable(true);
 
 	}
 
@@ -482,5 +486,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	public void setAudioFileId(int id) {
 		_audioFileId = id;
+	}
+
+	public Button getNextButton() {
+		return _nextButton;
 	}
 }

@@ -61,7 +61,7 @@ public class AudioCombiner extends Task<Long> {
 					@Override
 					public void run() {
 						// loads the 'Image Selection Screen'
-						_controller.loadScreen("Background Music Selection", "/Application/fxml/Background_Music_Screen.fxml", "");
+						_controller.loadScreen("Background Music Selection", "/Application/fxml/Background_Music_Screen.fxml", "/Application/css/Music_Selection_Screen.css");
 		        		
 		        		// closes the 'Add Audio' screen
 		        		Stage stage = (Stage) _controller.getAudioList().getScene().getWindow();

@@ -116,6 +116,7 @@ public class Background_Music_ScreenController extends Controller {
 		Track track = (Track) _musicComboBox.getValue();
 		MusicAdder bgmAdder = new MusicAdder(track, spokenAudio, this);
 		_backgroundExecutor.submit(bgmAdder);
+		_nextButton.setDisable(true);
 	}
 	
 	public void handleHelp() {
@@ -123,15 +124,15 @@ public class Background_Music_ScreenController extends Controller {
 	}
 	
 	public void handleBack() {
-		
+		((Stage)((Add_Audio_ScreenController)this.getParentController()).getAudioList().getScene().getWindow()).show();
+		((Add_Audio_ScreenController)this.getParentController()).getNextButton().setDisable(false);
+		((Stage)(_backButton.getScene().getWindow())).close();
 	}
 	
 	/**
 	 * Handles the preview functionality for the background music track.
 	 */
 	public void handlePlay() {
-//		Stage stage = (Stage)((Add_Audio_ScreenController)this.getParentController()).getAudioList().getScene().getWindow();
-//		stage.show();
 		
 		// allow you to play audio without waiting for the first to finish
 		if (_musicComboBox.getValue().toString() != NO_MUSIC) {

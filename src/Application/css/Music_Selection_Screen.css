@@ -1,3 +1,15 @@
 #_playButton{
 	 -fx-graphic: url('../assets/play.png');
 }
+
+#_helpButton{
+    -fx-graphic: url('../assets/help.png');
+}
+
+#_backButton{
+    -fx-graphic: url('../assets/quit.png');
+}
+
+#_nextButton{
+    -fx-graphic: url('../assets/next.png');
+}
