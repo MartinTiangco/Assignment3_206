@@ -45,6 +45,7 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private Label _author;
 	@FXML private MediaView _mediaView;
 	@FXML private StackPane _creditsPane;
+	@FXML private StackPane _helpImagePane;
 	@FXML private TextField _nameInput;
 	
 	private TrackPlayer _trackPlayer;
@@ -52,8 +53,10 @@ public class Background_Music_ScreenController extends Controller {
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
 	
 	public void initialize() {
-		
-		// populate the combo box
+		// initializes the help image to be invisible
+        _helpImagePane.setVisible(false);
+        
+		// populate the combo box with the key-value pair being emotions-filename
 		TRACK.add(new Track("- None -", ""));
 		TRACK.add(new Track("Relaxed", "airtone_-_commonGround.mp3"));
 		TRACK.add(new Track("Excited", "cyba_-_yellow.mp3"));
@@ -67,6 +70,14 @@ public class Background_Music_ScreenController extends Controller {
 		// selects the default (No music)
 		_musicComboBox.getSelectionModel().select(TRACK.get(0));
 		_playButton.setDisable(true);
+	}
+	
+	public void showHelp() {
+        _helpImagePane.setVisible(true);
+	}
+	
+	public void hideHelp() {
+        _helpImagePane.setVisible(false);
 	}
 	
 	/**
@@ -117,10 +128,6 @@ public class Background_Music_ScreenController extends Controller {
 		MusicAdder bgmAdder = new MusicAdder(track, spokenAudio, this);
 		_backgroundExecutor.submit(bgmAdder);
 		_nextButton.setDisable(true);
-	}
-	
-	public void handleHelp() {
-		
 	}
 	
 	public void handleBack() {
