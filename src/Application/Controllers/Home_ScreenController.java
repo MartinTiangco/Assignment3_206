@@ -76,8 +76,9 @@ public class Home_ScreenController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-		Image image = new Image("/Application/assets/helpHomeScreen.png");
-        _helpImage.setImage(image);
+    	// initializes the help image
+		Image help = new Image("/Application/assets/helpHomeScreen.png");
+        _helpImage.setImage(help);
         _helpImagePane.setVisible(false);
         
     	// allows for multiple selection
