@@ -37,7 +37,7 @@
       </TabPane>
       <ProgressIndicator fx:id="_progressIndicator" layoutX="14.0" layoutY="543.0" prefHeight="60.0" prefWidth="60.0" progress="0.0" visible="false" />
       <Label fx:id="_progressMsg" layoutX="93.0" layoutY="565.0" text="Generating creation ......" visible="false" />
-      <StackPane fx:id="_helpImagePane" layoutX="51.0" layoutY="49.0" prefHeight="617.0" prefWidth="795.0" style="-fx-background-color: rgba(0,0,0,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="_helpImagePane" layoutX="51.0" layoutY="49.0" onMouseClicked="#disableHelp" prefHeight="617.0" prefWidth="795.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane>
                <children>
