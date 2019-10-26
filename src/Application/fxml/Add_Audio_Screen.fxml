@@ -22,13 +22,13 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.Add_Audio_ScreenController">
    <children>
-      <SplitPane fx:id="_entireScreenPane" dividerPositions="0.603448275862069" orientation="VERTICAL" prefHeight="698.0" prefWidth="887.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="_entireScreenPane" dividerPositions="0.603448275862069" onMouseClicked="#hideHelp" orientation="VERTICAL" prefHeight="698.0" prefWidth="887.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="754.0">
                <children>
                   <TextField fx:id="_searchTextField" layoutX="146.0" layoutY="14.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="350.0" promptText="Enter term to be searched" />
                   <ListView fx:id="_textDescription" editable="true" layoutX="21.0" layoutY="73.0" onKeyPressed="#deleteLines" prefHeight="312.0" prefWidth="631.0" />
-                  <StackPane fx:id="_helpTopHalf" layoutX="-2.0" layoutY="73.0" onMouseClicked="#hideHelp" prefHeight="417.0" prefWidth="900.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <StackPane fx:id="_helpTopHalf" layoutX="-2.0" layoutY="73.0" prefHeight="417.0" prefWidth="900.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="_helpImageTopHalf" fitHeight="417.0" fitWidth="898.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,7 +86,7 @@
                         <TableColumn fx:id="_pitch" minWidth="0.0" prefWidth="98.0" text="Pitch" />
                     </columns>
                   </TableView>
-                  <StackPane fx:id="_helpBottomHalf" onMouseClicked="#hideHelp" prefHeight="273.0" prefWidth="898.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <StackPane fx:id="_helpBottomHalf" prefHeight="273.0" prefWidth="898.0" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="_helpImageBottomHalf" fitHeight="273.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                            <image>

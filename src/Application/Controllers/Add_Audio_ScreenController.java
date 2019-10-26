@@ -232,6 +232,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		}
 		_textDescription.getSelectionModel().select(0);
 		_textDescription.setDisable(false);
+
+		// retrieves images from Flickr
+		ImageGenerator imgGen = new ImageGenerator(_searchInput, 10);
+		_backgroundExecutor.submit(imgGen);
 	}
 
 	/**

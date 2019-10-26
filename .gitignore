@@ -165,6 +165,7 @@ fabric.properties
 .idea/
 .idea/workspace.xml
 
+.config
 .Audio_Directory/
 .Image_Directory/
 .Output_Directory/

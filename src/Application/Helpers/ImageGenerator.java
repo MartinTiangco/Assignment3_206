@@ -21,12 +21,10 @@ import javafx.concurrent.Task;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class ImageGenerator extends Task<Long> {
-	private Image_Selection_ScreenController _controller;
 	private int _numPics;
 	private String _term;
 	
-	public ImageGenerator(String term, int numPics, Image_Selection_ScreenController controller) {
-		_controller = controller;
+	public ImageGenerator(String term, int numPics) {
 		_numPics = numPics;
 		_term = term;
 	}
@@ -78,16 +76,6 @@ public class ImageGenerator extends Task<Long> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		/**
-		 * displays the images onto the 'Image Selection Screen'.
-		 */
-		Platform.runLater(() -> {
-			_controller.listImages();
-			_controller.getListOfImages().getSelectionModel().select(0);
-			_controller.selectImage();
-			_controller.getSelectAll().setVisible(true);
-		});
 	}
 	
 	/*
