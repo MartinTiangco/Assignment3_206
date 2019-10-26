@@ -55,6 +55,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private Button _settingsButton;
     @FXML private Label _progressMsg;
     @FXML private ProgressIndicator _progressIndicator;
+    @FXML private StackPane _helpImagePane;
     @FXML private Tab _creationTab;
     @FXML private TableColumn _dateModifiedColumn;
     @FXML private TableColumn _nameColumn;
@@ -63,8 +64,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
     
-    @FXML private StackPane _helpImagePane;
-    @FXML private ImageView _helpImage;
 
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
@@ -76,9 +75,7 @@ public class Home_ScreenController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	// initializes the help image
-		Image help = new Image("/Application/assets/helpHomeScreen.png");
-        _helpImage.setImage(help);
+    	// initializes the help image to be invisible
         _helpImagePane.setVisible(false);
         
     	// allows for multiple selection

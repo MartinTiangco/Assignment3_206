@@ -46,7 +46,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
-	@FXML private ImageView _helpImageTopHalf;
 	@FXML private ListView _textDescription;
 	@FXML private Slider _speedSlider;
 	@FXML private Slider _pitchSlider;
@@ -59,7 +58,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Button _playAudioButton;
 	@FXML private Button _deleteAudioButton;
 	@FXML private Button _nextButton;
-	@FXML private ImageView _helpImageBottomHalf;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
 	@FXML private TableColumn _voice;
@@ -80,11 +78,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// initializes the help image
-//		Image helpBottom = new Image("/Application/assets/helpAddAudioScreenBottom.png");
-//		Image helpTop = new Image("/Application/assets/helpAddAudioScreenTop.png");
-//        _helpImageBottomHalf.setImage(helpBottom);
-//        _helpImageTopHalf.setImage(helpTop);
+		// initializes the help images to be invisible
         _helpTopHalf.setVisible(false);
         _helpBottomHalf.setVisible(false);
         
@@ -164,7 +158,19 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			});
 			return row ;
 		});
+	}
+	
+	public void showHelpTopHalf(){
+		_helpTopHalf.setVisible(true);
+	}
 
+	public void showHelpBottomHalf(){
+		_helpBottomHalf.setVisible(true);
+	}
+	
+	public void hideHelp(){
+		_helpTopHalf.setVisible(false);
+		_helpBottomHalf.setVisible(false);
 	}
 	
 	/**
@@ -437,19 +443,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
 		audio.setSpeed((int)_speedSlider.getValue());
 		audio.setPitch((int) (_pitchSlider.getValue()));
-	}
-
-	public void showHelpTopHalf(){
-		_helpTopHalf.setVisible(true);
-	}
-
-	public void showHelpBottomHalf(){
-		_helpBottomHalf.setVisible(true);
-	}
-	
-	public void hideHelp(){
-		_helpTopHalf.setVisible(false);
-		_helpBottomHalf.setVisible(false);
 	}
 
 	public ListView getContent() {
