@@ -71,7 +71,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 
 
 	public void Start() {
-	    _quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
+		_quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
 		if (_quiz.getDifficulty().equals("Hard")){
 			hardQuiz();
 		}
@@ -79,23 +79,29 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 			_mediaView = (MediaView) _quiz.createQuizScreen().getChildren().get(0);
 			fitToParent();
 			_quizScreen.getChildren().add(_mediaView);
-		}
-    }
 
-    public void hardQuiz() {
+			Stage stage = (Stage)_nextButton.getScene().getWindow();
+			stage.setOnCloseRequest(t -> {
+						_mediaView.getMediaPlayer().dispose();
+					}
+			);
+		}
+	}
+
+	public void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
 		_quizScreen.getChildren().add(textArea);
 		textArea.prefWidthProperty().bind(_quizScreen.widthProperty());
 		textArea.prefHeightProperty().bind(_quizScreen.heightProperty());
 	}
 
-    public Quiz getQuiz() {
-        return _quiz;
-    }
-    
-    public void fitToParent() {
-    	// set the mediaview to fit the pane parent
-    	_mediaView.fitWidthProperty().bind(_quizScreen.widthProperty()); 
-    	_mediaView.fitHeightProperty().bind(_quizScreen.heightProperty());
-    }
+	public Quiz getQuiz() {
+		return _quiz;
+	}
+
+	public void fitToParent() {
+		// set the mediaview to fit the pane parent
+		_mediaView.fitWidthProperty().bind(_quizScreen.widthProperty());
+		_mediaView.fitHeightProperty().bind(_quizScreen.heightProperty());
+	}
 }

@@ -51,7 +51,7 @@ public class MusicAdder extends Task<Long> {
 			if (exitStatus == 0) {
 				Runnable runnable = () -> {
 					// loads the Image Selection Screen
-					Image_Selection_ScreenController controller = (Image_Selection_ScreenController)_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
+					Image_Selection_ScreenController controller = (Image_Selection_ScreenController)_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "/Application/css/Image_Selection_Screen.css");
 					controller.setTerm(((Add_Audio_ScreenController)_controller.getParentController()).getSearchInput());
 					controller.listImages();
 					// closes the 'Background Music Screen'
