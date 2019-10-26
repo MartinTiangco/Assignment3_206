@@ -63,7 +63,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableColumn _videoLengthColumn;
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
-    
 
     private UpdateHelper _updateHelper;
     private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
@@ -178,10 +177,16 @@ public class Home_ScreenController extends Controller implements Initializable {
         Update();
     }
     
+    /**
+     * Shows the help screen when '?' is clicked
+     */
     public void showHelp() {
     	_helpImagePane.setVisible(true);
     }
     
+    /**
+     * Hides the help screen when the user clicks anywhere on the window
+     */
     public void hideHelp() {
     	_helpImagePane.setVisible(false);
     }

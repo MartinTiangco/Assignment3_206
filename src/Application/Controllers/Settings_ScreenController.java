@@ -32,6 +32,8 @@ public class Settings_ScreenController extends Controller implements Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _listOfStyles.getItems().addAll("Default", "Bootstrap", "Sky", "Red Devil");
+        
+        // sets the theme icon for the label
         Image themeImage = new Image(getClass().getResourceAsStream("/Application/assets/theme.png"));
         _titleLabel.setGraphic(new ImageView(themeImage));
     }
