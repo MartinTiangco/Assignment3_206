@@ -35,11 +35,11 @@
          </font>
       </Label>
       <Button fx:id="_helpButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleHelp" prefHeight="40.0" prefWidth="40.0" />
-      <Label layoutX="71.0" layoutY="24.0" text="Images of ...">
+      <Label fx:id="_imageScreenTitle" layoutX="71.0" layoutY="24.0" text="Images of ...">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <CheckBox fx:id="_selectAll" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" text="Select All" visible="false" />
+      <CheckBox fx:id="_selectAll" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" onAction="#selectAll" text="Select All" visible="false" />
    </children>
 </AnchorPane>

@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -51,6 +52,7 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private ListView<ImageView> _selectedImages;
 	@FXML private ListView<Picture> _listOfImages;
 	@FXML private TextField _nameInput;
+	@FXML private Label _imageScreenTitle;
 
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
@@ -113,17 +115,6 @@ public class Image_Selection_ScreenController extends Controller {
 		_executor.submit(videoGen);
 	}
 
-	// this is needed for the check box functionality
-
-	public void generateImages() {
-		
-		_term = ((Add_Audio_ScreenController)(this.getParentController().getParentController())).getSearchInput();
-
-		// retrieves images from Flickr
-		ImageGenerator imgGen = new ImageGenerator(_term, 10, this);
-		_executor.submit(imgGen);
-	}
-
 	public void listImages() {
 		_listOfImages.getItems().removeAll(_listOfImages.getItems());
 		File dir = new File(".Image_Directory");
@@ -135,6 +126,15 @@ public class Image_Selection_ScreenController extends Controller {
 				_listOfImages.getItems().add(image);
 			}
 		}
+
+		/**
+		 * displays the images onto the 'Image Selection Screen'.
+		 */
+		_listOfImages.getSelectionModel().select(0);
+		selectImage();
+		_selectAll.setVisible(true);
+		_imageScreenTitle.setText("Images of " + _term);
+		_imageScreenTitle.setFont(Font.font(30));
 	}
 
 	public void selectImage() {
@@ -201,6 +201,10 @@ public class Image_Selection_ScreenController extends Controller {
 
 	public CheckBox getSelectAll() {
 		return _selectAll;
+	}
+
+	public void setTerm(String term) {
+		_term = term;
 	}
 }
 

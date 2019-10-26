@@ -1,5 +1,6 @@
 package Application.Helpers;
 
+import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Background_Music_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import Application.Helpers.AlertMessage;
@@ -48,16 +49,14 @@ public class MusicAdder extends Task<Long> {
 			Process process = builder.start();
 			int exitStatus = process.waitFor();
 			if (exitStatus == 0) {
-				Runnable runnable = new Runnable() {
-					@Override
-					public void run() {
-						// loads the Image Selection Screen
-						Image_Selection_ScreenController controller = (Image_Selection_ScreenController)_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
-						controller.generateImages();
-						// closes the 'Background Music Screen'
-						Stage stage = (Stage) _controller.getNextButton().getScene().getWindow();
-						stage.hide();
-					}          		
+				Runnable runnable = () -> {
+					// loads the Image Selection Screen
+					Image_Selection_ScreenController controller = (Image_Selection_ScreenController)_controller.loadScreen("Image Selection Screen", "/Application/fxml/Image_Selection_Screen.fxml", "");
+					controller.setTerm(((Add_Audio_ScreenController)_controller.getParentController()).getSearchInput());
+					controller.listImages();
+					// closes the 'Background Music Screen'
+					Stage stage = (Stage) _controller.getNextButton().getScene().getWindow();
+					stage.hide();
 				};
 				Platform.runLater(runnable);
 			} else {
