@@ -202,7 +202,7 @@ public class Home_ScreenController extends Controller implements Initializable {
      * Opens the settings page when the settings button is clicked
      */
     public void handleSettings() {
-        Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "");
+        Controller controller = loadScreen("Settings", "/Application/fxml/Settings_Screen.fxml", "/Application/css/Settings_Screen.css");
         ((Settings_ScreenController)controller).selectDefault();
     }
 

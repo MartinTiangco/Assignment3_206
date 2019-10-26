@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.lang.invoke.SwitchPoint;
@@ -24,10 +27,13 @@ public class Settings_ScreenController extends Controller implements Initializab
 
     @FXML private Button _save;
     @FXML private ComboBox<String> _listOfStyles;
+    @FXML private Label _titleLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        _listOfStyles.getItems().addAll("Default", "BootStrap3", "Sky", "Red Devil");
+        _listOfStyles.getItems().addAll("Default", "Bootstrap", "Sky", "Red Devil");
+        Image themeImage = new Image(getClass().getResourceAsStream("/Application/assets/theme.png"));
+        _titleLabel.setGraphic(new ImageView(themeImage));
     }
 
     /**
@@ -39,7 +45,7 @@ public class Settings_ScreenController extends Controller implements Initializab
             case "Default":
                 setStyleSheet("");
                 break;
-            case "BootStrap3":
+            case "Bootstrap":
                 setStyleSheet(BOOTSTRAP3);
                 break;
             case "Sky":
