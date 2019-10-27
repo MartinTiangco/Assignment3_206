@@ -19,7 +19,7 @@
          </font>
       </Label>
       <Button fx:id="_tryAgainButton" layoutX="73.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleTryAgain" prefHeight="40.0" prefWidth="200.0" text="Try Again" />
-      <Button fx:id="_mainMenuButton" layoutX="411.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="200.0" text="Back to Home Menu" />
+      <Button fx:id="_mainMenuButton" layoutX="411.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="200.0" text="Back to Home Screen" />
       <Label layoutX="226.0" layoutY="21.0" prefHeight="53.0" prefWidth="249.0" style="-fx-font-size: 36;" text="YOUR SCORE">
          <font>
             <Font size="20.0" />
