@@ -6,14 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.config" beforeDir="false" afterPath="$PROJECT_DIR$/.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/jfx9be/flatred.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/flatred.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/jfx9be/sky.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/jfx9be/sky.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Quiz_Score.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
