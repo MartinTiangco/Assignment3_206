@@ -92,7 +92,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 
 	public void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
-		Label label = new Label("What goes in the Blanks?");
+		Label label = new Label("What goes in the blanks?");
 		_quizScreen.getChildren().add(new VBox(label, textArea));
 		textArea.prefWidthProperty().bind(_quizScreen.widthProperty());
 		textArea.prefHeightProperty().bind(_quizScreen.heightProperty());
