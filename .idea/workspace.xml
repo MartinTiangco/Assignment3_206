@@ -7,14 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Application/css/Image_Selection_Screen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config" beforeDir="false" afterPath="$PROJECT_DIR$/.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ProgressRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/WikitWorker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

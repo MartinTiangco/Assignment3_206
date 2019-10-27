@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -21,8 +22,6 @@ import java.io.FileReader;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class Controller {
-	private Parent _entireScreenPane;
-	private ProgressIndicator _progressIndicator;
     protected Controller _currentController;
     protected Controller _parentController;
     protected String _styleSheet = "";
@@ -41,14 +40,6 @@ public class Controller {
 
     public Controller getParentController(){
         return _parentController;
-    }
-    
-    public Parent getEntireScreenPane() {
-    	return _entireScreenPane;
-    }
-    
-    public ProgressIndicator getProgressIndicator() {
-    	return _progressIndicator;
     }
 
     public String getStyleSheet() {

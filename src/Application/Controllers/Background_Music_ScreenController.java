@@ -1,6 +1,8 @@
 package Application.Controllers;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,10 +100,20 @@ public class Background_Music_ScreenController extends Controller {
 	 */
 	public void handleLink() {
 		// get the link to the author profile page for the selected track
+		Runtime rt = Runtime.getRuntime();
+		String[] browsers = { "epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx" };
+		StringBuffer cmd = new StringBuffer();
+		for (int i = 0; i < browsers.length; i++) {
+			if (i == 0) {
+				cmd.append(String.format("%s \"%s\"", browsers[i], _url));
+			}
+			else {
+				cmd.append(String.format(" || %s \"%s\"", browsers[i], _url));
+			}
+		}
 		try {
-			URI uri= new URI(_url);
-			java.awt.Desktop.getDesktop().browse(uri);
-		} catch (Exception e) {
+			rt.exec(new String[] { "sh", "-c", cmd.toString() });
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -136,6 +148,7 @@ public class Background_Music_ScreenController extends Controller {
 			_profilePic.setImage(track.getProfilePic());
 			_tag.setImage(track.getTag());
 			_url = track.getURL();
+			System.out.println("set url: "+_url);
 		} else {
 			_playButton.setDisable(true);
 			_creditsPane.setVisible(false);

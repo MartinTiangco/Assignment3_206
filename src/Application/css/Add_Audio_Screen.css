@@ -25,3 +25,7 @@
 #_mainMenuButton{
     -fx-graphic: url('../assets/quit.png');
 }
+
+#_searchButton{
+    -fx-graphic: url('../assets/search.png');
+}
