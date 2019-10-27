@@ -18,13 +18,8 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <Button fx:id="_tryAgainButton" layoutX="106.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleTryAgain" prefHeight="40.0" prefWidth="200.0" text="Try Again" />
+      <Button fx:id="_tryAgainButton" layoutX="73.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleTryAgain" prefHeight="40.0" prefWidth="200.0" text="Try Again" />
       <Button fx:id="_mainMenuButton" layoutX="411.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="200.0" text="Back to Home Menu" />
-       <Label layoutX="339.0" layoutY="49.0" text="Analysis:">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </Label>
        <TableView fx:id="_analysisTable" layoutX="344.0" layoutY="96.0" prefHeight="378.0" prefWidth="330.0">
            <columns>
                <TableColumn fx:id="_questionNumber" editable="false" prefWidth="84.0" sortable="false" text="Question" />
@@ -32,38 +27,24 @@
                <TableColumn fx:id="_correctAnswer" editable="false" prefWidth="125.0" sortable="false" text="Correct Answer" />
            </columns>
        </TableView>
-      <StackPane layoutX="14.0" layoutY="11.0" prefHeight="463.0" prefWidth="322.0">
+      <StackPane layoutX="14.0" layoutY="11.0" prefHeight="463.0" prefWidth="318.0">
          <children>
             <AnchorPane prefHeight="179.0" prefWidth="322.0">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="YOUR SCORE">
+                  <Label fx:id="_percentageScore" layoutX="98.0" layoutY="401.0" prefHeight="73.0" prefWidth="123.0" style="-fx-font-size: 40; -fx-font-weight: bold;" text="{xx%}" textAlignment="CENTER">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="_percentageScore" layoutX="133.0" layoutY="40.0" prefHeight="73.0" prefWidth="178.0" text="{xx%}">
-                     <font>
-                        <Font size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="_rawScore" layoutX="31.0" layoutY="130.0" prefHeight="57.0" prefWidth="258.0" text="{CORRECT out of TOTAL creations}">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane layoutX="9.0" layoutY="359.0" prefHeight="90.0" prefWidth="303.0">
-                     <children>
-                        <Label fx:id="_message" layoutX="14.0" layoutY="14.0" text="Message">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <ImageView fx:id="_medal" fitHeight="90.0" fitWidth="90.0" layoutX="22.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="_medal" fitHeight="323.0" fitWidth="190.0" layoutX="65.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
          </children>
       </StackPane>
+      <Label layoutX="239.0" layoutY="11.0" style="-fx-font-weight: bold; -fx-font-size: 36;" text="YOUR SCORE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
