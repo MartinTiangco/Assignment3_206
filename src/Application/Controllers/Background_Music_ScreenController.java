@@ -1,14 +1,5 @@
 package Application.Controllers;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import Application.Helpers.MusicAdder;
 import Application.Helpers.Track;
 import Application.Helpers.TrackPlayer;
@@ -21,6 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Controller for the 'Background Music Screen'.
@@ -38,7 +35,6 @@ public class Background_Music_ScreenController extends Controller {
 	private final List<Track> TRACK = new ArrayList<Track>();
 
 	@FXML private Button _backButton;
-	@FXML private Button _helpButton;
 	@FXML private Button _nextButton;
 	@FXML private Button _playButton;
 	@FXML private ComboBox _musicComboBox;
@@ -46,19 +42,20 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private ImageView _tag;
 	@FXML private Label _featuring;
 	@FXML private Label _nameOfTrack;
-	@FXML private Label _license;
 	@FXML private Label _author;
 	@FXML private MediaView _mediaView;
 	@FXML private StackPane _creditsPane;
 	@FXML private StackPane _helpImagePane;
 	@FXML private StackPane _noMusicPane;
-	@FXML private TextField _nameInput;
 	
 	private String _url;
 	private TrackPlayer _trackPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
-	
+
+	public Background_Music_ScreenController() {
+	}
+
 	public void initialize() {
 		// initializes the help image and the attribution pane to be invisible 
         _creditsPane.setVisible(false);
@@ -142,13 +139,12 @@ public class Background_Music_ScreenController extends Controller {
 			int extPatternIndex = trackFullName.indexOf(".mp3");
 			
 			// sets the labels, profile picture, music tag and URL to dig.ccmixter.org
-			_nameOfTrack.setText(trackFullName.substring(patternIndex + lengthPattern, extPatternIndex));
+			_nameOfTrack.setText(trackFullName.substring(patternIndex + lengthPattern, extPatternIndex).replace("_", " "));
 			_author.setText(track.getAuthor());
 			_featuring.setText(track.getFeaturing());
 			_profilePic.setImage(track.getProfilePic());
 			_tag.setImage(track.getTag());
 			_url = track.getURL();
-			System.out.println("set url: "+_url);
 		} else {
 			_playButton.setDisable(true);
 			_creditsPane.setVisible(false);

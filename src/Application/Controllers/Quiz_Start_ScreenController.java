@@ -1,21 +1,14 @@
 package Application.Controllers;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import Application.Helpers.Creation;
 import Application.Helpers.Quiz;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * The controller for the 'Quiz Start Screen', where the user selects the difficulty of the quiz.

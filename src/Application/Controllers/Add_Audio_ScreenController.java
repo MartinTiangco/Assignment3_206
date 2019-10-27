@@ -5,21 +5,15 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -40,10 +34,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private MediaView _mediaView;
 	@FXML private SplitPane _entireScreenPane;
 
-	// elements in the top half of the screen
-	@FXML private Button _helpButton;
 	@FXML private Button _playTextButton;
-	@FXML private Button _searchButton;
 	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
@@ -57,7 +48,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
 	@FXML private Button _playAudioButton;
-	@FXML private Button _deleteAudioButton;
 	@FXML private Button _nextButton;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
@@ -381,7 +371,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	private boolean validateText() {
 		// checks if the selected item is just a punctuation mark and disallows it
 		String listString = (String.join("", _textDescription.getSelectionModel().getSelectedItems())).trim();
-		System.out.println(listString);
 		if (Pattern.matches("\\p{Punct}+", listString)) {
 		    return false;
 		}

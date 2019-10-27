@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
-import java.lang.invoke.SwitchPoint;
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -1,36 +1,21 @@
 package Application.Controllers;
 
-import Application.Helpers.AlertMessage;
-import Application.Helpers.Cleaner;
-import Application.Helpers.Creation;
-import Application.Helpers.MediaBar;
-import Application.Helpers.UpdateHelper;
+import Application.Helpers.*;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +135,6 @@ public class Home_ScreenController extends Controller implements Initializable {
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
             for (Creation creation : listOfCreations) {
-            	System.out.println("Creation_Directory/" + creation.getFolderName());
                 File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");

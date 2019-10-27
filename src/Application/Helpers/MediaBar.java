@@ -14,8 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
  * This class enables the user to set the volume or use the slider to play the creation at any point

@@ -4,11 +4,7 @@ import Application.Controllers.Add_Audio_ScreenController;
 import javafx.concurrent.Task;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Plays the 'Saved Audio' and previews the selected text

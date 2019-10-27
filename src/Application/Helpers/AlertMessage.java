@@ -4,11 +4,7 @@ import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-
-import java.util.Optional;
 
 /**
  * An Alert class for generating alerts.

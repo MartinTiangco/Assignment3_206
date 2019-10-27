@@ -1,18 +1,14 @@
 package Application.Helpers;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import Application.Controllers.Add_Audio_ScreenController;
-import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Combines the audio files that the user has made in the 'Add Audio Screen' into an output wav file

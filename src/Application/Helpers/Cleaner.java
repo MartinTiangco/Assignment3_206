@@ -26,7 +26,6 @@ public class Cleaner {
     
     public final void cleanCreation(String folderName) {
     	File folder = new File(CREATION_DIR + System.getProperty("file.separator") + folderName);
-    	System.out.println(folder.toString());
         File[] files = folder.listFiles();
         if(files != null) {
             for (File f: files) {

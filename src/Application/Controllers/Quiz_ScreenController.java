@@ -1,26 +1,18 @@
 package Application.Controllers;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
-import Application.Helpers.AlertMessage;
 import Application.Helpers.Quiz;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * The controller for the 'Quiz Screen', where the user answers the quiz

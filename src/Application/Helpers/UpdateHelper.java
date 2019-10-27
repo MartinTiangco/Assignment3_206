@@ -3,7 +3,6 @@ package Application.Helpers;
 import Application.Controllers.Home_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

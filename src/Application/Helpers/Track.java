@@ -1,7 +1,5 @@
 package Application.Helpers;
 
-import java.util.HashMap;
-
 import javafx.scene.image.Image;
 
 /**
@@ -38,7 +36,6 @@ public class Track {
 	public Track(String trackName, String trackFile) {
 		_trackFile = trackFile;
 		_trackName = trackName;
-		System.out.println(trackName);
 		// extracts the authors from the filenames of the tracks
 		if (trackName != NO_MUSIC) {
 			_author = extractAuthor();

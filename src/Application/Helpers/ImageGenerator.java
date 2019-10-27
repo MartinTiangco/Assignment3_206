@@ -1,18 +1,15 @@
 package Application.Helpers;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.photos.*;
+import javafx.concurrent.Task;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
-import javax.imageio.ImageIO;
-
-import com.flickr4java.flickr.*;
-import com.flickr4java.flickr.photos.*;
-
-import Application.Controllers.Image_Selection_ScreenController;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 
 /**
  * Class that retrieves the images from Flickr using an adapted version of Nasser's example.

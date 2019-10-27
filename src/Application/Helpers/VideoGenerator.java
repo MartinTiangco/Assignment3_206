@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
@@ -151,7 +150,6 @@ public class VideoGenerator extends Task<Long> {
 				+ " -i - -vf \"scale=w=1920:h=1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2\""
 				+ " -r 25 -max_muxing_queue_size 1024 -y " 
 				+ _folder + System.getProperty("file.separator") + "slideshow.mp4";
-		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		try {
 			Process process = builder.start();
@@ -166,11 +164,9 @@ public class VideoGenerator extends Task<Long> {
 	 * @param imgLength - the time length a single image will show in the video
 	 */
 	public void generateVideo(float imgLength) {
-		System.out.println(1/imgLength);
 		String cmd = "ffmpeg -i " + _audioFile + 
 				" -i " + _folder + System.getProperty("file.separator") + "slideshow.mp4"
 				+ " -y " + _folder + System.getProperty("file.separator") + "video.mp4";
-		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		try {
 			Process process = builder.start();
@@ -187,7 +183,6 @@ public class VideoGenerator extends Task<Long> {
 		String cmd = "ffmpeg -i " + _folder + System.getProperty("file.separator") + "video.mp4 -vf drawtext=\"text='" 
 				+ _term + "': fontcolor=white: fontsize=72: box=1: boxcolor=black@0.5:boxborderw=5: x=(w-text_w)/2: y=h-(h-text_h)/3\" -codec:a copy -y " 
 				+ _folder + System.getProperty("file.separator") + "creation.mp4";
-		System.out.println(cmd);
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
 		try {
 			Process process = builder.start();

@@ -3,8 +3,6 @@ package Application.Helpers;
 import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Background_Music_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
-import Application.Helpers.AlertMessage;
-import Application.Helpers.Track;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
