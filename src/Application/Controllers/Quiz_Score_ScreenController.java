@@ -2,6 +2,7 @@ package Application.Controllers;
 
 import Application.Helpers.Question;
 import Application.Helpers.Quiz;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,9 +33,7 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
     @FXML private Button _mainMenuButton;
     @FXML private Button _tryAgainButton;
     @FXML private ImageView _medal;
-	@FXML private Label _message;
     @FXML private Label _percentageScore;
-    @FXML private Label _rawScore;
     @FXML private TableColumn<Question, String> _questionNumber;
     @FXML private TableColumn<Question, String> _userAnswer;
     @FXML private TableColumn<Question, String> _correctAnswer;
@@ -83,15 +83,9 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         int percentage = (int)(((score + 0.0)/(total + 0.0)*100));
         
         showResults(percentage);
-        
-        PieChart.Data correct = new PieChart.Data("Correct", score);
-        PieChart.Data incorrect = new PieChart.Data("Incorrect", total - score);
 
-        _rawScore.setText(score + " out of " + total + " creations correct.");
         _percentageScore.setText(percentage + " %");
-        
-        correct.getNode().setStyle("-fx-pie-color: #008000;");
-        incorrect.getNode().setStyle("-fx-pie-color: #FF0000;");
+
         _analysisTable.getItems().addAll(quiz.getListOfQuestions());
     }
 	
@@ -113,24 +107,26 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
 		String icon = "";
 		if (score == 100) {
 			icon = "trophy.png";
-        	_message.setText("Congratulations, 100%!");
         } else if (score < 100 && score > 89) {
         	icon = "gold_medal.png";
-        	_message.setText("Awesome! Go for perfect!");
         } else if (score < 90 && score > 79) {
         	icon = "silver_medal.png";
-        	_message.setText("Great job! Strive for gold!");
         } else if (score < 80 && score > 69) {
         	icon = "bronze_medal.png";
-        	_message.setText("Good work, but you \ncan do better!");
-        } else {
-        	// no medal
-        	_message.setText("Keep trying!");
-        }
+        } 
 		
 		if (!icon.isEmpty()) {
 	        Image image = new Image(assetPath + icon);
 	        _medal.setImage(image);
 		}
+		
+		// add a fade in transition
+        FadeTransition ft = new FadeTransition(Duration.millis(3000), _medal);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.3);
+        ft.setCycleCount(4);
+        ft.setAutoReverse(true);
+    
+        ft.play();
 	}
 }
