@@ -7,14 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55532769-2fea-4d6c-988d-46ed21812203" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Application/css/Image_Selection_Screen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.config" beforeDir="false" afterPath="$PROJECT_DIR$/.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Add_Audio_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Home_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Image_Selection_ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/ImageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Controllers/Quiz_ScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Helpers/MusicAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/assets/helpHomeScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/assets/helpHomeScreen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/css/Home_Screen.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Add_Audio_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Home_Screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/fxml/Image_Selection_Screen.fxml" afterDir="false" />

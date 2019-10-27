@@ -1,8 +1,8 @@
 package Application.Controllers;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
@@ -39,21 +40,25 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private Button _nextButton;
 	@FXML private Button _playButton;
 	@FXML private ComboBox _musicComboBox;
+	@FXML private ImageView _profilePic;
+	@FXML private ImageView _tag;
+	@FXML private Label _featuring;
 	@FXML private Label _nameOfTrack;
 	@FXML private Label _license;
-	@FXML private Label _trackLink;
 	@FXML private Label _author;
 	@FXML private MediaView _mediaView;
 	@FXML private StackPane _creditsPane;
 	@FXML private StackPane _helpImagePane;
 	@FXML private TextField _nameInput;
 	
+	private String _url;
 	private TrackPlayer _trackPlayer;
 	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
 	
 	public void initialize() {
-		// initializes the help image to be invisible
+		// initializes the help image and the attribution pane to be invisible 
+        _creditsPane.setVisible(false);
         _helpImagePane.setVisible(false);
         
 		// populate the combo box with the key-value pair being emotions-filename
@@ -72,14 +77,33 @@ public class Background_Music_ScreenController extends Controller {
 		_playButton.setDisable(true);
 	}
 	
+	/**
+	 * shows the help screen when the '?' button is clicked
+	 */
 	public void showHelp() {
         _helpImagePane.setVisible(true);
 	}
 	
+	/**
+	 * hides the help screen when the window is clicked
+	 */
 	public void hideHelp() {
         _helpImagePane.setVisible(false);
 	}
 	
+	/**
+	 * Opens up the browser and takes the user to the music web page
+	 */
+	public void handleLink() {
+		// get the link to the author profile page for the selected track
+		try {
+			URI uri= new URI(_url);
+			java.awt.Desktop.getDesktop().browse(uri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Display the attribution for the author when you select their background music
 	 * track and sets the properties in the Track object.
@@ -102,8 +126,13 @@ public class Background_Music_ScreenController extends Controller {
 			// get the occurrence of the extension .mp3
 			int extPatternIndex = trackFullName.indexOf(".mp3");
 			
+			// sets the labels, profile picture, music tag and URL to dig.ccmixter.org
 			_nameOfTrack.setText(trackFullName.substring(patternIndex + lengthPattern, extPatternIndex));
 			_author.setText(track.getAuthor());
+			_featuring.setText(track.getFeaturing());
+			_profilePic.setImage(track.getProfilePic());
+			_tag.setImage(track.getTag());
+			_url = track.getURL();
 		} else {
 			_playButton.setDisable(true);
 			_creditsPane.setVisible(false);
@@ -130,6 +159,9 @@ public class Background_Music_ScreenController extends Controller {
 		_nextButton.setDisable(true);
 	}
 	
+	/**
+	 * goes back to the Add Audio Screen with all saved audio kept in memory
+	 */
 	public void handleBack() {
 		((Stage)((Add_Audio_ScreenController)this.getParentController()).getAudioList().getScene().getWindow()).show();
 		((Add_Audio_ScreenController)this.getParentController()).getNextButton().setDisable(false);
@@ -184,5 +216,4 @@ public class Background_Music_ScreenController extends Controller {
 	public MediaView getMediaView() {
 		return _mediaView;
 	}
-
 }

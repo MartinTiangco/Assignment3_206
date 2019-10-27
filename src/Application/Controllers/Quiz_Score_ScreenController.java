@@ -34,7 +34,6 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
 	@FXML private Label _message;
     @FXML private Label _percentageScore;
     @FXML private Label _rawScore;
-    @FXML private Pane _graphicScore;
     @FXML private TableColumn<Question, String> _questionNumber;
     @FXML private TableColumn<Question, String> _userAnswer;
     @FXML private TableColumn<Question, String> _correctAnswer;
@@ -90,14 +89,6 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
 
         _rawScore.setText(score + " out of " + total + " creations correct.");
         _percentageScore.setText(percentage + " %");
-        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(correct, incorrect);
-        _graphicScore.getChildren().clear();
-        PieChart piechart = new PieChart(data);
-        piechart.setMaxHeight(400);
-        piechart.setMaxWidth(400);
-        _graphicScore.getChildren().add(piechart);
-        fitToParent(piechart);
-        piechart.setLegendVisible(false);
         
         correct.getNode().setStyle("-fx-pie-color: #008000;");
         incorrect.getNode().setStyle("-fx-pie-color: #FF0000;");
@@ -115,11 +106,6 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
 		Stage stage = (Stage) _tryAgainButton.getScene().getWindow();
         stage.close();
 	}
-	
-	public void fitToParent(PieChart piechart) {
-    	// set the piechart to fit the pane parent
-		piechart.setPrefSize(_graphicScore.getHeight(), _graphicScore.getWidth());
-    }
 	
 	public void showResults(int score) {
 		// show a medal icon and message to user depending on results

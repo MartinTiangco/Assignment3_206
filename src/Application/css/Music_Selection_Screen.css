@@ -13,3 +13,7 @@
 #_nextButton{
     -fx-graphic: url('../assets/next.png');
 }
+
+#_linkButton{
+	-fx-graphic: url('../assets/link.png');
+}

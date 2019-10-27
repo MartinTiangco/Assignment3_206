@@ -1,0 +1,11 @@
+#_helpButton{
+    -fx-graphic: url('../assets/help.png');
+}
+
+#_backButton{
+    -fx-graphic: url('../assets/quit.png');
+}
+
+#_createButton{
+    -fx-graphic: url('../assets/create.png');
+}

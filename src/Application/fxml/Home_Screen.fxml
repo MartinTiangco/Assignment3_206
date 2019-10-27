@@ -50,7 +50,7 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <VBox layoutX="655.0" layoutY="69.0" prefHeight="482.0" prefWidth="192.0" spacing="20.0" style="-fx-background-color: rgba(255,255,255,0);">
+      <VBox layoutX="655.0" layoutY="69.0" onMouseClicked="#hideHelp" prefHeight="482.0" prefWidth="192.0" spacing="20.0" style="-fx-background-color: rgba(255,255,255,0);">
          <children>
             <Button fx:id="_playButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="Play" />
             <Button fx:id="_addButton" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleAdd" prefWidth="150.0" text="Add" />
