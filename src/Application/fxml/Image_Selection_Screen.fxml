@@ -40,13 +40,13 @@
             <TextField fx:id="_nameInput" layoutX="2.0" layoutY="10.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="486.0" promptText="Enter filename" />
          </children>
       </AnchorPane>
-      <Label layoutX="21.0" layoutY="425.0" text="Selected Images: ">
+      <Label layoutX="21.0" layoutY="425.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Selected Images: ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Button fx:id="_helpButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="40.0" prefWidth="40.0" />
-      <Label fx:id="_imageScreenTitle" layoutX="149.0" layoutY="19.0" text="Images of ...">
+      <Label fx:id="_imageScreenTitle" layoutX="149.0" layoutY="15.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="Images of ...">
          <font>
             <Font size="30.0" />
          </font>

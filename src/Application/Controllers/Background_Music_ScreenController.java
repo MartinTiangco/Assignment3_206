@@ -51,6 +51,7 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private MediaView _mediaView;
 	@FXML private StackPane _creditsPane;
 	@FXML private StackPane _helpImagePane;
+	@FXML private StackPane _noMusicPane;
 	@FXML private TextField _nameInput;
 	
 	private String _url;
@@ -62,6 +63,7 @@ public class Background_Music_ScreenController extends Controller {
 		// initializes the help image and the attribution pane to be invisible 
         _creditsPane.setVisible(false);
         _helpImagePane.setVisible(false);
+        _noMusicPane.setVisible(true);
         
 		// populate the combo box with the key-value pair being emotions-filename
 		TRACK.add(new Track("- None -", ""));
@@ -126,6 +128,7 @@ public class Background_Music_ScreenController extends Controller {
 		
 		if (track.getTrackName() != NO_MUSIC) {
 			_playButton.setDisable(false);
+	        _noMusicPane.setVisible(false);
 			_creditsPane.setVisible(true);
 			
 			// display the author and trackName
@@ -149,6 +152,7 @@ public class Background_Music_ScreenController extends Controller {
 		} else {
 			_playButton.setDisable(true);
 			_creditsPane.setVisible(false);
+	        _noMusicPane.setVisible(true);
 		}
 	}
 	
