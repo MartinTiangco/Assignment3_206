@@ -16,6 +16,6 @@
       </Label>
       <TextField fx:id="_guess" layoutX="367.0" layoutY="494.0" onAction="#handleNextCreation" prefHeight="31.0" prefWidth="182.0" />
       <Button fx:id="_nextButton" layoutX="581.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleNextCreation" prefHeight="31.0" prefWidth="105.0" text="Next" />
-      <Pane fx:id="_quizScreen" layoutX="10.0" layoutY="9.0" prefHeight="467.0" prefWidth="679.0" />
+      <Pane fx:id="_quizScreen" layoutX="10.0" layoutY="9.0" prefHeight="436.0" prefWidth="679.0" />
    </children>
 </AnchorPane>
