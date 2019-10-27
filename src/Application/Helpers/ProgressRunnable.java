@@ -1,5 +1,6 @@
 package Application.Helpers;
 
+import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Controller;
 
 /**
@@ -18,7 +19,8 @@ class ProgressRunnable implements Runnable {
 	@Override
 	public void run() {
 		// this stops the loading animation
-		_controller.getEntireScreenPane().setDisable(false);
-		_controller.getProgressIndicator().setVisible(false);
+		((Add_Audio_ScreenController)_controller).getEntireScreenPane().setDisable(false);
+		((Add_Audio_ScreenController)_controller).getProgressIndicator().setVisible(false);
+		((Add_Audio_ScreenController)_controller).getCancelButton().setVisible(false);
 	}
 }

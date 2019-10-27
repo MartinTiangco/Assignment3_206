@@ -2,7 +2,9 @@ package Application.Helpers;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -34,7 +36,28 @@ public class Quiz {
 
 	public Quiz() {
 		// retrieves the number of creations in the directory
-		_total = new File(DIR).listFiles(File::isDirectory).length;
+		int total = new File(DIR).listFiles(File::isDirectory).length;
+		if (total > 12) {
+			_total = 12;
+		}
+		else {
+			_total = total;
+		}
+		Random rand = new Random();
+		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
+		for (File file : listOfFiles){
+			Question question = new Question();
+			question.setCreationTested(file);
+			int firstPatternIndex = question.getCreationTested().getName().indexOf("_-_");
+			int secondPatternIndex = question.getCreationTested().getName().indexOf("_-_", firstPatternIndex + 3);
+			question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
+			_listOfQuestions.add(question);
+		}
+		while (_listOfQuestions.size() > 12){
+			_listOfQuestions.remove(rand.nextInt(_listOfQuestions.size()));
+		}
+		Collections.shuffle(_listOfQuestions);
+
 	}
 
 	public int getScore() {
@@ -75,8 +98,8 @@ public class Quiz {
 	}
 
 	public Pane createQuizScreen(){
-		Question question = setUpQuestion();
-
+		Question question = _listOfQuestions.get(_currentQuestionNumber);
+		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
 		Media video;
 		if (_difficulty.equals("Easy")) {
 			video = new Media(question.getCreationTested().toURI().toString() + System.getProperty("file.separator") + "video.mp4");
@@ -90,13 +113,13 @@ public class Quiz {
 		mediaView.setMediaPlayer(player);
 		mediaView.setFitHeight(400);
 		mediaView.setFitWidth(500);
-		
-		_listOfQuestions.add(question);
+
 		return new Pane(mediaView);
 	}
 
 	public Pane createQuizTextArea(){
-		Question question = setUpQuestion();
+		Question question = _listOfQuestions.get(_currentQuestionNumber);
+		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
 		String text = question.getCreationTested().toURI().toString() + System.getProperty("file.separator")
 				+ "wikit.txt";
 		
@@ -117,22 +140,21 @@ public class Quiz {
 		TextArea textArea = new TextArea(newline);
 		textArea.setWrapText(true);
 		textArea.setEditable(false);
-		
-		_listOfQuestions.add(question);
+
 		return new Pane(textArea);
 	}
 
-	public Question setUpQuestion(){
-		Question question = new Question();
-		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
-		
-		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
-		question.setCreationTested(listOfFiles[_currentQuestionNumber]);
-		int firstPatternIndex = question.getCreationTested().getName().indexOf("_-_");
-		int secondPatternIndex = question.getCreationTested().getName().indexOf("_-_", firstPatternIndex + 3);
-		question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
-		return question;
-	}
+//	public Question setUpQuestion(){
+//		Question question = new Question();
+//		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
+//
+//		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
+//		question.setCreationTested(listOfFiles[_currentQuestionNumber]);
+//		int firstPatternIndex = question.getCreationTested().getName().indexOf("_-_");
+//		int secondPatternIndex = question.getCreationTested().getName().indexOf("_-_", firstPatternIndex + 3);
+//		question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
+//		return question;
+//	}
 
 	public String getCorrectAnswer() {
 		return _listOfQuestions.get(_currentQuestionNumber - 1).getCorrectAnswer();

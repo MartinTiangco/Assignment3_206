@@ -33,6 +33,7 @@ public class WikitWorker extends Task<Long> {
 	private List<String> _sepLines; // each entry in the List is a sentence
 	private String _cmd;
 	private Writer _rawFileWriter;
+	private Process _process;
 	
 	
 	public WikitWorker(String cmd, Add_Audio_ScreenController controller) {
@@ -56,10 +57,10 @@ public class WikitWorker extends Task<Long> {
 		try {
 			// ProcessBuilder to execute wikit 
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", _cmd);
-			Process process = builder.start();
-			InputStream stdout = process.getInputStream();
+			_process = builder.start();
+			InputStream stdout = _process.getInputStream();
 			BufferedReader stdoutBuffered = new BufferedReader(new InputStreamReader(stdout));
-			int exitStatus = process.waitFor();
+			int exitStatus = _process.waitFor();
 			
 			if (exitStatus == 0) {
 				String line = stdoutBuffered.readLine();
@@ -160,5 +161,8 @@ public class WikitWorker extends Task<Long> {
 		}
 	}
 
+	public Process getProcess() {
+		return _process;
+	}
 }
 

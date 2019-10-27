@@ -51,6 +51,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private Slider _pitchSlider;
 	@FXML private TextField _searchTextField;
 	@FXML private ProgressIndicator _progressIndicator;
+	@FXML private Button _cancelButton;
 	@FXML private StackPane _helpBottomHalf;
 	
 	// elements in the bottom half
@@ -74,6 +75,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	private int _audioFileId;
 	private int _numberOfAudiosCreated = 0;
 	private String _searchInput;
+	private WikitWorker _wikitWorker;
 
 
 	@Override
@@ -210,6 +212,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_entireScreenPane.setDisable(true);
 		_progressIndicator.setProgress(-1);
 		_progressIndicator.setVisible(true);
+		_cancelButton.setVisible(true);
 		
 		_searchInput = _searchTextField.getText();
 
@@ -218,6 +221,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			_entireScreenPane.setDisable(false);
 			_progressIndicator.setProgress(1);
 			_progressIndicator.setVisible(false);
+			_cancelButton.setVisible(false);
 			return;
 		}
 
@@ -318,6 +322,15 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		stage.close();
 	}
 
+	public void handleCancel(){
+		_wikitWorker.getProcess().destroy();
+		_entireScreenPane.setDisable(false);
+		_progressIndicator.setProgress(1);
+		_progressIndicator.setVisible(false);
+		_cancelButton.setVisible(false);
+
+	}
+
 	/**
 	 * Creates a wikit thread that searches Wikipedia in the background
 	 * @param searchInput
@@ -326,8 +339,8 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		String cmd = "wikit " + searchInput;
 
 		// Runs the wikit command on a worker thread
-		WikitWorker wikitWorker = new WikitWorker(cmd, this);
-		_backgroundExecutor.submit(wikitWorker);
+		_wikitWorker = new WikitWorker(cmd, this);
+		_backgroundExecutor.submit(_wikitWorker);
 	}
 
 	/**
@@ -475,6 +488,10 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	public ProgressIndicator getProgressIndicator() {
 		return _progressIndicator;
+	}
+
+	public Button getCancelButton() {
+		return _cancelButton;
 	}
 
 	public SplitPane getEntireScreenPane() {
