@@ -113,12 +113,12 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         	icon = "silver_medal.png";
         } else if (score < 80 && score > 69) {
         	icon = "bronze_medal.png";
-        } 
+        } else {
+        	icon = "no_medal.png";
+        }
 		
-		if (!icon.isEmpty()) {
-	        Image image = new Image(assetPath + icon);
-	        _medal.setImage(image);
-		}
+		Image image = new Image(assetPath + icon);
+		_medal.setImage(image);
 		
 		// add a fade in transition to the medal image
 		FadeTransition fadeInMedal = new FadeTransition(Duration.millis(2000));

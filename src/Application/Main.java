@@ -53,7 +53,7 @@ public class Main extends Application {
         controller.setStyleSheet(stylesheet);
         root.setId("background");
         primaryStage.setTitle("Welcome to VARpedia");
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         scene.getStylesheets().addAll(this.getClass().getResource("css/Welcome_Screen.css").toExternalForm(), this.getClass().getResource("css/Global.css").toExternalForm(), this.getClass().getResource(stylesheet).toExternalForm());
         primaryStage.setScene(scene);
         
