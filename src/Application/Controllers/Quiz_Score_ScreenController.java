@@ -6,6 +6,7 @@ import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -117,25 +118,20 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         	icon = "no_medal.png";
         }
 		
+		// set the image to show
 		Image image = new Image(assetPath + icon);
 		_medal.setImage(image);
 		
-		// add a fade in transition to the medal image
-		FadeTransition fadeInMedal = new FadeTransition(Duration.millis(2000));
-		fadeInMedal.setNode(_medal);
-		fadeInMedal.setFromValue(0.0);
-		fadeInMedal.setToValue(1.0);
-		fadeInMedal.setCycleCount(1);
-		fadeInMedal.setAutoReverse(false);
-		fadeInMedal.playFromStart();
-		
-		// add a fade in transition to the percentage score
-		FadeTransition fadeInPercentageScore = new FadeTransition(Duration.millis(2000));
-		fadeInPercentageScore.setNode(_percentageScore);
-		fadeInPercentageScore.setFromValue(0.0);
-		fadeInPercentageScore.setToValue(1.0);
-		fadeInPercentageScore.setCycleCount(1);
-		fadeInPercentageScore.setAutoReverse(false);
-		fadeInPercentageScore.playFromStart();
+		// add a fade in transition to the medal image and the percentage score
+		Node[] nodes = {_medal, _percentageScore};
+		for (Node node : nodes) {
+			FadeTransition fadeIn = new FadeTransition(Duration.millis(2000));
+			fadeIn.setNode(node);
+			fadeIn.setFromValue(0.0);
+			fadeIn.setToValue(1.0);
+			fadeIn.setCycleCount(1);
+			fadeIn.setAutoReverse(false);
+			fadeIn.playFromStart();
+		}
 	}
 }

@@ -41,7 +41,7 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <Label layoutX="239.0" layoutY="11.0" style="-fx-font-weight: bold; -fx-font-size: 36;" text="YOUR SCORE">
+      <Label layoutX="228.0" layoutY="21.0" style="-fx-font-size: 32; -fx-font-weight: bold;" text="YOUR SCORE">
          <font>
             <Font size="20.0" />
          </font>
