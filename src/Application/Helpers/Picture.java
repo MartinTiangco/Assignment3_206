@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
+ * Question class and its properties for the image selection screen
  * @author Group 25:
  * 			- Martin Tiangco, mtia116
  * 			- Yuansheng Zhang, yzhb120

@@ -10,8 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -62,6 +62,9 @@ public class Image_Selection_ScreenController extends Controller {
 		}));
 	}
 
+	/**
+	 * Handles functionality to go back to selecting background music
+	 */
 	public void handleBack() {
 		((Stage)(((Background_Music_ScreenController)this.getParentController()).getNextButton().getScene().getWindow())).show();
 		((Background_Music_ScreenController)this.getParentController()).getNextButton().setDisable(false);
@@ -76,6 +79,9 @@ public class Image_Selection_ScreenController extends Controller {
         _helpImagePane.setVisible(false);
 	}
 
+	/**
+	 * Create the creation and return to the Home Screen
+	 */
 	public void handleCreate() {
 		if (!isNameValid()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -123,19 +129,24 @@ public class Image_Selection_ScreenController extends Controller {
 			}
 		}
 
-
+		// Selecting the first image automatically
 		_listOfImages.getSelectionModel().select(0);
 		selectImage();
 		_selectAll.setVisible(true);
 		_imageScreenTitle.setText("Images of \"" + _term + "\"");
-		_imageScreenTitle.setFont(Font.font(30));
 	}
 
+	/**
+	 * Selecting a image to be included the final creation
+	 */
 	private void selectImage() {
 		ImageViewer imageViewer = new ImageViewer(this);
 		_executor.submit(imageViewer);
 	}
 
+	/**
+	 * Selecting all images to be included the final creation
+	 */
 	public void selectAll() {
 		if (_selectAll.isSelected()) {
 			for (Picture image : _listOfImages.getItems()) {
@@ -158,6 +169,9 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
+	/**
+	 * Updating the list of selected images to be included int eh final creation
+	 */
 	private void updateSelectedImages() {
 		for (Picture image : _listOfImages.getItems()) {
 			if (image.getSelected() && !_selectedImages.getItems().contains(image.getImageView())) {
@@ -170,7 +184,10 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
-
+	/**
+	 * Check if the filename for the new creation is valid
+	 * @return true if input name is valid otherwise false
+	 */
 	private boolean isNameValid() {
 		// Disallows input of spaces or an empty string
 		if (_nameInput.getText().trim().isEmpty()) {

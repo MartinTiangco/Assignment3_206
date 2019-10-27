@@ -33,6 +33,12 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
+	/**
+	 * Saving the user answer to the question and proceed to the next question
+	 * loading the video or text for the next question
+	 *
+	 * If the current question is the last question, then proceed to the Quiz Score Screen
+	 */
 	public void handleNextCreation() {
 		_quiz.addUserAnswer(_guess.getText());
 		_quiz.incrementCurrentQuestionNumber();
@@ -42,14 +48,15 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		if (_mediaView != null) {
 			_mediaView.getMediaPlayer().dispose();
 		}
+		// Check if the current question is the last question
 		if (_quiz.getCurrentQuestionNumber() >= _quiz.getTotal()) {
+			// load the Quiz Score Screen
 			Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml", "/Application/css/Quiz_Score.css");
 			((Quiz_Score_ScreenController)controller).evaluate();
 			Stage stage = (Stage) _nextButton.getScene().getWindow();
 			stage.close();
-
 		} else {
-			// load the same screen but with a different video
+			// load the same screen but with a different video or text
 			_quizScreen.getChildren().clear();
 			_guess.clear();
 			if (_quiz.getDifficulty().equals("Hard")){
@@ -63,7 +70,9 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		}
 	}
 
-
+	/**
+	 * loading the video or text fo the first question
+	 */
 	public void Start() {
 		_quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
 		if (_quiz.getDifficulty().equals("Hard")){
@@ -80,6 +89,9 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		}
 	}
 
+	/**
+	 * modifying the text area for hard quiz for better user experience
+	 */
 	private void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
 		Label label = new Label("What goes in the blanks?");

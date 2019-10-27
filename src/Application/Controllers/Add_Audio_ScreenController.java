@@ -34,8 +34,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private MediaView _mediaView;
 	@FXML private SplitPane _entireScreenPane;
 
-	@FXML private Button _playTextButton;
-	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
 	@FXML private Slider _speedSlider;
@@ -47,7 +45,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
-	@FXML private Button _playAudioButton;
 	@FXML private Button _nextButton;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
@@ -99,9 +96,11 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
 
+		// Enable drag and drop functionality on the list of saved audio
 		_savedAudio.setRowFactory(tv -> {
 			TableRow<Audio> row = new TableRow<>();
 
+			// Copy audio object when drag is detected
 			row.setOnDragDetected(event -> {
 				if (! row.isEmpty()) {
 					Integer index = row.getIndex();
@@ -117,29 +116,26 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			row.setOnDragOver(event -> {
 				Dragboard db = event.getDragboard();
 				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-					if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+					if (row.getIndex() != (Integer) db.getContent(SERIALIZED_MIME_TYPE)) {
 						event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 						event.consume();
 					}
 				}
 			});
 
+			// Change indices of audios when the dragged audio is dropped
 			row.setOnDragDropped(event -> {
 				Dragboard db = event.getDragboard();
 				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
 					int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
 					Audio draggedPerson = (Audio) _savedAudio.getItems().remove(draggedIndex);
-
 					int dropIndex ;
-
 					if (row.isEmpty()) {
 						dropIndex = _savedAudio.getItems().size() ;
 					} else {
 						dropIndex = row.getIndex();
 					}
-
 					_savedAudio.getItems().add(dropIndex, draggedPerson);
-
 					event.setDropCompleted(true);
 					_savedAudio.getSelectionModel().select(dropIndex);
 					event.consume();
@@ -315,6 +311,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		stage.close();
 	}
 
+	/**
+	 * Handles cancelling the search progress
+	 */
 	public void handleCancel(){
 		_wikitWorker.getProcess().destroy();
 		_entireScreenPane.setDisable(false);

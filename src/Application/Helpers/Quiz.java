@@ -30,7 +30,8 @@ public class Quiz {
 		String DIR = "Creation_Directory" + System.getProperty("file.separator");
 		int total = Objects.requireNonNull(new File(DIR).listFiles(File::isDirectory)).length;
 		_total = Math.min(total, 12);
-		Random rand = new Random();
+
+		// Create one question for each creation that exist in the creation directory
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
 		for (File file : listOfFiles){
 			Question question = new Question();
@@ -40,6 +41,9 @@ public class Quiz {
 			question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
 			_listOfQuestions.add(question);
 		}
+
+		// Randomly remove questions from the list of questions until there are less than 12 questions left
+		Random rand = new Random();
 		while (_listOfQuestions.size() > 12){
 			_listOfQuestions.remove(rand.nextInt(_listOfQuestions.size()));
 		}
@@ -76,9 +80,14 @@ public class Quiz {
 		_listOfQuestions.get(_currentQuestionNumber).setUserAnswer(userAnswer);
 	}
 
+	/**
+	 * Create the video to be displayed easy/medium quiz
+	 */
 	public Pane createQuizScreen(){
 		Question question = _listOfQuestions.get(_currentQuestionNumber);
 		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
+
+		// Create the media to be displayed based on the current question
 		Media video;
 		if (_difficulty.equals("Easy")) {
 			video = new Media(question.getCreationTested().toURI().toString() + System.getProperty("file.separator") + "video.mp4");
@@ -96,14 +105,20 @@ public class Quiz {
 		return new Pane(mediaView);
 	}
 
+	/**
+	 * Create the text to be displayed for hard quiz
+	 */
 	public Pane createQuizTextArea(){
 		Question question = _listOfQuestions.get(_currentQuestionNumber);
 		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
+
+		// Extract the text from the current question
 		String text = question.getCreationTested().toURI().toString() + System.getProperty("file.separator")
 				+ "wikit.txt";
-		
 		File c = new File(text.substring(5));
-		BufferedReader file = null;
+
+		// Replacing all key terms with blank for the user to guess
+		BufferedReader file;
 		String line;
 		String newline = null;
 		try {

@@ -123,6 +123,7 @@ public class Home_ScreenController extends Controller implements Initializable {
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
+            // Delete each selected creation and ask for confirmation independently
             for (Creation creation : listOfCreations) {
                 File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -137,12 +138,12 @@ public class Home_ScreenController extends Controller implements Initializable {
                                         player.dispose();
                                     }
                                 }
-                                listOfTabToBeRemoved.add(tab);
+                                listOfTabToBeRemoved.add(tab); // Tab of deleted creation needs to be closed as well
                             }
                         }
                         cleaner.cleanCreation(creation.getFolderName());
                         filePath.delete();
-                        _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
+                        _videoTabs.getTabs().removeAll(listOfTabToBeRemoved); // remove all tabs of deleted creations
                     }
                 });
             }

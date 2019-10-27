@@ -29,7 +29,11 @@ public class Quiz_Start_ScreenController extends Controller implements Initializ
 		_difficulty.getItems().addAll(_difficultyLevels);
 		_difficulty.getSelectionModel().select(_difficultyLevels[0]);
 	}
-	
+
+	/**
+	 * Creating a new Quiz object and setting its difficulty based on the user's choice
+	 * Load the Quiz Screen
+	 */
 	public void handleStart() {
 		_quiz = new Quiz();
 		_quiz.setDifficulty(_difficulty.getValue().toString());
@@ -38,7 +42,10 @@ public class Quiz_Start_ScreenController extends Controller implements Initializ
 		Stage stage = (Stage)_startButton.getScene().getWindow();
 		stage.close();
 	}
-	
+
+	/**
+	 * Handles functionality to go back to main menu
+	 */
 	public void handleBack() {
 		Stage stage = (Stage) _mainMenuButton.getScene().getWindow();
         stage.close();

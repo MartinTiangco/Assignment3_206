@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 /**
- * 
+ * Class to display the selected image on the ImageView
  * @author Group 25:
  * 			- Martin Tiangco, mtia116
  * 			- Yuansheng Zhang, yzhb120
