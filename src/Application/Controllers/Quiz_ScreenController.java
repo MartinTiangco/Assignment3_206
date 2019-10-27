@@ -17,7 +17,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -90,7 +92,8 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 
 	public void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
-		_quizScreen.getChildren().add(textArea);
+		Label label = new Label("What goes in the blanks?");
+		_quizScreen.getChildren().add(new VBox(label, textArea));
 		textArea.prefWidthProperty().bind(_quizScreen.widthProperty());
 		textArea.prefHeightProperty().bind(_quizScreen.heightProperty());
 	}

@@ -37,7 +37,7 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <Button fx:id="_searchButton" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="100.0" text="Search" />
+                  <Button fx:id="_searchButton" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="120.0" text="Search" />
                   <VBox layoutX="661.0" layoutY="23.0" prefHeight="357.0" prefWidth="210.0" spacing="20.0">
                      <children>
                         <Label text="Voice:">
@@ -65,7 +65,7 @@
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <Button fx:id="_helpButton" layoutX="844.0" layoutY="13.0" mnemonicParsing="false" onAction="#showHelpTopHalf" prefHeight="40.0" prefWidth="40.0" />
+                  <Button fx:id="_helpButton" layoutX="827.0" layoutY="13.0" mnemonicParsing="false" onAction="#showHelpTopHalf" prefHeight="40.0" prefWidth="40.0" />
                   <Button fx:id="_mainMenuButton" focusTraversable="false" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackToMainMenu" prefHeight="40.0" prefWidth="100.0" text="Back" />
                </children>
             </AnchorPane>
@@ -104,7 +104,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <Button fx:id="_helpButton" layoutX="844.0" layoutY="12.0" mnemonicParsing="false" onAction="#showHelpBottomHalf" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="_helpButton" layoutX="831.0" layoutY="12.0" mnemonicParsing="false" onAction="#showHelpBottomHalf" prefHeight="40.0" prefWidth="40.0">
                      <tooltip>
                         <Tooltip text="We can then 'Preview' or 'Delete' the audio in the 'List of Saved Audio'. Once you're happy, click on&quot;Next&quot;." />
                      </tooltip>
