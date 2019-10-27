@@ -32,12 +32,8 @@ import java.util.concurrent.Executors;
  */
 public class Home_ScreenController extends Controller implements Initializable {
 
-	// The elements of the application
-    @FXML private Button _addButton;
     @FXML private Button _deleteButton;
     @FXML private Button _playButton;
-    @FXML private Button _quizButton;
-    @FXML private Button _settingsButton;
     @FXML private Label _progressMsg;
     @FXML private ProgressIndicator _progressIndicator;
     @FXML private StackPane _helpImagePane;
@@ -49,8 +45,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
 
-    private UpdateHelper _updateHelper;
-    private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
     private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
 
@@ -87,14 +81,9 @@ public class Home_ScreenController extends Controller implements Initializable {
                 Media video = new Media(fileUrl.toURI().toString());
                 MediaPlayer player = new MediaPlayer(video);
                 player.setAutoPlay(true);
-                tab.setOnClosed(new EventHandler<Event>()
-                {
-                    @Override
-                    public void handle(Event arg0)
-                    {
-                        Update();
-                        player.dispose();
-                    }
+                tab.setOnClosed(arg0 -> {
+                    Update();
+                    player.dispose();
                 });
 
                 MediaView mediaView = new MediaView();
@@ -199,7 +188,7 @@ public class Home_ScreenController extends Controller implements Initializable {
      * Updates the TableView Creation items
      */
     public void Update() {
-        _updateHelper = new UpdateHelper(this);
+        UpdateHelper _updateHelper = new UpdateHelper(this);
         _executor.submit(_updateHelper);
         disable();
     }
@@ -207,7 +196,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     /**
      * Disables the play and delete button when the user is playing a video and is not on the Creation Tab
      */
-    public void disable() {
+    private void disable() {
         if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
             _deleteButton.setDisable(true);
             _playButton.setDisable(true);
@@ -217,11 +206,7 @@ public class Home_ScreenController extends Controller implements Initializable {
             _playButton.setDisable(false);
         }
     }
-    
-    public ArrayList<Creation> getCreations() {
-        return _creations;
-    }
-    
+
     public Label getProgressMsg() {
     	return _progressMsg;
     }

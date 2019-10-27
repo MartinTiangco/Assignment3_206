@@ -72,7 +72,7 @@ public class Creation {
     public void setFileName(String fileName) {
         _fileName = fileName;
     }
-    
+
     public String getFolderName() {
     	return _folderName;
     }

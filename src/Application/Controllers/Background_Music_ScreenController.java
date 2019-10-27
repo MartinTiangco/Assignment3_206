@@ -7,12 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +25,9 @@ import java.util.concurrent.Executors;
  */
 public class Background_Music_ScreenController extends Controller {
 
-	private final String AUDIO_DIR = ".Audio_Directory" + System.getProperty("file.separator");
-	private final String MUSIC_DIR = ".Music_Directory" + System.getProperty("file.separator");
-	
 	private final String NO_MUSIC = "- None -";
 	
-	private final List<Track> TRACK = new ArrayList<Track>();
+	private final List<Track> TRACK = new ArrayList<>();
 
 	@FXML private Button _backButton;
 	@FXML private Button _nextButton;
@@ -49,8 +44,6 @@ public class Background_Music_ScreenController extends Controller {
 	@FXML private StackPane _noMusicPane;
 	
 	private String _url;
-	private TrackPlayer _trackPlayer;
-	private ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 	private ExecutorService _backgroundExecutor = Executors.newFixedThreadPool(5);
 
 	public Background_Music_ScreenController() {
@@ -99,7 +92,7 @@ public class Background_Music_ScreenController extends Controller {
 		// get the link to the author profile page for the selected track
 		Runtime rt = Runtime.getRuntime();
 		String[] browsers = { "epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx" };
-		StringBuffer cmd = new StringBuffer();
+		StringBuilder cmd = new StringBuilder();
 		for (int i = 0; i < browsers.length; i++) {
 			if (i == 0) {
 				cmd.append(String.format("%s \"%s\"", browsers[i], _url));
@@ -123,7 +116,7 @@ public class Background_Music_ScreenController extends Controller {
 		// get the selected item
 		Track track = (Track)_musicComboBox.getValue();
 		
-		if (track.getTrackName() != NO_MUSIC) {
+		if (!track.getTrackName().equals(NO_MUSIC)) {
 			_playButton.setDisable(false);
 	        _noMusicPane.setVisible(false);
 			_creditsPane.setVisible(true);
@@ -187,15 +180,15 @@ public class Background_Music_ScreenController extends Controller {
 	public void handlePlay() {
 		
 		// allow you to play audio without waiting for the first to finish
-		if (_musicComboBox.getValue().toString() != NO_MUSIC) {
+		if (!_musicComboBox.getValue().toString().equals(NO_MUSIC)) {
 			
 			
 			if (_mediaView.getMediaPlayer() != null) {
 				_mediaView.getMediaPlayer().dispose();
 			}
-			
-			_trackPlayer = new TrackPlayer((Track)_musicComboBox.getValue(), this);
-			_playerExecutor = Executors.newSingleThreadExecutor();
+
+			TrackPlayer _trackPlayer = new TrackPlayer((Track) _musicComboBox.getValue(), this);
+			ExecutorService _playerExecutor = Executors.newSingleThreadExecutor();
 			_playerExecutor.submit(_trackPlayer);
 		}
 	}
@@ -208,20 +201,7 @@ public class Background_Music_ScreenController extends Controller {
 			_mediaView.getMediaPlayer().dispose();
 		}
 	}
-	
-	/**
-	 * extracts the background music tracks from the background music directory
-	 */
-	private List<String> extractFromDirectory() {
-		List<String> listOfFilenames = new ArrayList<>();
-		File[] listOfFiles = new File(MUSIC_DIR).listFiles();
 
-		for (File file : listOfFiles) {
-			listOfFilenames.add(file.getName());
-		}
-		return listOfFilenames;
-	}
-	
 	public Button getNextButton() {
 		return _nextButton;
 	}

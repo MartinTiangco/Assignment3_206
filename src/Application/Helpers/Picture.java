@@ -13,22 +13,16 @@ import javafx.scene.image.ImageView;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class Picture extends Image {
-    private static final String IMAGE_DIR = ".Image_Directory" + System.getProperty("file.separator");
-    
+
     private final StringProperty name = new SimpleStringProperty();
     private final BooleanProperty on = new SimpleBooleanProperty();
     
-    private String fileName = "";
+    private String fileName;
     private Boolean selected = false;
     private ImageView imageView;
-    private String url;
 
-    public Picture(String url) {
-        super(url);
-    }
     public Picture(String url, String name, boolean on, String fileName) {
         super(url);
-        this.url = url;
         this.fileName = fileName;
         setName(name);
         setOn(on);
@@ -38,7 +32,7 @@ public class Picture extends Image {
         imageView.setPreserveRatio(true);
     }
 
-    public final StringProperty nameProperty() {
+    private StringProperty nameProperty() {
         return this.name;
     }
 
@@ -60,10 +54,6 @@ public class Picture extends Image {
 
     public String getFileName() {
         return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public ImageView getImageView() {

@@ -33,7 +33,7 @@ public class MediaBar extends HBox {
     // introducing Sliders
     private Slider _time = new Slider(); // Slider for time
     private Slider _vol = new Slider(); // Slider for volume
-    private Button _playButton = new Button("||"); // For pausing the player
+    private Button _playButton = new Button(PAUSE_SYMBOL); // For pausing the player
     private Label _volume = new Label(HIGH_VOLUME_SYMBOL);
     private MediaPlayer _player;
 
@@ -80,7 +80,7 @@ public class MediaBar extends HBox {
                 } if (status == Status.HALTED || status == Status.STOPPED || status == Status.PAUSED) {
                 	// If the video is stopped, halted or paused 
                     _player.play(); // Start the video
-                    _playButton.setText("||");
+                    _playButton.setText(PAUSE_SYMBOL);
                 }
             }
         });

@@ -37,7 +37,7 @@ public class Track {
 		_trackFile = trackFile;
 		_trackName = trackName;
 		// extracts the authors from the filenames of the tracks
-		if (trackName != NO_MUSIC) {
+		if (!trackName.equals(NO_MUSIC)) {
 			_author = extractAuthor();
 		}
 		
@@ -73,7 +73,7 @@ public class Track {
 	/**
 	 * Extracts the author from the track filename
 	 */
-	public String extractAuthor() {
+	private String extractAuthor() {
 		// gets the occurrence of the file separator pattern and the length
 		int patternIndex = _trackFile.indexOf("_-_");
 		return _trackFile.substring(0, patternIndex);

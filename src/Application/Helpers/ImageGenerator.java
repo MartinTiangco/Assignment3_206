@@ -27,7 +27,7 @@ public class ImageGenerator extends Task<Long> {
 	}
 
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// delete all images first from the images directory
 		Cleaner cleaner = new Cleaner();
 		cleaner.cleanImage();
@@ -67,7 +67,7 @@ public class ImageGenerator extends Task<Long> {
 					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
 					numId++;
-				} catch (FlickrException fe) {
+				} catch (FlickrException ignored) {
 				}
 			}
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class ImageGenerator extends Task<Long> {
 	/*
 	 * Retrieves the APIKey from the file "flickr-api-keys.txt"
 	 */
-	public static String getAPIKey(String key) throws Exception {
+	private static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
 		
 		File file = new File(config);

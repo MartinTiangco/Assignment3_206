@@ -28,7 +28,7 @@ public class MusicAdder extends Task<Long> {
 	}
 
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// combines spoken audio with background music
 		String spokenAudio = OUTPUT_DIR + _spokenFile;
 		String output = OUTPUT_DIR + "music_" + _spokenFile;

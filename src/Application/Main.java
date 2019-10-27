@@ -1,21 +1,16 @@
 package Application;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-
 import Application.Controllers.Controller;
-import Application.Controllers.Welcome_ScreenController;
-import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  * The main class of the application

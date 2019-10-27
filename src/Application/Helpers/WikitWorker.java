@@ -93,12 +93,7 @@ public class WikitWorker extends Task<Long> {
 		public void run() {
 			// clears ListView and appends all lines of content
 			if (!(_sepLines == null)) {
-				
 				//append lines onto text field
-				StringBuilder content = new StringBuilder(""); 
-				for (String line : _sepLines) {
-				   content.append(line);
-				}
 				_controller.getContent().getItems().addAll(_sepLines);
 				
 				// enables the customization panel (i.e. the voice settings)

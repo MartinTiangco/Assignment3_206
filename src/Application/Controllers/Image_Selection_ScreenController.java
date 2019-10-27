@@ -29,7 +29,6 @@ public class Image_Selection_ScreenController extends Controller {
 
 	@FXML private Button _backButton;
 	@FXML private Button _createButton;
-	@FXML private Button _helpButton;
 	@FXML private CheckBox _selectAll;
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ListView<ImageView> _selectedImages;
@@ -39,7 +38,6 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private Label _imageScreenTitle;
 	@FXML private Label _selectedImagesLabel;
 
-	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
 
@@ -47,8 +45,7 @@ public class Image_Selection_ScreenController extends Controller {
 		// adds the graphic icons to the labels
         _imageScreenTitle.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/image.png"))));
         _selectedImagesLabel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/selected.png"))));
-		
-		
+
 		// initializes the help image to be invisible
         _helpImagePane.setVisible(false);
         
@@ -111,6 +108,9 @@ public class Image_Selection_ScreenController extends Controller {
 		_executor.submit(videoGen);
 	}
 
+	/**
+	 * displays the images onto the 'Image Selection Screen'.
+	 */
 	public void listImages() {
 		_listOfImages.getItems().removeAll(_listOfImages.getItems());
 		File dir = new File(".Image_Directory");
@@ -123,9 +123,7 @@ public class Image_Selection_ScreenController extends Controller {
 			}
 		}
 
-		/**
-		 * displays the images onto the 'Image Selection Screen'.
-		 */
+
 		_listOfImages.getSelectionModel().select(0);
 		selectImage();
 		_selectAll.setVisible(true);
@@ -133,7 +131,7 @@ public class Image_Selection_ScreenController extends Controller {
 		_imageScreenTitle.setFont(Font.font(30));
 	}
 
-	public void selectImage() {
+	private void selectImage() {
 		ImageViewer imageViewer = new ImageViewer(this);
 		_executor.submit(imageViewer);
 	}
@@ -160,12 +158,12 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
-	public void updateSelectedImages() {
+	private void updateSelectedImages() {
 		for (Picture image : _listOfImages.getItems()) {
 			if (image.getSelected() && !_selectedImages.getItems().contains(image.getImageView())) {
 				_selectedImages.getItems().add(image.getImageView());
 			}
-			else if(!image.getSelected() && _selectedImages.getItems().contains(image.getImageView())){
+			else if(!image.getSelected()){
 				_selectedImages.getItems().remove(image.getImageView());
 			}
 
@@ -180,23 +178,11 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 
 		//prevents any special characters apart from "-", "_" and (space)
-		if (_nameInput.getText().matches("[a-zA-Z0-9 ]*")) {
-			return true;
-		} else {
-			return false;
-		}
+		return _nameInput.getText().matches("[a-zA-Z0-9 ]*");
 	}
 
 	public Button getCreateButton() {
 		return _createButton;
-	}
-
-	public ListView<Picture> getListOfImages() {
-		return _listOfImages;
-	}
-
-	public CheckBox getSelectAll() {
-		return _selectAll;
 	}
 
 	public void setTerm(String term) {

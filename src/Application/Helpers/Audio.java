@@ -52,14 +52,6 @@ public class Audio {
         _numberOfLines = numberOfLines;
     }
 
-    public String getAudioLength() {
-        return _audioLength;
-    }
-
-    public void setAudioLength(String audioLength) {
-        _audioLength = audioLength;
-    }
-
     public int getPitch() {
         return _pitch;
     }
@@ -85,20 +77,19 @@ public class Audio {
      * @param voice - this voice is the description on the ComboBox
      */
     public void setVoice(String voice) {
-        if (voice == "English-USA-male") {
-            _voice = "-ven-us+m5";
-        }
-        else if (voice == "English-USA-female") {
-            _voice = "-ven-us+f2";
-        }
-        else if (voice == "English-UK-male") {
-            _voice = "-ven-gb+m5";
-        }
-        else if (voice == "English-UK-female") {
-            _voice = "-ven-gb+f2";
-        }
-        else {
-            _voice = "-ven-gb+m5";
+        switch (voice) {
+            case "English-USA-male":
+                _voice = "-ven-us+m5";
+                break;
+            case "English-USA-female":
+                _voice = "-ven-us+f2";
+                break;
+            case "English-UK-female":
+                _voice = "-ven-gb+f2";
+                break;
+            default:
+                _voice = "-ven-gb+m5";
+                break;
         }
         _voiceDisplay = voice;
     }
@@ -106,8 +97,5 @@ public class Audio {
     public String getVoiceDisplay() {
     	return _voiceDisplay;
     }
-    
-    public void setVoiceDisplay(String voiceDisplay) {
-    	_voiceDisplay = voiceDisplay;
-    }
+
 }

@@ -18,13 +18,8 @@ public class ImageViewer extends Task<Long> {
         _controller = controller;
     }
     @Override
-    protected Long call() throws Exception {
-        Runnable viewImage = new Runnable() {
-            @Override
-            public void run() {
-                _controller.viewImage();
-            }
-        };
+    protected Long call() {
+        Runnable viewImage = () -> _controller.viewImage();
         Platform.runLater(viewImage);
 
         return null;

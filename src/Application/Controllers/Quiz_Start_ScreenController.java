@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +16,6 @@ import java.util.ResourceBundle;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class Quiz_Start_ScreenController extends Controller implements Initializable {
-	@FXML private AnchorPane _pane;
 	@FXML private Button _mainMenuButton;
 	@FXML private Button _startButton;
 	@FXML private ComboBox _difficulty;

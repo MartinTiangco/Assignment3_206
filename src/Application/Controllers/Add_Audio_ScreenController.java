@@ -79,9 +79,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		disableBottomHalf();
 
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
-
 		_searchTextField.requestFocus();
 
 		// prepares the TableView to be populated with Audio objects
@@ -100,7 +98,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_voiceBox.getSelectionModel().select(0);
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
-
 
 		_savedAudio.setRowFactory(tv -> {
 			TableRow<Audio> row = new TableRow<>();
@@ -169,6 +166,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 * Previews the text using the current voice settings
 	 */
 	public void handlePlayText() {
+		Stage stage = (Stage)_nextButton.getScene().getWindow();
+		stage.setOnCloseRequest(t -> terminatePlayers()
+		);
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			// allows you to preview text without waiting for the first one to finish
 			terminatePlayers();
@@ -185,6 +185,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 * Previews an audio file that is saved onto the 'List of Saved Audio'
 	 */
 	public void handlePlayAudio() {
+		Stage stage = (Stage)_nextButton.getScene().getWindow();
+		stage.setOnCloseRequest(t -> terminatePlayers()
+		);
 		// allow you to play audio without waiting for the first to finish
 		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
 			terminatePlayers();
@@ -358,10 +361,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 */
 	private boolean validateSearch(String searchInput) {
 		// checks for textfield being an empty string or only spaces
-		if (searchInput.trim().isEmpty()) {
-			return false;
-		}
-		return true;
+		return !searchInput.trim().isEmpty();
 	}
 	
 	/**
@@ -377,10 +377,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		
 		// this fixes a bug where multiple punctuation marks are selected, then attempt to save, then select one line to edit,
 		// then save again
-		if (Pattern.matches("null", listString)) {
-			return false;
-		}
-		return true;
+		return !Pattern.matches("null", listString);
 	}
 
 	/**
@@ -401,7 +398,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	/**
 	 * disables the voice customization
 	 */
-	public void disableCustomization() {
+	private void disableCustomization() {
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
@@ -416,23 +413,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_pitchSlider.setDisable(false);
 	}
 
-	/**
-	 * disables the preview / create buttons in the top-half
-	 */
-	public void disablePlayCreateText() {
-		_createAudioButton.setDisable(true);
-		_playTextButton.setDisable(true);
-	}
-
-	/**
-	 * enables the preview / create buttons in the top-half
-	 */
-	public void enablePlayCreateText() {
-		_createAudioButton.setDisable(false);
-		_playTextButton.setDisable(false);
-	}
-
-	public void disableBottomHalf() {
+	private void disableBottomHalf() {
 		_bottomHalf.setDisable(true);
 	}
 
@@ -440,7 +421,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_bottomHalf.setDisable(false);
 	}
 
-	public void setUpAudio(Audio audio) {
+	private void setUpAudio(Audio audio) {
 		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
 		audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
 		audio.setSpeed((int)_speedSlider.getValue());
@@ -457,14 +438,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public MediaView getMediaView() {
 		return _mediaView;
-	}
-
-	public Button getPlayTextButton() {
-		return _playTextButton;
-	}
-
-	public Button getPlayAudioButton() {
-		return _playAudioButton;
 	}
 
 	public String getSearchInput() {

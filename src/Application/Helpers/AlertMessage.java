@@ -89,7 +89,7 @@ public class AlertMessage implements Runnable {
 	 * Shared method for generating alerts
 	 * @param msg
 	 */
-	public void showAlert(String msg) {
+	private void showAlert(String msg) {
 		_alert = new Alert(AlertType.ERROR);
 		_alert.setHeaderText(null);
 		_alert.setContentText(msg);

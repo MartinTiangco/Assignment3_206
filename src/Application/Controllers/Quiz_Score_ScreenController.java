@@ -41,8 +41,7 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         _correctAnswer.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
 
         for (Object tableColumn : _analysisTable.getColumns())
-            ((TableColumn<Question, String>)tableColumn).setCellFactory(column -> {
-            return new TableCell<Question, String>() {
+            ((TableColumn<Question, String>)tableColumn).setCellFactory(column -> new TableCell<Question, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -64,8 +63,7 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
                         }
                     }
                 }
-            };
-        });
+            });
 
     }
 
@@ -95,10 +93,10 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         stage.close();
 	}
 	
-	public void showResults(int score) {
+	private void showResults(int score) {
 		// show a medal icon and message to user depending on results
 		String assetPath = "/Application/assets/";
-		String icon = "";
+		String icon;
 		if (score == 100) {
 			icon = "trophy.png";
         } else if (score < 100 && score > 89) {

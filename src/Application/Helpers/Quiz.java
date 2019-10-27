@@ -9,10 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Class of the Quiz functionality.
@@ -21,7 +18,6 @@ import java.util.Random;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class Quiz {
-	private final String DIR = "Creation_Directory" + System.getProperty("file.separator");
 
 	private int _currentQuestionNumber = 0;
 	private int _score = 0;
@@ -31,13 +27,9 @@ public class Quiz {
 
 	public Quiz() {
 		// retrieves the number of creations in the directory
-		int total = new File(DIR).listFiles(File::isDirectory).length;
-		if (total > 12) {
-			_total = 12;
-		}
-		else {
-			_total = total;
-		}
+		String DIR = "Creation_Directory" + System.getProperty("file.separator");
+		int total = Objects.requireNonNull(new File(DIR).listFiles(File::isDirectory)).length;
+		_total = Math.min(total, 12);
 		Random rand = new Random();
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
 		for (File file : listOfFiles){
@@ -61,14 +53,6 @@ public class Quiz {
 
 	public int getTotal() {
 		return _total;
-	}
-
-	public void setScore(int score) {
-		_score = score;
-	}
-
-	public void setTotal(int total) {
-		_total = total;
 	}
 
 	public int getCurrentQuestionNumber() {
@@ -138,18 +122,6 @@ public class Quiz {
 
 		return new Pane(textArea);
 	}
-
-//	public Question setUpQuestion(){
-//		Question question = new Question();
-//		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
-//
-//		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
-//		question.setCreationTested(listOfFiles[_currentQuestionNumber]);
-//		int firstPatternIndex = question.getCreationTested().getName().indexOf("_-_");
-//		int secondPatternIndex = question.getCreationTested().getName().indexOf("_-_", firstPatternIndex + 3);
-//		question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
-//		return question;
-//	}
 
 	public String getCorrectAnswer() {
 		return _listOfQuestions.get(_currentQuestionNumber - 1).getCorrectAnswer();

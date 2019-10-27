@@ -75,14 +75,12 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 			_quizScreen.getChildren().add(_mediaView);
 
 			Stage stage = (Stage)_nextButton.getScene().getWindow();
-			stage.setOnCloseRequest(t -> {
-						_mediaView.getMediaPlayer().dispose();
-					}
+			stage.setOnCloseRequest(t -> _mediaView.getMediaPlayer().dispose()
 			);
 		}
 	}
 
-	public void hardQuiz() {
+	private void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
 		Label label = new Label("What goes in the blanks?");
 		_quizScreen.getChildren().add(new VBox(label, textArea));
@@ -94,7 +92,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		return _quiz;
 	}
 
-	public void fitToParent() {
+	private void fitToParent() {
 		// set the mediaview to fit the pane parent
 		_mediaView.fitWidthProperty().bind(_quizScreen.widthProperty());
 		_mediaView.fitHeightProperty().bind(_quizScreen.heightProperty());
