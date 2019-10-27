@@ -1,38 +1,20 @@
 package Application.Controllers;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import Application.Helpers.ImageGenerator;
 import Application.Helpers.ImageViewer;
 import Application.Helpers.Picture;
 import Application.Helpers.VideoGenerator;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Font;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+
+import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * The controller for the 'Image Selection Screen', where the user selects what images to include
@@ -47,7 +29,6 @@ public class Image_Selection_ScreenController extends Controller {
 
 	@FXML private Button _backButton;
 	@FXML private Button _createButton;
-	@FXML private Button _helpButton;
 	@FXML private CheckBox _selectAll;
 	@FXML private ImageView _imageView = new ImageView();
 	@FXML private ListView<ImageView> _selectedImages;
@@ -55,12 +36,16 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private StackPane _helpImagePane;
 	@FXML private TextField _nameInput;
 	@FXML private Label _imageScreenTitle;
+	@FXML private Label _selectedImagesLabel;
 
-	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
 
 	public void initialize() {
+		// adds the graphic icons to the labels
+        _imageScreenTitle.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/image.png"))));
+        _selectedImagesLabel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/selected.png"))));
+
 		// initializes the help image to be invisible
         _helpImagePane.setVisible(false);
         
@@ -77,6 +62,9 @@ public class Image_Selection_ScreenController extends Controller {
 		}));
 	}
 
+	/**
+	 * Handles functionality to go back to selecting background music
+	 */
 	public void handleBack() {
 		((Stage)(((Background_Music_ScreenController)this.getParentController()).getNextButton().getScene().getWindow())).show();
 		((Background_Music_ScreenController)this.getParentController()).getNextButton().setDisable(false);
@@ -91,6 +79,9 @@ public class Image_Selection_ScreenController extends Controller {
         _helpImagePane.setVisible(false);
 	}
 
+	/**
+	 * Create the creation and return to the Home Screen
+	 */
 	public void handleCreate() {
 		if (!isNameValid()) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -123,6 +114,9 @@ public class Image_Selection_ScreenController extends Controller {
 		_executor.submit(videoGen);
 	}
 
+	/**
+	 * displays the images onto the 'Image Selection Screen'.
+	 */
 	public void listImages() {
 		_listOfImages.getItems().removeAll(_listOfImages.getItems());
 		File dir = new File(".Image_Directory");
@@ -135,21 +129,24 @@ public class Image_Selection_ScreenController extends Controller {
 			}
 		}
 
-		/**
-		 * displays the images onto the 'Image Selection Screen'.
-		 */
+		// Selecting the first image automatically
 		_listOfImages.getSelectionModel().select(0);
 		selectImage();
 		_selectAll.setVisible(true);
-		_imageScreenTitle.setText("Images of " + _term);
-		_imageScreenTitle.setFont(Font.font(30));
+		_imageScreenTitle.setText("Images of \"" + _term + "\"");
 	}
 
-	public void selectImage() {
+	/**
+	 * Selecting a image to be included the final creation
+	 */
+	private void selectImage() {
 		ImageViewer imageViewer = new ImageViewer(this);
 		_executor.submit(imageViewer);
 	}
 
+	/**
+	 * Selecting all images to be included the final creation
+	 */
 	public void selectAll() {
 		if (_selectAll.isSelected()) {
 			for (Picture image : _listOfImages.getItems()) {
@@ -172,19 +169,25 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 	}
 
-	public void updateSelectedImages() {
+	/**
+	 * Updating the list of selected images to be included int eh final creation
+	 */
+	private void updateSelectedImages() {
 		for (Picture image : _listOfImages.getItems()) {
 			if (image.getSelected() && !_selectedImages.getItems().contains(image.getImageView())) {
 				_selectedImages.getItems().add(image.getImageView());
 			}
-			else if(!image.getSelected() && _selectedImages.getItems().contains(image.getImageView())){
+			else if(!image.getSelected()){
 				_selectedImages.getItems().remove(image.getImageView());
 			}
 
 		}
 	}
 
-
+	/**
+	 * Check if the filename for the new creation is valid
+	 * @return true if input name is valid otherwise false
+	 */
 	private boolean isNameValid() {
 		// Disallows input of spaces or an empty string
 		if (_nameInput.getText().trim().isEmpty()) {
@@ -192,23 +195,11 @@ public class Image_Selection_ScreenController extends Controller {
 		}
 
 		//prevents any special characters apart from "-", "_" and (space)
-		if (_nameInput.getText().matches("[a-zA-Z0-9 ]*")) {
-			return true;
-		} else {
-			return false;
-		}
+		return _nameInput.getText().matches("[a-zA-Z0-9 ]*");
 	}
 
 	public Button getCreateButton() {
 		return _createButton;
-	}
-
-	public ListView<Picture> getListOfImages() {
-		return _listOfImages;
-	}
-
-	public CheckBox getSelectAll() {
-		return _selectAll;
 	}
 
 	public void setTerm(String term) {

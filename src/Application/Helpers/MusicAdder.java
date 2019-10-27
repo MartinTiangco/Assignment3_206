@@ -3,8 +3,6 @@ package Application.Helpers;
 import Application.Controllers.Add_Audio_ScreenController;
 import Application.Controllers.Background_Music_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
-import Application.Helpers.AlertMessage;
-import Application.Helpers.Track;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
@@ -30,7 +28,7 @@ public class MusicAdder extends Task<Long> {
 	}
 
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// combines spoken audio with background music
 		String spokenAudio = OUTPUT_DIR + _spokenFile;
 		String output = OUTPUT_DIR + "music_" + _spokenFile;

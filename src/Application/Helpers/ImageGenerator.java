@@ -1,18 +1,15 @@
 package Application.Helpers;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.photos.*;
+import javafx.concurrent.Task;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
-import javax.imageio.ImageIO;
-
-import com.flickr4java.flickr.*;
-import com.flickr4java.flickr.photos.*;
-
-import Application.Controllers.Image_Selection_ScreenController;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 
 /**
  * Class that retrieves the images from Flickr using an adapted version of Nasser's example.
@@ -30,7 +27,7 @@ public class ImageGenerator extends Task<Long> {
 	}
 
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// delete all images first from the images directory
 		Cleaner cleaner = new Cleaner();
 		cleaner.cleanImage();
@@ -70,7 +67,7 @@ public class ImageGenerator extends Task<Long> {
 					File outputfile = new File(".Image_Directory", filename);
 					ImageIO.write(image, "jpg", outputfile);
 					numId++;
-				} catch (FlickrException fe) {
+				} catch (FlickrException ignored) {
 				}
 			}
 		} catch (Exception e) {
@@ -81,7 +78,7 @@ public class ImageGenerator extends Task<Long> {
 	/*
 	 * Retrieves the APIKey from the file "flickr-api-keys.txt"
 	 */
-	public static String getAPIKey(String key) throws Exception {
+	private static String getAPIKey(String key) throws Exception {
 		String config = System.getProperty("user.dir") + System.getProperty("file.separator") + "flickr-api-keys.txt";
 		
 		File file = new File(config);

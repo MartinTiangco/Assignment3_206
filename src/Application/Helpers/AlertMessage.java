@@ -4,11 +4,7 @@ import Application.Controllers.Home_ScreenController;
 import Application.Controllers.Image_Selection_ScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-
-import java.util.Optional;
 
 /**
  * An Alert class for generating alerts.
@@ -93,7 +89,7 @@ public class AlertMessage implements Runnable {
 	 * Shared method for generating alerts
 	 * @param msg
 	 */
-	public void showAlert(String msg) {
+	private void showAlert(String msg) {
 		_alert = new Alert(AlertType.ERROR);
 		_alert.setHeaderText(null);
 		_alert.setContentText(msg);

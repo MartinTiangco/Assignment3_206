@@ -1,24 +1,18 @@
 package Application.Controllers;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
-import Application.Helpers.AlertMessage;
 import Application.Helpers.Quiz;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * The controller for the 'Quiz Screen', where the user answers the quiz
@@ -39,6 +33,12 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
+	/**
+	 * Saving the user answer to the question and proceed to the next question
+	 * loading the video or text for the next question
+	 *
+	 * If the current question is the last question, then proceed to the Quiz Score Screen
+	 */
 	public void handleNextCreation() {
 		_quiz.addUserAnswer(_guess.getText());
 		_quiz.incrementCurrentQuestionNumber();
@@ -48,14 +48,15 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		if (_mediaView != null) {
 			_mediaView.getMediaPlayer().dispose();
 		}
+		// Check if the current question is the last question
 		if (_quiz.getCurrentQuestionNumber() >= _quiz.getTotal()) {
+			// load the Quiz Score Screen
 			Controller controller = loadScreen("Quiz", "/Application/fxml/Quiz_Score.fxml", "/Application/css/Quiz_Score.css");
 			((Quiz_Score_ScreenController)controller).evaluate();
 			Stage stage = (Stage) _nextButton.getScene().getWindow();
 			stage.close();
-
 		} else {
-			// load the same screen but with a different video
+			// load the same screen but with a different video or text
 			_quizScreen.getChildren().clear();
 			_guess.clear();
 			if (_quiz.getDifficulty().equals("Hard")){
@@ -69,7 +70,9 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		}
 	}
 
-
+	/**
+	 * loading the video or text fo the first question
+	 */
 	public void Start() {
 		_quiz = ((Quiz_Start_ScreenController)(getParentController())).getQuiz();
 		if (_quiz.getDifficulty().equals("Hard")){
@@ -81,16 +84,18 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 			_quizScreen.getChildren().add(_mediaView);
 
 			Stage stage = (Stage)_nextButton.getScene().getWindow();
-			stage.setOnCloseRequest(t -> {
-						_mediaView.getMediaPlayer().dispose();
-					}
+			stage.setOnCloseRequest(t -> _mediaView.getMediaPlayer().dispose()
 			);
 		}
 	}
 
-	public void hardQuiz() {
+	/**
+	 * modifying the text area for hard quiz for better user experience
+	 */
+	private void hardQuiz() {
 		TextArea textArea = (TextArea) _quiz.createQuizTextArea().getChildren().get(0);
-		_quizScreen.getChildren().add(textArea);
+		Label label = new Label("What goes in the blanks?");
+		_quizScreen.getChildren().add(new VBox(label, textArea));
 		textArea.prefWidthProperty().bind(_quizScreen.widthProperty());
 		textArea.prefHeightProperty().bind(_quizScreen.heightProperty());
 	}
@@ -99,7 +104,7 @@ public class Quiz_ScreenController extends Controller implements Initializable {
 		return _quiz;
 	}
 
-	public void fitToParent() {
+	private void fitToParent() {
 		// set the mediaview to fit the pane parent
 		_mediaView.fitWidthProperty().bind(_quizScreen.widthProperty());
 		_mediaView.fitHeightProperty().bind(_quizScreen.heightProperty());

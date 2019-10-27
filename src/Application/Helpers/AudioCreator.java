@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 import Application.Controllers.Add_Audio_ScreenController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -38,7 +37,7 @@ public class AudioCreator extends Task<Long> {
 	}
 	
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// writes the content of the wikit search into a temporary text file 
 		try {
 			Path file = Paths.get(AUDIO_DIR + "temp.txt");
@@ -74,14 +73,11 @@ public class AudioCreator extends Task<Long> {
 			e.printStackTrace();
 		}		
 		
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				_controller.getSearchTextField().setDisable(true);
-				//Append the new Audio object onto the List of Audio TableView
-				_controller.getAudioList().getItems().add(_audio);
-				_controller.enableBottomHalf();
-			}
+		Platform.runLater(() -> {
+			_controller.getSearchTextField().setDisable(true);
+			//Append the new Audio object onto the List of Audio TableView
+			_controller.getAudioList().getItems().add(_audio);
+			_controller.enableBottomHalf();
 		});
 		return null;
 	}

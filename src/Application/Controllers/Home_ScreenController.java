@@ -1,36 +1,21 @@
 package Application.Controllers;
 
-import Application.Helpers.AlertMessage;
-import Application.Helpers.Cleaner;
-import Application.Helpers.Creation;
-import Application.Helpers.MediaBar;
-import Application.Helpers.UpdateHelper;
+import Application.Helpers.*;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +32,8 @@ import java.util.concurrent.Executors;
  */
 public class Home_ScreenController extends Controller implements Initializable {
 
-	// The elements of the application
-    @FXML private Button _addButton;
     @FXML private Button _deleteButton;
     @FXML private Button _playButton;
-    @FXML private Button _quizButton;
-    @FXML private Button _settingsButton;
     @FXML private Label _progressMsg;
     @FXML private ProgressIndicator _progressIndicator;
     @FXML private StackPane _helpImagePane;
@@ -64,8 +45,6 @@ public class Home_ScreenController extends Controller implements Initializable {
     @FXML private TableView _creationTable;
     @FXML private TabPane _videoTabs;
 
-    private UpdateHelper _updateHelper;
-    private ArrayList<Creation> _creations = new ArrayList<Creation>();   // DONT NEED THIS
     private ExecutorService _executor = Executors.newSingleThreadExecutor();
     private List<MediaPlayer> _listOfMediaPlayer = new ArrayList<>();
 
@@ -102,14 +81,9 @@ public class Home_ScreenController extends Controller implements Initializable {
                 Media video = new Media(fileUrl.toURI().toString());
                 MediaPlayer player = new MediaPlayer(video);
                 player.setAutoPlay(true);
-                tab.setOnClosed(new EventHandler<Event>()
-                {
-                    @Override
-                    public void handle(Event arg0)
-                    {
-                        Update();
-                        player.dispose();
-                    }
+                tab.setOnClosed(arg0 -> {
+                    Update();
+                    player.dispose();
                 });
 
                 MediaView mediaView = new MediaView();
@@ -149,8 +123,8 @@ public class Home_ScreenController extends Controller implements Initializable {
         List<Creation> listOfCreations = _creationTable.getSelectionModel().getSelectedItems();
         if (listOfCreations != null) {
             List<Tab> listOfTabToBeRemoved = new ArrayList<>();
+            // Delete each selected creation and ask for confirmation independently
             for (Creation creation : listOfCreations) {
-            	System.out.println("Creation_Directory/" + creation.getFolderName());
                 File filePath = new File("Creation_Directory/" + creation.getFolderName());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete \"" + creation.getName() + "\"?");
@@ -164,12 +138,12 @@ public class Home_ScreenController extends Controller implements Initializable {
                                         player.dispose();
                                     }
                                 }
-                                listOfTabToBeRemoved.add(tab);
+                                listOfTabToBeRemoved.add(tab); // Tab of deleted creation needs to be closed as well
                             }
                         }
                         cleaner.cleanCreation(creation.getFolderName());
                         filePath.delete();
-                        _videoTabs.getTabs().removeAll(listOfTabToBeRemoved);
+                        _videoTabs.getTabs().removeAll(listOfTabToBeRemoved); // remove all tabs of deleted creations
                     }
                 });
             }
@@ -215,7 +189,7 @@ public class Home_ScreenController extends Controller implements Initializable {
      * Updates the TableView Creation items
      */
     public void Update() {
-        _updateHelper = new UpdateHelper(this);
+        UpdateHelper _updateHelper = new UpdateHelper(this);
         _executor.submit(_updateHelper);
         disable();
     }
@@ -223,7 +197,7 @@ public class Home_ScreenController extends Controller implements Initializable {
     /**
      * Disables the play and delete button when the user is playing a video and is not on the Creation Tab
      */
-    public void disable() {
+    private void disable() {
         if (_videoTabs.getSelectionModel().getSelectedItem() != _creationTab) {
             _deleteButton.setDisable(true);
             _playButton.setDisable(true);
@@ -233,11 +207,7 @@ public class Home_ScreenController extends Controller implements Initializable {
             _playButton.setDisable(false);
         }
     }
-    
-    public ArrayList<Creation> getCreations() {
-        return _creations;
-    }
-    
+
     public Label getProgressMsg() {
     	return _progressMsg;
     }

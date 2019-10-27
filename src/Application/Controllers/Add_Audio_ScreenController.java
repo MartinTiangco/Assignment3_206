@@ -5,21 +5,15 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -40,11 +34,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	@FXML private MediaView _mediaView;
 	@FXML private SplitPane _entireScreenPane;
 
-	// elements in the top half of the screen
-	@FXML private Button _helpButton;
-	@FXML private Button _playTextButton;
-	@FXML private Button _searchButton;
-	@FXML private Button _createAudioButton;
 	@FXML private ComboBox _voiceBox;
 	@FXML private ListView _textDescription;
 	@FXML private Slider _speedSlider;
@@ -56,8 +45,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	
 	// elements in the bottom half
 	@FXML private AnchorPane _bottomHalf;
-	@FXML private Button _playAudioButton;
-	@FXML private Button _deleteAudioButton;
 	@FXML private Button _nextButton;
 	@FXML private TableColumn _termSearched;
 	@FXML private TableColumn _numberOfLines;
@@ -89,9 +76,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		disableBottomHalf();
 
 		_textDescription.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
 		_textDescription.setCellFactory(TextFieldListCell.forListView());
-
 		_searchTextField.requestFocus();
 
 		// prepares the TableView to be populated with Audio objects
@@ -111,10 +96,11 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_textDescription.getItems().add("No content found.");
 		_textDescription.setDisable(true);
 
-
+		// Enable drag and drop functionality on the list of saved audio
 		_savedAudio.setRowFactory(tv -> {
 			TableRow<Audio> row = new TableRow<>();
 
+			// Copy audio object when drag is detected
 			row.setOnDragDetected(event -> {
 				if (! row.isEmpty()) {
 					Integer index = row.getIndex();
@@ -130,29 +116,26 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 			row.setOnDragOver(event -> {
 				Dragboard db = event.getDragboard();
 				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-					if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+					if (row.getIndex() != (Integer) db.getContent(SERIALIZED_MIME_TYPE)) {
 						event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 						event.consume();
 					}
 				}
 			});
 
+			// Change indices of audios when the dragged audio is dropped
 			row.setOnDragDropped(event -> {
 				Dragboard db = event.getDragboard();
 				if (db.hasContent(SERIALIZED_MIME_TYPE)) {
 					int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
 					Audio draggedPerson = (Audio) _savedAudio.getItems().remove(draggedIndex);
-
 					int dropIndex ;
-
 					if (row.isEmpty()) {
 						dropIndex = _savedAudio.getItems().size() ;
 					} else {
 						dropIndex = row.getIndex();
 					}
-
 					_savedAudio.getItems().add(dropIndex, draggedPerson);
-
 					event.setDropCompleted(true);
 					_savedAudio.getSelectionModel().select(dropIndex);
 					event.consume();
@@ -179,6 +162,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 * Previews the text using the current voice settings
 	 */
 	public void handlePlayText() {
+		Stage stage = (Stage)_nextButton.getScene().getWindow();
+		stage.setOnCloseRequest(t -> terminatePlayers()
+		);
 		if (!_textDescription.getSelectionModel().getSelectedItems().isEmpty()) {
 			// allows you to preview text without waiting for the first one to finish
 			terminatePlayers();
@@ -195,6 +181,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 * Previews an audio file that is saved onto the 'List of Saved Audio'
 	 */
 	public void handlePlayAudio() {
+		Stage stage = (Stage)_nextButton.getScene().getWindow();
+		stage.setOnCloseRequest(t -> terminatePlayers()
+		);
 		// allow you to play audio without waiting for the first to finish
 		if (_savedAudio.getSelectionModel().getSelectedItem() != null) {
 			terminatePlayers();
@@ -322,6 +311,9 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		stage.close();
 	}
 
+	/**
+	 * Handles cancelling the search progress
+	 */
 	public void handleCancel(){
 		_wikitWorker.getProcess().destroy();
 		_entireScreenPane.setDisable(false);
@@ -368,10 +360,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	 */
 	private boolean validateSearch(String searchInput) {
 		// checks for textfield being an empty string or only spaces
-		if (searchInput.trim().isEmpty()) {
-			return false;
-		}
-		return true;
+		return !searchInput.trim().isEmpty();
 	}
 	
 	/**
@@ -381,17 +370,13 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	private boolean validateText() {
 		// checks if the selected item is just a punctuation mark and disallows it
 		String listString = (String.join("", _textDescription.getSelectionModel().getSelectedItems())).trim();
-		System.out.println(listString);
 		if (Pattern.matches("\\p{Punct}+", listString)) {
 		    return false;
 		}
 		
 		// this fixes a bug where multiple punctuation marks are selected, then attempt to save, then select one line to edit,
 		// then save again
-		if (Pattern.matches("null", listString)) {
-			return false;
-		}
-		return true;
+		return !Pattern.matches("null", listString);
 	}
 
 	/**
@@ -412,7 +397,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 	/**
 	 * disables the voice customization
 	 */
-	public void disableCustomization() {
+	private void disableCustomization() {
 		_voiceBox.setDisable(true);
 		_speedSlider.setDisable(true);
 		_pitchSlider.setDisable(true);
@@ -427,23 +412,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_pitchSlider.setDisable(false);
 	}
 
-	/**
-	 * disables the preview / create buttons in the top-half
-	 */
-	public void disablePlayCreateText() {
-		_createAudioButton.setDisable(true);
-		_playTextButton.setDisable(true);
-	}
-
-	/**
-	 * enables the preview / create buttons in the top-half
-	 */
-	public void enablePlayCreateText() {
-		_createAudioButton.setDisable(false);
-		_playTextButton.setDisable(false);
-	}
-
-	public void disableBottomHalf() {
+	private void disableBottomHalf() {
 		_bottomHalf.setDisable(true);
 	}
 
@@ -451,7 +420,7 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 		_bottomHalf.setDisable(false);
 	}
 
-	public void setUpAudio(Audio audio) {
+	private void setUpAudio(Audio audio) {
 		audio.setContent(_textDescription.getSelectionModel().getSelectedItems());
 		audio.setVoice((String) (_voiceBox.getSelectionModel().getSelectedItem()));
 		audio.setSpeed((int)_speedSlider.getValue());
@@ -468,14 +437,6 @@ public class Add_Audio_ScreenController extends Controller implements Initializa
 
 	public MediaView getMediaView() {
 		return _mediaView;
-	}
-
-	public Button getPlayTextButton() {
-		return _playTextButton;
-	}
-
-	public Button getPlayAudioButton() {
-		return _playAudioButton;
 	}
 
 	public String getSearchInput() {

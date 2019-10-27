@@ -1,18 +1,14 @@
 package Application.Helpers;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import Application.Controllers.Add_Audio_ScreenController;
-import Application.Controllers.Image_Selection_ScreenController;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Combines the audio files that the user has made in the 'Add Audio Screen' into an output wav file
@@ -35,7 +31,7 @@ public class AudioCombiner extends Task<Long> {
 	}
 	
 	@Override
-	protected Long call() throws Exception {
+	protected Long call() {
 		// retrieves a list of filenames from the 'List of Audio' objects as the input to the 'sox' command
 		List<String> filenames = getFilenames();
 		String input = "";
@@ -45,7 +41,7 @@ public class AudioCombiner extends Task<Long> {
 		
 		// creates an id for the output.wav file so we can use it later
 		// when we merge the background music
-		int id = new File(OUTPUT_DIR).listFiles().length;
+		int id = Objects.requireNonNull(new File(OUTPUT_DIR).listFiles()).length;
 		_controller.setAudioFileId(id);
 		
 		// combines multiple audio files for the creation
@@ -85,7 +81,7 @@ public class AudioCombiner extends Task<Long> {
 	 * @return the List<String> of filenames of the audio files to combine
 	 */
 	private List<String> getFilenames() {
-		List<String> filenames = new ArrayList<String>();
+		List<String> filenames = new ArrayList<>();
 		for (Audio a : _audioList) {
 			filenames.add(a.getFilename());
 		}

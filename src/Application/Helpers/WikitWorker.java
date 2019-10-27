@@ -1,18 +1,11 @@
 package Application.Helpers;
 
 import Application.Controllers.Add_Audio_ScreenController;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Worker thread calling the wikit command in the background.
@@ -100,12 +93,7 @@ public class WikitWorker extends Task<Long> {
 		public void run() {
 			// clears ListView and appends all lines of content
 			if (!(_sepLines == null)) {
-				
 				//append lines onto text field
-				StringBuilder content = new StringBuilder(""); 
-				for (String line : _sepLines) {
-				   content.append(line);
-				}
 				_controller.getContent().getItems().addAll(_sepLines);
 				
 				// enables the customization panel (i.e. the voice settings)

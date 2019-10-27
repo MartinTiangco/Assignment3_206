@@ -1,7 +1,6 @@
 package Application.Helpers;
 
 import java.io.File;
-
 import Application.Controllers.Background_Music_ScreenController;
 import javafx.concurrent.Task;
 import javafx.scene.media.Media;
@@ -25,7 +24,7 @@ public class TrackPlayer extends Task<Long> {
     }
 
     @Override
-    protected Long call() throws Exception {
+    protected Long call() {
         if (_track.getTrackFile() != null) {
             playTrack(_track.getTrackFile());
         }
@@ -35,7 +34,7 @@ public class TrackPlayer extends Task<Long> {
     /**
      * Plays the background music
      */
-    public void playTrack(String trackFile) {
+    private void playTrack(String trackFile) {
         File fileUrl = new File(MUSIC_DIR + trackFile);
         Media audio = new Media(fileUrl.toURI().toString());
         MediaPlayer player = new MediaPlayer(audio);

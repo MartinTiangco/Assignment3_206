@@ -4,11 +4,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,20 +19,16 @@ import java.io.FileReader;
  * 			- Yuansheng Zhang, yzhb120
  */
 public class Controller {
-    protected Controller _currentController;
-    protected Controller _parentController;
-    protected String _styleSheet = "";
+    private Controller _currentController;
+    private Controller _parentController;
+    private String _styleSheet = "";
 
     public void setCurrentController(Controller currentController){
         _currentController = currentController;
     }
 
-    public void setParentController(Controller parentController){
+    private void setParentController(Controller parentController){
         _parentController = parentController;
-    }
-
-    public Controller getCurrentController(){
-        return _currentController;
     }
 
     public Controller getParentController(){
@@ -76,7 +69,7 @@ public class Controller {
             fileOut.write(inputBuffer.toString().getBytes());
             fileOut.close();
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

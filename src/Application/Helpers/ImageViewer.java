@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 /**
- * 
+ * Class to display the selected image on the ImageView
  * @author Group 25:
  * 			- Martin Tiangco, mtia116
  * 			- Yuansheng Zhang, yzhb120
@@ -18,13 +18,8 @@ public class ImageViewer extends Task<Long> {
         _controller = controller;
     }
     @Override
-    protected Long call() throws Exception {
-        Runnable viewImage = new Runnable() {
-            @Override
-            public void run() {
-                _controller.viewImage();
-            }
-        };
+    protected Long call() {
+        Runnable viewImage = () -> _controller.viewImage();
         Platform.runLater(viewImage);
 
         return null;
