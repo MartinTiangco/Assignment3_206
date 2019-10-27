@@ -13,7 +13,7 @@
             <Font size="28.0" />
          </font>
       </Button>
-      <ImageView fx:id="_logo" fitHeight="235.0" fitWidth="419.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="_logo" fitHeight="246.0" fitWidth="424.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/logo.png" />
          </image>
