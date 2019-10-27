@@ -2,6 +2,7 @@ package Application.Helpers;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -35,21 +36,27 @@ public class Quiz {
 
 	public Quiz() {
 		// retrieves the number of creations in the directory
-		_total = new File(DIR).listFiles(File::isDirectory).length;
-		if (_total > 15) {
-			_total = 15;
+		int total = new File(DIR).listFiles(File::isDirectory).length;
+		if (total > 12) {
+			_total = 12;
+		}
+		else {
+			_total = total;
 		}
 		Random rand = new Random();
 		File[] listOfFiles = new File(DIR).listFiles(File::isDirectory);
-		for (int i = 1; i < 16; i++){
+		for (File file : listOfFiles){
 			Question question = new Question();
-			question.setQuestionNumber(String.valueOf(i));
-			question.setCreationTested(listOfFiles[rand.nextInt(_total)]);
+			question.setCreationTested(file);
 			int firstPatternIndex = question.getCreationTested().getName().indexOf("_-_");
 			int secondPatternIndex = question.getCreationTested().getName().indexOf("_-_", firstPatternIndex + 3);
 			question.setCorrectAnswer(question.getCreationTested().getName().substring(firstPatternIndex + 3, secondPatternIndex));
 			_listOfQuestions.add(question);
 		}
+		while (_listOfQuestions.size() > 12){
+			_listOfQuestions.remove(rand.nextInt(_listOfQuestions.size()));
+		}
+		Collections.shuffle(_listOfQuestions);
 
 	}
 
@@ -92,6 +99,7 @@ public class Quiz {
 
 	public Pane createQuizScreen(){
 		Question question = _listOfQuestions.get(_currentQuestionNumber);
+		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
 		Media video;
 		if (_difficulty.equals("Easy")) {
 			video = new Media(question.getCreationTested().toURI().toString() + System.getProperty("file.separator") + "video.mp4");
@@ -111,6 +119,7 @@ public class Quiz {
 
 	public Pane createQuizTextArea(){
 		Question question = _listOfQuestions.get(_currentQuestionNumber);
+		question.setQuestionNumber(String.valueOf(_currentQuestionNumber + 1));
 		String text = question.getCreationTested().toURI().toString() + System.getProperty("file.separator")
 				+ "wikit.txt";
 		
