@@ -55,12 +55,18 @@ public class Image_Selection_ScreenController extends Controller {
 	@FXML private StackPane _helpImagePane;
 	@FXML private TextField _nameInput;
 	@FXML private Label _imageScreenTitle;
+	@FXML private Label _selectedImagesLabel;
 
 	private Add_Audio_ScreenController _controller;
 	private ExecutorService _executor = Executors.newSingleThreadExecutor();
 	private String _term;
 
 	public void initialize() {
+		// adds the graphic icons to the labels
+        _imageScreenTitle.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/image.png"))));
+        _selectedImagesLabel.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Application/assets/selected.png"))));
+		
+		
 		// initializes the help image to be invisible
         _helpImagePane.setVisible(false);
         
@@ -141,7 +147,7 @@ public class Image_Selection_ScreenController extends Controller {
 		_listOfImages.getSelectionModel().select(0);
 		selectImage();
 		_selectAll.setVisible(true);
-		_imageScreenTitle.setText("Images of " + _term);
+		_imageScreenTitle.setText("Images of \"" + _term + "\"");
 		_imageScreenTitle.setFont(Font.font(30));
 	}
 

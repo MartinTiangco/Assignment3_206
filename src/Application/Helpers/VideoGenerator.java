@@ -59,7 +59,7 @@ public class VideoGenerator extends Task<Long> {
 				progress.setVisible(true);
 
 				Label progressMsg = homeController.getProgressMsg();
-				progressMsg.setText("Generating the creation " + _creationName);
+				progressMsg.setText("Generating the creation \"" + _creationName + "\".");
 				progressMsg.setVisible(true);
 			}	
 		};

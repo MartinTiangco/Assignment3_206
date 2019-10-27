@@ -17,3 +17,15 @@
 #_linkButton{
 	-fx-graphic: url('../assets/link.png');
 }
+
+#_noMusicImage{
+	-fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.8), 20, 0, 0, 0);
+}
+
+#_profilePic{
+	-fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.8), 10, 0, 0, 0);
+}
+
+#_tag{
+	-fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.8), 10, 0, 0, 0);
+}

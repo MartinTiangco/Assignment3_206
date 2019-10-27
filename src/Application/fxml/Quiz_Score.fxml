@@ -31,7 +31,7 @@
          <children>
             <AnchorPane prefHeight="179.0" prefWidth="322.0">
                <children>
-                  <Label fx:id="_percentageScore" layoutX="98.0" layoutY="401.0" prefHeight="73.0" prefWidth="123.0" style="-fx-font-size: 40; -fx-font-weight: bold;" text="{xx%}" textAlignment="CENTER">
+                  <Label fx:id="_percentageScore" layoutX="99.0" layoutY="387.0" prefHeight="73.0" prefWidth="112.0" style="-fx-font-size: 40; -fx-font-weight: bold;" text="{xx%}" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>

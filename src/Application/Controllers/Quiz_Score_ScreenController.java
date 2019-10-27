@@ -113,20 +113,29 @@ public class Quiz_Score_ScreenController extends Controller implements Initializ
         	icon = "silver_medal.png";
         } else if (score < 80 && score > 69) {
         	icon = "bronze_medal.png";
-        } 
+        } else {
+        	icon = "no_medal.png";
+        }
 		
-		if (!icon.isEmpty()) {
-	        Image image = new Image(assetPath + icon);
-	        _medal.setImage(image);
-		}
+		Image image = new Image(assetPath + icon);
+		_medal.setImage(image);
 		
-		// add a fade in transition
-        FadeTransition ft = new FadeTransition(Duration.millis(3000), _medal);
-        ft.setFromValue(1.0);
-        ft.setToValue(0.3);
-        ft.setCycleCount(4);
-        ft.setAutoReverse(true);
-    
-        ft.play();
+		// add a fade in transition to the medal image
+		FadeTransition fadeInMedal = new FadeTransition(Duration.millis(2000));
+		fadeInMedal.setNode(_medal);
+		fadeInMedal.setFromValue(0.0);
+		fadeInMedal.setToValue(1.0);
+		fadeInMedal.setCycleCount(1);
+		fadeInMedal.setAutoReverse(false);
+		fadeInMedal.playFromStart();
+		
+		// add a fade in transition to the percentage score
+		FadeTransition fadeInPercentageScore = new FadeTransition(Duration.millis(2000));
+		fadeInPercentageScore.setNode(_percentageScore);
+		fadeInPercentageScore.setFromValue(0.0);
+		fadeInPercentageScore.setToValue(1.0);
+		fadeInPercentageScore.setCycleCount(1);
+		fadeInPercentageScore.setAutoReverse(false);
+		fadeInPercentageScore.playFromStart();
 	}
 }
