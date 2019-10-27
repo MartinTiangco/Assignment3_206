@@ -54,7 +54,7 @@
                         <Insets top="350.0" />
                      </StackPane.margin>
                   </Label>
-                  <ImageView fitHeight="276.0" fitWidth="277.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="_noMusicImage" fitHeight="276.0" fitWidth="277.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/noMusic.png" />
                      </image>
