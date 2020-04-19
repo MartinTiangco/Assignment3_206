@@ -9,9 +9,9 @@ The motivation behind VARpedia is to give guidance to ESOL students about the En
 
 
 ## Screenshots
-![](https://ibb.co/hWKFnJ7 "Bootstrap theme")
-![](https://ibb.co/10vtbLw "Red devil theme")
-![](https://ibb.co/tMDRfj7 "Sky theme")
+![](https://i.ibb.co/yy8FMcf/bootstrap3.png "Bootstrap theme")
+![](https://i.ibb.co/rQ7Rvm1/reddevil.png "Red devil theme")
+![](https://i.ibb.co/Z6x9s4n/sky.png "Sky theme")
 
 
 ## Technologies used
