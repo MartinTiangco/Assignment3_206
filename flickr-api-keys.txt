@@ -1,2 +1,2 @@
-apiKey = d2ef36e169f46358e259c073faafaa46
+apiKey = // replace with your own API key
 sharedSecret = d2affa24b7d0e6e8
