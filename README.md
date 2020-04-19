@@ -1,4 +1,6 @@
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "VARpedia by Martin and Will")
+![](https://github.com/MartinTiangco/VARPedia/blob/master/src/Application/assets/logo.png "VARpedia by Martin and Will")
+
+
 VARpedia is designed to aid English learning to English to Speakers of Other Languages (ESOL) students aged between 18-25 years. The application caters to those who learn best visually, aurally or by reading/writing by presenting information in different formats. This information is referred to as ‘Creations’ of a chosen word the user wishes to learn about. The Creation offers information in formats such as a voiceover of results from Wikipedia with optional background music, a variety of images and a subtitle of the chosen word.
 
 
@@ -7,7 +9,9 @@ The motivation behind VARpedia is to give guidance to ESOL students about the En
 
 
 ## Screenshots
-
+![](https://ibb.co/hWKFnJ7 "Bootstrap theme")
+![](https://ibb.co/10vtbLw "Red devil theme")
+![](https://ibb.co/tMDRfj7 "Sky theme")
 
 
 ## Technologies used
