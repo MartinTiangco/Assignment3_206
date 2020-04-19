@@ -1,3 +1,4 @@
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "VARpedia by Martin and Will")
 VARpedia is designed to aid English learning to English to Speakers of Other Languages (ESOL) students aged between 18-25 years. The application caters to those who learn best visually, aurally or by reading/writing by presenting information in different formats. This information is referred to as ‘Creations’ of a chosen word the user wishes to learn about. The Creation offers information in formats such as a voiceover of results from Wikipedia with optional background music, a variety of images and a subtitle of the chosen word.
 
 
@@ -80,7 +81,7 @@ Flickr4Java: API for Image gathering from Flickr.
 https://github.com/boncey/Flickr4Java
 
 
-**How to use?**
+## How to use?
 
 To run this application, you need to run the latest version of Linux.
 
